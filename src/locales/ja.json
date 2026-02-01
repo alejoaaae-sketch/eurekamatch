@@ -14,7 +14,8 @@
     "login": "ログイン",
     "signup": "新規登録",
     "logout": "ログアウト",
-    "email": "メールアドレス",
+    "phone": "電話番号",
+    "name": "お名前",
     "password": "パスワード",
     "noAccount": "アカウントをお持ちでないですか？",
     "hasAccount": "すでにアカウントをお持ちですか？",
@@ -23,7 +24,10 @@
     "welcomeBack": "おかえりなさい！",
     "accountCreated": "アカウントが作成されました！Mútuoへようこそ",
     "invalidCredentials": "認証情報が無効です",
-    "passwordMinLength": "パスワードは6文字以上必要です"
+    "passwordMinLength": "パスワードは6文字以上必要です",
+    "phoneInvalid": "有効な電話番号を入力してください",
+    "nameRequired": "名前は必須です",
+    "phoneAlreadyRegistered": "この電話番号はすでに登録されています"
   },
   "app": {
     "name": "Mútuo",

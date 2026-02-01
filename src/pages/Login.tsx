@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Heart, Eye, EyeOff, Loader2 } from "lucide-react";
+import { Heart, Eye, EyeOff, Loader2, Phone, User } from "lucide-react";
 import { useAuth } from "@/hooks/useAuth";
 import LanguageSelector from "@/components/LanguageSelector";
 import { toast } from "sonner";
@@ -14,7 +14,8 @@ const Login = () => {
   const { user, loading: authLoading, signIn, signUp } = useAuth();
   const [isLogin, setIsLogin] = useState(true);
   const [showPassword, setShowPassword] = useState(false);
-  const [email, setEmail] = useState("");
+  const [phone, setPhone] = useState("");
+  const [displayName, setDisplayName] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
 
@@ -28,9 +29,17 @@ const Login = () => {
     e.preventDefault();
     setLoading(true);
 
+    // Validate phone
+    const cleanPhone = phone.replace(/[\s\-\(\)\.]/g, '');
+    if (cleanPhone.length < 9) {
+      toast.error(t("auth.phoneInvalid"));
+      setLoading(false);
+      return;
+    }
+
     try {
       if (isLogin) {
-        const { error } = await signIn(email, password);
+        const { error } = await signIn(phone, password);
         if (error) {
           toast.error(error.message === "Invalid login credentials" 
             ? t("auth.invalidCredentials")
@@ -45,9 +54,18 @@ const Login = () => {
           setLoading(false);
           return;
         }
-        const { error } = await signUp(email, password);
+        if (!displayName.trim()) {
+          toast.error(t("auth.nameRequired"));
+          setLoading(false);
+          return;
+        }
+        const { error } = await signUp(phone, password, displayName.trim());
         if (error) {
-          toast.error(error.message);
+          if (error.message.includes("already registered")) {
+            toast.error(t("auth.phoneAlreadyRegistered"));
+          } else {
+            toast.error(error.message);
+          }
         } else {
           toast.success(t("auth.accountCreated"));
           navigate("/home");
@@ -90,17 +108,37 @@ const Login = () => {
 
       {/* Form */}
       <form onSubmit={handleSubmit} className="w-full max-w-sm space-y-4 animate-fade-in-up animate-delay-200">
-        <div>
+        {/* Name field - only show on signup */}
+        {!isLogin && (
+          <div className="relative">
+            <User className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-muted-foreground" />
+            <Input
+              type="text"
+              placeholder={t("auth.name")}
+              value={displayName}
+              onChange={(e) => setDisplayName(e.target.value)}
+              required={!isLogin}
+              disabled={loading}
+              className="pl-12"
+            />
+          </div>
+        )}
+
+        {/* Phone field */}
+        <div className="relative">
+          <Phone className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-muted-foreground" />
           <Input
-            type="email"
-            placeholder={t("auth.email")}
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
+            type="tel"
+            placeholder={t("auth.phone")}
+            value={phone}
+            onChange={(e) => setPhone(e.target.value)}
             required
             disabled={loading}
+            className="pl-12"
           />
         </div>
 
+        {/* Password field */}
         <div className="relative">
           <Input
             type={showPassword ? "text" : "password"}

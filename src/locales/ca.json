@@ -14,7 +14,8 @@
     "login": "Entrar",
     "signup": "Crear compte",
     "logout": "Tancar sessió",
-    "email": "Correu electrònic",
+    "phone": "Número de telèfon",
+    "name": "El teu nom",
     "password": "Contrasenya",
     "noAccount": "No tens compte?",
     "hasAccount": "Ja tens compte?",
@@ -23,7 +24,10 @@
     "welcomeBack": "Benvingut de nou!",
     "accountCreated": "Compte creat! Benvingut a Mútuo",
     "invalidCredentials": "Credencials incorrectes",
-    "passwordMinLength": "La contrasenya ha de tenir almenys 6 caràcters"
+    "passwordMinLength": "La contrasenya ha de tenir almenys 6 caràcters",
+    "phoneInvalid": "Introdueix un número de telèfon vàlid",
+    "nameRequired": "El nom és obligatori",
+    "phoneAlreadyRegistered": "Aquest número ja està registrat"
   },
   "app": {
     "name": "Mútuo",

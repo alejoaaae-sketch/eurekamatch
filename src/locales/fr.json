@@ -14,7 +14,8 @@
     "login": "Se connecter",
     "signup": "Créer un compte",
     "logout": "Se déconnecter",
-    "email": "Email",
+    "phone": "Numéro de téléphone",
+    "name": "Votre nom",
     "password": "Mot de passe",
     "noAccount": "Vous n'avez pas de compte ?",
     "hasAccount": "Vous avez déjà un compte ?",
@@ -23,7 +24,10 @@
     "welcomeBack": "Bon retour !",
     "accountCreated": "Compte créé ! Bienvenue sur Mútuo",
     "invalidCredentials": "Identifiants incorrects",
-    "passwordMinLength": "Le mot de passe doit contenir au moins 6 caractères"
+    "passwordMinLength": "Le mot de passe doit contenir au moins 6 caractères",
+    "phoneInvalid": "Veuillez entrer un numéro de téléphone valide",
+    "nameRequired": "Le nom est obligatoire",
+    "phoneAlreadyRegistered": "Ce numéro est déjà enregistré"
   },
   "app": {
     "name": "Mútuo",

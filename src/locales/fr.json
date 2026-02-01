@@ -1,0 +1,174 @@
+{
+  "common": {
+    "back": "Retour",
+    "save": "Enregistrer",
+    "cancel": "Annuler",
+    "delete": "Supprimer",
+    "loading": "Chargement...",
+    "error": "Erreur",
+    "success": "Succès !",
+    "copy": "Copier",
+    "copied": "Copié"
+  },
+  "auth": {
+    "login": "Se connecter",
+    "signup": "Créer un compte",
+    "logout": "Se déconnecter",
+    "email": "Email",
+    "password": "Mot de passe",
+    "noAccount": "Vous n'avez pas de compte ?",
+    "hasAccount": "Vous avez déjà un compte ?",
+    "register": "S'inscrire",
+    "signIn": "Se connecter",
+    "welcomeBack": "Bon retour !",
+    "accountCreated": "Compte créé ! Bienvenue sur Mútuo",
+    "invalidCredentials": "Identifiants incorrects",
+    "passwordMinLength": "Le mot de passe doit contenir au moins 6 caractères"
+  },
+  "app": {
+    "name": "Mútuo",
+    "tagline": "Découvrez si l'intérêt est mutuel",
+    "privacyNote": "Votre vie privée est notre priorité. Nous ne partagerons jamais vos choix.",
+    "taglines": {
+      "love": "Découvrez si l'amour est mutuel",
+      "friends": "Des amis sur qui compter. Parce que c'est mutuel.",
+      "sex": "Découvrez l'attirance mutuelle"
+    }
+  },
+  "home": {
+    "welcome": "Bonjour",
+    "matches": "Correspondances",
+    "picks": "Mes choix",
+    "emptyMatches": "Pas encore de correspondances",
+    "emptyMatchesHint": "Quand quelqu'un que vous avez choisi vous choisit aussi, il apparaîtra ici",
+    "emptyPicks": "Vous n'avez encore choisi personne",
+    "emptyPicksHint": "Ajoutez quelqu'un pour découvrir si l'intérêt est mutuel",
+    "addFirst": "Ajouter votre premier choix",
+    "addPick": "Ajouter un choix",
+    "pending": "En attente",
+    "mutualInterest": "Intérêt mutuel !",
+    "view": "Voir"
+  },
+  "pick": {
+    "add": "Ajouter un choix",
+    "addSubtitle": "Qui voulez-vous ajouter ?",
+    "name": "Nom",
+    "namePlaceholder": "Comment s'appelle-t-il/elle ?",
+    "phone": "Téléphone",
+    "phonePlaceholder": "+33 6 00 00 00 00",
+    "phoneHint": "Nous utilisons le téléphone pour trouver des correspondances. Nous ne le partageons jamais.",
+    "save": "Enregistrer le choix",
+    "saving": "Enregistrement...",
+    "added": "Choix ajouté",
+    "addedSuccess": "Ajouté avec succès",
+    "addedAt": "Ajouté",
+    "deleteConfirm": "Supprimer ce choix ?",
+    "deleteDescription": "Cette action est irréversible.",
+    "deleted": "Choix supprimé",
+    "limit": "Limite atteinte",
+    "limitMessage": "Vous ne pouvez avoir que {{count}} choix actifs"
+  },
+  "match": {
+    "title": "C'est mutuel !",
+    "subtitle": "Vous a aussi choisi",
+    "contactNow": "Vous pouvez maintenant vous contacter",
+    "phone": "Téléphone",
+    "email": "Email",
+    "noContact": "L'utilisateur n'a pas encore complété son profil avec ses coordonnées.",
+    "tip": "N'oubliez pas : le premier pas est le plus difficile. Bonne chance !",
+    "backHome": "Retour à l'accueil",
+    "notFound": "Correspondance non trouvée"
+  },
+  "profile": {
+    "title": "Mon profil",
+    "displayName": "Nom affiché",
+    "displayNamePlaceholder": "Comment voulez-vous être appelé ?",
+    "phone": "Téléphone",
+    "phonePlaceholder": "+33 6 00 00 00 00",
+    "phoneHint": "C'est le téléphone que les autres utiliseront pour vous trouver",
+    "email": "Email",
+    "language": "Langue",
+    "save": "Enregistrer les modifications",
+    "saving": "Enregistrement...",
+    "saved": "Profil mis à jour",
+    "phoneRequired": "Le numéro de téléphone est obligatoire",
+    "logout": "Se déconnecter"
+  },
+  "languages": {
+    "es": "Español",
+    "en": "English",
+    "eu": "Euskera",
+    "ca": "Català",
+    "fr": "Français",
+    "ja": "日本語"
+  },
+  "nav": {
+    "home": "Accueil",
+    "add": "Ajouter",
+    "profile": "Profil"
+  },
+  "payment": {
+    "title": "Effectuer le paiement",
+    "addPickDescription": "Pour ajouter ce choix, vous devez effectuer un paiement unique.",
+    "changePickDescription": "Pour modifier ce choix, vous devez effectuer un paiement.",
+    "oneTimeFee": "Paiement unique",
+    "cardNumber": "Numéro de carte",
+    "expiry": "Expiration",
+    "securePayment": "Paiement sécurisé et crypté",
+    "pay": "Payer",
+    "processing": "Traitement du paiement...",
+    "pleaseWait": "Veuillez patienter un instant",
+    "success": "Paiement effectué !",
+    "thankYou": "Merci pour votre achat"
+  },
+  "time": {
+    "now": "Maintenant",
+    "yesterday": "Hier"
+  },
+  "landing": {
+    "headline": {
+      "love": "Et si cette personne pensait aussi à toi ?",
+      "plan": "De vrais amis. Ceux qui te choisissent aussi.",
+      "sex": "L'attirance ne ment pas."
+    },
+    "subheadline": {
+      "love": "Découvrez si l'amour est mutuel. Sans risque. Sans rejet.",
+      "plan": "Découvrez qui compte sur vous comme vous comptez sur eux.",
+      "sex": "Découvrez si le désir est réciproque. Discret. Sécurisé."
+    },
+    "cta": "Commencer",
+    "howItWorks": {
+      "title": "Comment ça marche ?",
+      "step1": {
+        "title": "Choisissez",
+        "description": "Ajoutez en privé les personnes qui vous intéressent."
+      },
+      "step2": {
+        "title": "Attendez",
+        "description": "Personne ne sait que vous les avez choisis sauf si c'est mutuel."
+      },
+      "step3": {
+        "title": "Découvrez",
+        "description": {
+          "love": "Si vous vous choisissez mutuellement, vous aurez un Eureka Love !",
+          "plan": "Si vous vous choisissez mutuellement, vous aurez un Eureka Friends !",
+          "sex": "Si vous vous choisissez mutuellement, vous aurez un Eureka Partner !"
+        }
+      }
+    },
+    "privacy": {
+      "title": "Votre vie privée est sacrée",
+      "description": "Vos choix sont 100% confidentiels. Les informations ne sont révélées qu'en cas de correspondance mutuelle.",
+      "feature1": "Choix privés",
+      "feature2": "Pas de notifications",
+      "feature3": "Données cryptées"
+    },
+    "finalCta": {
+      "title": "Prêt à le découvrir ?",
+      "subtitle": "Le premier pas est le plus difficile. On vous facilite la tâche."
+    },
+    "footer": {
+      "rights": "Tous droits réservés."
+    }
+  }
+}

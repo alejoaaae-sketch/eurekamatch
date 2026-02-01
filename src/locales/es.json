@@ -1,0 +1,174 @@
+{
+  "common": {
+    "back": "Volver",
+    "save": "Guardar",
+    "cancel": "Cancelar",
+    "delete": "Eliminar",
+    "loading": "Cargando...",
+    "error": "Error",
+    "success": "¡Éxito!",
+    "copy": "Copiar",
+    "copied": "Copiado"
+  },
+  "auth": {
+    "login": "Entrar",
+    "signup": "Crear cuenta",
+    "logout": "Cerrar sesión",
+    "email": "Correo electrónico",
+    "password": "Contraseña",
+    "noAccount": "¿No tienes cuenta?",
+    "hasAccount": "¿Ya tienes cuenta?",
+    "register": "Regístrate",
+    "signIn": "Inicia sesión",
+    "welcomeBack": "¡Bienvenido de nuevo!",
+    "accountCreated": "¡Cuenta creada! Bienvenido a Mútuo",
+    "invalidCredentials": "Credenciales incorrectas",
+    "passwordMinLength": "La contraseña debe tener al menos 6 caracteres"
+  },
+  "app": {
+    "name": "Mútuo",
+    "tagline": "Descubre si el interés es mutuo",
+    "privacyNote": "Tu privacidad es nuestra prioridad. Nunca compartiremos tus elecciones.",
+    "taglines": {
+      "love": "Descubre si el amor es mutuo",
+      "friends": "Amigos con los que puedes contar. Porque es mutuo.",
+      "sex": "Descubre la atracción mutua"
+    }
+  },
+  "home": {
+    "welcome": "Hola",
+    "matches": "Coincidencias",
+    "picks": "Mis elecciones",
+    "emptyMatches": "Aún no hay coincidencias",
+    "emptyMatchesHint": "Cuando alguien que elegiste también te elija, aparecerá aquí",
+    "emptyPicks": "No has elegido a nadie todavía",
+    "emptyPicksHint": "Añade a alguien para descubrir si el interés es mutuo",
+    "addFirst": "Añadir tu primera elección",
+    "addPick": "Añadir elección",
+    "pending": "En espera",
+    "mutualInterest": "¡Interés mutuo!",
+    "view": "Ver"
+  },
+  "pick": {
+    "add": "Añadir elección",
+    "addSubtitle": "¿A quién quieres añadir?",
+    "name": "Nombre",
+    "namePlaceholder": "¿Cómo se llama?",
+    "phone": "Teléfono",
+    "phonePlaceholder": "+34 600 000 000",
+    "phoneHint": "Usamos el teléfono para encontrar coincidencias. Nunca lo compartimos.",
+    "save": "Guardar elección",
+    "saving": "Guardando...",
+    "added": "Elección añadida",
+    "addedSuccess": "Se ha añadido correctamente",
+    "addedAt": "Añadido",
+    "deleteConfirm": "¿Eliminar esta elección?",
+    "deleteDescription": "Esta acción no se puede deshacer.",
+    "deleted": "Elección eliminada",
+    "limit": "Límite alcanzado",
+    "limitMessage": "Solo puedes tener {{count}} elecciones activas"
+  },
+  "match": {
+    "title": "¡Es mutuo!",
+    "subtitle": "También te eligió",
+    "contactNow": "Ahora pueden contactarse",
+    "phone": "Teléfono",
+    "email": "Email",
+    "noContact": "El usuario aún no ha completado su perfil con información de contacto.",
+    "tip": "Recuerda: el primer paso es el más difícil. ¡Suerte!",
+    "backHome": "Volver al inicio",
+    "notFound": "Coincidencia no encontrada"
+  },
+  "profile": {
+    "title": "Mi perfil",
+    "displayName": "Nombre para mostrar",
+    "displayNamePlaceholder": "¿Cómo quieres que te llamen?",
+    "phone": "Teléfono",
+    "phonePlaceholder": "+34 600 000 000",
+    "phoneHint": "Este es el teléfono que otros usarán para encontrarte",
+    "email": "Email",
+    "language": "Idioma",
+    "save": "Guardar cambios",
+    "saving": "Guardando...",
+    "saved": "Perfil actualizado",
+    "phoneRequired": "El teléfono es obligatorio",
+    "logout": "Cerrar sesión"
+  },
+  "languages": {
+    "es": "Español",
+    "en": "English",
+    "eu": "Euskera",
+    "ca": "Català",
+    "fr": "Français",
+    "ja": "日本語"
+  },
+  "nav": {
+    "home": "Inicio",
+    "add": "Añadir",
+    "profile": "Perfil"
+  },
+  "payment": {
+    "title": "Realizar pago",
+    "addPickDescription": "Para añadir esta elección necesitas realizar un pago único.",
+    "changePickDescription": "Para cambiar esta elección necesitas realizar un pago.",
+    "oneTimeFee": "Pago único",
+    "cardNumber": "Número de tarjeta",
+    "expiry": "Caducidad",
+    "securePayment": "Pago seguro y encriptado",
+    "pay": "Pagar",
+    "processing": "Procesando pago...",
+    "pleaseWait": "Por favor, espera un momento",
+    "success": "¡Pago completado!",
+    "thankYou": "Gracias por tu compra"
+  },
+  "time": {
+    "now": "Ahora",
+    "yesterday": "Ayer"
+  },
+  "landing": {
+    "headline": {
+      "love": "¿Y si también piensa en ti?",
+      "plan": "Amigos de verdad. Los que también te eligen.",
+      "sex": "La atracción no miente."
+    },
+    "subheadline": {
+      "love": "Descubre si el amor es mutuo. Sin riesgos. Sin rechazos.",
+      "plan": "Descubre quién cuenta contigo como tú cuentas con ellos.",
+      "sex": "Descubre si también te desea. Discreto. Seguro."
+    },
+    "cta": "Empezar ahora",
+    "howItWorks": {
+      "title": "¿Cómo funciona?",
+      "step1": {
+        "title": "Elige",
+        "description": "Añade a las personas que te interesan de forma privada."
+      },
+      "step2": {
+        "title": "Espera",
+        "description": "Nadie sabrá que les has elegido a menos que sea mutuo."
+      },
+      "step3": {
+        "title": "Descubre",
+        "description": {
+          "love": "Si ambos os elegís, ¡tendréis un Eureka Love!",
+          "plan": "Si ambos os elegís, ¡tendréis un Eureka Friends!",
+          "sex": "Si ambos os elegís, ¡tendréis un Eureka Partner!"
+        }
+      }
+    },
+    "privacy": {
+      "title": "Tu privacidad es sagrada",
+      "description": "Tus elecciones son 100% confidenciales. Solo se revela información cuando hay coincidencia mutua.",
+      "feature1": "Elecciones privadas",
+      "feature2": "Sin notificaciones",
+      "feature3": "Datos encriptados"
+    },
+    "finalCta": {
+      "title": "¿Preparado para descubrirlo?",
+      "subtitle": "El primer paso es el más difícil. Nosotros te lo ponemos fácil."
+    },
+    "footer": {
+      "rights": "Todos los derechos reservados."
+    }
+  }
+}

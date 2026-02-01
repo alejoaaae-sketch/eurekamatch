@@ -1,0 +1,174 @@
+{
+  "common": {
+    "back": "Itzuli",
+    "save": "Gorde",
+    "cancel": "Utzi",
+    "delete": "Ezabatu",
+    "loading": "Kargatzen...",
+    "error": "Errorea",
+    "success": "Arrakasta!",
+    "copy": "Kopiatu",
+    "copied": "Kopiatuta"
+  },
+  "auth": {
+    "login": "Sartu",
+    "signup": "Kontua sortu",
+    "logout": "Irten",
+    "email": "Posta elektronikoa",
+    "password": "Pasahitza",
+    "noAccount": "Ez duzu konturik?",
+    "hasAccount": "Dagoeneko baduzu kontua?",
+    "register": "Izena eman",
+    "signIn": "Hasi saioa",
+    "welcomeBack": "Ongi etorri berriro!",
+    "accountCreated": "Kontua sortuta! Ongi etorri Mútuo-ra",
+    "invalidCredentials": "Kredentzial okerrak",
+    "passwordMinLength": "Pasahitzak gutxienez 6 karaktere izan behar ditu"
+  },
+  "app": {
+    "name": "Mútuo",
+    "tagline": "Ezagutu interesa elkarrekikoa den",
+    "privacyNote": "Zure pribatutasuna da lehentasuna. Ez ditugu inoiz zure aukerak partekatuko.",
+    "taglines": {
+      "love": "Ezagutu maitasuna elkarrekikoa den",
+      "friends": "Kontatu dezakezun lagunak. Elkarrekikoa delako.",
+      "sex": "Ezagutu erakarpen elkarrekikoa"
+    }
+  },
+  "home": {
+    "welcome": "Kaixo",
+    "matches": "Bat-etortzeak",
+    "picks": "Nire aukerak",
+    "emptyMatches": "Oraindik ez dago bat-etortzerik",
+    "emptyMatchesHint": "Aukeratu duzun norbaitek zu ere aukeratzen zaituenean, hemen agertuko da",
+    "emptyPicks": "Oraindik ez duzu inor aukeratu",
+    "emptyPicksHint": "Gehitu norbait elkarrekikoa den jakiteko",
+    "addFirst": "Gehitu zure lehen aukera",
+    "addPick": "Aukera gehitu",
+    "pending": "Zain",
+    "mutualInterest": "Interes elkarrekikoa!",
+    "view": "Ikusi"
+  },
+  "pick": {
+    "add": "Aukera gehitu",
+    "addSubtitle": "Nor gehitu nahi duzu?",
+    "name": "Izena",
+    "namePlaceholder": "Nola du izena?",
+    "phone": "Telefonoa",
+    "phonePlaceholder": "+34 600 000 000",
+    "phoneHint": "Telefonoa bat-etortzeak aurkitzeko erabiltzen dugu. Ez dugu inoiz partekatzen.",
+    "save": "Aukera gorde",
+    "saving": "Gordetzen...",
+    "added": "Aukera gehituta",
+    "addedSuccess": "Ondo gehitu da",
+    "addedAt": "Gehituta",
+    "deleteConfirm": "Aukera hau ezabatu?",
+    "deleteDescription": "Ekintza hau ezin da desegin.",
+    "deleted": "Aukera ezabatuta",
+    "limit": "Muga iritsi da",
+    "limitMessage": "{{count}} aukera aktibo bakarrik izan ditzakezu"
+  },
+  "match": {
+    "title": "Elkarrekikoa da!",
+    "subtitle": "Zuk ere aukeratu zaitu",
+    "contactNow": "Orain elkarrekin harremanetan jar zaitezkete",
+    "phone": "Telefonoa",
+    "email": "Emaila",
+    "noContact": "Erabiltzaileak oraindik ez du bere profila kontaktu informazioarekin osatu.",
+    "tip": "Gogoratu: lehen urratsa da zailena. Zorte on!",
+    "backHome": "Hasierara itzuli",
+    "notFound": "Bat-etortzea ez da aurkitu"
+  },
+  "profile": {
+    "title": "Nire profila",
+    "displayName": "Erakusteko izena",
+    "displayNamePlaceholder": "Nola deitu nahi duzu?",
+    "phone": "Telefonoa",
+    "phonePlaceholder": "+34 600 000 000",
+    "phoneHint": "Hau da besteek zu aurkitzeko erabiliko duten telefonoa",
+    "email": "Emaila",
+    "language": "Hizkuntza",
+    "save": "Aldaketak gorde",
+    "saving": "Gordetzen...",
+    "saved": "Profila eguneratuta",
+    "phoneRequired": "Telefonoa derrigorrezkoa da",
+    "logout": "Saioa itxi"
+  },
+  "languages": {
+    "es": "Español",
+    "en": "English",
+    "eu": "Euskera",
+    "ca": "Català",
+    "fr": "Français",
+    "ja": "日本語"
+  },
+  "nav": {
+    "home": "Hasiera",
+    "add": "Gehitu",
+    "profile": "Profila"
+  },
+  "payment": {
+    "title": "Ordainketa egin",
+    "addPickDescription": "Aukera hau gehitzeko ordainketa bakarra egin behar duzu.",
+    "changePickDescription": "Aukera hau aldatzeko ordainketa egin behar duzu.",
+    "oneTimeFee": "Ordainketa bakarra",
+    "cardNumber": "Txartel zenbakia",
+    "expiry": "Iraungitze data",
+    "securePayment": "Ordainketa segurua eta enkriptatua",
+    "pay": "Ordaindu",
+    "processing": "Ordainketa prozesatzen...",
+    "pleaseWait": "Mesedez, itxaron pixka bat",
+    "success": "Ordainketa osatuta!",
+    "thankYou": "Eskerrik asko zure erosketagatik"
+  },
+  "time": {
+    "now": "Orain",
+    "yesterday": "Atzo"
+  },
+  "landing": {
+    "headline": {
+      "love": "Eta zutan ere pentsatzen badu?",
+      "plan": "Benetako lagunak. Zu ere aukeratzen zaituztanak.",
+      "sex": "Erakarpenak ez du gezurrik esaten."
+    },
+    "subheadline": {
+      "love": "Ezagutu maitasuna elkarrekikoa den. Arriskurik gabe. Bazterketarik gabe.",
+      "plan": "Ezagutu zurekin kontatzen duena zu haiekin kontatzen duzun bezala.",
+      "sex": "Ezagutu zuk ere nahi zaituen. Diskretua. Segurua."
+    },
+    "cta": "Hasi orain",
+    "howItWorks": {
+      "title": "Nola funtzionatzen du?",
+      "step1": {
+        "title": "Aukeratu",
+        "description": "Gehitu interesatzen zaizkizun pertsonak modu pribatuan."
+      },
+      "step2": {
+        "title": "Itxaron",
+        "description": "Inork ez daki aukeratu dituzula, elkarrekikoa ez bada."
+      },
+      "step3": {
+        "title": "Ezagutu",
+        "description": {
+          "love": "Biek elkar aukeratzen baduzue, Eureka Love bat izango duzue!",
+          "plan": "Biek elkar aukeratzen baduzue, Eureka Friends bat izango duzue!",
+          "sex": "Biek elkar aukeratzen baduzue, Eureka Partner bat izango duzue!"
+        }
+      }
+    },
+    "privacy": {
+      "title": "Zure pribatutasuna sakratua da",
+      "description": "Zure aukerak %100 konfidentzialak dira. Informazioa bat-etortze elkarrekikoa dagoenean bakarrik agertzen da.",
+      "feature1": "Aukera pribatuak",
+      "feature2": "Jakinarazpenik gabe",
+      "feature3": "Datu enkriptatuak"
+    },
+    "finalCta": {
+      "title": "Prest ezagutzeko?",
+      "subtitle": "Lehen urratsa da zailena. Guk errazten dizugu."
+    },
+    "footer": {
+      "rights": "Eskubide guztiak erreserbatuta."
+    }
+  }
+}

@@ -1,0 +1,174 @@
+{
+  "common": {
+    "back": "Tornar",
+    "save": "Desar",
+    "cancel": "Cancel·lar",
+    "delete": "Eliminar",
+    "loading": "Carregant...",
+    "error": "Error",
+    "success": "Èxit!",
+    "copy": "Copiar",
+    "copied": "Copiat"
+  },
+  "auth": {
+    "login": "Entrar",
+    "signup": "Crear compte",
+    "logout": "Tancar sessió",
+    "email": "Correu electrònic",
+    "password": "Contrasenya",
+    "noAccount": "No tens compte?",
+    "hasAccount": "Ja tens compte?",
+    "register": "Registra't",
+    "signIn": "Inicia sessió",
+    "welcomeBack": "Benvingut de nou!",
+    "accountCreated": "Compte creat! Benvingut a Mútuo",
+    "invalidCredentials": "Credencials incorrectes",
+    "passwordMinLength": "La contrasenya ha de tenir almenys 6 caràcters"
+  },
+  "app": {
+    "name": "Mútuo",
+    "tagline": "Descobreix si l'interès és mutu",
+    "privacyNote": "La teva privacitat és la nostra prioritat. Mai compartirem les teves eleccions.",
+    "taglines": {
+      "love": "Descobreix si l'amor és mutu",
+      "friends": "Amics amb qui pots comptar. Perquè és mutu.",
+      "sex": "Descobreix l'atracció mútua"
+    }
+  },
+  "home": {
+    "welcome": "Hola",
+    "matches": "Coincidències",
+    "picks": "Les meves eleccions",
+    "emptyMatches": "Encara no hi ha coincidències",
+    "emptyMatchesHint": "Quan algú que has escollit també t'esculli, apareixerà aquí",
+    "emptyPicks": "Encara no has escollit ningú",
+    "emptyPicksHint": "Afegeix algú per descobrir si l'interès és mutu",
+    "addFirst": "Afegeix la teva primera elecció",
+    "addPick": "Afegir elecció",
+    "pending": "En espera",
+    "mutualInterest": "Interès mutu!",
+    "view": "Veure"
+  },
+  "pick": {
+    "add": "Afegir elecció",
+    "addSubtitle": "A qui vols afegir?",
+    "name": "Nom",
+    "namePlaceholder": "Com es diu?",
+    "phone": "Telèfon",
+    "phonePlaceholder": "+34 600 000 000",
+    "phoneHint": "Utilitzem el telèfon per trobar coincidències. Mai el compartim.",
+    "save": "Desar elecció",
+    "saving": "Desant...",
+    "added": "Elecció afegida",
+    "addedSuccess": "S'ha afegit correctament",
+    "addedAt": "Afegit",
+    "deleteConfirm": "Eliminar aquesta elecció?",
+    "deleteDescription": "Aquesta acció no es pot desfer.",
+    "deleted": "Elecció eliminada",
+    "limit": "Límit assolit",
+    "limitMessage": "Només pots tenir {{count}} eleccions actives"
+  },
+  "match": {
+    "title": "És mutu!",
+    "subtitle": "També t'ha escollit",
+    "contactNow": "Ara us podeu contactar",
+    "phone": "Telèfon",
+    "email": "Email",
+    "noContact": "L'usuari encara no ha completat el seu perfil amb informació de contacte.",
+    "tip": "Recorda: el primer pas és el més difícil. Sort!",
+    "backHome": "Tornar a l'inici",
+    "notFound": "Coincidència no trobada"
+  },
+  "profile": {
+    "title": "El meu perfil",
+    "displayName": "Nom per mostrar",
+    "displayNamePlaceholder": "Com vols que et diguin?",
+    "phone": "Telèfon",
+    "phonePlaceholder": "+34 600 000 000",
+    "phoneHint": "Aquest és el telèfon que altres utilitzaran per trobar-te",
+    "email": "Email",
+    "language": "Idioma",
+    "save": "Desar canvis",
+    "saving": "Desant...",
+    "saved": "Perfil actualitzat",
+    "phoneRequired": "El telèfon és obligatori",
+    "logout": "Tancar sessió"
+  },
+  "languages": {
+    "es": "Español",
+    "en": "English",
+    "eu": "Euskera",
+    "ca": "Català",
+    "fr": "Français",
+    "ja": "日本語"
+  },
+  "nav": {
+    "home": "Inici",
+    "add": "Afegir",
+    "profile": "Perfil"
+  },
+  "payment": {
+    "title": "Fer pagament",
+    "addPickDescription": "Per afegir aquesta elecció necessites fer un pagament únic.",
+    "changePickDescription": "Per canviar aquesta elecció necessites fer un pagament.",
+    "oneTimeFee": "Pagament únic",
+    "cardNumber": "Número de targeta",
+    "expiry": "Caducitat",
+    "securePayment": "Pagament segur i encriptat",
+    "pay": "Pagar",
+    "processing": "Processant pagament...",
+    "pleaseWait": "Si us plau, espera un moment",
+    "success": "Pagament completat!",
+    "thankYou": "Gràcies per la teva compra"
+  },
+  "time": {
+    "now": "Ara",
+    "yesterday": "Ahir"
+  },
+  "landing": {
+    "headline": {
+      "love": "I si també pensa en tu?",
+      "plan": "Amics de veritat. Els que també t'escullen.",
+      "sex": "L'atracció no menteix."
+    },
+    "subheadline": {
+      "love": "Descobreix si l'amor és mutu. Sense riscos. Sense rebutjos.",
+      "plan": "Descobreix qui compta amb tu com tu comptes amb ells.",
+      "sex": "Descobreix si també et desitja. Discret. Segur."
+    },
+    "cta": "Comença ara",
+    "howItWorks": {
+      "title": "Com funciona?",
+      "step1": {
+        "title": "Escull",
+        "description": "Afegeix de forma privada les persones que t'interessen."
+      },
+      "step2": {
+        "title": "Espera",
+        "description": "Ningú sabrà que els has escollit si no és mutu."
+      },
+      "step3": {
+        "title": "Descobreix",
+        "description": {
+          "love": "Si tots dos us escolliu, tindreu un Eureka Love!",
+          "plan": "Si tots dos us escolliu, tindreu un Eureka Friends!",
+          "sex": "Si tots dos us escolliu, tindreu un Eureka Partner!"
+        }
+      }
+    },
+    "privacy": {
+      "title": "La teva privacitat és sagrada",
+      "description": "Les teves eleccions són 100% confidencials. La informació només es revela quan hi ha coincidència mútua.",
+      "feature1": "Eleccions privades",
+      "feature2": "Sense notificacions",
+      "feature3": "Dades encriptades"
+    },
+    "finalCta": {
+      "title": "Preparat per descobrir-ho?",
+      "subtitle": "El primer pas és el més difícil. Nosaltres t'ho posem fàcil."
+    },
+    "footer": {
+      "rights": "Tots els drets reservats."
+    }
+  }
+}

@@ -1,0 +1,174 @@
+{
+  "common": {
+    "back": "Back",
+    "save": "Save",
+    "cancel": "Cancel",
+    "delete": "Delete",
+    "loading": "Loading...",
+    "error": "Error",
+    "success": "Success!",
+    "copy": "Copy",
+    "copied": "Copied"
+  },
+  "auth": {
+    "login": "Log in",
+    "signup": "Sign up",
+    "logout": "Log out",
+    "email": "Email",
+    "password": "Password",
+    "noAccount": "Don't have an account?",
+    "hasAccount": "Already have an account?",
+    "register": "Sign up",
+    "signIn": "Log in",
+    "welcomeBack": "Welcome back!",
+    "accountCreated": "Account created! Welcome to Mútuo",
+    "invalidCredentials": "Invalid credentials",
+    "passwordMinLength": "Password must be at least 6 characters"
+  },
+  "app": {
+    "name": "Mútuo",
+    "tagline": "Discover if it's mutual",
+    "privacyNote": "Your privacy is our priority. We'll never share your picks.",
+    "taglines": {
+      "love": "Discover if love is mutual",
+      "friends": "Friends you can count on. Because it's mutual.",
+      "sex": "Discover mutual attraction"
+    }
+  },
+  "home": {
+    "welcome": "Hello",
+    "matches": "Matches",
+    "picks": "My picks",
+    "emptyMatches": "No matches yet",
+    "emptyMatchesHint": "When someone you picked also picks you, they'll appear here",
+    "emptyPicks": "You haven't picked anyone yet",
+    "emptyPicksHint": "Add someone to find out if it's mutual",
+    "addFirst": "Add your first pick",
+    "addPick": "Add pick",
+    "pending": "Pending",
+    "mutualInterest": "Mutual interest!",
+    "view": "View"
+  },
+  "pick": {
+    "add": "Add pick",
+    "addSubtitle": "Who do you want to add?",
+    "name": "Name",
+    "namePlaceholder": "What's their name?",
+    "phone": "Phone",
+    "phonePlaceholder": "+1 555 000 0000",
+    "phoneHint": "We use the phone number to find matches. We never share it.",
+    "save": "Save pick",
+    "saving": "Saving...",
+    "added": "Pick added",
+    "addedSuccess": "Added successfully",
+    "addedAt": "Added",
+    "deleteConfirm": "Delete this pick?",
+    "deleteDescription": "This action cannot be undone.",
+    "deleted": "Pick deleted",
+    "limit": "Limit reached",
+    "limitMessage": "You can only have {{count}} active picks"
+  },
+  "match": {
+    "title": "It's mutual!",
+    "subtitle": "Also picked you",
+    "contactNow": "You can now contact each other",
+    "phone": "Phone",
+    "email": "Email",
+    "noContact": "The user hasn't completed their profile with contact information yet.",
+    "tip": "Remember: the first step is the hardest. Good luck!",
+    "backHome": "Back to home",
+    "notFound": "Match not found"
+  },
+  "profile": {
+    "title": "My profile",
+    "displayName": "Display name",
+    "displayNamePlaceholder": "What should we call you?",
+    "phone": "Phone",
+    "phonePlaceholder": "+1 555 000 0000",
+    "phoneHint": "This is the phone number others will use to find you",
+    "email": "Email",
+    "language": "Language",
+    "save": "Save changes",
+    "saving": "Saving...",
+    "saved": "Profile updated",
+    "phoneRequired": "Phone number is required",
+    "logout": "Log out"
+  },
+  "languages": {
+    "es": "Español",
+    "en": "English",
+    "eu": "Euskera",
+    "ca": "Català",
+    "fr": "Français",
+    "ja": "日本語"
+  },
+  "nav": {
+    "home": "Home",
+    "add": "Add",
+    "profile": "Profile"
+  },
+  "payment": {
+    "title": "Make payment",
+    "addPickDescription": "To add this pick you need to make a one-time payment.",
+    "changePickDescription": "To change this pick you need to make a payment.",
+    "oneTimeFee": "One-time fee",
+    "cardNumber": "Card number",
+    "expiry": "Expiry",
+    "securePayment": "Secure and encrypted payment",
+    "pay": "Pay",
+    "processing": "Processing payment...",
+    "pleaseWait": "Please wait a moment",
+    "success": "Payment completed!",
+    "thankYou": "Thank you for your purchase"
+  },
+  "time": {
+    "now": "Now",
+    "yesterday": "Yesterday"
+  },
+  "landing": {
+    "headline": {
+      "love": "What if they're thinking of you too?",
+      "plan": "Real friends. The ones who choose you back.",
+      "sex": "Attraction doesn't lie."
+    },
+    "subheadline": {
+      "love": "Discover if love is mutual. No risks. No rejection.",
+      "plan": "Find out who counts on you like you count on them.",
+      "sex": "Find out if they want you too. Discreet. Safe."
+    },
+    "cta": "Get started",
+    "howItWorks": {
+      "title": "How does it work?",
+      "step1": {
+        "title": "Choose",
+        "description": "Privately add the people you're interested in."
+      },
+      "step2": {
+        "title": "Wait",
+        "description": "No one knows you picked them unless it's mutual."
+      },
+      "step3": {
+        "title": "Discover",
+        "description": {
+          "love": "If you both choose each other, you'll have a Eureka Love!",
+          "plan": "If you both choose each other, you'll have a Eureka Friends!",
+          "sex": "If you both choose each other, you'll have a Eureka Partner!"
+        }
+      }
+    },
+    "privacy": {
+      "title": "Your privacy is sacred",
+      "description": "Your choices are 100% confidential. Information is only revealed when there's a mutual match.",
+      "feature1": "Private choices",
+      "feature2": "No notifications",
+      "feature3": "Encrypted data"
+    },
+    "finalCta": {
+      "title": "Ready to find out?",
+      "subtitle": "The first step is the hardest. We make it easy."
+    },
+    "footer": {
+      "rights": "All rights reserved."
+    }
+  }
+}

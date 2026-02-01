@@ -1,0 +1,174 @@
+{
+  "common": {
+    "back": "戻る",
+    "save": "保存",
+    "cancel": "キャンセル",
+    "delete": "削除",
+    "loading": "読み込み中...",
+    "error": "エラー",
+    "success": "成功！",
+    "copy": "コピー",
+    "copied": "コピーしました"
+  },
+  "auth": {
+    "login": "ログイン",
+    "signup": "新規登録",
+    "logout": "ログアウト",
+    "email": "メールアドレス",
+    "password": "パスワード",
+    "noAccount": "アカウントをお持ちでないですか？",
+    "hasAccount": "すでにアカウントをお持ちですか？",
+    "register": "登録",
+    "signIn": "サインイン",
+    "welcomeBack": "おかえりなさい！",
+    "accountCreated": "アカウントが作成されました！Mútuoへようこそ",
+    "invalidCredentials": "認証情報が無効です",
+    "passwordMinLength": "パスワードは6文字以上必要です"
+  },
+  "app": {
+    "name": "Mútuo",
+    "tagline": "相思相愛を見つけよう",
+    "privacyNote": "プライバシーは私たちの最優先事項です。あなたの選択を共有することはありません。",
+    "taglines": {
+      "love": "相思相愛を見つけよう",
+      "friends": "信頼できる友達。お互いに選び合うから。",
+      "sex": "相互の魅力を発見"
+    }
+  },
+  "home": {
+    "welcome": "こんにちは",
+    "matches": "マッチ",
+    "picks": "私の選択",
+    "emptyMatches": "まだマッチがありません",
+    "emptyMatchesHint": "あなたが選んだ人があなたも選んだら、ここに表示されます",
+    "emptyPicks": "まだ誰も選んでいません",
+    "emptyPicksHint": "誰かを追加して相思相愛か確認しましょう",
+    "addFirst": "最初の選択を追加",
+    "addPick": "選択を追加",
+    "pending": "保留中",
+    "mutualInterest": "相思相愛！",
+    "view": "見る"
+  },
+  "pick": {
+    "add": "選択を追加",
+    "addSubtitle": "誰を追加しますか？",
+    "name": "名前",
+    "namePlaceholder": "お名前は？",
+    "phone": "電話番号",
+    "phonePlaceholder": "+81 90 0000 0000",
+    "phoneHint": "電話番号はマッチを見つけるために使用します。共有することはありません。",
+    "save": "選択を保存",
+    "saving": "保存中...",
+    "added": "選択が追加されました",
+    "addedSuccess": "正常に追加されました",
+    "addedAt": "追加日",
+    "deleteConfirm": "この選択を削除しますか？",
+    "deleteDescription": "この操作は取り消せません。",
+    "deleted": "選択が削除されました",
+    "limit": "上限に達しました",
+    "limitMessage": "{{count}}件までしかアクティブな選択を持てません"
+  },
+  "match": {
+    "title": "相思相愛です！",
+    "subtitle": "あなたも選ばれました",
+    "contactNow": "今すぐ連絡できます",
+    "phone": "電話番号",
+    "email": "メール",
+    "noContact": "ユーザーはまだプロフィールに連絡先情報を入力していません。",
+    "tip": "覚えておいてください：最初の一歩が一番難しい。頑張って！",
+    "backHome": "ホームに戻る",
+    "notFound": "マッチが見つかりません"
+  },
+  "profile": {
+    "title": "マイプロフィール",
+    "displayName": "表示名",
+    "displayNamePlaceholder": "なんと呼ばれたいですか？",
+    "phone": "電話番号",
+    "phonePlaceholder": "+81 90 0000 0000",
+    "phoneHint": "この電話番号で他の人があなたを見つけます",
+    "email": "メール",
+    "language": "言語",
+    "save": "変更を保存",
+    "saving": "保存中...",
+    "saved": "プロフィールが更新されました",
+    "phoneRequired": "電話番号は必須です",
+    "logout": "ログアウト"
+  },
+  "languages": {
+    "es": "Español",
+    "en": "English",
+    "eu": "Euskera",
+    "ca": "Català",
+    "fr": "Français",
+    "ja": "日本語"
+  },
+  "nav": {
+    "home": "ホーム",
+    "add": "追加",
+    "profile": "プロフィール"
+  },
+  "payment": {
+    "title": "お支払い",
+    "addPickDescription": "この選択を追加するには一回限りの支払いが必要です。",
+    "changePickDescription": "この選択を変更するには支払いが必要です。",
+    "oneTimeFee": "一回限りの料金",
+    "cardNumber": "カード番号",
+    "expiry": "有効期限",
+    "securePayment": "安全で暗号化された支払い",
+    "pay": "支払う",
+    "processing": "支払い処理中...",
+    "pleaseWait": "しばらくお待ちください",
+    "success": "支払いが完了しました！",
+    "thankYou": "ご購入ありがとうございます"
+  },
+  "time": {
+    "now": "今",
+    "yesterday": "昨日"
+  },
+  "landing": {
+    "headline": {
+      "love": "もし相手もあなたのことを想っていたら？",
+      "plan": "本当の友達。あなたも選んでくれる人。",
+      "sex": "魅力は嘘をつかない。"
+    },
+    "subheadline": {
+      "love": "相思相愛を見つけよう。リスクなし。拒否なし。",
+      "plan": "あなたが頼りにしている人が、同じようにあなたを頼りにしているか確認しよう。",
+      "sex": "相手もあなたを望んでいるか確認しよう。控えめに。安全に。"
+    },
+    "cta": "今すぐ始める",
+    "howItWorks": {
+      "title": "どのように機能しますか？",
+      "step1": {
+        "title": "選ぶ",
+        "description": "興味のある人をプライベートに追加します。"
+      },
+      "step2": {
+        "title": "待つ",
+        "description": "相思相愛でない限り、誰もあなたが選んだことを知りません。"
+      },
+      "step3": {
+        "title": "発見",
+        "description": {
+          "love": "お互いに選び合えば、Eureka Loveが生まれます！",
+          "plan": "お互いに選び合えば、Eureka Friendsが生まれます！",
+          "sex": "お互いに選び合えば、Eureka Partnerが生まれます！"
+        }
+      }
+    },
+    "privacy": {
+      "title": "プライバシーは神聖です",
+      "description": "あなたの選択は100%機密です。情報は相互マッチがある場合のみ公開されます。",
+      "feature1": "プライベートな選択",
+      "feature2": "通知なし",
+      "feature3": "暗号化されたデータ"
+    },
+    "finalCta": {
+      "title": "確認する準備はできましたか？",
+      "subtitle": "最初の一歩が一番難しい。私たちがそれを簡単にします。"
+    },
+    "footer": {
+      "rights": "全著作権所有。"
+    }
+  }
+}

@@ -14,7 +14,8 @@
     "login": "Sartu",
     "signup": "Kontua sortu",
     "logout": "Irten",
-    "email": "Posta elektronikoa",
+    "phone": "Telefono zenbakia",
+    "name": "Zure izena",
     "password": "Pasahitza",
     "noAccount": "Ez duzu konturik?",
     "hasAccount": "Dagoeneko baduzu kontua?",
@@ -23,7 +24,10 @@
     "welcomeBack": "Ongi etorri berriro!",
     "accountCreated": "Kontua sortuta! Ongi etorri Mútuo-ra",
     "invalidCredentials": "Kredentzial okerrak",
-    "passwordMinLength": "Pasahitzak gutxienez 6 karaktere izan behar ditu"
+    "passwordMinLength": "Pasahitzak gutxienez 6 karaktere izan behar ditu",
+    "phoneInvalid": "Sartu telefono zenbaki baliogarria",
+    "nameRequired": "Izena derrigorrezkoa da",
+    "phoneAlreadyRegistered": "Telefono hau dagoeneko erregistratuta dago"
   },
   "app": {
     "name": "Mútuo",

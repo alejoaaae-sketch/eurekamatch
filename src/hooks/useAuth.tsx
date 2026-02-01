@@ -6,12 +6,19 @@ interface AuthContextType {
   user: User | null;
   session: Session | null;
   loading: boolean;
-  signUp: (email: string, password: string) => Promise<{ error: Error | null }>;
-  signIn: (email: string, password: string) => Promise<{ error: Error | null }>;
+  signUp: (phone: string, password: string, displayName: string) => Promise<{ error: Error | null }>;
+  signIn: (phone: string, password: string) => Promise<{ error: Error | null }>;
   signOut: () => Promise<void>;
 }
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
+
+// Convert phone to email format for Supabase auth (phone+password workaround)
+const phoneToEmail = (phone: string): string => {
+  // Normalize phone: remove spaces, dashes, parentheses
+  const normalized = phone.replace(/[\s\-\(\)\.]/g, '');
+  return `${normalized}@phone.local`;
+};
 
 export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const [user, setUser] = useState<User | null>(null);
@@ -38,18 +45,41 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     return () => subscription.unsubscribe();
   }, []);
 
-  const signUp = async (email: string, password: string) => {
-    const { error } = await supabase.auth.signUp({
+  const signUp = async (phone: string, password: string, displayName: string) => {
+    const email = phoneToEmail(phone);
+    
+    const { data, error } = await supabase.auth.signUp({
       email,
       password,
       options: {
         emailRedirectTo: window.location.origin,
+        data: {
+          phone: phone,
+          display_name: displayName,
+        },
       },
     });
+
+    if (!error && data.user) {
+      // Update the profile with phone and display name
+      await supabase
+        .from('profiles')
+        .upsert({
+          user_id: data.user.id,
+          phone: phone,
+          display_name: displayName,
+          email: email,
+        }, {
+          onConflict: 'user_id',
+        });
+    }
+
     return { error: error as Error | null };
   };
 
-  const signIn = async (email: string, password: string) => {
+  const signIn = async (phone: string, password: string) => {
+    const email = phoneToEmail(phone);
+    
     const { error } = await supabase.auth.signInWithPassword({
       email,
       password,

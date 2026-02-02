@@ -6,7 +6,7 @@ interface AuthContextType {
   user: User | null;
   session: Session | null;
   loading: boolean;
-  signUp: (phone: string, password: string, displayName: string) => Promise<{ error: Error | null }>;
+  signUp: (phone: string, password: string, displayName: string, email: string) => Promise<{ error: Error | null }>;
   signIn: (phone: string, password: string) => Promise<{ error: Error | null }>;
   signOut: () => Promise<void>;
 }
@@ -45,30 +45,31 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     return () => subscription.unsubscribe();
   }, []);
 
-  const signUp = async (phone: string, password: string, displayName: string) => {
-    const email = phoneToEmail(phone);
+  const signUp = async (phone: string, password: string, displayName: string, userEmail: string) => {
+    const authEmail = phoneToEmail(phone);
     
     const { data, error } = await supabase.auth.signUp({
-      email,
+      email: authEmail,
       password,
       options: {
         emailRedirectTo: window.location.origin,
         data: {
           phone: phone,
           display_name: displayName,
+          user_email: userEmail,
         },
       },
     });
 
     if (!error && data.user) {
-      // Update the profile with phone and display name
+      // Update the profile with phone, display name, and user's real email
       await supabase
         .from('profiles')
         .upsert({
           user_id: data.user.id,
           phone: phone,
           display_name: displayName,
-          email: email,
+          email: userEmail,
         }, {
           onConflict: 'user_id',
         });

@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Heart, Eye, EyeOff, Loader2, Phone, User } from "lucide-react";
+import { Heart, Eye, EyeOff, Loader2, Phone, User, Mail } from "lucide-react";
 import { useAuth } from "@/hooks/useAuth";
 import LanguageSelector from "@/components/LanguageSelector";
 import { toast } from "sonner";
@@ -16,9 +16,9 @@ const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [phone, setPhone] = useState("");
   const [displayName, setDisplayName] = useState("");
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
-
   useEffect(() => {
     if (user && !authLoading) {
       navigate("/home");
@@ -59,7 +59,14 @@ const Login = () => {
           setLoading(false);
           return;
         }
-        const { error } = await signUp(phone, password, displayName.trim());
+        // Validate email format
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!email.trim() || !emailRegex.test(email.trim())) {
+          toast.error(t("auth.emailInvalid"));
+          setLoading(false);
+          return;
+        }
+        const { error } = await signUp(phone, password, displayName.trim(), email.trim());
         if (error) {
           if (error.message.includes("already registered")) {
             toast.error(t("auth.phoneAlreadyRegistered"));
@@ -121,6 +128,27 @@ const Login = () => {
               disabled={loading}
               className="pl-12"
             />
+          </div>
+        )}
+
+        {/* Email field - only show on signup */}
+        {!isLogin && (
+          <div className="space-y-1">
+            <div className="relative">
+              <Mail className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-muted-foreground" />
+              <Input
+                type="email"
+                placeholder={t("auth.email")}
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                required={!isLogin}
+                disabled={loading}
+                className="pl-12"
+              />
+            </div>
+            <p className="text-xs text-muted-foreground/70 px-1">
+              {t("auth.emailHint")}
+            </p>
           </div>
         )}
 

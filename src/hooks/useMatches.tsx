@@ -1,7 +1,8 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { supabase } from '@/integrations/supabase/client';
 import { useAuth } from './useAuth';
 import { appConfig } from '@/config/app.config';
+
 export interface Match {
   id: string;
   user1_id: string;
@@ -12,11 +13,57 @@ export interface Match {
   other_user_phone: string | null;
 }
 
+// Track which matches we've already notified about (persisted in localStorage)
+const getNotifiedMatches = (): Set<string> => {
+  try {
+    const stored = localStorage.getItem('notified_matches');
+    return stored ? new Set(JSON.parse(stored)) : new Set();
+  } catch {
+    return new Set();
+  }
+};
+
+const addNotifiedMatch = (matchId: string) => {
+  const notified = getNotifiedMatches();
+  notified.add(matchId);
+  localStorage.setItem('notified_matches', JSON.stringify([...notified]));
+};
+
 export const useMatches = () => {
   const { user } = useAuth();
   const [matches, setMatches] = useState<Match[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const notificationSentRef = useRef<Set<string>>(getNotifiedMatches());
+
+  const sendMatchNotification = async (matchId: string, user1Id: string, user2Id: string) => {
+    // Don't send if we've already notified for this match
+    if (notificationSentRef.current.has(matchId)) {
+      return;
+    }
+
+    try {
+      const response = await supabase.functions.invoke('send-match-notification', {
+        body: {
+          matchId,
+          user1Id,
+          user2Id,
+          appType: appConfig.appType,
+        },
+      });
+
+      if (response.error) {
+        console.error('Error sending match notification:', response.error);
+      } else {
+        console.log('Match notification sent:', response.data);
+        // Mark as notified
+        notificationSentRef.current.add(matchId);
+        addNotifiedMatch(matchId);
+      }
+    } catch (err) {
+      console.error('Error calling send-match-notification:', err);
+    }
+  };
 
   const fetchMatches = async () => {
     if (!user) {
@@ -67,6 +114,9 @@ export const useMatches = () => {
           const { data: profileData } = await supabase
             .rpc('get_matched_user_profile', { p_match_id: match.id })
             .maybeSingle();
+
+          // Send notification for new matches
+          sendMatchNotification(match.id, match.user1_id, match.user2_id);
 
           return {
             ...match,

@@ -96,7 +96,7 @@ const handler = async (req: Request): Promise<Response> => {
         });
 
         await resend.emails.send({
-          from: `${appConfig.fromName} <noreply@eurekanumbers.lovable.app>`,
+          from: `${appConfig.fromName} <noreply@eurekamatch.eus>`,
           to: [user1Profile.email],
           subject: `${appConfig.emoji} ¡Es mutuo! Tienes un match en ${appConfig.name}`,
           html: emailHtml,
@@ -122,7 +122,7 @@ const handler = async (req: Request): Promise<Response> => {
         });
 
         await resend.emails.send({
-          from: `${appConfig.fromName} <noreply@eurekanumbers.lovable.app>`,
+          from: `${appConfig.fromName} <noreply@eurekamatch.eus>`,
           to: [user2Profile.email],
           subject: `${appConfig.emoji} ¡Es mutuo! Tienes un match en ${appConfig.name}`,
           html: emailHtml,

@@ -8,6 +8,7 @@ import {
   InputOTPGroup,
   InputOTPSlot,
 } from "@/components/ui/input-otp";
+import { supabase } from "@/integrations/supabase/client";
 
 interface PhoneVerificationProps {
   phone: string;
@@ -31,9 +32,17 @@ const PhoneVerification = ({ phone, onVerified, onBack }: PhoneVerificationProps
 
     setLoading(true);
     try {
+      // Get current session for auth header
+      const { data: { session } } = await supabase.auth.getSession();
+      
+      const headers: Record<string, string> = { "Content-Type": "application/json" };
+      if (session?.access_token) {
+        headers["Authorization"] = `Bearer ${session.access_token}`;
+      }
+
       const response = await fetch(`${supabaseUrl}/functions/v1/verify-otp`, {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers,
         body: JSON.stringify({ phone, otp }),
       });
 
@@ -56,9 +65,17 @@ const PhoneVerification = ({ phone, onVerified, onBack }: PhoneVerificationProps
   const handleResend = async () => {
     setResending(true);
     try {
+      // Get current session for auth header
+      const { data: { session } } = await supabase.auth.getSession();
+      
+      const headers: Record<string, string> = { "Content-Type": "application/json" };
+      if (session?.access_token) {
+        headers["Authorization"] = `Bearer ${session.access_token}`;
+      }
+
       const response = await fetch(`${supabaseUrl}/functions/v1/send-otp`, {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers,
         body: JSON.stringify({ phone }),
       });
 

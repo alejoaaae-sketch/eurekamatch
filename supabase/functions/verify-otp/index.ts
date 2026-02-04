@@ -1,4 +1,6 @@
 import { serve } from "https://deno.land/std@0.190.0/http/server.ts";
+import { crypto } from "https://deno.land/std@0.190.0/crypto/mod.ts";
+import { encode as hexEncode } from "https://deno.land/std@0.190.0/encoding/hex.ts";
 
 const corsHeaders = {
   "Access-Control-Allow-Origin": "*",
@@ -10,6 +12,16 @@ interface VerifyRequest {
   phone: string;
   otp: string;
 }
+
+// Hash OTP using SHA-256 for comparison
+const hashOTP = async (otp: string): Promise<string> => {
+  const encoder = new TextEncoder();
+  const data = encoder.encode(otp);
+  const hashBuffer = await crypto.subtle.digest("SHA-256", data);
+  const hashArray = new Uint8Array(hashBuffer);
+  const hashHex = hexEncode(hashArray);
+  return new TextDecoder().decode(hashHex);
+};
 
 const handler = async (req: Request): Promise<Response> => {
   if (req.method === "OPTIONS") {
@@ -28,6 +40,9 @@ const handler = async (req: Request): Promise<Response> => {
     if (!normalizedPhone.startsWith("+")) {
       normalizedPhone = "+34" + normalizedPhone;
     }
+
+    // Hash the provided OTP for comparison
+    const otpHash = await hashOTP(otp);
 
     const supabaseUrl = Deno.env.get("SUPABASE_URL")!;
     const supabaseServiceKey = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!;
@@ -74,8 +89,8 @@ const handler = async (req: Request): Promise<Response> => {
       );
     }
 
-    // Verify OTP
-    if (otpRecord.otp_code !== otp) {
+    // Verify OTP by comparing hashes
+    if (otpRecord.otp_code !== otpHash) {
       return new Response(
         JSON.stringify({ valid: false, error: "Invalid OTP" }),
         {
@@ -85,10 +100,10 @@ const handler = async (req: Request): Promise<Response> => {
       );
     }
 
-    // Mark as verified
+    // Mark as verified and delete the record for extra security
     await supabase
       .from("phone_otps")
-      .update({ verified: true })
+      .delete()
       .eq("phone", normalizedPhone);
 
     console.log(`OTP verified successfully for ${normalizedPhone}`);

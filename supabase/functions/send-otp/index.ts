@@ -1,4 +1,6 @@
 import { serve } from "https://deno.land/std@0.190.0/http/server.ts";
+import { crypto } from "https://deno.land/std@0.190.0/crypto/mod.ts";
+import { encode as hexEncode } from "https://deno.land/std@0.190.0/encoding/hex.ts";
 
 const corsHeaders = {
   "Access-Control-Allow-Origin": "*",
@@ -10,10 +12,18 @@ interface OTPRequest {
   phone: string;
 }
 
-// Simple in-memory store for OTPs (in production, use Redis or database)
-// For now, we'll store in Supabase
 const generateOTP = (): string => {
   return Math.floor(100000 + Math.random() * 900000).toString();
+};
+
+// Hash OTP using SHA-256 for secure storage
+const hashOTP = async (otp: string): Promise<string> => {
+  const encoder = new TextEncoder();
+  const data = encoder.encode(otp);
+  const hashBuffer = await crypto.subtle.digest("SHA-256", data);
+  const hashArray = new Uint8Array(hashBuffer);
+  const hashHex = hexEncode(hashArray);
+  return new TextDecoder().decode(hashHex);
 };
 
 const handler = async (req: Request): Promise<Response> => {
@@ -31,11 +41,11 @@ const handler = async (req: Request): Promise<Response> => {
     // Normalize phone number
     let normalizedPhone = phone.replace(/[\s\-\(\)\.]/g, "");
     if (!normalizedPhone.startsWith("+")) {
-      // Default to Spain if no country code
       normalizedPhone = "+34" + normalizedPhone;
     }
 
     const otp = generateOTP();
+    const otpHash = await hashOTP(otp);
     const expiresAt = new Date(Date.now() + 10 * 60 * 1000); // 10 minutes
 
     // Get Twilio credentials
@@ -70,19 +80,19 @@ const handler = async (req: Request): Promise<Response> => {
       throw new Error(errorData.message || "Failed to send SMS");
     }
 
-    // Store OTP in database
+    // Store HASHED OTP in database (never store plain text)
     const supabaseUrl = Deno.env.get("SUPABASE_URL")!;
     const supabaseServiceKey = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!;
 
     const { createClient } = await import("https://esm.sh/@supabase/supabase-js@2.49.1");
     const supabase = createClient(supabaseUrl, supabaseServiceKey);
 
-    // Upsert OTP record
+    // Upsert OTP record with hashed code
     const { error: dbError } = await supabase
       .from("phone_otps")
       .upsert({
         phone: normalizedPhone,
-        otp_code: otp,
+        otp_code: otpHash, // Store hash, not plain text
         expires_at: expiresAt.toISOString(),
         verified: false,
       }, {
@@ -100,8 +110,6 @@ const handler = async (req: Request): Promise<Response> => {
       JSON.stringify({ 
         success: true, 
         message: "OTP sent successfully",
-        // Don't return OTP in production! Only for debugging
-        // otp: otp 
       }),
       {
         status: 200,

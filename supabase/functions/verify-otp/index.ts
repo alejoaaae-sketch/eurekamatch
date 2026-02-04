@@ -29,35 +29,14 @@ const handler = async (req: Request): Promise<Response> => {
   }
 
   try {
-    // --- Authentication Check ---
-    const authHeader = req.headers.get("Authorization");
-    if (!authHeader?.startsWith("Bearer ")) {
-      return new Response(
-        JSON.stringify({ valid: false, error: "Unauthorized" }),
-        { status: 401, headers: { "Content-Type": "application/json", ...corsHeaders } }
-      );
-    }
+    // NOTE: No authentication required for verify-otp
+    // This allows unauthenticated users to verify OTP during registration
+    // Rate limiting (5 attempts per phone per 10 minutes) prevents brute force attacks
 
     const supabaseUrl = Deno.env.get("SUPABASE_URL")!;
-    const supabaseAnonKey = Deno.env.get("SUPABASE_ANON_KEY")!;
     const supabaseServiceKey = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!;
 
     const { createClient } = await import("https://esm.sh/@supabase/supabase-js@2.49.1");
-    
-    // Verify the user's JWT
-    const authClient = createClient(supabaseUrl, supabaseAnonKey, {
-      global: { headers: { Authorization: authHeader } }
-    });
-
-    const { data: { user }, error: userError } = await authClient.auth.getUser();
-    
-    if (userError || !user) {
-      return new Response(
-        JSON.stringify({ valid: false, error: "Unauthorized" }),
-        { status: 401, headers: { "Content-Type": "application/json", ...corsHeaders } }
-      );
-    }
-    // --- End Authentication Check ---
 
     const { phone, otp }: VerifyRequest = await req.json();
 

@@ -77,6 +77,24 @@ export type Database = {
         }
         Relationships: []
       }
+      otp_verification_attempts: {
+        Row: {
+          created_at: string | null
+          id: string
+          phone: string
+        }
+        Insert: {
+          created_at?: string | null
+          id?: string
+          phone: string
+        }
+        Update: {
+          created_at?: string | null
+          id?: string
+          phone?: string
+        }
+        Relationships: []
+      }
       phone_otps: {
         Row: {
           created_at: string
@@ -182,6 +200,7 @@ export type Database = {
     }
     Functions: {
       cleanup_expired_otps: { Args: never; Returns: undefined }
+      cleanup_old_otp_attempts: { Args: never; Returns: undefined }
       get_matched_user_profile: {
         Args: { p_match_id: string }
         Returns: {

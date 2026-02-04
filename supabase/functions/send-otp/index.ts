@@ -32,10 +32,52 @@ const handler = async (req: Request): Promise<Response> => {
   }
 
   try {
+    // --- Authentication Check ---
+    const authHeader = req.headers.get("Authorization");
+    if (!authHeader?.startsWith("Bearer ")) {
+      return new Response(
+        JSON.stringify({ error: "Unauthorized" }),
+        { status: 401, headers: { "Content-Type": "application/json", ...corsHeaders } }
+      );
+    }
+
+    const supabaseUrl = Deno.env.get("SUPABASE_URL")!;
+    const supabaseAnonKey = Deno.env.get("SUPABASE_ANON_KEY")!;
+    const supabaseServiceKey = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!;
+
+    const { createClient } = await import("https://esm.sh/@supabase/supabase-js@2.49.1");
+    
+    // Verify the user's JWT
+    const authClient = createClient(supabaseUrl, supabaseAnonKey, {
+      global: { headers: { Authorization: authHeader } }
+    });
+
+    const { data: { user }, error: userError } = await authClient.auth.getUser();
+    
+    if (userError || !user) {
+      return new Response(
+        JSON.stringify({ error: "Unauthorized" }),
+        { status: 401, headers: { "Content-Type": "application/json", ...corsHeaders } }
+      );
+    }
+    // --- End Authentication Check ---
+
     const { phone }: OTPRequest = await req.json();
 
     if (!phone) {
-      throw new Error("Phone number is required");
+      return new Response(
+        JSON.stringify({ error: "Phone number is required" }),
+        { status: 400, headers: { "Content-Type": "application/json", ...corsHeaders } }
+      );
+    }
+
+    // Validate phone format before normalization
+    const phoneRegex = /^\+?[0-9]{9,15}$/;
+    if (!phoneRegex.test(phone.replace(/[\s\-\(\)\.]/g, ""))) {
+      return new Response(
+        JSON.stringify({ error: "Invalid phone number format" }),
+        { status: 400, headers: { "Content-Type": "application/json", ...corsHeaders } }
+      );
     }
 
     // Normalize phone number
@@ -43,6 +85,25 @@ const handler = async (req: Request): Promise<Response> => {
     if (!normalizedPhone.startsWith("+")) {
       normalizedPhone = "+34" + normalizedPhone;
     }
+
+    // Create admin client for database operations
+    const supabase = createClient(supabaseUrl, supabaseServiceKey);
+
+    // --- Rate Limiting: 1 request per phone per 5 minutes ---
+    const { data: existingOtp } = await supabase
+      .from("phone_otps")
+      .select("created_at")
+      .eq("phone", normalizedPhone)
+      .gte("created_at", new Date(Date.now() - 5 * 60 * 1000).toISOString())
+      .maybeSingle();
+
+    if (existingOtp) {
+      return new Response(
+        JSON.stringify({ error: "Please wait before requesting a new code" }),
+        { status: 429, headers: { "Content-Type": "application/json", ...corsHeaders } }
+      );
+    }
+    // --- End Rate Limiting ---
 
     const otp = generateOTP();
     const otpHash = await hashOTP(otp);
@@ -81,12 +142,6 @@ const handler = async (req: Request): Promise<Response> => {
     }
 
     // Store HASHED OTP in database (never store plain text)
-    const supabaseUrl = Deno.env.get("SUPABASE_URL")!;
-    const supabaseServiceKey = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!;
-
-    const { createClient } = await import("https://esm.sh/@supabase/supabase-js@2.49.1");
-    const supabase = createClient(supabaseUrl, supabaseServiceKey);
-
     // Upsert OTP record with hashed code
     const { error: dbError } = await supabase
       .from("phone_otps")

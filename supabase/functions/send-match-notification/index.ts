@@ -42,6 +42,44 @@ const handler = async (req: Request): Promise<Response> => {
       throw new Error("Missing required fields: matchId, user1Id, user2Id, appType");
     }
 
+    // Security validation: Verify the match exists and was created recently (within 60 seconds)
+    // This prevents unauthorized calls since only the database trigger creates matches
+    const { data: matchData, error: matchError } = await supabase
+      .from("matches")
+      .select("id, user1_id, user2_id, created_at")
+      .eq("id", matchId)
+      .single();
+
+    if (matchError || !matchData) {
+      console.error("Match validation failed:", matchError);
+      return new Response(
+        JSON.stringify({ error: "Invalid match" }),
+        { status: 403, headers: { "Content-Type": "application/json", ...corsHeaders } }
+      );
+    }
+
+    // Verify the user IDs match what's in the database
+    if (matchData.user1_id !== user1Id || matchData.user2_id !== user2Id) {
+      console.error("User ID mismatch");
+      return new Response(
+        JSON.stringify({ error: "Invalid request" }),
+        { status: 403, headers: { "Content-Type": "application/json", ...corsHeaders } }
+      );
+    }
+
+    // Verify the match was created within the last 60 seconds (prevents replay attacks)
+    const matchCreatedAt = new Date(matchData.created_at);
+    const now = new Date();
+    const secondsSinceCreation = (now.getTime() - matchCreatedAt.getTime()) / 1000;
+    
+    if (secondsSinceCreation > 60) {
+      console.error("Match too old for notification:", secondsSinceCreation, "seconds");
+      return new Response(
+        JSON.stringify({ error: "Request expired" }),
+        { status: 403, headers: { "Content-Type": "application/json", ...corsHeaders } }
+      );
+    }
+
     const appConfig = appConfigs[appType] || appConfigs.love;
 
     // Get both users' profiles

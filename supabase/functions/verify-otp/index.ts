@@ -97,6 +97,25 @@ const handler = async (req: Request): Promise<Response> => {
 
     const supabase = createClient(supabaseUrl, supabaseServiceKey);
 
+    // --- Rate Limiting: Max 5 attempts per phone per 10 minutes ---
+    const MAX_ATTEMPTS = 5;
+    const ATTEMPT_WINDOW_MS = 10 * 60 * 1000; // 10 minutes
+
+    const { data: recentAttempts } = await supabase
+      .from("otp_verification_attempts")
+      .select("id")
+      .eq("phone", normalizedPhone)
+      .gte("created_at", new Date(Date.now() - ATTEMPT_WINDOW_MS).toISOString());
+
+    if (recentAttempts && recentAttempts.length >= MAX_ATTEMPTS) {
+      console.error("[SECURITY] Too many verification attempts:", normalizedPhone.substring(0, 6) + "***");
+      return new Response(
+        JSON.stringify({ valid: false, error: "Too many attempts. Please request a new code." }),
+        { status: 429, headers: { "Content-Type": "application/json", ...corsHeaders } }
+      );
+    }
+    // --- End Rate Limiting ---
+
     // Get OTP record
     const { data: otpRecord, error: fetchError } = await supabase
       .from("phone_otps")
@@ -105,6 +124,9 @@ const handler = async (req: Request): Promise<Response> => {
       .single();
 
     if (fetchError || !otpRecord) {
+      // Log failed attempt (no OTP found could be enumeration attempt)
+      await supabase.from("otp_verification_attempts").insert({ phone: normalizedPhone });
+      
       return new Response(
         JSON.stringify({ valid: false, error: "No OTP found for this phone" }),
         {
@@ -138,6 +160,9 @@ const handler = async (req: Request): Promise<Response> => {
 
     // Verify OTP by comparing hashes
     if (otpRecord.otp_code !== otpHash) {
+      // Log failed attempt
+      await supabase.from("otp_verification_attempts").insert({ phone: normalizedPhone });
+      
       return new Response(
         JSON.stringify({ valid: false, error: "Invalid OTP" }),
         {
@@ -146,6 +171,12 @@ const handler = async (req: Request): Promise<Response> => {
         }
       );
     }
+    
+    // Clear attempts on successful verification
+    await supabase
+      .from("otp_verification_attempts")
+      .delete()
+      .eq("phone", normalizedPhone);
 
     // Mark as verified and delete the record for extra security
     await supabase

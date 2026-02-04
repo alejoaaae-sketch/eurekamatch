@@ -29,10 +29,61 @@ const handler = async (req: Request): Promise<Response> => {
   }
 
   try {
+    // --- Authentication Check ---
+    const authHeader = req.headers.get("Authorization");
+    if (!authHeader?.startsWith("Bearer ")) {
+      return new Response(
+        JSON.stringify({ valid: false, error: "Unauthorized" }),
+        { status: 401, headers: { "Content-Type": "application/json", ...corsHeaders } }
+      );
+    }
+
+    const supabaseUrl = Deno.env.get("SUPABASE_URL")!;
+    const supabaseAnonKey = Deno.env.get("SUPABASE_ANON_KEY")!;
+    const supabaseServiceKey = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!;
+
+    const { createClient } = await import("https://esm.sh/@supabase/supabase-js@2.49.1");
+    
+    // Verify the user's JWT
+    const authClient = createClient(supabaseUrl, supabaseAnonKey, {
+      global: { headers: { Authorization: authHeader } }
+    });
+
+    const { data: { user }, error: userError } = await authClient.auth.getUser();
+    
+    if (userError || !user) {
+      return new Response(
+        JSON.stringify({ valid: false, error: "Unauthorized" }),
+        { status: 401, headers: { "Content-Type": "application/json", ...corsHeaders } }
+      );
+    }
+    // --- End Authentication Check ---
+
     const { phone, otp }: VerifyRequest = await req.json();
 
     if (!phone || !otp) {
-      throw new Error("Phone and OTP are required");
+      return new Response(
+        JSON.stringify({ valid: false, error: "Phone and OTP are required" }),
+        { status: 400, headers: { "Content-Type": "application/json", ...corsHeaders } }
+      );
+    }
+
+    // Validate OTP is exactly 6 digits
+    const otpRegex = /^\d{6}$/;
+    if (!otpRegex.test(otp)) {
+      return new Response(
+        JSON.stringify({ valid: false, error: "Invalid OTP format" }),
+        { status: 400, headers: { "Content-Type": "application/json", ...corsHeaders } }
+      );
+    }
+
+    // Validate phone format
+    const phoneRegex = /^\+?[0-9]{9,15}$/;
+    if (!phoneRegex.test(phone.replace(/[\s\-\(\)\.]/g, ""))) {
+      return new Response(
+        JSON.stringify({ valid: false, error: "Invalid phone number format" }),
+        { status: 400, headers: { "Content-Type": "application/json", ...corsHeaders } }
+      );
     }
 
     // Normalize phone number
@@ -44,10 +95,6 @@ const handler = async (req: Request): Promise<Response> => {
     // Hash the provided OTP for comparison
     const otpHash = await hashOTP(otp);
 
-    const supabaseUrl = Deno.env.get("SUPABASE_URL")!;
-    const supabaseServiceKey = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!;
-
-    const { createClient } = await import("https://esm.sh/@supabase/supabase-js@2.49.1");
     const supabase = createClient(supabaseUrl, supabaseServiceKey);
 
     // Get OTP record

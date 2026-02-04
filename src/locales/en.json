@@ -30,7 +30,19 @@
     "passwordMinLength": "Password must be at least 6 characters",
     "phoneInvalid": "Please enter a valid phone number",
     "nameRequired": "Name is required",
-    "phoneAlreadyRegistered": "This phone number is already registered"
+    "phoneAlreadyRegistered": "This phone number is already registered",
+    "verifyPhone": "Verify your phone",
+    "otpSentTo": "We've sent a code to",
+    "otpSent": "Code sent via SMS",
+    "verifyCode": "Verify code",
+    "invalidOtp": "Invalid code",
+    "otpIncomplete": "Please enter the complete code",
+    "phoneVerified": "Phone verified!",
+    "verificationError": "Verification error",
+    "sendOtpError": "Failed to send code",
+    "resendOtp": "Didn't receive the code? Resend",
+    "resending": "Resending...",
+    "otpResent": "Code resent"
   },
   "app": {
     "name": "Mútuo",

@@ -10,6 +10,7 @@ export interface Profile {
   phone: string | null;
   created_at: string;
   updated_at: string;
+  language?: string;
 }
 
 export const useProfile = () => {
@@ -27,13 +28,23 @@ export const useProfile = () => {
 
     try {
       setLoading(true);
+      // Defense-in-depth: Explicitly select only the fields we need
+      // rather than using select('*') to minimize data exposure
       const { data, error } = await supabase
         .from('profiles')
-        .select('*')
+        .select('id, user_id, display_name, email, phone, created_at, updated_at, language')
         .eq('user_id', user.id)
         .maybeSingle();
 
       if (error) throw error;
+      
+      // Application-layer validation: Verify the returned profile belongs to the authenticated user
+      // This provides defense-in-depth on top of RLS policies
+      if (data && data.user_id !== user.id) {
+        console.error('Security: Profile user_id mismatch detected');
+        throw new Error('Profile access denied');
+      }
+      
       setProfile(data);
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Error al cargar perfil');
@@ -48,14 +59,29 @@ export const useProfile = () => {
   }): Promise<{ success: boolean; error?: string }> => {
     if (!user) return { success: false, error: 'No autenticado' };
 
+    // Application-layer validation: Sanitize input before updating
+    const sanitizedUpdates: { display_name?: string; phone?: string } = {};
+    
+    if (updates.display_name !== undefined) {
+      // Basic sanitization - trim whitespace, limit length
+      sanitizedUpdates.display_name = updates.display_name.trim().slice(0, 100);
+    }
+    
+    if (updates.phone !== undefined) {
+      // Normalize phone number - remove non-numeric characters except + at start
+      const normalizedPhone = updates.phone.replace(/[^\d+]/g, '');
+      if (normalizedPhone.length > 0 && normalizedPhone.length <= 20) {
+        sanitizedUpdates.phone = normalizedPhone;
+      }
+    }
+
     try {
-      // Use upsert to create profile if it doesn't exist, or update if it does
       const { error } = await supabase
         .from('profiles')
         .upsert({
           user_id: user.id,
           email: user.email,
-          ...updates,
+          ...sanitizedUpdates,
         }, {
           onConflict: 'user_id',
         });

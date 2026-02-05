@@ -95,55 +95,41 @@ const handler = async (req: Request): Promise<Response> => {
     }
     // --- End Rate Limiting ---
 
-    // Get OTP record
+    // Get OTP record and validate all conditions
     const { data: otpRecord, error: fetchError } = await supabase
       .from("phone_otps")
       .select("*")
       .eq("phone", normalizedPhone)
       .single();
 
-    if (fetchError || !otpRecord) {
-      // Log failed attempt (no OTP found could be enumeration attempt)
-      await supabase.from("otp_verification_attempts").insert({ phone: normalizedPhone });
+    // Validate all conditions together to prevent enumeration
+    const isExpired = otpRecord && new Date(otpRecord.expires_at) < new Date();
+    const isAlreadyVerified = otpRecord && otpRecord.verified;
+    const isValidCode = otpRecord && otpRecord.otp_code === otpHash;
+    
+    const isValid = otpRecord && 
+      !fetchError &&
+      !isExpired &&
+      !isAlreadyVerified &&
+      isValidCode;
+
+    if (!isValid) {
+      // Log specific reason server-side only (for debugging)
+      console.error('[INTERNAL] Verification failed:', {
+        phone: normalizedPhone.substring(0, 6) + '***',
+        reason: !otpRecord ? 'no_record' : 
+                fetchError ? 'fetch_error' :
+                isExpired ? 'expired' :
+                isAlreadyVerified ? 'already_used' : 'invalid_code',
+        timestamp: new Date().toISOString()
+      });
       
-      return new Response(
-        JSON.stringify({ valid: false, error: "No OTP found for this phone" }),
-        {
-          status: 400,
-          headers: { "Content-Type": "application/json", ...corsHeaders },
-        }
-      );
-    }
-
-    // Check if expired
-    if (new Date(otpRecord.expires_at) < new Date()) {
-      return new Response(
-        JSON.stringify({ valid: false, error: "OTP has expired" }),
-        {
-          status: 400,
-          headers: { "Content-Type": "application/json", ...corsHeaders },
-        }
-      );
-    }
-
-    // Check if already verified
-    if (otpRecord.verified) {
-      return new Response(
-        JSON.stringify({ valid: false, error: "OTP already used" }),
-        {
-          status: 400,
-          headers: { "Content-Type": "application/json", ...corsHeaders },
-        }
-      );
-    }
-
-    // Verify OTP by comparing hashes
-    if (otpRecord.otp_code !== otpHash) {
       // Log failed attempt
       await supabase.from("otp_verification_attempts").insert({ phone: normalizedPhone });
       
+      // Return generic error message to prevent enumeration
       return new Response(
-        JSON.stringify({ valid: false, error: "Invalid OTP" }),
+        JSON.stringify({ valid: false, error: "Verification failed. Please check your code or request a new one." }),
         {
           status: 400,
           headers: { "Content-Type": "application/json", ...corsHeaders },

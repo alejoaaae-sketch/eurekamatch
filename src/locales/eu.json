@@ -161,6 +161,10 @@
           "plan": "Biek elkar aukeratzen baduzue, Eureka Friends bat izango duzue!",
           "sex": "Biek elkar aukeratzen baduzue, Eureka Partner bat izango duzue!"
         }
+      },
+      "step0": {
+        "title": "Izena eman",
+        "description": "Sortu zure kontua izena, telefonoa (match egiteko), emaila (jakinarazpena jasotzeko) eta pasahitza erabiliz."
       }
     },
     "privacy": {

@@ -161,6 +161,10 @@
           "plan": "Si vous vous choisissez mutuellement, vous aurez un Eureka Friends !",
           "sex": "Si vous vous choisissez mutuellement, vous aurez un Eureka Partner !"
         }
+      },
+      "step0": {
+        "title": "Inscrivez-vous",
+        "description": "Créez votre compte avec nom, téléphone (pour le matching), email (où vous recevrez les notifications) et mot de passe."
       }
     },
     "privacy": {

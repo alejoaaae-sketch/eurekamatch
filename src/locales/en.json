@@ -173,6 +173,10 @@
           "plan": "If you both choose each other, you'll have a Eureka Friends!",
           "sex": "If you both choose each other, you'll have a Eureka Partner!"
         }
+      },
+      "step0": {
+        "title": "Sign up",
+        "description": "Create your account with name, phone (for matching), email (where you'll receive notifications) and password."
       }
     },
     "privacy": {

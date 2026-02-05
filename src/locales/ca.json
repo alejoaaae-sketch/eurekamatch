@@ -161,6 +161,10 @@
           "plan": "Si tots dos us escolliu, tindreu un Eureka Friends!",
           "sex": "Si tots dos us escolliu, tindreu un Eureka Partner!"
         }
+      },
+      "step0": {
+        "title": "Registra't",
+        "description": "Crea el teu compte amb nom, mòbil (per fer match), email (on rebràs la notificació) i contrasenya."
       }
     },
     "privacy": {

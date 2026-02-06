@@ -133,50 +133,33 @@
     "yesterday": "Atzo"
   },
   "landing": {
-    "headline": {
-      "love": "Eta zutan ere pentsatzen badu?",
-      "plan": "Eureka Friends. Zu ere aukeratzen zaituztanak.",
-      "sex": "Erakarpenak ez du gezurrik esaten."
+    "beta": {
+      "badge": "Garatzen ari den tresna"
     },
-    "subheadline": {
-      "love": "Ezagutu maitasuna elkarrekikoa den. Arriskurik gabe. Bazterketarik gabe.",
-      "plan": "Ezagutu zurekin kontatzen duena zu haiekin kontatzen duzun bezala.",
-      "sex": "Ezagutu zuk ere nahi zaituen. Diskretua. Segurua."
+    "hero": {
+      "title": "Ezagutu interesa elkarrekikoa den",
+      "subtitle": "Ideia sinple bat: norbaitek ere zutaz pentsatzen duen jakitea, bazterketaren arriskurik gabe.",
+      "devNotice": "Hau garatzen ari den tresna bat da. Zerbait berezia eraikitzen ari gara."
     },
-    "cta": "Hasi orain",
-    "howItWorks": {
-      "title": "Nola funtzionatzen du?",
-      "step1": {
-        "title": "Aukeratu",
-        "description": "Gehitu interesatzen zaizkizun pertsonak modu pribatuan."
+    "variants": {
+      "title": "Aukeratu zure Eureka",
+      "explore": "Esploratu",
+      "love": {
+        "tagline": "Ezagutu maitasuna elkarrekikoa den. Arriskurik gabe, bazterketarik gabe."
       },
-      "step2": {
-        "title": "Itxaron",
-        "description": "Inork ez daki aukeratu dituzula, elkarrekikoa ez bada."
+      "plan": {
+        "tagline": "Aurkitu zuk ere aukeratzen zaituzten lagunak. Adiskidetasuna elkarrekikoa delako."
       },
-      "step3": {
-        "title": "Ezagutu",
-        "description": {
-          "love": "Biek elkar aukeratzen baduzue, Eureka Love bat izango duzue!",
-          "plan": "Biek elkar aukeratzen baduzue, Eureka Friends bat izango duzue!",
-          "sex": "Biek elkar aukeratzen baduzue, Eureka Partner bat izango duzue!"
-        }
-      },
-      "step0": {
-        "title": "Izena eman",
-        "description": "Sortu zure kontua izena, telefonoa (match egiteko), emaila (jakinarazpena jasotzeko) eta pasahitza erabiliz."
+      "sex": {
+        "tagline": "Ezagutu erakarpen elkarrekikoa. Diskretua eta segurua."
       }
     },
-    "privacy": {
-      "title": "Zure pribatutasuna sakratua da",
-      "description": "Zure aukerak %100 konfidentzialak dira. Informazioa bat-etortze elkarrekikoa dagoenean bakarrik agertzen da.",
-      "feature1": "Aukera pribatuak",
-      "feature2": "Jakinarazpenik gabe",
-      "feature3": "Datu enkriptatuak"
-    },
-    "finalCta": {
-      "title": "Prest ezagutzeko?",
-      "subtitle": "Lehen urratsa da zailena. Guk errazten dizugu."
+    "concept": {
+      "title": "Nola funtzionatzen du?",
+      "description": "Gehitu interesatzen zaizkizun pertsonak. Haiek ere gehitzen bazaituzte, biei jakinaraziko dizuegu. Bestela, inork ez daki ezer.",
+      "feature1": "100% pribatua",
+      "feature2": "Bazterketarik gabe",
+      "feature3": "Aurkikuntza elkarrekikoa"
     },
     "footer": {
       "rights": "Eskubide guztiak erreserbatuta."

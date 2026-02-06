@@ -133,50 +133,33 @@
     "yesterday": "Hier"
   },
   "landing": {
-    "headline": {
-      "love": "Et si cette personne pensait aussi à toi ?",
-      "plan": "Eureka Friends. Ceux qui te choisissent aussi.",
-      "sex": "L'attirance ne ment pas."
+    "beta": {
+      "badge": "Outil en développement"
     },
-    "subheadline": {
-      "love": "Découvrez si l'amour est mutuel. Sans risque. Sans rejet.",
-      "plan": "Découvrez qui compte sur vous comme vous comptez sur eux.",
-      "sex": "Découvrez si le désir est réciproque. Discret. Sécurisé."
+    "hero": {
+      "title": "Découvrez si l'intérêt est mutuel",
+      "subtitle": "Une idée simple : savoir si quelqu'un pense aussi à vous, sans risque de rejet.",
+      "devNotice": "Ceci est un outil en développement. Nous construisons quelque chose de spécial."
     },
-    "cta": "Commencer",
-    "howItWorks": {
-      "title": "Comment ça marche ?",
-      "step1": {
-        "title": "Choisissez",
-        "description": "Ajoutez en privé les personnes qui vous intéressent."
+    "variants": {
+      "title": "Choisissez votre Eureka",
+      "explore": "Explorer",
+      "love": {
+        "tagline": "Découvrez si l'amour est mutuel. Sans risque, sans rejet."
       },
-      "step2": {
-        "title": "Attendez",
-        "description": "Personne ne sait que vous les avez choisis sauf si c'est mutuel."
+      "plan": {
+        "tagline": "Trouvez des amis qui vous choisissent aussi. Parce que l'amitié est mutuelle."
       },
-      "step3": {
-        "title": "Découvrez",
-        "description": {
-          "love": "Si vous vous choisissez mutuellement, vous aurez un Eureka Love !",
-          "plan": "Si vous vous choisissez mutuellement, vous aurez un Eureka Friends !",
-          "sex": "Si vous vous choisissez mutuellement, vous aurez un Eureka Partner !"
-        }
-      },
-      "step0": {
-        "title": "Inscrivez-vous",
-        "description": "Créez votre compte avec nom, téléphone (pour le matching), email (où vous recevrez les notifications) et mot de passe."
+      "sex": {
+        "tagline": "Découvrez l'attirance mutuelle. Discret et sûr."
       }
     },
-    "privacy": {
-      "title": "Votre vie privée est sacrée",
-      "description": "Vos choix sont 100% confidentiels. Les informations ne sont révélées qu'en cas de correspondance mutuelle.",
-      "feature1": "Choix privés",
-      "feature2": "Pas de notifications",
-      "feature3": "Données cryptées"
-    },
-    "finalCta": {
-      "title": "Prêt à le découvrir ?",
-      "subtitle": "Le premier pas est le plus difficile. On vous facilite la tâche."
+    "concept": {
+      "title": "Comment ça marche ?",
+      "description": "Ajoutez les personnes qui vous intéressent. S'ils vous ajoutent aussi, on vous prévient tous les deux. Sinon, personne ne le sait.",
+      "feature1": "100% privé",
+      "feature2": "Sans rejet",
+      "feature3": "Découverte mutuelle"
     },
     "footer": {
       "rights": "Tous droits réservés."

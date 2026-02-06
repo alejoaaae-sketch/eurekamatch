@@ -209,8 +209,18 @@
         "description": "Sign up with your phone, email and a secure password."
       },
       "step2": {
-        "title": "Add who interests you",
-        "description": "Choose up to 2 people you like. No one will know."
+        "love": {
+          "title": "Add who interests you",
+          "description": "Choose up to 2 people you like. No one will know."
+        },
+        "plan": {
+          "title": "Add who interests you",
+          "description": "Choose up to 5 people you'd like to hang out with. No one will know."
+        },
+        "sex": {
+          "title": "Add who interests you",
+          "description": "Choose up to 2 people you're attracted to. No one will know."
+        }
       },
       "step3": {
         "title": "Keep it private",

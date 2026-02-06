@@ -209,8 +209,18 @@
         "description": "Regístrate con tu teléfono, email y una contraseña segura."
       },
       "step2": {
-        "title": "Añade a quien te interesa",
-        "description": "Elige hasta 2 personas que te gusten. Nadie lo sabrá."
+        "love": {
+          "title": "Añade a quien te interesa",
+          "description": "Elige hasta 2 personas que te gusten. Nadie lo sabrá."
+        },
+        "plan": {
+          "title": "Añade a quien te interesa",
+          "description": "Elige hasta 5 personas con las que quieras quedar. Nadie lo sabrá."
+        },
+        "sex": {
+          "title": "Añade a quien te interesa",
+          "description": "Elige hasta 2 personas que te atraigan. Nadie lo sabrá."
+        }
       },
       "step3": {
         "title": "Mantén la privacidad",

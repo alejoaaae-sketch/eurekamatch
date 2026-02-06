@@ -186,8 +186,18 @@
         "description": "Registra't amb el teu telèfon, email i una contrasenya segura."
       },
       "step2": {
-        "title": "Afegeix a qui t'interessa",
-        "description": "Escull fins a 2 persones que t'agradin. Ningú ho sabrà."
+        "love": {
+          "title": "Afegeix a qui t'interessa",
+          "description": "Escull fins a 2 persones que t'agradin. Ningú ho sabrà."
+        },
+        "plan": {
+          "title": "Afegeix a qui t'interessa",
+          "description": "Escull fins a 5 persones amb qui vulguis quedar. Ningú ho sabrà."
+        },
+        "sex": {
+          "title": "Afegeix a qui t'interessa",
+          "description": "Escull fins a 2 persones que t'atraguin. Ningú ho sabrà."
+        }
       },
       "step3": {
         "title": "Mantén la privacitat",

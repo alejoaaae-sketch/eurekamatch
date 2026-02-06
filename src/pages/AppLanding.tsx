@@ -159,17 +159,12 @@ const AppLanding = () => {
           </div>
 
           {/* App name */}
-          <h1 className="text-3xl md:text-4xl font-bold text-foreground mb-3 animate-fade-in-up animate-delay-100">
+          <h1 className="text-3xl md:text-4xl font-bold text-foreground mb-4 animate-fade-in-up animate-delay-100">
             {config.appName}
           </h1>
 
-          {/* Tagline */}
-          <p className={`text-lg md:text-xl font-medium mb-4 animate-fade-in-up animate-delay-200 ${getAccentColor()}`}>
-            {config.tagline}
-          </p>
-
           {/* Description */}
-          <p className="text-muted-foreground mb-8 animate-fade-in-up animate-delay-300">
+          <p className="text-lg text-muted-foreground mb-8 animate-fade-in-up animate-delay-200 max-w-lg mx-auto">
             {t(`appLanding.${appType}.description`)}
           </p>
 

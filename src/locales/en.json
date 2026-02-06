@@ -29,7 +29,7 @@
     "invalidCredentials": "Invalid credentials",
     "passwordMinLength": "Password must be at least 8 characters",
     "passwordComplexity": "Password must include uppercase, lowercase, and numbers",
-    "password": {
+    "passwordStrength": {
       "minLength": "8+ characters",
       "uppercase": "Uppercase",
       "lowercase": "Lowercase",

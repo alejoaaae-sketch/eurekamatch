@@ -18,19 +18,19 @@ const PasswordStrengthIndicator = ({ password }: PasswordStrengthIndicatorProps)
     return [
       {
         met: password.length >= 8,
-        label: t("auth.password.minLength"),
+        label: t("auth.passwordStrength.minLength"),
       },
       {
         met: /[A-Z]/.test(password),
-        label: t("auth.password.uppercase"),
+        label: t("auth.passwordStrength.uppercase"),
       },
       {
         met: /[a-z]/.test(password),
-        label: t("auth.password.lowercase"),
+        label: t("auth.passwordStrength.lowercase"),
       },
       {
         met: /[0-9]/.test(password),
-        label: t("auth.password.number"),
+        label: t("auth.passwordStrength.number"),
       },
     ];
   }, [password, t]);
@@ -38,10 +38,10 @@ const PasswordStrengthIndicator = ({ password }: PasswordStrengthIndicatorProps)
   const strength = useMemo(() => {
     const metCount = criteria.filter(c => c.met).length;
     if (metCount === 0) return { level: 0, label: "", color: "" };
-    if (metCount === 1) return { level: 1, label: t("auth.password.weak"), color: "bg-red-500" };
-    if (metCount === 2) return { level: 2, label: t("auth.password.fair"), color: "bg-orange-500" };
-    if (metCount === 3) return { level: 3, label: t("auth.password.good"), color: "bg-yellow-500" };
-    return { level: 4, label: t("auth.password.strong"), color: "bg-green-500" };
+    if (metCount === 1) return { level: 1, label: t("auth.passwordStrength.weak"), color: "bg-red-500" };
+    if (metCount === 2) return { level: 2, label: t("auth.passwordStrength.fair"), color: "bg-orange-500" };
+    if (metCount === 3) return { level: 3, label: t("auth.passwordStrength.good"), color: "bg-yellow-500" };
+    return { level: 4, label: t("auth.passwordStrength.strong"), color: "bg-green-500" };
   }, [criteria, t]);
 
   if (!password) return null;

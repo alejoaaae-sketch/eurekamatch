@@ -90,8 +90,8 @@ const AppLanding = () => {
     },
     {
       number: 1,
-      title: t("appLanding.steps.step2.title"),
-      description: t("appLanding.steps.step2.description"),
+      title: t(`appLanding.steps.step2.${appType}.title`),
+      description: t(`appLanding.steps.step2.${appType}.description`),
     },
     {
       number: 2,

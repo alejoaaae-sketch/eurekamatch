@@ -186,8 +186,18 @@
         "description": "Erregistratu zure telefonoarekin, emailarekin eta pasahitz seguru batekin."
       },
       "step2": {
-        "title": "Gehitu interesatzen zaizuna",
-        "description": "Aukeratu gustatzen zaizkizun 2 pertsona arte. Inork ez du jakingo."
+        "love": {
+          "title": "Gehitu interesatzen zaizuna",
+          "description": "Aukeratu gustatzen zaizkizun 2 pertsona arte. Inork ez du jakingo."
+        },
+        "plan": {
+          "title": "Gehitu interesatzen zaizuna",
+          "description": "Aukeratu zurekin elkartu nahi duzun 5 pertsona arte. Inork ez du jakingo."
+        },
+        "sex": {
+          "title": "Gehitu interesatzen zaizuna",
+          "description": "Aukeratu erakartzen zaituzten 2 pertsona arte. Inork ez du jakingo."
+        }
       },
       "step3": {
         "title": "Mantendu pribatutasuna",

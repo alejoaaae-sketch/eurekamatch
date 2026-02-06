@@ -186,8 +186,18 @@
         "description": "Inscrivez-vous avec votre téléphone, email et un mot de passe sécurisé."
       },
       "step2": {
-        "title": "Ajoutez qui vous intéresse",
-        "description": "Choisissez jusqu'à 2 personnes qui vous plaisent. Personne ne le saura."
+        "love": {
+          "title": "Ajoutez qui vous intéresse",
+          "description": "Choisissez jusqu'à 2 personnes qui vous plaisent. Personne ne le saura."
+        },
+        "plan": {
+          "title": "Ajoutez qui vous intéresse",
+          "description": "Choisissez jusqu'à 5 personnes avec qui vous aimeriez sortir. Personne ne le saura."
+        },
+        "sex": {
+          "title": "Ajoutez qui vous intéresse",
+          "description": "Choisissez jusqu'à 2 personnes qui vous attirent. Personne ne le saura."
+        }
       },
       "step3": {
         "title": "Gardez la confidentialité",

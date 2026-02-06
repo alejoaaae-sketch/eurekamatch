@@ -145,50 +145,33 @@
     "yesterday": "Yesterday"
   },
   "landing": {
-    "headline": {
-      "love": "What if they're thinking of you too?",
-      "plan": "Eureka Friends. The ones who choose you back.",
-      "sex": "Attraction doesn't lie."
+    "beta": {
+      "badge": "Tool in development"
     },
-    "subheadline": {
-      "love": "Discover if love is mutual. No risks. No rejection.",
-      "plan": "Find out who counts on you like you count on them.",
-      "sex": "Find out if they want you too. Discreet. Safe."
+    "hero": {
+      "title": "Discover if the interest is mutual",
+      "subtitle": "A simple idea: find out if someone is thinking of you too, without the risk of rejection.",
+      "devNotice": "This is a tool in development. We're building something special."
     },
-    "cta": "Get started",
-    "howItWorks": {
-      "title": "How does it work?",
-      "step1": {
-        "title": "Choose",
-        "description": "Privately add the people you're interested in."
+    "variants": {
+      "title": "Choose your Eureka",
+      "explore": "Explore",
+      "love": {
+        "tagline": "Discover if love is mutual. No risks, no rejection."
       },
-      "step2": {
-        "title": "Wait",
-        "description": "No one knows you picked them unless it's mutual."
+      "plan": {
+        "tagline": "Find friends who choose you back. Because friendship is mutual."
       },
-      "step3": {
-        "title": "Discover",
-        "description": {
-          "love": "If you both choose each other, you'll have a Eureka Love!",
-          "plan": "If you both choose each other, you'll have a Eureka Friends!",
-          "sex": "If you both choose each other, you'll have a Eureka Partner!"
-        }
-      },
-      "step0": {
-        "title": "Sign up",
-        "description": "Create your account with name, phone (for matching), email (where you'll receive notifications) and password."
+      "sex": {
+        "tagline": "Discover mutual attraction. Discreet and safe."
       }
     },
-    "privacy": {
-      "title": "Your privacy is sacred",
-      "description": "Your choices are 100% confidential. Information is only revealed when there's a mutual match.",
-      "feature1": "Private choices",
-      "feature2": "No notifications",
-      "feature3": "Encrypted data"
-    },
-    "finalCta": {
-      "title": "Ready to find out?",
-      "subtitle": "The first step is the hardest. We make it easy."
+    "concept": {
+      "title": "How does it work?",
+      "description": "Add the people you're interested in. If they also add you, we'll let you both know. If not, no one finds out.",
+      "feature1": "100% private",
+      "feature2": "No rejection",
+      "feature3": "Mutual discovery"
     },
     "footer": {
       "rights": "All rights reserved."

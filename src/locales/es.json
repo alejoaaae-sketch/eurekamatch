@@ -145,50 +145,33 @@
     "yesterday": "Ayer"
   },
   "landing": {
-    "headline": {
-      "love": "¿Y si también piensa en ti?",
-      "plan": "Eureka Friends. Los que también te eligen.",
-      "sex": "La atracción no miente."
+    "beta": {
+      "badge": "Herramienta en desarrollo"
     },
-    "subheadline": {
-      "love": "Descubre si el amor es mutuo. Sin riesgos. Sin rechazos.",
-      "plan": "Descubre quién cuenta contigo como tú cuentas con ellos.",
-      "sex": "Descubre si también te desea. Discreto. Seguro."
+    "hero": {
+      "title": "Descubre si el interés es mutuo",
+      "subtitle": "Una idea simple: saber si alguien también piensa en ti, sin el riesgo de rechazo.",
+      "devNotice": "Esta es una herramienta en desarrollo. Estamos construyendo algo especial."
     },
-    "cta": "Empezar ahora",
-    "howItWorks": {
-      "title": "¿Cómo funciona?",
-      "step1": {
-        "title": "Elige",
-        "description": "Añade a las personas que te interesan de forma privada."
+    "variants": {
+      "title": "Elige tu Eureka",
+      "explore": "Explorar",
+      "love": {
+        "tagline": "Descubre si el amor es mutuo. Sin riesgos, sin rechazos."
       },
-      "step2": {
-        "title": "Espera",
-        "description": "Nadie sabrá que les has elegido a menos que sea mutuo."
+      "plan": {
+        "tagline": "Encuentra amigos que también te elijan. Porque la amistad es mutua."
       },
-      "step3": {
-        "title": "Descubre",
-        "description": {
-          "love": "Si ambos os elegís, ¡tendréis un Eureka Love!",
-          "plan": "Si ambos os elegís, ¡tendréis un Eureka Friends!",
-          "sex": "Si ambos os elegís, ¡tendréis un Eureka Partner!"
-        }
-      },
-      "step0": {
-        "title": "Regístrate",
-        "description": "Crea tu cuenta con nombre, móvil (para hacer match), email (donde recibirás la notificación) y contraseña."
+      "sex": {
+        "tagline": "Descubre la atracción mutua. Discreto y seguro."
       }
     },
-    "privacy": {
-      "title": "Tu privacidad es sagrada",
-      "description": "Tus elecciones son 100% confidenciales. Solo se revela información cuando hay coincidencia mutua.",
-      "feature1": "Elecciones privadas",
-      "feature2": "Sin notificaciones",
-      "feature3": "Datos encriptados"
-    },
-    "finalCta": {
-      "title": "¿Preparado para descubrirlo?",
-      "subtitle": "El primer paso es el más difícil. Nosotros te lo ponemos fácil."
+    "concept": {
+      "title": "¿Cómo funciona?",
+      "description": "Añade a las personas que te interesan. Si también te añaden, os avisamos a ambos. Si no, nadie se entera.",
+      "feature1": "100% privado",
+      "feature2": "Sin rechazos",
+      "feature3": "Descubrimiento mutuo"
     },
     "footer": {
       "rights": "Todos los derechos reservados."

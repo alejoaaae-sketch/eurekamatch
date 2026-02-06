@@ -133,50 +133,33 @@
     "yesterday": "Ahir"
   },
   "landing": {
-    "headline": {
-      "love": "I si també pensa en tu?",
-      "plan": "Eureka Friends. Els que també t'escullen.",
-      "sex": "L'atracció no menteix."
+    "beta": {
+      "badge": "Eina en desenvolupament"
     },
-    "subheadline": {
-      "love": "Descobreix si l'amor és mutu. Sense riscos. Sense rebutjos.",
-      "plan": "Descobreix qui compta amb tu com tu comptes amb ells.",
-      "sex": "Descobreix si també et desitja. Discret. Segur."
+    "hero": {
+      "title": "Descobreix si l'interès és mutu",
+      "subtitle": "Una idea simple: saber si algú també pensa en tu, sense el risc de rebuig.",
+      "devNotice": "Aquesta és una eina en desenvolupament. Estem construint alguna cosa especial."
     },
-    "cta": "Comença ara",
-    "howItWorks": {
-      "title": "Com funciona?",
-      "step1": {
-        "title": "Escull",
-        "description": "Afegeix de forma privada les persones que t'interessen."
+    "variants": {
+      "title": "Tria el teu Eureka",
+      "explore": "Explorar",
+      "love": {
+        "tagline": "Descobreix si l'amor és mutu. Sense riscos, sense rebutjos."
       },
-      "step2": {
-        "title": "Espera",
-        "description": "Ningú sabrà que els has escollit si no és mutu."
+      "plan": {
+        "tagline": "Troba amics que també et triïn. Perquè l'amistat és mútua."
       },
-      "step3": {
-        "title": "Descobreix",
-        "description": {
-          "love": "Si tots dos us escolliu, tindreu un Eureka Love!",
-          "plan": "Si tots dos us escolliu, tindreu un Eureka Friends!",
-          "sex": "Si tots dos us escolliu, tindreu un Eureka Partner!"
-        }
-      },
-      "step0": {
-        "title": "Registra't",
-        "description": "Crea el teu compte amb nom, mòbil (per fer match), email (on rebràs la notificació) i contrasenya."
+      "sex": {
+        "tagline": "Descobreix l'atracció mútua. Discret i segur."
       }
     },
-    "privacy": {
-      "title": "La teva privacitat és sagrada",
-      "description": "Les teves eleccions són 100% confidencials. La informació només es revela quan hi ha coincidència mútua.",
-      "feature1": "Eleccions privades",
-      "feature2": "Sense notificacions",
-      "feature3": "Dades encriptades"
-    },
-    "finalCta": {
-      "title": "Preparat per descobrir-ho?",
-      "subtitle": "El primer pas és el més difícil. Nosaltres t'ho posem fàcil."
+    "concept": {
+      "title": "Com funciona?",
+      "description": "Afegeix les persones que t'interessen. Si també t'afegeixen, us avisem a tots dos. Si no, ningú s'assabenta.",
+      "feature1": "100% privat",
+      "feature2": "Sense rebutjos",
+      "feature3": "Descobriment mutu"
     },
     "footer": {
       "rights": "Tots els drets reservats."

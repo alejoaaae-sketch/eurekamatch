@@ -164,5 +164,53 @@
     "footer": {
       "rights": "Tots els drets reservats."
     }
+  },
+  "appLanding": {
+    "cta": "Començar ara",
+    "howItWorks": "Com funciona?",
+    "whyUs": "Per què EUREKA?",
+    "readyToStart": "Preparat per descobrir?",
+    "readyDescription": "Crea el teu compte gratuït i comença a descobrir connexions mútues.",
+    "love": {
+      "description": "L'amor és millor quan és correspost. Afegeix qui t'agrada i descobreix si també pensa en tu, sense arriscar-te al rebuig."
+    },
+    "plan": {
+      "description": "Les millors amistats són recíproques. Troba persones que també et valoren i construeix relacions genuïnes."
+    },
+    "sex": {
+      "description": "L'atracció física és més emocionant quan és mútua. Descobreix qui comparteix el teu interès de forma discreta i segura."
+    },
+    "steps": {
+      "step1": {
+        "title": "Crea el teu compte",
+        "description": "Registra't amb el teu telèfon, email i una contrasenya segura."
+      },
+      "step2": {
+        "title": "Afegeix a qui t'interessa",
+        "description": "Escull fins a 2 persones que t'agradin. Ningú ho sabrà."
+      },
+      "step3": {
+        "title": "Mantén la privacitat",
+        "description": "Les teves eleccions són 100% privades. Només tu les coneixes."
+      },
+      "step4": {
+        "title": "Rep notificació si és mutu",
+        "description": "Si l'altra persona també et tria, us avisem a tots dos."
+      }
+    },
+    "features": {
+      "privacy": {
+        "title": "100% Privat",
+        "description": "Ningú pot veure les teves eleccions fins que hi hagi match."
+      },
+      "noRejection": {
+        "title": "Sense rebutjos",
+        "description": "Si no és mutu, ningú s'assabenta. Zero vergonya."
+      },
+      "connection": {
+        "title": "Connexió real",
+        "description": "Quan hi ha match, podeu contactar directament."
+      }
+    }
   }
 }

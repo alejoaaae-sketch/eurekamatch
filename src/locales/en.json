@@ -187,5 +187,53 @@
     "footer": {
       "rights": "All rights reserved."
     }
+  },
+  "appLanding": {
+    "cta": "Get started",
+    "howItWorks": "How does it work?",
+    "whyUs": "Why EUREKA?",
+    "readyToStart": "Ready to discover?",
+    "readyDescription": "Create your free account and start discovering mutual connections.",
+    "love": {
+      "description": "Love is better when it's mutual. Add who you like and find out if they're thinking of you too, without risking rejection."
+    },
+    "plan": {
+      "description": "The best friendships are reciprocal. Find people who also value you and build genuine relationships."
+    },
+    "sex": {
+      "description": "Physical attraction is more exciting when it's mutual. Discover who shares your interest in a discreet and safe way."
+    },
+    "steps": {
+      "step1": {
+        "title": "Create your account",
+        "description": "Sign up with your phone, email and a secure password."
+      },
+      "step2": {
+        "title": "Add who interests you",
+        "description": "Choose up to 2 people you like. No one will know."
+      },
+      "step3": {
+        "title": "Keep it private",
+        "description": "Your picks are 100% private. Only you know them."
+      },
+      "step4": {
+        "title": "Get notified if it's mutual",
+        "description": "If the other person also picks you, we'll notify you both."
+      }
+    },
+    "features": {
+      "privacy": {
+        "title": "100% Private",
+        "description": "No one can see your picks until there's a match."
+      },
+      "noRejection": {
+        "title": "No rejection",
+        "description": "If it's not mutual, no one finds out. Zero embarrassment."
+      },
+      "connection": {
+        "title": "Real connection",
+        "description": "When there's a match, you can contact each other directly."
+      }
+    }
   }
 }

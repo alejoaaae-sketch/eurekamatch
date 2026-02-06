@@ -41,9 +41,9 @@ const Landing = () => {
   ];
 
   const handleAppSelect = (appType: AppType) => {
-    // Store the selected app type and navigate to login
+    // Store the selected app type and navigate to app landing
     sessionStorage.setItem('eureka_app_type', appType);
-    navigate(`/login?app=${appType}`);
+    navigate(`/app?app=${appType}`);
   };
 
   return (

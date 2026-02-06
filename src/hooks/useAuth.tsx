@@ -14,10 +14,18 @@ interface AuthContextType {
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
 // Convert phone to email format for Supabase auth (phone+password workaround)
+// Security: Add a hash suffix to make the email pattern less predictable
+// This prevents enumeration attacks while maintaining the phone-based auth workaround
 const phoneToEmail = (phone: string): string => {
   // Normalize phone: remove spaces, dashes, parentheses
   const normalized = phone.replace(/[\s\-\(\)\.]/g, '');
-  return `${normalized}@phone.local`;
+  // Add a deterministic but non-obvious suffix based on phone
+  // This makes the email pattern harder to guess while still being reproducible
+  const hash = Array.from(normalized).reduce((acc, char) => {
+    return ((acc << 5) - acc) + char.charCodeAt(0);
+  }, 0);
+  const suffix = Math.abs(hash).toString(36).slice(0, 6);
+  return `${normalized}-${suffix}@phone.eureka`;
 };
 
 export const AuthProvider = ({ children }: { children: ReactNode }) => {

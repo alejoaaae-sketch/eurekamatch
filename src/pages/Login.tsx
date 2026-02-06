@@ -9,6 +9,7 @@ import LanguageSelector from "@/components/LanguageSelector";
 import PhoneVerification from "@/components/PhoneVerification";
 import PasswordStrengthIndicator from "@/components/PasswordStrengthIndicator";
 import { toast } from "sonner";
+import { VERIFY_MOBILE } from "@/config/app.config";
 
 type LoginStep = "form" | "verify";
 
@@ -108,11 +109,17 @@ const Login = () => {
           return;
         }
 
-        // Send OTP for verification
-        const otpSent = await sendOtp(phone);
-        if (otpSent) {
-          toast.success(t("auth.otpSent"));
-          setStep("verify");
+        // Check if mobile verification is enabled
+        if (VERIFY_MOBILE) {
+          // Send OTP for verification
+          const otpSent = await sendOtp(phone);
+          if (otpSent) {
+            toast.success(t("auth.otpSent"));
+            setStep("verify");
+          }
+        } else {
+          // Skip verification - register directly
+          await handlePhoneVerified();
         }
       }
     } finally {

@@ -4,6 +4,9 @@ export type AppType = 'love' | 'plan' | 'sex';
 // BETA MODE: Set to false to enable payments
 export const BETA_MODE = true;
 
+// VERIFY MOBILE: Set to false (0) to skip SMS verification during testing
+export const VERIFY_MOBILE = false;
+
 export interface AppConfig {
   appType: AppType;
   appName: string;

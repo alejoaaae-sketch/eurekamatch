@@ -164,5 +164,53 @@
     "footer": {
       "rights": "Tous droits réservés."
     }
+  },
+  "appLanding": {
+    "cta": "Commencer",
+    "howItWorks": "Comment ça marche ?",
+    "whyUs": "Pourquoi EUREKA ?",
+    "readyToStart": "Prêt à découvrir ?",
+    "readyDescription": "Créez votre compte gratuit et commencez à découvrir des connexions mutuelles.",
+    "love": {
+      "description": "L'amour est meilleur quand il est partagé. Ajoutez qui vous plaît et découvrez s'ils pensent aussi à vous, sans risquer le rejet."
+    },
+    "plan": {
+      "description": "Les meilleures amitiés sont réciproques. Trouvez des personnes qui vous valorisent aussi et construisez des relations authentiques."
+    },
+    "sex": {
+      "description": "L'attirance physique est plus excitante quand elle est mutuelle. Découvrez qui partage votre intérêt de manière discrète et sûre."
+    },
+    "steps": {
+      "step1": {
+        "title": "Créez votre compte",
+        "description": "Inscrivez-vous avec votre téléphone, email et un mot de passe sécurisé."
+      },
+      "step2": {
+        "title": "Ajoutez qui vous intéresse",
+        "description": "Choisissez jusqu'à 2 personnes qui vous plaisent. Personne ne le saura."
+      },
+      "step3": {
+        "title": "Gardez la confidentialité",
+        "description": "Vos choix sont 100% privés. Vous seul les connaissez."
+      },
+      "step4": {
+        "title": "Recevez une notification si c'est mutuel",
+        "description": "Si l'autre personne vous choisit aussi, on vous prévient tous les deux."
+      }
+    },
+    "features": {
+      "privacy": {
+        "title": "100% Privé",
+        "description": "Personne ne peut voir vos choix jusqu'à ce qu'il y ait un match."
+      },
+      "noRejection": {
+        "title": "Sans rejet",
+        "description": "Si ce n'est pas mutuel, personne ne le sait. Zéro embarras."
+      },
+      "connection": {
+        "title": "Connexion réelle",
+        "description": "Quand il y a un match, vous pouvez vous contacter directement."
+      }
+    }
   }
 }

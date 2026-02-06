@@ -164,5 +164,53 @@
     "footer": {
       "rights": "Eskubide guztiak erreserbatuta."
     }
+  },
+  "appLanding": {
+    "cta": "Hasi orain",
+    "howItWorks": "Nola funtzionatzen du?",
+    "whyUs": "Zergatik EUREKA?",
+    "readyToStart": "Ezagutzeko prest?",
+    "readyDescription": "Sortu zure doako kontua eta hasi elkarrekiko konexioak aurkitzen.",
+    "love": {
+      "description": "Maitasuna hobea da elkarrekikoa denean. Gehitu gustatzen zaizuna eta jakin ezazu zutaz ere pentsatzen duen, bazterketaren arriskurik gabe."
+    },
+    "plan": {
+      "description": "Adiskidetasun onenak elkarrekikoak dira. Aurkitu zuk ere baloratzen zaituzten pertsonak eta eraiki benetako harremanak."
+    },
+    "sex": {
+      "description": "Erakarpen fisikoa emozigarriagoa da elkarrekikoa denean. Ezagutu zure interesa partekatzen duena modu diskretuan eta seguruan."
+    },
+    "steps": {
+      "step1": {
+        "title": "Sortu zure kontua",
+        "description": "Erregistratu zure telefonoarekin, emailarekin eta pasahitz seguru batekin."
+      },
+      "step2": {
+        "title": "Gehitu interesatzen zaizuna",
+        "description": "Aukeratu gustatzen zaizkizun 2 pertsona arte. Inork ez du jakingo."
+      },
+      "step3": {
+        "title": "Mantendu pribatutasuna",
+        "description": "Zure aukerak %100 pribatuak dira. Zuk bakarrik ezagutzen dituzu."
+      },
+      "step4": {
+        "title": "Jaso jakinarazpena elkarrekikoa bada",
+        "description": "Beste pertsonak ere hautatzen bazaitu, biei jakinaraziko dizuegu."
+      }
+    },
+    "features": {
+      "privacy": {
+        "title": "%100 Pribatua",
+        "description": "Inork ezin ditu zure aukerak ikusi bat-etortzea egon arte."
+      },
+      "noRejection": {
+        "title": "Bazterketarik gabe",
+        "description": "Elkarrekikoa ez bada, inork ez daki. Zero lotsarik."
+      },
+      "connection": {
+        "title": "Benetako konexioa",
+        "description": "Bat-etortzea dagoenean, zuzenean harremanetan jar zaitezke."
+      }
+    }
   }
 }

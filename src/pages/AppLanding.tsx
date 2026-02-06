@@ -1,7 +1,7 @@
 import { useNavigate, useSearchParams } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { Button } from "@/components/ui/button";
-import { Heart, Users, Flame, Sparkles, ArrowLeft, Shield, Eye, Bell, Lock, UserCheck, MessageCircle } from "lucide-react";
+import { Heart, Users, Flame, Sparkles, ArrowLeft, Shield, Lock, MessageCircle } from "lucide-react";
 import { useAuth } from "@/hooks/useAuth";
 import { useEffect } from "react";
 import LanguageSelector from "@/components/LanguageSelector";
@@ -84,22 +84,22 @@ const AppLanding = () => {
 
   const steps = [
     {
-      icon: <UserCheck className="w-6 h-6" />,
+      number: 0,
       title: t("appLanding.steps.step1.title"),
       description: t("appLanding.steps.step1.description"),
     },
     {
-      icon: <Heart className="w-6 h-6" />,
+      number: 1,
       title: t("appLanding.steps.step2.title"),
       description: t("appLanding.steps.step2.description"),
     },
     {
-      icon: <Eye className="w-6 h-6" />,
+      number: 2,
       title: t("appLanding.steps.step3.title"),
       description: t("appLanding.steps.step3.description"),
     },
     {
-      icon: <Bell className="w-6 h-6" />,
+      number: 3,
       title: t("appLanding.steps.step4.title"),
       description: t("appLanding.steps.step4.description"),
     },
@@ -198,8 +198,8 @@ const AppLanding = () => {
                 className="flex gap-4 p-5 rounded-xl bg-card border border-border/50 animate-fade-in-up"
                 style={{ animationDelay: `${index * 0.1}s` }}
               >
-                <div className={`w-12 h-12 rounded-full flex items-center justify-center flex-shrink-0 bg-gradient-to-br ${getGradient()} text-white`}>
-                  {step.icon}
+              <div className={`w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0 bg-gradient-to-br ${getGradient()} text-white font-bold text-xl`}>
+                  {step.number}
                 </div>
                 <div>
                   <h3 className="font-semibold text-foreground mb-1">{step.title}</h3>

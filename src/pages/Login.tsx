@@ -7,6 +7,7 @@ import { Heart, Eye, EyeOff, Loader2, Phone, User, Mail } from "lucide-react";
 import { useAuth } from "@/hooks/useAuth";
 import LanguageSelector from "@/components/LanguageSelector";
 import PhoneVerification from "@/components/PhoneVerification";
+import PasswordStrengthIndicator from "@/components/PasswordStrengthIndicator";
 import { toast } from "sonner";
 
 type LoginStep = "form" | "verify";
@@ -80,8 +81,18 @@ const Login = () => {
         }
       } else {
         // Registration flow - validate fields first
-        if (password.length < 6) {
+        // Enhanced password policy: minimum 8 characters
+        if (password.length < 8) {
           toast.error(t("auth.passwordMinLength"));
+          setLoading(false);
+          return;
+        }
+        // Check for at least one uppercase, one lowercase, and one number
+        const hasUppercase = /[A-Z]/.test(password);
+        const hasLowercase = /[a-z]/.test(password);
+        const hasNumber = /[0-9]/.test(password);
+        if (!hasUppercase || !hasLowercase || !hasNumber) {
+          toast.error(t("auth.passwordComplexity"));
           setLoading(false);
           return;
         }
@@ -239,6 +250,9 @@ const Login = () => {
                 {showPassword ? <EyeOff className="w-5 h-5" /> : <Eye className="w-5 h-5" />}
               </button>
             </div>
+
+            {/* Password strength indicator - only show during signup */}
+            {!isLogin && <PasswordStrengthIndicator password={password} />}
 
             <Button type="submit" className="w-full" size="lg" disabled={loading}>
               {loading ? (

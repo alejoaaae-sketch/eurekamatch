@@ -12,6 +12,12 @@ interface OTPRequest {
   phone: string;
 }
 
+// In-memory IP rate limiting store (resets on function cold start)
+// For production, consider using Redis or database storage
+const ipRequestCounts = new Map<string, { count: number; windowStart: number }>();
+const IP_RATE_LIMIT = 5; // Max 5 OTP requests per IP per hour
+const IP_RATE_WINDOW = 60 * 60 * 1000; // 1 hour in milliseconds
+
 const generateOTP = (): string => {
   return Math.floor(100000 + Math.random() * 900000).toString();
 };
@@ -26,15 +32,83 @@ const hashOTP = async (otp: string): Promise<string> => {
   return new TextDecoder().decode(hashHex);
 };
 
+// Get client IP from request headers
+const getClientIP = (req: Request): string => {
+  // Check common headers for real IP (behind proxies/load balancers)
+  const forwardedFor = req.headers.get("x-forwarded-for");
+  if (forwardedFor) {
+    // Take the first IP in the chain (original client)
+    return forwardedFor.split(",")[0].trim();
+  }
+  
+  const realIP = req.headers.get("x-real-ip");
+  if (realIP) {
+    return realIP.trim();
+  }
+  
+  // Fallback (may not be accurate behind proxies)
+  return req.headers.get("cf-connecting-ip") || "unknown";
+};
+
+// Check and update IP rate limit
+const checkIPRateLimit = (ip: string): { allowed: boolean; remaining: number } => {
+  const now = Date.now();
+  const record = ipRequestCounts.get(ip);
+  
+  if (!record || now - record.windowStart > IP_RATE_WINDOW) {
+    // New window or expired, reset counter
+    ipRequestCounts.set(ip, { count: 1, windowStart: now });
+    return { allowed: true, remaining: IP_RATE_LIMIT - 1 };
+  }
+  
+  if (record.count >= IP_RATE_LIMIT) {
+    return { allowed: false, remaining: 0 };
+  }
+  
+  // Increment counter
+  record.count++;
+  return { allowed: true, remaining: IP_RATE_LIMIT - record.count };
+};
+
+// Cleanup old entries periodically (prevent memory leaks)
+const cleanupOldEntries = () => {
+  const now = Date.now();
+  for (const [ip, record] of ipRequestCounts.entries()) {
+    if (now - record.windowStart > IP_RATE_WINDOW) {
+      ipRequestCounts.delete(ip);
+    }
+  }
+};
+
 const handler = async (req: Request): Promise<Response> => {
   if (req.method === "OPTIONS") {
     return new Response(null, { headers: corsHeaders });
   }
 
   try {
-    // NOTE: No authentication required for send-otp
-    // This allows unauthenticated users to request OTP during registration
-    // Rate limiting (1 request per phone per 5 minutes) prevents abuse
+    // Cleanup old IP entries periodically
+    cleanupOldEntries();
+    
+    // --- IP-based Rate Limiting ---
+    const clientIP = getClientIP(req);
+    const ipRateCheck = checkIPRateLimit(clientIP);
+    
+    if (!ipRateCheck.allowed) {
+      console.warn(`IP rate limit exceeded for: ${clientIP}`);
+      return new Response(
+        JSON.stringify({ error: "Too many requests. Please try again later." }),
+        { 
+          status: 429, 
+          headers: { 
+            "Content-Type": "application/json", 
+            "X-RateLimit-Remaining": "0",
+            "Retry-After": "3600",
+            ...corsHeaders 
+          } 
+        }
+      );
+    }
+    // --- End IP Rate Limiting ---
 
     const supabaseUrl = Deno.env.get("SUPABASE_URL")!;
     const supabaseServiceKey = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!;
@@ -68,7 +142,7 @@ const handler = async (req: Request): Promise<Response> => {
     // Create admin client for database operations
     const supabase = createClient(supabaseUrl, supabaseServiceKey);
 
-    // --- Rate Limiting: 1 request per phone per 5 minutes ---
+    // --- Phone-based Rate Limiting: 1 request per phone per 5 minutes ---
     const { data: existingOtp } = await supabase
       .from("phone_otps")
       .select("created_at")
@@ -82,7 +156,7 @@ const handler = async (req: Request): Promise<Response> => {
         { status: 429, headers: { "Content-Type": "application/json", ...corsHeaders } }
       );
     }
-    // --- End Rate Limiting ---
+    // --- End Phone Rate Limiting ---
 
     const otp = generateOTP();
     const otpHash = await hashOTP(otp);
@@ -121,12 +195,11 @@ const handler = async (req: Request): Promise<Response> => {
     }
 
     // Store HASHED OTP in database (never store plain text)
-    // Upsert OTP record with hashed code
     const { error: dbError } = await supabase
       .from("phone_otps")
       .upsert({
         phone: normalizedPhone,
-        otp_code: otpHash, // Store hash, not plain text
+        otp_code: otpHash,
         expires_at: expiresAt.toISOString(),
         verified: false,
       }, {
@@ -138,7 +211,7 @@ const handler = async (req: Request): Promise<Response> => {
       throw new Error("Failed to store OTP");
     }
 
-    console.log(`OTP sent successfully to ${normalizedPhone}`);
+    console.log(`OTP sent successfully to ${normalizedPhone} (IP: ${clientIP})`);
 
     return new Response(
       JSON.stringify({ 
@@ -147,7 +220,11 @@ const handler = async (req: Request): Promise<Response> => {
       }),
       {
         status: 200,
-        headers: { "Content-Type": "application/json", ...corsHeaders },
+        headers: { 
+          "Content-Type": "application/json",
+          "X-RateLimit-Remaining": ipRateCheck.remaining.toString(),
+          ...corsHeaders 
+        },
       }
     );
   } catch (error: any) {

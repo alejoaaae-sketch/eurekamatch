@@ -82,10 +82,11 @@ const handler = async (req: Request): Promise<Response> => {
 
     const appConfig = appConfigs[appType] || appConfigs.love;
 
-    // Get both users' profiles
+    // Get both users' profiles - only fetch display_name and email for notifications
+    // Phone and email for contact are only shown in-app after login
     const { data: profiles, error: profilesError } = await supabase
       .from("profiles")
-      .select("user_id, display_name, email, phone")
+      .select("user_id, display_name, email")
       .in("user_id", [user1Id, user2Id]);
 
     if (profilesError) {
@@ -119,17 +120,20 @@ const handler = async (req: Request): Promise<Response> => {
     const nameUser1GaveToUser2 = picks?.find(p => p.picker_id === user1Id)?.picked_name || user2Profile.display_name || "alguien especial";
     const nameUser2GaveToUser1 = picks?.find(p => p.picker_id === user2Id)?.picked_name || user1Profile.display_name || "alguien especial";
 
+    // Generate app URL for viewing match details
+    const appUrl = Deno.env.get("SUPABASE_URL")?.replace(".supabase.co", "") || "https://eurekamatch.lovable.app";
+    const matchUrl = `https://eurekamatch.lovable.app/match/${matchId}?app=${appType}`;
+
     const emailsSent: string[] = [];
     const errors: string[] = [];
 
-    // Send email to User 1
+    // Send email to User 1 - NO contact info exposed, just notification
     if (user1Profile.email) {
       try {
         const emailHtml = generateEmailHtml({
           recipientName: user1Profile.display_name || "Usuario",
           matchedPersonName: nameUser1GaveToUser2,
-          matchedPersonPhone: user2Profile.phone,
-          matchedPersonEmail: user2Profile.email,
+          matchUrl,
           appConfig,
         });
 
@@ -148,14 +152,13 @@ const handler = async (req: Request): Promise<Response> => {
       }
     }
 
-    // Send email to User 2
+    // Send email to User 2 - NO contact info exposed, just notification
     if (user2Profile.email) {
       try {
         const emailHtml = generateEmailHtml({
           recipientName: user2Profile.display_name || "Usuario",
           matchedPersonName: nameUser2GaveToUser1,
-          matchedPersonPhone: user1Profile.phone,
-          matchedPersonEmail: user1Profile.email,
+          matchUrl,
           appConfig,
         });
 
@@ -200,26 +203,15 @@ const handler = async (req: Request): Promise<Response> => {
 interface EmailParams {
   recipientName: string;
   matchedPersonName: string;
-  matchedPersonPhone: string | null;
-  matchedPersonEmail: string | null;
+  matchUrl: string;
   appConfig: { name: string; emoji: string };
 }
 
 function generateEmailHtml(params: EmailParams): string {
-  const { recipientName, matchedPersonName, matchedPersonPhone, matchedPersonEmail, appConfig } = params;
+  const { recipientName, matchedPersonName, matchUrl, appConfig } = params;
 
-  const contactSection = [];
-  if (matchedPersonPhone) {
-    contactSection.push(`<p style="margin: 8px 0;"><strong>📱 Teléfono:</strong> ${matchedPersonPhone}</p>`);
-  }
-  if (matchedPersonEmail) {
-    contactSection.push(`<p style="margin: 8px 0;"><strong>📧 Email:</strong> ${matchedPersonEmail}</p>`);
-  }
-
-  const contactHtml = contactSection.length > 0 
-    ? contactSection.join("")
-    : `<p style="margin: 8px 0; color: #666;">No hay información de contacto disponible.</p>`;
-
+  // SECURITY: No contact information exposed in email
+  // Users must log in to the app to see contact details
   return `
     <!DOCTYPE html>
     <html>
@@ -243,22 +235,24 @@ function generateEmailHtml(params: EmailParams): string {
             ¡Tenemos noticias increíbles! <strong>${matchedPersonName}</strong> también te ha elegido en ${appConfig.name}. 
           </p>
           
-          <p style="font-size: 16px; color: #333; margin-bottom: 20px;">
-            Ahora puedes contactar:
+          <p style="font-size: 16px; color: #333; margin-bottom: 25px;">
+            Entra en la app para ver sus datos de contacto y dar el primer paso.
           </p>
           
-          <div style="background: #f8f9fa; border-radius: 12px; padding: 20px; margin: 20px 0;">
-            <h3 style="margin: 0 0 15px 0; color: #333; font-size: 18px;">📋 Datos de contacto</h3>
-            ${contactHtml}
+          <div style="text-align: center; margin: 25px 0;">
+            <a href="${matchUrl}" style="display: inline-block; background: linear-gradient(135deg, #ff6b9d 0%, #c44569 100%); color: white; text-decoration: none; padding: 14px 32px; border-radius: 25px; font-weight: 600; font-size: 16px;">
+              Ver mi match ${appConfig.emoji}
+            </a>
           </div>
           
           <p style="font-size: 14px; color: #666; margin-top: 25px; text-align: center;">
-            ✨ ¡Da el primer paso y contacta ahora!
+            ✨ ¡El primer paso es el más difícil, pero tú ya lo diste!
           </p>
         </div>
         
         <p style="text-align: center; font-size: 12px; color: #999; margin-top: 20px;">
-          Este email fue enviado desde ${appConfig.name}
+          Este email fue enviado desde ${appConfig.name}<br>
+          Por tu seguridad, los datos de contacto solo se muestran dentro de la app.
         </p>
       </div>
     </body>

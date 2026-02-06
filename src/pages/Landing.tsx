@@ -1,11 +1,11 @@
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { Button } from "@/components/ui/button";
-import { Heart, Users, Flame, Shield, Eye, Sparkles, ArrowRight } from "lucide-react";
-import { appConfig, currentAppType } from "@/config/app.config";
+import { Heart, Users, Flame, Sparkles, ArrowRight, Beaker } from "lucide-react";
 import { useAuth } from "@/hooks/useAuth";
 import { useEffect } from "react";
 import LanguageSelector from "@/components/LanguageSelector";
+import { getAppConfig, AppType } from "@/config/app.config";
 
 const Landing = () => {
   const navigate = useNavigate();
@@ -19,59 +19,31 @@ const Landing = () => {
     }
   }, [user, loading, navigate]);
 
-  const getAppIcon = () => {
-    switch (currentAppType) {
-      case 'love':
-        return <Heart className="w-8 h-8" fill="currentColor" />;
-      case 'plan':
-        return <Users className="w-8 h-8" />;
-      case 'sex':
-        return <Flame className="w-8 h-8" fill="currentColor" />;
-    }
-  };
+  const appVariants: { type: AppType; icon: React.ReactNode; gradient: string; hoverGradient: string }[] = [
+    {
+      type: 'love',
+      icon: <Heart className="w-8 h-8" fill="currentColor" />,
+      gradient: 'from-rose-500 to-pink-500',
+      hoverGradient: 'hover:from-rose-600 hover:to-pink-600',
+    },
+    {
+      type: 'plan',
+      icon: <Users className="w-8 h-8" />,
+      gradient: 'from-orange-500 to-amber-500',
+      hoverGradient: 'hover:from-orange-600 hover:to-amber-600',
+    },
+    {
+      type: 'sex',
+      icon: <Flame className="w-8 h-8" fill="currentColor" />,
+      gradient: 'from-red-600 to-rose-500',
+      hoverGradient: 'hover:from-red-700 hover:to-rose-600',
+    },
+  ];
 
-  const getHeroGradient = () => {
-    switch (currentAppType) {
-      case 'love':
-        return 'from-rose-500/20 via-pink-500/10 to-transparent';
-      case 'plan':
-        return 'from-orange-500/20 via-amber-500/10 to-transparent';
-      case 'sex':
-        return 'from-red-600/20 via-rose-500/10 to-transparent';
-    }
-  };
-
-  const getAccentColor = () => {
-    switch (currentAppType) {
-      case 'love':
-        return 'text-rose-400';
-      case 'plan':
-        return 'text-orange-400';
-      case 'sex':
-        return 'text-red-400';
-    }
-  };
-
-  const getBorderAccent = () => {
-    switch (currentAppType) {
-      case 'love':
-        return 'border-rose-500/30 hover:border-rose-500/50';
-      case 'plan':
-        return 'border-orange-500/30 hover:border-orange-500/50';
-      case 'sex':
-        return 'border-red-500/30 hover:border-red-500/50';
-    }
-  };
-
-  const getButtonStyle = () => {
-    switch (currentAppType) {
-      case 'love':
-        return 'bg-gradient-to-r from-rose-500 to-pink-500 hover:from-rose-600 hover:to-pink-600';
-      case 'plan':
-        return 'bg-gradient-to-r from-orange-500 to-amber-500 hover:from-orange-600 hover:to-amber-600';
-      case 'sex':
-        return 'bg-gradient-to-r from-red-600 to-rose-500 hover:from-red-700 hover:to-rose-600';
-    }
+  const handleAppSelect = (appType: AppType) => {
+    // Store the selected app type and navigate to login
+    sessionStorage.setItem('eureka_app_type', appType);
+    navigate(`/login?app=${appType}`);
   };
 
   return (
@@ -80,160 +52,115 @@ const Landing = () => {
       <header className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-xl border-b border-border/50">
         <div className="max-w-4xl mx-auto px-6 py-4 flex items-center justify-between">
           <div className="flex items-center gap-3">
-            <div 
-              className="w-10 h-10 rounded-full flex items-center justify-center text-white"
-              style={{ background: appConfig.primaryColor }}
-            >
-              {getAppIcon()}
+            <div className="w-10 h-10 rounded-full flex items-center justify-center bg-gradient-to-br from-violet-500 to-purple-600 text-white">
+              <Sparkles className="w-5 h-5" />
             </div>
-            <span className="text-lg font-semibold text-foreground">{appConfig.appName}</span>
+            <span className="text-lg font-semibold text-foreground">EUREKA</span>
           </div>
-          <div className="flex items-center gap-3">
-            <LanguageSelector />
-            <Button 
-              variant="ghost" 
-              size="sm"
-              onClick={() => navigate("/login")}
-              className="text-muted-foreground hover:text-foreground"
-            >
-              {t("auth.login")}
-            </Button>
-          </div>
+          <LanguageSelector />
         </div>
       </header>
 
       {/* Hero Section */}
-      <section className="flex-1 flex flex-col items-center justify-center px-6 pt-24 pb-16 relative overflow-hidden">
+      <section className="flex-1 flex flex-col items-center justify-center px-6 pt-28 pb-16 relative overflow-hidden">
         {/* Background gradient */}
-        <div className={`absolute inset-0 bg-gradient-radial ${getHeroGradient()} pointer-events-none`} />
+        <div className="absolute inset-0 bg-gradient-radial from-violet-500/10 via-purple-500/5 to-transparent pointer-events-none" />
         
         {/* Animated circles/shapes */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
-          <div 
-            className="absolute top-1/4 left-1/4 w-64 h-64 rounded-full blur-3xl opacity-20 animate-pulse"
-            style={{ background: appConfig.primaryColor }}
-          />
-          <div 
-            className="absolute bottom-1/4 right-1/4 w-48 h-48 rounded-full blur-3xl opacity-15 animate-pulse"
-            style={{ background: appConfig.accentColor, animationDelay: '1s' }}
-          />
+          <div className="absolute top-1/4 left-1/4 w-64 h-64 rounded-full blur-3xl opacity-20 animate-pulse bg-violet-500" />
+          <div className="absolute bottom-1/3 right-1/4 w-48 h-48 rounded-full blur-3xl opacity-15 animate-pulse bg-purple-500" style={{ animationDelay: '1s' }} />
+          <div className="absolute top-1/2 right-1/3 w-32 h-32 rounded-full blur-3xl opacity-10 animate-pulse bg-pink-500" style={{ animationDelay: '2s' }} />
         </div>
 
-        <div className="relative z-10 text-center max-w-2xl mx-auto">
-          {/* Icon */}
-          <div 
-            className="w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-8 text-white animate-fade-in-up"
-            style={{ background: `linear-gradient(135deg, ${appConfig.primaryColor}, ${appConfig.accentColor})` }}
-          >
-            {getAppIcon()}
+        <div className="relative z-10 text-center max-w-3xl mx-auto">
+          {/* Beta badge */}
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-secondary/80 border border-border/50 text-sm text-muted-foreground mb-8 animate-fade-in-up">
+            <Beaker className="w-4 h-4 text-violet-400" />
+            <span>{t("landing.beta.badge")}</span>
           </div>
 
           {/* Main headline */}
-          <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-6 animate-fade-in-up animate-delay-100">
-            {t(`landing.headline.${currentAppType}`)}
+          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-foreground mb-6 animate-fade-in-up animate-delay-100">
+            {t("landing.hero.title")}
           </h1>
 
           {/* Subheadline */}
-          <p className="text-lg md:text-xl text-muted-foreground mb-10 animate-fade-in-up animate-delay-200">
-            {t(`landing.subheadline.${currentAppType}`)}
+          <p className="text-lg md:text-xl text-muted-foreground mb-4 animate-fade-in-up animate-delay-200 max-w-2xl mx-auto">
+            {t("landing.hero.subtitle")}
           </p>
 
-          {/* CTA Button */}
-          <Button
-            onClick={() => navigate("/login")}
-            size="lg"
-            className={`${getButtonStyle()} text-white font-semibold px-8 py-6 text-lg rounded-full shadow-lg hover:shadow-xl transition-all duration-300 animate-fade-in-up animate-delay-300`}
-          >
-            {t("landing.cta")}
-            <ArrowRight className="w-5 h-5 ml-2" />
-          </Button>
-        </div>
-      </section>
+          {/* Development notice */}
+          <p className="text-sm text-muted-foreground/70 mb-12 animate-fade-in-up animate-delay-300">
+            {t("landing.hero.devNotice")}
+          </p>
 
-      {/* How it works */}
-      <section className="py-16 px-6 bg-card/30">
-        <div className="max-w-4xl mx-auto">
-          <h2 className="text-2xl md:text-3xl font-bold text-center text-foreground mb-12">
-            {t("landing.howItWorks.title")}
-          </h2>
-
-          <div className="grid md:grid-cols-4 gap-6">
-            {[0, 1, 2, 3].map((step) => (
-              <div 
-                key={step}
-                className={`glass-card p-6 text-center border ${getBorderAccent()} transition-all duration-300`}
-              >
-                <div 
-                  className={`w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-4 ${getAccentColor()} bg-secondary`}
-                >
-                  <span className="text-xl font-bold">{step}</span>
-                </div>
-                <h3 className="text-lg font-semibold text-foreground mb-2">
-                  {t(`landing.howItWorks.step${step}.title`)}
-                </h3>
-                <p className="text-muted-foreground text-sm">
-                  {step === 3 
-                    ? t(`landing.howItWorks.step3.description.${currentAppType}`)
-                    : t(`landing.howItWorks.step${step}.description`)
-                  }
-                </p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Privacy section */}
-      <section className="py-16 px-6">
-        <div className="max-w-4xl mx-auto">
-          <div className="glass-card p-8 md:p-12 text-center">
-            <div className="flex justify-center gap-6 mb-6">
-              <div className={`w-14 h-14 rounded-full flex items-center justify-center ${getAccentColor()} bg-secondary`}>
-                <Shield className="w-7 h-7" />
-              </div>
-              <div className={`w-14 h-14 rounded-full flex items-center justify-center ${getAccentColor()} bg-secondary`}>
-                <Eye className="w-7 h-7" />
-              </div>
-            </div>
-            <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-4">
-              {t("landing.privacy.title")}
+          {/* App variants section */}
+          <div className="animate-fade-in-up animate-delay-400">
+            <h2 className="text-xl md:text-2xl font-semibold text-foreground mb-8">
+              {t("landing.variants.title")}
             </h2>
-            <p className="text-muted-foreground max-w-xl mx-auto mb-6">
-              {t("landing.privacy.description")}
-            </p>
-            <div className="flex flex-wrap justify-center gap-4 text-sm">
-              <span className={`px-4 py-2 rounded-full bg-secondary ${getAccentColor()}`}>
-                {t("landing.privacy.feature1")}
-              </span>
-              <span className={`px-4 py-2 rounded-full bg-secondary ${getAccentColor()}`}>
-                {t("landing.privacy.feature2")}
-              </span>
-              <span className={`px-4 py-2 rounded-full bg-secondary ${getAccentColor()}`}>
-                {t("landing.privacy.feature3")}
-              </span>
+
+            <div className="grid md:grid-cols-3 gap-6 max-w-4xl mx-auto">
+              {appVariants.map((variant) => {
+                const config = getAppConfig(variant.type);
+                return (
+                  <button
+                    key={variant.type}
+                    onClick={() => handleAppSelect(variant.type)}
+                    className={`group relative p-6 rounded-2xl bg-card border border-border/50 hover:border-transparent transition-all duration-300 hover:scale-[1.02] hover:shadow-xl`}
+                  >
+                    {/* Gradient overlay on hover */}
+                    <div className={`absolute inset-0 rounded-2xl bg-gradient-to-br ${variant.gradient} opacity-0 group-hover:opacity-10 transition-opacity duration-300`} />
+                    
+                    {/* Icon */}
+                    <div className={`w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 bg-gradient-to-br ${variant.gradient} text-white shadow-lg`}>
+                      {variant.icon}
+                    </div>
+
+                    {/* App name */}
+                    <h3 className="text-lg font-bold text-foreground mb-2">
+                      {config.appName}
+                    </h3>
+
+                    {/* Tagline */}
+                    <p className="text-sm text-muted-foreground mb-4">
+                      {t(`landing.variants.${variant.type}.tagline`)}
+                    </p>
+
+                    {/* CTA */}
+                    <div className={`inline-flex items-center gap-2 text-sm font-medium bg-gradient-to-r ${variant.gradient} bg-clip-text text-transparent`}>
+                      {t("landing.variants.explore")}
+                      <ArrowRight className={`w-4 h-4 transition-transform group-hover:translate-x-1`} style={{ color: variant.type === 'love' ? '#f43f5e' : variant.type === 'plan' ? '#f97316' : '#dc2626' }} />
+                    </div>
+                  </button>
+                );
+              })}
             </div>
           </div>
         </div>
       </section>
 
-      {/* Final CTA */}
-      <section className="py-16 px-6 text-center">
-        <div className="max-w-2xl mx-auto">
-          <Sparkles className={`w-10 h-10 mx-auto mb-4 ${getAccentColor()}`} />
-          <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-4">
-            {t("landing.finalCta.title")}
+      {/* How it works - simplified */}
+      <section className="py-16 px-6 bg-card/30">
+        <div className="max-w-3xl mx-auto text-center">
+          <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-6">
+            {t("landing.concept.title")}
           </h2>
-          <p className="text-muted-foreground mb-8">
-            {t("landing.finalCta.subtitle")}
+          <p className="text-lg text-muted-foreground mb-8">
+            {t("landing.concept.description")}
           </p>
-          <Button
-            onClick={() => navigate("/login")}
-            size="lg"
-            className={`${getButtonStyle()} text-white font-semibold px-8 py-6 text-lg rounded-full shadow-lg hover:shadow-xl transition-all duration-300`}
-          >
-            {t("landing.cta")}
-            <ArrowRight className="w-5 h-5 ml-2" />
-          </Button>
+          <div className="flex flex-wrap justify-center gap-4 text-sm">
+            <span className="px-4 py-2 rounded-full bg-secondary text-violet-400">
+              {t("landing.concept.feature1")}
+            </span>
+            <span className="px-4 py-2 rounded-full bg-secondary text-violet-400">
+              {t("landing.concept.feature2")}
+            </span>
+            <span className="px-4 py-2 rounded-full bg-secondary text-violet-400">
+              {t("landing.concept.feature3")}
+            </span>
+          </div>
         </div>
       </section>
 
@@ -241,7 +168,7 @@ const Landing = () => {
       <footer className="py-8 px-6 border-t border-border/50">
         <div className="max-w-4xl mx-auto text-center">
           <p className="text-muted-foreground text-sm">
-            © {new Date().getFullYear()} {appConfig.appName}. {t("landing.footer.rights")}
+            © {new Date().getFullYear()} EUREKA. {t("landing.footer.rights")}
           </p>
         </div>
       </footer>

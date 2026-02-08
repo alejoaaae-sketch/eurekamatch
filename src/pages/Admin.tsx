@@ -14,9 +14,9 @@ import { toast } from "sonner";
 interface AppConfigRow {
   id: string;
   app_mode: string;
-  max_picks: number;
-  free_changes_per_month: number;
-  price_per_change: number;
+  max_picks: number | "";
+  free_changes_per_month: number | "";
+  price_per_change: number | "";
   enabled: boolean;
 }
 
@@ -96,9 +96,9 @@ const Admin = () => {
     const { data, error } = await supabase
       .from("app_config")
       .update({
-        max_picks: config.max_picks,
-        free_changes_per_month: config.free_changes_per_month,
-        price_per_change: config.price_per_change,
+        max_picks: Number(config.max_picks) || 1,
+        free_changes_per_month: Number(config.free_changes_per_month) || 0,
+        price_per_change: Number(config.price_per_change) || 0,
         enabled: config.enabled,
       })
       .eq("id", config.id)
@@ -216,7 +216,8 @@ const Admin = () => {
                       type="number"
                       min={1}
                       value={config.max_picks}
-                      onChange={(e) => setAppField(idx, "max_picks", parseInt(e.target.value) || 1)}
+                      onChange={(e) => setAppField(idx, "max_picks", e.target.value === "" ? "" : Number(e.target.value))}
+                      onBlur={() => { if (config.max_picks === "" || isNaN(Number(config.max_picks))) setAppField(idx, "max_picks", 1); }}
                     />
                   </div>
                   <div>
@@ -225,7 +226,8 @@ const Admin = () => {
                       type="number"
                       min={0}
                       value={config.free_changes_per_month}
-                      onChange={(e) => setAppField(idx, "free_changes_per_month", parseInt(e.target.value) || 0)}
+                      onChange={(e) => setAppField(idx, "free_changes_per_month", e.target.value === "" ? "" : Number(e.target.value))}
+                      onBlur={() => { if (config.free_changes_per_month === "" || isNaN(Number(config.free_changes_per_month))) setAppField(idx, "free_changes_per_month", 0); }}
                     />
                   </div>
                   <div>
@@ -235,7 +237,8 @@ const Admin = () => {
                       step="0.01"
                       min={0}
                       value={config.price_per_change}
-                      onChange={(e) => setAppField(idx, "price_per_change", parseFloat(e.target.value) || 0)}
+                      onChange={(e) => setAppField(idx, "price_per_change", e.target.value === "" ? "" : Number(e.target.value))}
+                      onBlur={() => { if (config.price_per_change === "" || isNaN(Number(config.price_per_change))) setAppField(idx, "price_per_change", 0); }}
                     />
                   </div>
                 </div>

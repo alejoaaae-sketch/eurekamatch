@@ -6,17 +6,17 @@ import { Input } from "@/components/ui/input";
 import { ArrowLeft, UserPlus, Phone, AlertCircle, Loader2, Ban } from "lucide-react";
 import { useAuth } from "@/hooks/useAuth";
 import { usePicks } from "@/hooks/usePicks";
+import { useAppConfig } from "@/hooks/useAppConfig";
 import { toast } from "sonner";
 import { appConfig, BETA_MODE } from "@/config/app.config";
 import PaymentSimulationModal from "@/components/PaymentSimulationModal";
-
-const MAX_PICKS = appConfig.maxPicks;
 
 const AddPick = () => {
   const navigate = useNavigate();
   const { t, i18n } = useTranslation();
   const { user, loading: authLoading } = useAuth();
   const { addPick, picks, loading: picksLoading } = usePicks();
+  const { effectiveMaxPicks, pricePerChange, loading: configLoading } = useAppConfig();
   const [value, setValue] = useState("");
   const [name, setName] = useState("");
   const [loading, setLoading] = useState(false);
@@ -42,7 +42,7 @@ const AddPick = () => {
   }, [i18n]);
 
   const currentPicksCount = picks.filter(p => !p.is_matched).length;
-  const canAddMore = currentPicksCount < MAX_PICKS;
+  const canAddMore = currentPicksCount < effectiveMaxPicks;
   
   // Check if payment is required (user deleted a pick and is adding a new one)
   // In BETA_MODE, payments are disabled
@@ -65,7 +65,7 @@ const AddPick = () => {
     e.preventDefault();
     
     if (!canAddMore) {
-      toast.error(t("pick.limitMessage", { count: MAX_PICKS }));
+      toast.error(t("pick.limitMessage", { count: effectiveMaxPicks }));
       return;
     }
 
@@ -101,7 +101,7 @@ const AddPick = () => {
     await proceedWithAddPick();
   };
 
-  if (authLoading || picksLoading || !user) {
+  if (authLoading || picksLoading || configLoading || !user) {
     return (
       <div className="min-h-screen bg-background flex items-center justify-center">
         <Loader2 className="w-8 h-8 animate-spin text-primary" />
@@ -133,7 +133,7 @@ const AddPick = () => {
             {t("pick.limit")}
           </h2>
           <p className="text-muted-foreground text-sm text-center mb-6">
-            {t("pick.limitMessage", { count: MAX_PICKS })}
+            {t("pick.limitMessage", { count: effectiveMaxPicks })}
           </p>
           <Button onClick={() => navigate("/home")} variant="outline">
             {t("common.back")}
@@ -221,7 +221,7 @@ const AddPick = () => {
               {loading ? (
                 <Loader2 className="w-5 h-5 animate-spin" />
               ) : paymentRequired ? (
-                `${t("pick.save")} (1,00 €)`
+                `${t("pick.save")} (${pricePerChange.toFixed(2).replace('.', ',')} €)`
               ) : (
                 t("pick.save")
               )}

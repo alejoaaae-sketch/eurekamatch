@@ -14,6 +14,78 @@ export type Database = {
   }
   public: {
     Tables: {
+      app_config: {
+        Row: {
+          app_mode: string
+          created_at: string
+          enabled: boolean
+          free_changes_per_month: number
+          id: string
+          max_picks: number
+          price_per_change: number
+          updated_at: string
+        }
+        Insert: {
+          app_mode: string
+          created_at?: string
+          enabled?: boolean
+          free_changes_per_month?: number
+          id?: string
+          max_picks?: number
+          price_per_change?: number
+          updated_at?: string
+        }
+        Update: {
+          app_mode?: string
+          created_at?: string
+          enabled?: boolean
+          free_changes_per_month?: number
+          id?: string
+          max_picks?: number
+          price_per_change?: number
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      global_config: {
+        Row: {
+          created_at: string
+          enabled_countries: string[]
+          enabled_languages: string[]
+          id: string
+          max_new_users_per_day: number
+          promo_enabled: boolean
+          promo_end: string | null
+          promo_max_picks_override: number | null
+          promo_start: string | null
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          enabled_countries?: string[]
+          enabled_languages?: string[]
+          id?: string
+          max_new_users_per_day?: number
+          promo_enabled?: boolean
+          promo_end?: string | null
+          promo_max_picks_override?: number | null
+          promo_start?: string | null
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          enabled_countries?: string[]
+          enabled_languages?: string[]
+          id?: string
+          max_new_users_per_day?: number
+          promo_enabled?: boolean
+          promo_end?: string | null
+          promo_max_picks_override?: number | null
+          promo_start?: string | null
+          updated_at?: string
+        }
+        Relationships: []
+      }
       matches: {
         Row: {
           created_at: string
@@ -194,6 +266,57 @@ export type Database = {
         }
         Relationships: []
       }
+      user_roles: {
+        Row: {
+          id: string
+          role: Database["public"]["Enums"]["app_role"]
+          user_id: string
+        }
+        Insert: {
+          id?: string
+          role: Database["public"]["Enums"]["app_role"]
+          user_id: string
+        }
+        Update: {
+          id?: string
+          role?: Database["public"]["Enums"]["app_role"]
+          user_id?: string
+        }
+        Relationships: []
+      }
+      user_usage: {
+        Row: {
+          app_mode: string
+          created_at: string
+          free_changes_used: number
+          id: string
+          month: string
+          paid_changes_used: number
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          app_mode: string
+          created_at?: string
+          free_changes_used?: number
+          id?: string
+          month: string
+          paid_changes_used?: number
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          app_mode?: string
+          created_at?: string
+          free_changes_used?: number
+          id?: string
+          month?: string
+          paid_changes_used?: number
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
@@ -201,6 +324,7 @@ export type Database = {
     Functions: {
       cleanup_expired_otps: { Args: never; Returns: undefined }
       cleanup_old_otp_attempts: { Args: never; Returns: undefined }
+      get_effective_max_picks: { Args: { p_app_mode: string }; Returns: number }
       get_matched_user_profile: {
         Args: { p_match_id: string }
         Returns: {
@@ -209,10 +333,17 @@ export type Database = {
           phone: string
         }[]
       }
+      has_role: {
+        Args: {
+          _role: Database["public"]["Enums"]["app_role"]
+          _user_id: string
+        }
+        Returns: boolean
+      }
       normalize_phone: { Args: { phone_input: string }; Returns: string }
     }
     Enums: {
-      [_ in never]: never
+      app_role: "admin" | "user"
     }
     CompositeTypes: {
       [_ in never]: never
@@ -339,6 +470,8 @@ export type CompositeTypes<
 
 export const Constants = {
   public: {
-    Enums: {},
+    Enums: {
+      app_role: ["admin", "user"],
+    },
   },
 } as const

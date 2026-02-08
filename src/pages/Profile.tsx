@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { ArrowLeft, User, Phone, Loader2, AlertCircle, Globe } from "lucide-react";
+import { ArrowLeft, User, Phone, Loader2, AlertCircle, Globe, Settings } from "lucide-react";
 import {
   Select,
   SelectContent,
@@ -14,6 +14,7 @@ import {
 import { useAuth } from "@/hooks/useAuth";
 import { useProfile } from "@/hooks/useProfile";
 import { useLanguage } from "@/hooks/useLanguage";
+import { useAdmin } from "@/hooks/useAdmin";
 import { toast } from "sonner";
 
 const Profile = () => {
@@ -22,6 +23,7 @@ const Profile = () => {
   const { user, loading: authLoading, signOut } = useAuth();
   const { profile, loading: profileLoading, updateProfile } = useProfile();
   const { currentLanguage, languages, changeLanguage } = useLanguage();
+  const { isAdmin } = useAdmin();
   const [phone, setPhone] = useState("");
   const [displayName, setDisplayName] = useState("");
   const [saving, setSaving] = useState(false);
@@ -191,8 +193,22 @@ const Profile = () => {
           </div>
         </form>
 
+        {/* Admin panel link */}
+        {isAdmin && (
+          <div className="mt-8 pt-8 border-t border-border">
+            <Button
+              variant="outline"
+              className="w-full gap-2"
+              onClick={() => navigate("/admin")}
+            >
+              <Settings className="w-4 h-4" />
+              Admin Panel
+            </Button>
+          </div>
+        )}
+
         {/* Sign out */}
-        <div className="mt-8 pt-8 border-t border-border">
+        <div className={`${isAdmin ? 'mt-4' : 'mt-8 pt-8 border-t border-border'}`}>
           <Button
             variant="outline"
             className="w-full"

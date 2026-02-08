@@ -11,6 +11,8 @@ import { useMatches } from "@/hooks/useMatches";
 import { useState, useEffect } from "react";
 import { toast } from "sonner";
 import { appConfig } from "@/config/app.config";
+import { useAppConfig } from "@/hooks/useAppConfig";
+import { Ban } from "lucide-react";
 
 const Home = () => {
   const navigate = useNavigate();
@@ -18,6 +20,7 @@ const Home = () => {
   const { user, loading: authLoading } = useAuth();
   const { pendingPicks, loading: picksLoading, deletePick } = usePicks();
   const { matches, loading: matchesLoading } = useMatches();
+  const { appEnabled, loading: configLoading } = useAppConfig();
   const [activeTab, setActiveTab] = useState<"picks" | "matches">("picks");
   const [, forceUpdate] = useState(0);
   
@@ -55,7 +58,22 @@ const Home = () => {
     );
   }
 
-  const isLoading = picksLoading || matchesLoading;
+  const isLoading = picksLoading || matchesLoading || configLoading;
+
+  if (!configLoading && !appEnabled) {
+    return (
+      <div className="min-h-screen bg-background flex flex-col items-center justify-center px-6">
+        <div className="w-20 h-20 rounded-full bg-secondary flex items-center justify-center mb-6">
+          <Ban className="w-10 h-10 text-muted-foreground" />
+        </div>
+        <h2 className="text-xl font-semibold text-foreground mb-2 text-center">{appConfig.appName}</h2>
+        <p className="text-muted-foreground text-center mb-6">{t("common.appDisabled", "Esta aplicación no está disponible en este momento.")}</p>
+        <Button onClick={() => navigate("/")} variant="outline">
+          {t("common.back")}
+        </Button>
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen bg-background flex flex-col">

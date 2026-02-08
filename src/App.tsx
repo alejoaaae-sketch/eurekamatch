@@ -14,6 +14,7 @@ import Match from "./pages/Match";
 import Profile from "./pages/Profile";
 import Install from "./pages/Install";
 import NotFound from "./pages/NotFound";
+import Admin from "./pages/Admin";
 
 const queryClient = new QueryClient();
 
@@ -34,6 +35,7 @@ const App = () => (
             <Route path="/match/:id" element={<Match />} />
             <Route path="/profile" element={<Profile />} />
             <Route path="/install" element={<Install />} />
+            <Route path="/admin" element={<Admin />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </BrowserRouter>

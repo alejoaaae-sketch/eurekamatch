@@ -41,7 +41,7 @@ const AddPick = () => {
     };
   }, [i18n]);
 
-  const currentPicksCount = picks.length;
+  const currentPicksCount = picks.filter(p => !p.is_matched).length;
   const canAddMore = currentPicksCount < MAX_PICKS;
   
   // Check if payment is required (user deleted a pick and is adding a new one)

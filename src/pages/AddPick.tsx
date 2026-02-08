@@ -16,7 +16,7 @@ const AddPick = () => {
   const { t, i18n } = useTranslation();
   const { user, loading: authLoading } = useAuth();
   const { addPick, picks, loading: picksLoading } = usePicks();
-  const { effectiveMaxPicks, pricePerChange, loading: configLoading } = useAppConfig();
+  const { effectiveMaxPicks, pricePerChange, appEnabled, loading: configLoading } = useAppConfig();
   const [value, setValue] = useState("");
   const [name, setName] = useState("");
   const [loading, setLoading] = useState(false);
@@ -100,6 +100,11 @@ const AddPick = () => {
     setShowPaymentModal(false);
     await proceedWithAddPick();
   };
+
+  if (!configLoading && !appEnabled) {
+    navigate("/home");
+    return null;
+  }
 
   if (authLoading || picksLoading || configLoading || !user) {
     return (

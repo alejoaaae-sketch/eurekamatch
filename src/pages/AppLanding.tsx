@@ -6,14 +6,18 @@ import { useAuth } from "@/hooks/useAuth";
 import { useEffect } from "react";
 import LanguageSelector from "@/components/LanguageSelector";
 import { getAppConfig, AppType } from "@/config/app.config";
+import { useAllAppConfigs } from "@/hooks/useAllAppConfigs";
+import { Ban } from "lucide-react";
 
 const AppLanding = () => {
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
   const { t } = useTranslation();
   const { user, loading } = useAuth();
+  const { isAppEnabled, loading: configLoading } = useAllAppConfigs();
 
   const appType = (searchParams.get('app') as AppType) || 'love';
+  const appEnabled = isAppEnabled(appType);
   const config = getAppConfig(appType);
 
   // Store the app type in sessionStorage
@@ -122,6 +126,21 @@ const AppLanding = () => {
       description: t("appLanding.features.connection.description"),
     },
   ];
+
+  if (!appEnabled && !configLoading) {
+    return (
+      <div className="min-h-screen bg-background flex flex-col items-center justify-center px-6">
+        <div className="w-20 h-20 rounded-full bg-secondary flex items-center justify-center mb-6">
+          <Ban className="w-10 h-10 text-muted-foreground" />
+        </div>
+        <h2 className="text-xl font-semibold text-foreground mb-2 text-center">{config.appName}</h2>
+        <p className="text-muted-foreground text-center mb-6">{t("common.appDisabled", "Esta aplicación no está disponible en este momento.")}</p>
+        <Button onClick={() => navigate("/")} variant="outline">
+          {t("common.back")}
+        </Button>
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen bg-background flex flex-col">

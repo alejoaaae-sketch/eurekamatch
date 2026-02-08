@@ -6,11 +6,13 @@ import { useAuth } from "@/hooks/useAuth";
 import { useEffect } from "react";
 import LanguageSelector from "@/components/LanguageSelector";
 import { getAppConfig, AppType } from "@/config/app.config";
+import { useAllAppConfigs } from "@/hooks/useAllAppConfigs";
 
 const Landing = () => {
   const navigate = useNavigate();
   const { t } = useTranslation();
   const { user, loading } = useAuth();
+  const { isAppEnabled, loading: configLoading } = useAllAppConfigs();
 
   // Redirect to home if already logged in
   useEffect(() => {
@@ -104,35 +106,46 @@ const Landing = () => {
             <div className="grid md:grid-cols-3 gap-6 max-w-4xl mx-auto">
               {appVariants.map((variant) => {
                 const config = getAppConfig(variant.type);
+                const enabled = isAppEnabled(variant.type);
                 return (
                   <button
                     key={variant.type}
-                    onClick={() => handleAppSelect(variant.type)}
-                    className={`group relative p-6 rounded-2xl bg-card border border-border/50 hover:border-transparent transition-all duration-300 hover:scale-[1.02] hover:shadow-xl`}
+                    onClick={() => enabled && handleAppSelect(variant.type)}
+                    disabled={!enabled}
+                    className={`group relative p-6 rounded-2xl bg-card border border-border/50 transition-all duration-300 ${
+                      enabled
+                        ? 'hover:border-transparent hover:scale-[1.02] hover:shadow-xl cursor-pointer'
+                        : 'opacity-50 cursor-not-allowed'
+                    }`}
                   >
-                    {/* Gradient overlay on hover */}
-                    <div className={`absolute inset-0 rounded-2xl bg-gradient-to-br ${variant.gradient} opacity-0 group-hover:opacity-10 transition-opacity duration-300`} />
+                    {enabled && (
+                      <div className={`absolute inset-0 rounded-2xl bg-gradient-to-br ${variant.gradient} opacity-0 group-hover:opacity-10 transition-opacity duration-300`} />
+                    )}
                     
-                    {/* Icon */}
-                    <div className={`w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 bg-gradient-to-br ${variant.gradient} text-white shadow-lg`}>
+                    <div className={`w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 bg-gradient-to-br ${variant.gradient} text-white shadow-lg ${!enabled ? 'grayscale' : ''}`}>
                       {variant.icon}
                     </div>
 
-                    {/* App name */}
                     <h3 className="text-lg font-bold text-foreground mb-2">
                       {config.appName}
                     </h3>
 
-                    {/* Tagline */}
                     <p className="text-sm text-muted-foreground mb-4">
-                      {t(`landing.variants.${variant.type}.tagline`)}
+                      {enabled
+                        ? t(`landing.variants.${variant.type}.tagline`)
+                        : t("common.comingSoon", "Próximamente")}
                     </p>
 
-                    {/* CTA */}
-                    <div className={`inline-flex items-center gap-2 text-sm font-medium bg-gradient-to-r ${variant.gradient} bg-clip-text text-transparent`}>
-                      {t("landing.variants.explore")}
-                      <ArrowRight className={`w-4 h-4 transition-transform group-hover:translate-x-1`} style={{ color: variant.type === 'love' ? '#f43f5e' : variant.type === 'plan' ? '#f97316' : '#dc2626' }} />
-                    </div>
+                    {enabled ? (
+                      <div className={`inline-flex items-center gap-2 text-sm font-medium bg-gradient-to-r ${variant.gradient} bg-clip-text text-transparent`}>
+                        {t("landing.variants.explore")}
+                        <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" style={{ color: variant.type === 'love' ? '#f43f5e' : variant.type === 'plan' ? '#f97316' : '#dc2626' }} />
+                      </div>
+                    ) : (
+                      <span className="text-xs font-medium text-muted-foreground/60 uppercase tracking-wider">
+                        {t("common.disabled", "No disponible")}
+                      </span>
+                    )}
                   </button>
                 );
               })}

@@ -93,7 +93,7 @@ const Admin = () => {
 
   const updateAppConfig = async (config: AppConfigRow) => {
     setSaving(true);
-    const { error } = await supabase
+    const { data, error } = await supabase
       .from("app_config")
       .update({
         max_picks: config.max_picks,
@@ -101,17 +101,25 @@ const Admin = () => {
         price_per_change: config.price_per_change,
         enabled: config.enabled,
       })
-      .eq("id", config.id);
+      .eq("id", config.id)
+      .select();
 
-    if (error) toast.error(error.message);
-    else toast.success(`${config.app_mode} actualizado`);
+    if (error) {
+      console.error("Error updating app_config:", error);
+      toast.error(`Error: ${error.message}`);
+    } else if (!data || data.length === 0) {
+      toast.error("No se pudo guardar. Verifica permisos de admin.");
+    } else {
+      toast.success(`${config.app_mode} actualizado`);
+      await fetchAll();
+    }
     setSaving(false);
   };
 
   const updateGlobalConfig = async () => {
     if (!globalConfig) return;
     setSaving(true);
-    const { error } = await supabase
+    const { data, error } = await supabase
       .from("global_config")
       .update({
         max_new_users_per_day: globalForm.max_new_users_per_day,
@@ -122,10 +130,18 @@ const Admin = () => {
         promo_end: globalForm.promo_end || null,
         promo_max_picks_override: globalForm.promo_max_picks_override ? parseInt(globalForm.promo_max_picks_override) : null,
       })
-      .eq("id", globalConfig.id);
+      .eq("id", globalConfig.id)
+      .select();
 
-    if (error) toast.error(error.message);
-    else toast.success("Configuración global guardada");
+    if (error) {
+      console.error("Error updating global_config:", error);
+      toast.error(`Error: ${error.message}`);
+    } else if (!data || data.length === 0) {
+      toast.error("No se pudo guardar. Verifica permisos de admin.");
+    } else {
+      toast.success("Configuración global guardada");
+      await fetchAll();
+    }
     setSaving(false);
   };
 

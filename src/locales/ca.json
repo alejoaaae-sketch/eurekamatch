@@ -192,15 +192,15 @@
       "step2": {
         "love": {
           "title": "Afegeix a qui t'interessa",
-          "description": "Escull fins a 2 persones que t'agradin. Ningú ho sabrà."
+          "description": "Escull fins a 2 persones. Introdueix el seu mòbil. Ningú rep avís."
         },
         "plan": {
           "title": "Afegeix a qui t'interessa",
-          "description": "Escull fins a 5 persones amb qui vulguis quedar. Ningú ho sabrà."
+          "description": "Escull fins a 5 persones. Introdueix el seu mòbil. Ningú rep avís."
         },
         "sex": {
           "title": "Afegeix a qui t'interessa",
-          "description": "Escull fins a 2 persones que t'atraguin. Ningú ho sabrà."
+          "description": "Escull fins a 2 persones. Introdueix el seu mòbil. Ningú rep avís."
         }
       },
       "step3": {
@@ -208,8 +208,8 @@
         "description": "Les teves eleccions són 100% privades. Només tu les coneixes."
       },
       "step4": {
-        "title": "Rep notificació si és mutu",
-        "description": "Si l'altra persona també et tria, us avisem a tots dos."
+        "title": "Rep avís si és mutu",
+        "description": "Si l'altra persona també et tria, t'ho notifiquem per email i a l'app."
       }
     },
     "features": {

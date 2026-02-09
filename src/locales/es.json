@@ -215,15 +215,15 @@
       "step2": {
         "love": {
           "title": "Añade a quien te interesa",
-          "description": "Elige hasta 2 personas que te gusten. Nadie lo sabrá."
+          "description": "Elige hasta 2 personas. Introduce su móvil. Nadie recibe aviso."
         },
         "plan": {
           "title": "Añade a quien te interesa",
-          "description": "Elige hasta 5 personas con las que quieras quedar. Nadie lo sabrá."
+          "description": "Elige hasta 5 personas. Introduce su móvil. Nadie recibe aviso."
         },
         "sex": {
           "title": "Añade a quien te interesa",
-          "description": "Elige hasta 2 personas que te atraigan. Nadie lo sabrá."
+          "description": "Elige hasta 2 personas. Introduce su móvil. Nadie recibe aviso."
         }
       },
       "step3": {
@@ -231,8 +231,8 @@
         "description": "Tus elecciones son 100% privadas. Solo tú las conoces."
       },
       "step4": {
-        "title": "Recibe notificación si es mutuo",
-        "description": "Si la otra persona también te elige, os avisamos a ambos."
+        "title": "Recibe aviso si es mutuo",
+        "description": "Si la otra persona también te elige, te lo notificamos por email y en la app."
       }
     },
     "features": {

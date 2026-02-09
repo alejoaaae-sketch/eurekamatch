@@ -192,15 +192,15 @@
       "step2": {
         "love": {
           "title": "Gehitu interesatzen zaizuna",
-          "description": "Aukeratu gustatzen zaizkizun 2 pertsona arte. Inork ez du jakingo."
+          "description": "Aukeratu 2 pertsona arte. Sartu haien telefono zenbakia. Inork ez du abisurik jasotzen."
         },
         "plan": {
           "title": "Gehitu interesatzen zaizuna",
-          "description": "Aukeratu zurekin elkartu nahi duzun 5 pertsona arte. Inork ez du jakingo."
+          "description": "Aukeratu 5 pertsona arte. Sartu haien telefono zenbakia. Inork ez du abisurik jasotzen."
         },
         "sex": {
           "title": "Gehitu interesatzen zaizuna",
-          "description": "Aukeratu erakartzen zaituzten 2 pertsona arte. Inork ez du jakingo."
+          "description": "Aukeratu 2 pertsona arte. Sartu haien telefono zenbakia. Inork ez du abisurik jasotzen."
         }
       },
       "step3": {
@@ -208,8 +208,8 @@
         "description": "Zure aukerak %100 pribatuak dira. Zuk bakarrik ezagutzen dituzu."
       },
       "step4": {
-        "title": "Jaso jakinarazpena elkarrekikoa bada",
-        "description": "Beste pertsonak ere hautatzen bazaitu, biei jakinaraziko dizuegu."
+        "title": "Jaso abisua elkarrekikoa bada",
+        "description": "Beste pertsonak ere hautatzen bazaitu, emailez eta aplikazioan jakinaraziko dizugu."
       }
     },
     "features": {

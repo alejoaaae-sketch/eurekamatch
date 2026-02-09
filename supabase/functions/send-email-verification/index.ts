@@ -17,14 +17,41 @@ const handler = async (req: Request): Promise<Response> => {
 
   try {
     const supabaseUrl = Deno.env.get("SUPABASE_URL")!;
+    const supabaseAnonKey = Deno.env.get("SUPABASE_ANON_KEY")!;
     const supabaseServiceKey = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!;
+
+    // --- Authentication: Verify JWT ---
+    const authHeader = req.headers.get("Authorization");
+    if (!authHeader?.startsWith("Bearer ")) {
+      return new Response(
+        JSON.stringify({ error: "Unauthorized" }),
+        { status: 401, headers: { "Content-Type": "application/json", ...corsHeaders } }
+      );
+    }
+
+    const supabaseAuth = createClient(supabaseUrl, supabaseAnonKey, {
+      global: { headers: { Authorization: authHeader } },
+    });
+
+    const token = authHeader.replace("Bearer ", "");
+    const { data: claimsData, error: claimsError } = await supabaseAuth.auth.getClaims(token);
+    if (claimsError || !claimsData?.claims) {
+      return new Response(
+        JSON.stringify({ error: "Unauthorized" }),
+        { status: 401, headers: { "Content-Type": "application/json", ...corsHeaders } }
+      );
+    }
+
+    const authenticatedUserId = claimsData.claims.sub;
+    // --- End Authentication ---
+
     const supabase = createClient(supabaseUrl, supabaseServiceKey);
 
-    const { userId, email } = await req.json();
+    const { email } = await req.json();
 
-    if (!userId || !email) {
+    if (!email) {
       return new Response(
-        JSON.stringify({ error: "Missing userId or email" }),
+        JSON.stringify({ error: "Missing email" }),
         { status: 400, headers: { "Content-Type": "application/json", ...corsHeaders } }
       );
     }
@@ -38,10 +65,24 @@ const handler = async (req: Request): Promise<Response> => {
       );
     }
 
+    // Rate limiting: max 3 verification emails per user per hour
+    const { data: recentVerifications } = await supabase
+      .from("email_verifications")
+      .select("id")
+      .eq("user_id", authenticatedUserId)
+      .gte("created_at", new Date(Date.now() - 60 * 60 * 1000).toISOString());
+
+    if (recentVerifications && recentVerifications.length >= 3) {
+      return new Response(
+        JSON.stringify({ error: "Too many verification requests. Please try again later." }),
+        { status: 429, headers: { "Content-Type": "application/json", ...corsHeaders } }
+      );
+    }
+
     // Generate a secure random token
     const tokenBytes = new Uint8Array(32);
     crypto.getRandomValues(tokenBytes);
-    const token = Array.from(tokenBytes)
+    const verificationToken = Array.from(tokenBytes)
       .map((b) => b.toString(16).padStart(2, "0"))
       .join("");
 
@@ -49,16 +90,16 @@ const handler = async (req: Request): Promise<Response> => {
     await supabase
       .from("email_verifications")
       .delete()
-      .eq("user_id", userId)
+      .eq("user_id", authenticatedUserId)
       .is("verified_at", null);
 
     // Insert new verification token (expires in 24 hours)
     const { error: insertError } = await supabase
       .from("email_verifications")
       .insert({
-        user_id: userId,
+        user_id: authenticatedUserId,
         email,
-        token,
+        token: verificationToken,
         expires_at: new Date(Date.now() + 24 * 60 * 60 * 1000).toISOString(),
       });
 
@@ -68,7 +109,7 @@ const handler = async (req: Request): Promise<Response> => {
     }
 
     // Build verification URL
-    const verifyUrl = `${supabaseUrl}/functions/v1/verify-email?token=${token}`;
+    const verifyUrl = `${supabaseUrl}/functions/v1/verify-email?token=${verificationToken}`;
 
     // Send verification email
     await resend.emails.send({
@@ -78,7 +119,7 @@ const handler = async (req: Request): Promise<Response> => {
       html: generateVerificationEmail(verifyUrl),
     });
 
-    console.log(`Verification email sent to ${email} for user ${userId}`);
+    console.log(`Verification email sent to ${email} for user ${authenticatedUserId}`);
 
     return new Response(
       JSON.stringify({ success: true }),
@@ -87,7 +128,7 @@ const handler = async (req: Request): Promise<Response> => {
   } catch (error: any) {
     console.error("Error in send-email-verification:", error);
     return new Response(
-      JSON.stringify({ error: error.message }),
+      JSON.stringify({ error: "An error occurred" }),
       { status: 500, headers: { "Content-Type": "application/json", ...corsHeaders } }
     );
   }

@@ -82,11 +82,11 @@ const handler = async (req: Request): Promise<Response> => {
 
     const appConfig = appConfigs[appType] || appConfigs.love;
 
-    // Get both users' profiles - only fetch display_name and email for notifications
+    // Get both users' profiles - only fetch display_name, email, and email_verified
     // Phone and email for contact are only shown in-app after login
     const { data: profiles, error: profilesError } = await supabase
       .from("profiles")
-      .select("user_id, display_name, email")
+      .select("user_id, display_name, email, email_verified")
       .in("user_id", [user1Id, user2Id]);
 
     if (profilesError) {
@@ -127,8 +127,8 @@ const handler = async (req: Request): Promise<Response> => {
     const emailsSent: string[] = [];
     const errors: string[] = [];
 
-    // Send email to User 1 - NO contact info exposed, just notification
-    if (user1Profile.email) {
+    // Send email to User 1 - only if email is verified
+    if (user1Profile.email && (user1Profile as any).email_verified) {
       try {
         const emailHtml = generateEmailHtml({
           recipientName: user1Profile.display_name || "Usuario",
@@ -150,10 +150,13 @@ const handler = async (req: Request): Promise<Response> => {
         console.error(`Error sending email to user1:`, emailError);
         errors.push(`User1: ${emailError.message}`);
       }
+    } else if (user1Profile.email && !(user1Profile as any).email_verified) {
+      console.log(`Skipping user1 ${user1Profile.email}: email not verified`);
+      errors.push("User1: email not verified");
     }
 
-    // Send email to User 2 - NO contact info exposed, just notification
-    if (user2Profile.email) {
+    // Send email to User 2 - only if email is verified
+    if (user2Profile.email && (user2Profile as any).email_verified) {
       try {
         const emailHtml = generateEmailHtml({
           recipientName: user2Profile.display_name || "Usuario",
@@ -175,6 +178,9 @@ const handler = async (req: Request): Promise<Response> => {
         console.error(`Error sending email to user2:`, emailError);
         errors.push(`User2: ${emailError.message}`);
       }
+    } else if (user2Profile.email && !(user2Profile as any).email_verified) {
+      console.log(`Skipping user2 ${user2Profile.email}: email not verified`);
+      errors.push("User2: email not verified");
     }
 
     return new Response(

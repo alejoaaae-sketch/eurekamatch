@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { ArrowLeft, User, Phone, Loader2, AlertCircle, Globe, Settings } from "lucide-react";
+import { ArrowLeft, User, Phone, Loader2, AlertCircle, Globe, Settings, Mail, CheckCircle2, XCircle } from "lucide-react";
 import {
   Select,
   SelectContent,
@@ -27,6 +27,7 @@ const Profile = () => {
   const [phone, setPhone] = useState("");
   const [displayName, setDisplayName] = useState("");
   const [saving, setSaving] = useState(false);
+  const [resendingEmail, setResendingEmail] = useState(false);
   const [, forceUpdate] = useState(0);
   
   // Force re-render when language changes
@@ -83,6 +84,29 @@ const Profile = () => {
     navigate("/login");
   };
 
+  const handleResendVerification = async () => {
+    if (!user || !profile?.email) return;
+    setResendingEmail(true);
+    try {
+      const supabaseUrl = import.meta.env.VITE_SUPABASE_URL;
+      const response = await fetch(`${supabaseUrl}/functions/v1/send-email-verification`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ userId: user.id, email: profile.email }),
+      });
+      const data = await response.json();
+      if (data.success) {
+        toast.success(t("profile.verificationSent"));
+      } else {
+        toast.error(data.error || t("common.error"));
+      }
+    } catch {
+      toast.error(t("common.error"));
+    } finally {
+      setResendingEmail(false);
+    }
+  };
+
   if (authLoading || profileLoading || !user) {
     return (
       <div className="min-h-screen bg-background flex items-center justify-center">
@@ -115,9 +139,38 @@ const Profile = () => {
           </div>
         </div>
 
-        {/* Email (read-only) */}
-        <div className="text-center mb-8">
-          <p className="text-muted-foreground text-sm">{user.email}</p>
+        {/* Email (read-only) with verification status */}
+        <div className="text-center mb-8 space-y-2">
+          <p className="text-muted-foreground text-sm">{profile?.email || user.email}</p>
+          {profile?.email && (
+            profile.email_verified ? (
+              <div className="flex items-center justify-center gap-1.5 text-xs text-green-600">
+                <CheckCircle2 className="w-3.5 h-3.5" />
+                <span>{t("profile.emailVerified")}</span>
+              </div>
+            ) : (
+              <div className="flex flex-col items-center gap-2">
+                <div className="flex items-center gap-1.5 text-xs text-amber-600">
+                  <XCircle className="w-3.5 h-3.5" />
+                  <span>{t("profile.emailNotVerified")}</span>
+                </div>
+                <Button
+                  variant="outline"
+                  size="sm"
+                  onClick={handleResendVerification}
+                  disabled={resendingEmail}
+                  className="text-xs h-7"
+                >
+                  {resendingEmail ? (
+                    <Loader2 className="w-3 h-3 animate-spin mr-1" />
+                  ) : (
+                    <Mail className="w-3 h-3 mr-1" />
+                  )}
+                  {t("profile.resendVerification")}
+                </Button>
+              </div>
+            )
+          )}
         </div>
 
         {/* Form */}

@@ -8,6 +8,7 @@ export interface Profile {
   display_name: string | null;
   email: string | null;
   phone: string | null;
+  email_verified: boolean;
   created_at: string;
   updated_at: string;
   language?: string;
@@ -32,7 +33,7 @@ export const useProfile = () => {
       // rather than using select('*') to minimize data exposure
       const { data, error } = await supabase
         .from('profiles')
-        .select('id, user_id, display_name, email, phone, created_at, updated_at, language')
+        .select('id, user_id, display_name, email, phone, email_verified, created_at, updated_at, language')
         .eq('user_id', user.id)
         .maybeSingle();
 

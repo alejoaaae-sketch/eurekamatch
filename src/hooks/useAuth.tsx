@@ -81,6 +81,19 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
         }, {
           onConflict: 'user_id',
         });
+
+      // Send email verification link
+      try {
+        const supabaseUrl = import.meta.env.VITE_SUPABASE_URL;
+        await fetch(`${supabaseUrl}/functions/v1/send-email-verification`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ userId: data.user.id, email: userEmail }),
+        });
+      } catch (e) {
+        console.error('Failed to send email verification:', e);
+        // Don't block registration if verification email fails
+      }
     }
 
     return { error: error as Error | null };

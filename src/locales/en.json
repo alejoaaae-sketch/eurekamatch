@@ -215,15 +215,15 @@
       "step2": {
         "love": {
           "title": "Add who interests you",
-          "description": "Choose up to 2 people you like. No one will know."
+          "description": "Choose up to 2 people. Enter their phone number. No one gets notified."
         },
         "plan": {
           "title": "Add who interests you",
-          "description": "Choose up to 5 people you'd like to hang out with. No one will know."
+          "description": "Choose up to 5 people. Enter their phone number. No one gets notified."
         },
         "sex": {
           "title": "Add who interests you",
-          "description": "Choose up to 2 people you're attracted to. No one will know."
+          "description": "Choose up to 2 people. Enter their phone number. No one gets notified."
         }
       },
       "step3": {
@@ -232,7 +232,7 @@
       },
       "step4": {
         "title": "Get notified if it's mutual",
-        "description": "If the other person also picks you, we'll notify you both."
+        "description": "If the other person also picks you, we'll notify you by email and in the app."
       }
     },
     "features": {

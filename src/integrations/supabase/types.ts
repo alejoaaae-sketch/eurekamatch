@@ -47,6 +47,36 @@ export type Database = {
         }
         Relationships: []
       }
+      email_verifications: {
+        Row: {
+          created_at: string
+          email: string
+          expires_at: string
+          id: string
+          token: string
+          user_id: string
+          verified_at: string | null
+        }
+        Insert: {
+          created_at?: string
+          email: string
+          expires_at: string
+          id?: string
+          token: string
+          user_id: string
+          verified_at?: string | null
+        }
+        Update: {
+          created_at?: string
+          email?: string
+          expires_at?: string
+          id?: string
+          token?: string
+          user_id?: string
+          verified_at?: string | null
+        }
+        Relationships: []
+      }
       global_config: {
         Row: {
           created_at: string
@@ -238,6 +268,7 @@ export type Database = {
           created_at: string
           display_name: string | null
           email: string | null
+          email_verified: boolean
           id: string
           language: string
           phone: string | null
@@ -248,6 +279,7 @@ export type Database = {
           created_at?: string
           display_name?: string | null
           email?: string | null
+          email_verified?: boolean
           id?: string
           language?: string
           phone?: string | null
@@ -258,6 +290,7 @@ export type Database = {
           created_at?: string
           display_name?: string | null
           email?: string | null
+          email_verified?: boolean
           id?: string
           language?: string
           phone?: string | null
@@ -322,6 +355,7 @@ export type Database = {
       [_ in never]: never
     }
     Functions: {
+      cleanup_expired_email_verifications: { Args: never; Returns: undefined }
       cleanup_expired_otps: { Args: never; Returns: undefined }
       cleanup_old_otp_attempts: { Args: never; Returns: undefined }
       get_effective_max_picks: { Args: { p_app_mode: string }; Returns: number }

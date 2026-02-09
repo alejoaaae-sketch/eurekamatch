@@ -89,9 +89,13 @@ const Profile = () => {
     setResendingEmail(true);
     try {
       const supabaseUrl = import.meta.env.VITE_SUPABASE_URL;
+      const supabaseKey = import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY;
       const response = await fetch(`${supabaseUrl}/functions/v1/send-email-verification`, {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: {
+          'Content-Type': 'application/json',
+          'apikey': supabaseKey,
+        },
         body: JSON.stringify({ userId: user.id, email: profile.email }),
       });
       const data = await response.json();

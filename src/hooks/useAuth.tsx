@@ -85,9 +85,13 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
       // Send email verification link
       try {
         const supabaseUrl = import.meta.env.VITE_SUPABASE_URL;
+        const supabaseKey = import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY;
         await fetch(`${supabaseUrl}/functions/v1/send-email-verification`, {
           method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
+          headers: {
+            'Content-Type': 'application/json',
+            'apikey': supabaseKey,
+          },
           body: JSON.stringify({ userId: data.user.id, email: userEmail }),
         });
       } catch (e) {

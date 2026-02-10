@@ -31,6 +31,7 @@ interface GlobalConfigRow {
   promo_max_picks_override: number | null;
   verify_mobile: boolean;
   verify_email: boolean;
+  beta_mode: boolean;
 }
 
 const Admin = () => {
@@ -55,6 +56,7 @@ const Admin = () => {
     promo_max_picks_override: "",
     verify_mobile: false,
     verify_email: true,
+    beta_mode: true,
   });
 
   useEffect(() => {
@@ -92,6 +94,7 @@ const Admin = () => {
         promo_max_picks_override: g.promo_max_picks_override?.toString() ?? "",
         verify_mobile: g.verify_mobile,
         verify_email: g.verify_email,
+        beta_mode: g.beta_mode,
       });
     }
     setLoading(false);
@@ -137,6 +140,7 @@ const Admin = () => {
         promo_max_picks_override: globalForm.promo_max_picks_override ? parseInt(globalForm.promo_max_picks_override) : null,
         verify_mobile: globalForm.verify_mobile,
         verify_email: globalForm.verify_email,
+        beta_mode: globalForm.beta_mode,
       })
       .eq("id", globalConfig.id)
       .select();
@@ -296,9 +300,19 @@ const Admin = () => {
                 />
               </div>
 
-              {/* Verification toggles */}
+              {/* Beta & Verification toggles */}
               <div className="space-y-3 pt-2 border-t border-border/50">
-                <h4 className="text-sm font-medium text-foreground">Verificaciones</h4>
+                <h4 className="text-sm font-medium text-foreground">Pagos y Verificaciones</h4>
+                <div className="flex items-center justify-between">
+                  <div>
+                    <span className="text-sm text-foreground">Modo Beta (sin pagos)</span>
+                    <p className="text-xs text-muted-foreground">Desactiva todos los cobros por cambio de pick</p>
+                  </div>
+                  <Switch
+                    checked={globalForm.beta_mode}
+                    onCheckedChange={(v) => setGlobalForm((p) => ({ ...p, beta_mode: v }))}
+                  />
+                </div>
                 <div className="flex items-center justify-between">
                   <div>
                     <span className="text-sm text-foreground">Verificar móvil (SMS)</span>

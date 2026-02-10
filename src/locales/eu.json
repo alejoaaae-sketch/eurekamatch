@@ -212,7 +212,7 @@
         "description": "Beste pertsonak ere hautatzen bazaitu, emailez eta aplikazioan jakinaraziko dizugu."
       },
       "step5": {
-        "description": "Orain proba-fasean gaude. Aurrerago, aldaketa bakoitzak {{price}}-ko kostu sinbolikoa izango du."
+        "description": "Orain proba-fasean gaude. Aurrerago, pertsona-aldaketa bakoitzak {{price}}-ko kostu sinbolikoa izango du."
       }
     },
     "features": {

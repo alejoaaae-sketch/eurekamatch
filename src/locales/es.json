@@ -238,7 +238,7 @@
         "description": "Si la otra persona también te elige, te lo notificamos por email y en la app."
       },
       "step5": {
-        "description": "Ahora estamos en fase de pruebas. Más adelante, cada cambio tendrá un coste simbólico de {{price}}."
+        "description": "Ahora estamos en fase de pruebas. Más adelante, cada cambio de persona tendrá un coste simbólico de {{price}}."
       }
     },
     "features": {

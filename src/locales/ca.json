@@ -212,7 +212,7 @@
         "description": "Si l'altra persona també et tria, t'ho notifiquem per email i a l'app."
       },
       "step5": {
-        "description": "Ara estem en fase de proves. Més endavant, cada canvi tindrà un cost simbòlic de {{price}}."
+        "description": "Ara estem en fase de proves. Més endavant, cada canvi de persona tindrà un cost simbòlic de {{price}}."
       }
     },
     "features": {

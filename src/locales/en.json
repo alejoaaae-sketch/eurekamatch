@@ -53,7 +53,10 @@
     "sendOtpError": "Failed to send code",
     "resendOtp": "Didn't receive the code? Resend",
     "resending": "Resending...",
-    "otpResent": "Code resent"
+    "otpResent": "Code resent",
+    "phoneNotVerified": "Your phone is not verified",
+    "phoneNotVerifiedDesc": "To make matches you need to verify your phone number. Do you want to verify it now?",
+    "verifyNow": "Yes, verify"
   },
   "app": {
     "name": "Mútuo",

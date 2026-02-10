@@ -210,6 +210,9 @@
       "step4": {
         "title": "Jaso abisua elkarrekikoa bada",
         "description": "Beste pertsonak ere hautatzen bazaitu, emailez eta aplikazioan jakinaraziko dizugu."
+      },
+      "step5": {
+        "description": "Orain proba-fasean gaude. Aurrerago, aldaketa bakoitzak {{price}}-ko kostu sinbolikoa izango du."
       }
     },
     "features": {

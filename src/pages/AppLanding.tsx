@@ -14,7 +14,7 @@ const AppLanding = () => {
   const [searchParams] = useSearchParams();
   const { t } = useTranslation();
   const { user, loading } = useAuth();
-  const { isAppEnabled, loading: configLoading } = useAllAppConfigs();
+  const { isAppEnabled, getPricePerChange, loading: configLoading } = useAllAppConfigs();
 
   const appType = (searchParams.get('app') as AppType) || 'love';
   const appEnabled = isAppEnabled(appType);
@@ -85,6 +85,8 @@ const AppLanding = () => {
         return 'bg-rose-500';
     }
   };
+
+  const pricePerChange = getPricePerChange(appType);
 
   const steps = [
     {
@@ -221,6 +223,16 @@ const AppLanding = () => {
                 </div>
               </div>
             ))}
+          </div>
+
+          {/* Step 4 - Beta / pricing note */}
+          <div 
+            className="mt-6 p-5 rounded-xl bg-muted/30 border border-border/30 animate-fade-in-up text-center"
+            style={{ animationDelay: '0.5s' }}
+          >
+            <p className="text-sm text-muted-foreground/80 leading-relaxed">
+              {t("appLanding.steps.step5.description", { price: `${pricePerChange} €` })}
+            </p>
           </div>
         </div>
       </section>

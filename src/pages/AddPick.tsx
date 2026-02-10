@@ -7,20 +7,25 @@ import { ArrowLeft, UserPlus, Phone, AlertCircle, Loader2, Ban } from "lucide-re
 import { useAuth } from "@/hooks/useAuth";
 import { usePicks } from "@/hooks/usePicks";
 import { useAppConfig } from "@/hooks/useAppConfig";
+import { useProfile } from "@/hooks/useProfile";
 import { toast } from "sonner";
 import { appConfig, BETA_MODE } from "@/config/app.config";
 import PaymentSimulationModal from "@/components/PaymentSimulationModal";
+import PhoneVerification from "@/components/PhoneVerification";
+import { supabase } from "@/integrations/supabase/client";
 
 const AddPick = () => {
   const navigate = useNavigate();
   const { t, i18n } = useTranslation();
   const { user, loading: authLoading } = useAuth();
   const { addPick, picks, loading: picksLoading } = usePicks();
-  const { effectiveMaxPicks, pricePerChange, appEnabled, loading: configLoading } = useAppConfig();
+  const { effectiveMaxPicks, pricePerChange, appEnabled, verifyMobile, loading: configLoading } = useAppConfig();
+  const { profile, refetch: refetchProfile } = useProfile();
   const [value, setValue] = useState("");
   const [name, setName] = useState("");
   const [loading, setLoading] = useState(false);
   const [showPaymentModal, setShowPaymentModal] = useState(false);
+  const [showPhoneVerification, setShowPhoneVerification] = useState(false);
   const [, forceUpdate] = useState(0);
   
   // Force re-render when language changes
@@ -61,11 +66,42 @@ const AddPick = () => {
     }
   }, [user, authLoading, navigate]);
 
+  const sendOtp = async (): Promise<boolean> => {
+    try {
+      const supabaseUrl = import.meta.env.VITE_SUPABASE_URL;
+      const supabaseKey = import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY;
+      const response = await fetch(`${supabaseUrl}/functions/v1/send-otp`, {
+        method: "POST",
+        headers: { 
+          "Content-Type": "application/json",
+          "apikey": supabaseKey,
+        },
+        body: JSON.stringify({ phone: profile?.phone }),
+      });
+      const data = await response.json();
+      return data.success === true;
+    } catch {
+      return false;
+    }
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
     if (!canAddMore) {
       toast.error(t("pick.limitMessage", { count: effectiveMaxPicks }));
+      return;
+    }
+
+    // Check if phone verification is required and not yet done
+    if (verifyMobile && !profile?.phone_verified) {
+      const sent = await sendOtp();
+      if (sent) {
+        toast.success(t("auth.otpSent"));
+        setShowPhoneVerification(true);
+      } else {
+        toast.error(t("auth.sendOtpError"));
+      }
       return;
     }
 
@@ -76,6 +112,25 @@ const AddPick = () => {
     }
 
     await proceedWithAddPick();
+  };
+
+  const handlePhoneVerified = async () => {
+    // Mark phone as verified in profile
+    if (user) {
+      await supabase
+        .from('profiles')
+        .update({ phone_verified: true })
+        .eq('user_id', user.id);
+      await refetchProfile();
+    }
+    setShowPhoneVerification(false);
+    toast.success(t("auth.phoneVerified"));
+    // Now proceed with the pick
+    if (paymentRequired) {
+      setShowPaymentModal(true);
+    } else {
+      await proceedWithAddPick();
+    }
   };
 
   const proceedWithAddPick = async () => {
@@ -143,6 +198,32 @@ const AddPick = () => {
           <Button onClick={() => navigate("/home")} variant="outline">
             {t("common.back")}
           </Button>
+        </div>
+      </div>
+    );
+  }
+
+  // Show phone verification screen
+  if (showPhoneVerification && profile?.phone) {
+    return (
+      <div className="min-h-screen bg-background flex flex-col">
+        <header className="sticky top-0 z-10 bg-background/80 backdrop-blur-xl border-b border-border/50 px-6 py-4">
+          <div className="flex items-center gap-4">
+            <button
+              onClick={() => setShowPhoneVerification(false)}
+              className="w-9 h-9 rounded-full bg-secondary flex items-center justify-center text-muted-foreground hover:text-foreground transition-colors"
+            >
+              <ArrowLeft className="w-5 h-5" />
+            </button>
+            <h1 className="text-lg font-semibold text-foreground">{t("auth.verifyPhone")}</h1>
+          </div>
+        </header>
+        <div className="flex-1 px-6 py-8 flex flex-col items-center justify-center">
+          <PhoneVerification
+            phone={profile.phone}
+            onVerified={handlePhoneVerified}
+            onBack={() => setShowPhoneVerification(false)}
+          />
         </div>
       </div>
     );

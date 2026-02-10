@@ -236,6 +236,9 @@
       "step4": {
         "title": "Get notified if it's mutual",
         "description": "If the other person also picks you, we'll notify you by email and in the app."
+      },
+      "step5": {
+        "description": "We're currently in a testing phase. Later on, each change will have a symbolic cost of {{price}}."
       }
     },
     "features": {

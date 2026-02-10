@@ -278,6 +278,7 @@ export type Database = {
           id: string
           language: string
           phone: string | null
+          phone_verified: boolean
           updated_at: string
           user_id: string
         }
@@ -289,6 +290,7 @@ export type Database = {
           id?: string
           language?: string
           phone?: string | null
+          phone_verified?: boolean
           updated_at?: string
           user_id: string
         }
@@ -300,6 +302,7 @@ export type Database = {
           id?: string
           language?: string
           phone?: string | null
+          phone_verified?: boolean
           updated_at?: string
           user_id?: string
         }

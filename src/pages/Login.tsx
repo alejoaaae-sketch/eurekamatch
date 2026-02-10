@@ -6,19 +6,19 @@ import { Input } from "@/components/ui/input";
 import { Heart, Eye, EyeOff, Loader2, Phone, User, Mail } from "lucide-react";
 import { useAuth } from "@/hooks/useAuth";
 import LanguageSelector from "@/components/LanguageSelector";
-import PhoneVerification from "@/components/PhoneVerification";
+
 import PasswordStrengthIndicator from "@/components/PasswordStrengthIndicator";
 import { toast } from "sonner";
 import { useAppConfig } from "@/hooks/useAppConfig";
 
-type LoginStep = "form" | "verify";
+type LoginStep = "form";
 
 const Login = () => {
   const navigate = useNavigate();
   const { t } = useTranslation();
   const { user, loading: authLoading, signIn, signUp } = useAuth();
-  const { verifyMobile, verifyEmail } = useAppConfig();
-  const [step, setStep] = useState<LoginStep>("form");
+  const { verifyEmail } = useAppConfig();
+  const [step] = useState<LoginStep>("form");
   const [isLogin, setIsLogin] = useState(true);
   const [showPassword, setShowPassword] = useState(false);
   const [phone, setPhone] = useState("");
@@ -34,33 +34,6 @@ const Login = () => {
       navigate("/home");
     }
   }, [user, authLoading, navigate]);
-
-  const sendOtp = async (phoneNumber: string): Promise<boolean> => {
-    try {
-      const supabaseKey = import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY;
-      const response = await fetch(`${supabaseUrl}/functions/v1/send-otp`, {
-        method: "POST",
-        headers: { 
-          "Content-Type": "application/json",
-          "apikey": supabaseKey,
-        },
-        body: JSON.stringify({ phone: phoneNumber }),
-      });
-
-      const data = await response.json();
-
-      if (data.success) {
-        return true;
-      } else {
-        toast.error(data.error || t("auth.sendOtpError"));
-        return false;
-      }
-    } catch (error) {
-      console.error("Send OTP error:", error);
-      toast.error(t("auth.sendOtpError"));
-      return false;
-    }
-  };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -114,18 +87,8 @@ const Login = () => {
           return;
         }
 
-        // Check if mobile verification is enabled
-        if (verifyMobile) {
-          // Send OTP for verification
-          const otpSent = await sendOtp(phone);
-          if (otpSent) {
-            toast.success(t("auth.otpSent"));
-            setStep("verify");
-          }
-        } else {
-          // Skip verification - register directly
-          await handlePhoneVerified();
-        }
+        // Skip mobile verification during registration - it will happen when creating first pick
+        await handlePhoneVerified();
       }
     } finally {
       setLoading(false);
@@ -142,7 +105,7 @@ const Login = () => {
         } else {
           toast.error(error.message);
         }
-        setStep("form");
+        // Stay on form
       } else {
         toast.success(t("auth.accountCreated"));
         navigate("/home");
@@ -182,13 +145,7 @@ const Login = () => {
         </p>
       </div>
 
-      {step === "verify" ? (
-        <PhoneVerification
-          phone={phone}
-          onVerified={handlePhoneVerified}
-          onBack={() => setStep("form")}
-        />
-      ) : (
+      {step === "form" && (
         <>
           {/* Form */}
           <form onSubmit={handleSubmit} className="w-full max-w-sm space-y-4 animate-fade-in-up animate-delay-200">

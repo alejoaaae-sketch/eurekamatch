@@ -37,9 +37,13 @@ const Login = () => {
 
   const sendOtp = async (phoneNumber: string): Promise<boolean> => {
     try {
+      const supabaseKey = import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY;
       const response = await fetch(`${supabaseUrl}/functions/v1/send-otp`, {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: { 
+          "Content-Type": "application/json",
+          "apikey": supabaseKey,
+        },
         body: JSON.stringify({ phone: phoneNumber }),
       });
 

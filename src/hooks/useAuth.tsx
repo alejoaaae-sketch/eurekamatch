@@ -6,7 +6,7 @@ interface AuthContextType {
   user: User | null;
   session: Session | null;
   loading: boolean;
-  signUp: (phone: string, password: string, displayName: string, email: string) => Promise<{ error: Error | null }>;
+  signUp: (phone: string, password: string, displayName: string, email: string, verifyEmail?: boolean) => Promise<{ error: Error | null }>;
   signIn: (phone: string, password: string) => Promise<{ error: Error | null }>;
   signOut: () => Promise<void>;
 }
@@ -53,7 +53,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     return () => subscription.unsubscribe();
   }, []);
 
-  const signUp = async (phone: string, password: string, displayName: string, userEmail: string) => {
+  const signUp = async (phone: string, password: string, displayName: string, userEmail: string, verifyEmail: boolean = true) => {
     const authEmail = phoneToEmail(phone);
     
     const { data, error } = await supabase.auth.signUp({
@@ -82,23 +82,24 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
           onConflict: 'user_id',
         });
 
-      // Send email verification link
-      try {
-        const supabaseUrl = import.meta.env.VITE_SUPABASE_URL;
-        const supabaseKey = import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY;
-        const { data: { session } } = await supabase.auth.getSession();
-        await fetch(`${supabaseUrl}/functions/v1/send-email-verification`, {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-            'apikey': supabaseKey,
-            'Authorization': `Bearer ${session?.access_token}`,
-          },
-          body: JSON.stringify({ email: userEmail }),
-        });
-      } catch (e) {
-        console.error('Failed to send email verification:', e);
-        // Don't block registration if verification email fails
+      // Send email verification link only if verify_email is enabled
+      if (verifyEmail) {
+        try {
+          const supabaseUrl = import.meta.env.VITE_SUPABASE_URL;
+          const supabaseKey = import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY;
+          const { data: { session } } = await supabase.auth.getSession();
+          await fetch(`${supabaseUrl}/functions/v1/send-email-verification`, {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+              'apikey': supabaseKey,
+              'Authorization': `Bearer ${session?.access_token}`,
+            },
+            body: JSON.stringify({ email: userEmail }),
+          });
+        } catch (e) {
+          console.error('Failed to send email verification:', e);
+        }
       }
     }
 

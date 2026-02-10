@@ -89,6 +89,8 @@ export type Database = {
           promo_max_picks_override: number | null
           promo_start: string | null
           updated_at: string
+          verify_email: boolean
+          verify_mobile: boolean
         }
         Insert: {
           created_at?: string
@@ -101,6 +103,8 @@ export type Database = {
           promo_max_picks_override?: number | null
           promo_start?: string | null
           updated_at?: string
+          verify_email?: boolean
+          verify_mobile?: boolean
         }
         Update: {
           created_at?: string
@@ -113,6 +117,8 @@ export type Database = {
           promo_max_picks_override?: number | null
           promo_start?: string | null
           updated_at?: string
+          verify_email?: boolean
+          verify_mobile?: boolean
         }
         Relationships: []
       }

@@ -29,6 +29,8 @@ interface GlobalConfigRow {
   promo_start: string | null;
   promo_end: string | null;
   promo_max_picks_override: number | null;
+  verify_mobile: boolean;
+  verify_email: boolean;
 }
 
 const Admin = () => {
@@ -51,6 +53,8 @@ const Admin = () => {
     promo_start: "",
     promo_end: "",
     promo_max_picks_override: "",
+    verify_mobile: false,
+    verify_email: true,
   });
 
   useEffect(() => {
@@ -86,6 +90,8 @@ const Admin = () => {
         promo_start: g.promo_start ? g.promo_start.slice(0, 16) : "",
         promo_end: g.promo_end ? g.promo_end.slice(0, 16) : "",
         promo_max_picks_override: g.promo_max_picks_override?.toString() ?? "",
+        verify_mobile: g.verify_mobile,
+        verify_email: g.verify_email,
       });
     }
     setLoading(false);
@@ -129,6 +135,8 @@ const Admin = () => {
         promo_start: globalForm.promo_start || null,
         promo_end: globalForm.promo_end || null,
         promo_max_picks_override: globalForm.promo_max_picks_override ? parseInt(globalForm.promo_max_picks_override) : null,
+        verify_mobile: globalForm.verify_mobile,
+        verify_email: globalForm.verify_email,
       })
       .eq("id", globalConfig.id)
       .select();
@@ -286,6 +294,31 @@ const Admin = () => {
                   onChange={(e) => setGlobalForm((p) => ({ ...p, enabled_countries: e.target.value }))}
                   placeholder="ES, FR"
                 />
+              </div>
+
+              {/* Verification toggles */}
+              <div className="space-y-3 pt-2 border-t border-border/50">
+                <h4 className="text-sm font-medium text-foreground">Verificaciones</h4>
+                <div className="flex items-center justify-between">
+                  <div>
+                    <span className="text-sm text-foreground">Verificar móvil (SMS)</span>
+                    <p className="text-xs text-muted-foreground">Requiere código OTP al registrarse</p>
+                  </div>
+                  <Switch
+                    checked={globalForm.verify_mobile}
+                    onCheckedChange={(v) => setGlobalForm((p) => ({ ...p, verify_mobile: v }))}
+                  />
+                </div>
+                <div className="flex items-center justify-between">
+                  <div>
+                    <span className="text-sm text-foreground">Verificar email</span>
+                    <p className="text-xs text-muted-foreground">Envía enlace de verificación al registrarse</p>
+                  </div>
+                  <Switch
+                    checked={globalForm.verify_email}
+                    onCheckedChange={(v) => setGlobalForm((p) => ({ ...p, verify_email: v }))}
+                  />
+                </div>
               </div>
 
               <Button className="w-full" onClick={updateGlobalConfig} disabled={saving}>

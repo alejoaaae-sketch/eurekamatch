@@ -9,7 +9,7 @@ import LanguageSelector from "@/components/LanguageSelector";
 import PhoneVerification from "@/components/PhoneVerification";
 import PasswordStrengthIndicator from "@/components/PasswordStrengthIndicator";
 import { toast } from "sonner";
-import { VERIFY_MOBILE } from "@/config/app.config";
+import { useAppConfig } from "@/hooks/useAppConfig";
 
 type LoginStep = "form" | "verify";
 
@@ -17,6 +17,7 @@ const Login = () => {
   const navigate = useNavigate();
   const { t } = useTranslation();
   const { user, loading: authLoading, signIn, signUp } = useAuth();
+  const { verifyMobile, verifyEmail } = useAppConfig();
   const [step, setStep] = useState<LoginStep>("form");
   const [isLogin, setIsLogin] = useState(true);
   const [showPassword, setShowPassword] = useState(false);
@@ -110,7 +111,7 @@ const Login = () => {
         }
 
         // Check if mobile verification is enabled
-        if (VERIFY_MOBILE) {
+        if (verifyMobile) {
           // Send OTP for verification
           const otpSent = await sendOtp(phone);
           if (otpSent) {
@@ -130,7 +131,7 @@ const Login = () => {
   const handlePhoneVerified = async () => {
     setLoading(true);
     try {
-      const { error } = await signUp(phone, password, displayName.trim(), email.trim());
+      const { error } = await signUp(phone, password, displayName.trim(), email.trim(), verifyEmail);
       if (error) {
         if (error.message.includes("already registered")) {
           toast.error(t("auth.phoneAlreadyRegistered"));

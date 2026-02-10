@@ -18,6 +18,8 @@ export interface GlobalConfig {
   promo_start: string | null;
   promo_end: string | null;
   promo_max_picks_override: number | null;
+  verify_mobile: boolean;
+  verify_email: boolean;
 }
 
 export interface UserUsage {
@@ -95,6 +97,8 @@ export const useAppConfig = () => {
     pricePerChange: modeConfig?.price_per_change ?? 0.99,
     freeChangesPerMonth: modeConfig?.free_changes_per_month ?? 0,
     appEnabled: modeConfig?.enabled ?? true,
+    verifyMobile: globalConfig?.verify_mobile ?? false,
+    verifyEmail: globalConfig?.verify_email ?? true,
     refetch: fetchConfig,
   };
 };

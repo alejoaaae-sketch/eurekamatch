@@ -13,6 +13,16 @@ import { appConfig, BETA_MODE } from "@/config/app.config";
 import PaymentSimulationModal from "@/components/PaymentSimulationModal";
 import PhoneVerification from "@/components/PhoneVerification";
 import { supabase } from "@/integrations/supabase/client";
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+} from "@/components/ui/alert-dialog";
 
 const AddPick = () => {
   const navigate = useNavigate();
@@ -26,6 +36,8 @@ const AddPick = () => {
   const [loading, setLoading] = useState(false);
   const [showPaymentModal, setShowPaymentModal] = useState(false);
   const [showPhoneVerification, setShowPhoneVerification] = useState(false);
+  const [showVerifyPrompt, setShowVerifyPrompt] = useState(false);
+  const [sendingOtp, setSendingOtp] = useState(false);
   const [, forceUpdate] = useState(0);
   
   // Force re-render when language changes
@@ -95,13 +107,7 @@ const AddPick = () => {
 
     // Check if phone verification is required and not yet done
     if (verifyMobile && !profile?.phone_verified) {
-      const sent = await sendOtp();
-      if (sent) {
-        toast.success(t("auth.otpSent"));
-        setShowPhoneVerification(true);
-      } else {
-        toast.error(t("auth.sendOtpError"));
-      }
+      setShowVerifyPrompt(true);
       return;
     }
 
@@ -112,6 +118,19 @@ const AddPick = () => {
     }
 
     await proceedWithAddPick();
+  };
+
+  const handleConfirmVerify = async () => {
+    setShowVerifyPrompt(false);
+    setSendingOtp(true);
+    const sent = await sendOtp();
+    setSendingOtp(false);
+    if (sent) {
+      toast.success(t("auth.otpSent"));
+      setShowPhoneVerification(true);
+    } else {
+      toast.error(t("auth.sendOtpError"));
+    }
   };
 
   const handlePhoneVerified = async () => {
@@ -322,6 +341,28 @@ const AddPick = () => {
           onPaymentComplete={handlePaymentComplete}
           action="change"
         />
+
+        {/* Phone Verification Prompt */}
+        <AlertDialog open={showVerifyPrompt} onOpenChange={setShowVerifyPrompt}>
+          <AlertDialogContent>
+            <AlertDialogHeader>
+              <AlertDialogTitle>{t("auth.phoneNotVerified")}</AlertDialogTitle>
+              <AlertDialogDescription>
+                {t("auth.phoneNotVerifiedDesc")}
+              </AlertDialogDescription>
+            </AlertDialogHeader>
+            <AlertDialogFooter>
+              <AlertDialogCancel>{t("common.cancel")}</AlertDialogCancel>
+              <AlertDialogAction onClick={handleConfirmVerify} disabled={sendingOtp}>
+                {sendingOtp ? (
+                  <Loader2 className="w-4 h-4 animate-spin" />
+                ) : (
+                  t("auth.verifyNow")
+                )}
+              </AlertDialogAction>
+            </AlertDialogFooter>
+          </AlertDialogContent>
+        </AlertDialog>
       </div>
     </div>
   );

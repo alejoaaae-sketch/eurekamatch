@@ -53,7 +53,10 @@
     "sendOtpError": "Error al enviar el código",
     "resendOtp": "¿No recibiste el código? Reenviar",
     "resending": "Reenviando...",
-    "otpResent": "Código reenviado"
+    "otpResent": "Código reenviado",
+    "phoneNotVerified": "Tu móvil no está verificado",
+    "phoneNotVerifiedDesc": "Para hacer matches necesitas verificar tu número de teléfono. ¿Quieres verificarlo ahora?",
+    "verifyNow": "Sí, verificar"
   },
   "app": {
     "name": "Mútuo",

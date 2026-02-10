@@ -79,6 +79,7 @@ export type Database = {
       }
       global_config: {
         Row: {
+          beta_mode: boolean
           created_at: string
           enabled_countries: string[]
           enabled_languages: string[]
@@ -93,6 +94,7 @@ export type Database = {
           verify_mobile: boolean
         }
         Insert: {
+          beta_mode?: boolean
           created_at?: string
           enabled_countries?: string[]
           enabled_languages?: string[]
@@ -107,6 +109,7 @@ export type Database = {
           verify_mobile?: boolean
         }
         Update: {
+          beta_mode?: boolean
           created_at?: string
           enabled_countries?: string[]
           enabled_languages?: string[]

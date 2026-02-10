@@ -1,0 +1,1 @@
+ALTER TABLE public.global_config ADD COLUMN beta_mode boolean NOT NULL DEFAULT true;

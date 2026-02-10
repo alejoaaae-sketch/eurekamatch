@@ -9,7 +9,7 @@ import { usePicks } from "@/hooks/usePicks";
 import { useAppConfig } from "@/hooks/useAppConfig";
 import { useProfile } from "@/hooks/useProfile";
 import { toast } from "sonner";
-import { appConfig, BETA_MODE } from "@/config/app.config";
+import { appConfig } from "@/config/app.config";
 import PaymentSimulationModal from "@/components/PaymentSimulationModal";
 import PhoneVerification from "@/components/PhoneVerification";
 import { supabase } from "@/integrations/supabase/client";
@@ -29,7 +29,7 @@ const AddPick = () => {
   const { t, i18n } = useTranslation();
   const { user, loading: authLoading } = useAuth();
   const { addPick, picks, loading: picksLoading } = usePicks();
-  const { effectiveMaxPicks, pricePerChange, appEnabled, verifyMobile, loading: configLoading } = useAppConfig();
+  const { effectiveMaxPicks, pricePerChange, appEnabled, verifyMobile, betaMode, loading: configLoading } = useAppConfig();
   const { profile, refetch: refetchProfile } = useProfile();
   const [value, setValue] = useState("");
   const [name, setName] = useState("");
@@ -62,15 +62,15 @@ const AddPick = () => {
   const canAddMore = currentPicksCount < effectiveMaxPicks;
   
   // Check if payment is required (user deleted a pick and is adding a new one)
-  // In BETA_MODE, payments are disabled
-  const paymentRequired = !BETA_MODE && localStorage.getItem(`payment_required_${appConfig.appType}`) === 'true';
+  // In beta_mode, payments are disabled
+  const paymentRequired = !betaMode && localStorage.getItem(`payment_required_${appConfig.appType}`) === 'true';
 
-  // Clear payment flag if in BETA_MODE
+  // Clear payment flag if in beta mode
   useEffect(() => {
-    if (BETA_MODE) {
+    if (betaMode) {
       localStorage.removeItem(`payment_required_${appConfig.appType}`);
     }
-  }, []);
+  }, [betaMode]);
 
   useEffect(() => {
     if (!authLoading && !user) {

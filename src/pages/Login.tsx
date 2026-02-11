@@ -6,6 +6,7 @@ import { Input } from "@/components/ui/input";
 import { Heart, Eye, EyeOff, Loader2, Phone, User, Mail } from "lucide-react";
 import { useAuth } from "@/hooks/useAuth";
 import LanguageSelector from "@/components/LanguageSelector";
+import LegalFooter from "@/components/LegalFooter";
 
 import PasswordStrengthIndicator from "@/components/PasswordStrengthIndicator";
 import { toast } from "sonner";
@@ -251,8 +252,13 @@ const Login = () => {
         </>
       )}
 
+      {/* Legal links */}
+      <div className="mt-6 animate-fade-in-up animate-delay-300">
+        <LegalFooter />
+      </div>
+
       {/* Privacy note */}
-      <p className="mt-12 text-xs text-muted-foreground/60 text-center max-w-xs animate-fade-in-up animate-delay-300">
+      <p className="mt-4 text-xs text-muted-foreground/60 text-center max-w-xs animate-fade-in-up animate-delay-300">
         {t("app.privacyNote")}
       </p>
     </div>

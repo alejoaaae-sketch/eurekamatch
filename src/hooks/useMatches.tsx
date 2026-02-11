@@ -8,6 +8,7 @@ export interface Match {
   user1_id: string;
   user2_id: string;
   created_at: string;
+  blocked: boolean;
   other_user_name: string;
   other_user_email: string | null;
   other_user_phone: string | null;
@@ -36,6 +37,7 @@ export const useMatches = () => {
         .from('matches_safe')
         .select('*')
         .or(`user1_id.eq.${user.id},user2_id.eq.${user.id}`)
+        .eq('blocked', false)
         .order('created_at', { ascending: false });
 
       if (matchError) throw matchError;
@@ -73,6 +75,7 @@ export const useMatches = () => {
 
           return {
             ...match,
+            blocked: match.blocked ?? false,
             other_user_name: pickData?.picked_name || profileData?.display_name || 'Usuario',
             other_user_email: profileData?.email || null,
             other_user_phone: profileData?.phone || null,

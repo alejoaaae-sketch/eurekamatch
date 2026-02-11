@@ -229,5 +229,64 @@
         "description": "Quan hi ha match, podeu contactar directament."
       }
     }
+  },
+  "legal": {
+    "termsTitle": "Termes i Condicions",
+    "privacyTitle": "Política de Privacitat",
+    "lastUpdated": "Última actualització",
+    "terms": {
+      "acceptance": "Acceptació dels Termes",
+      "acceptanceText": "En accedir i utilitzar EUREKA, acceptes aquests termes i condicions. Si no hi estàs d'acord, no utilitzis el servei.",
+      "service": "Descripció del Servei",
+      "serviceText": "EUREKA és una plataforma que permet descobrir interessos mutus entre persones. El servei connecta usuaris que s'escullen mútuament, mantenint la privacitat fins que es produeix una coincidència.",
+      "userConduct": "Conducta de l'Usuari",
+      "userConductText": "Et compromets a usar el servei de forma responsable, no assetjar altres usuaris, no crear comptes falsos i respectar la privacitat dels altres usuaris.",
+      "privacy": "Privacitat",
+      "privacyText": "La teva privacitat és fonamental. Les teves eleccions són completament privades i només es revelen quan existeix una coincidència mútua. Consulta la nostra Política de Privacitat per a més detalls.",
+      "termination": "Terminació",
+      "terminationText": "Ens reservem el dret de suspendre o eliminar el teu compte si violes aquests termes. Pots eliminar el teu compte en qualsevol moment des dels ajustos.",
+      "liability": "Limitació de Responsabilitat",
+      "liabilityText": "EUREKA no es fa responsable de les interaccions entre usuaris fora de la plataforma. El servei es proporciona 'tal qual' sense garanties de cap tipus."
+    },
+    "privacy": {
+      "dataCollection": "Dades que Recopilem",
+      "dataCollectionText": "Recopilem el teu número de telèfon, email, nom i les eleccions que realitzes dins l'app. No recopilem dades d'ubicació ni accedim als teus contactes.",
+      "dataUse": "Ús de les Dades",
+      "dataUseText": "Utilitzem les teves dades exclusivament per al funcionament del servei: trobar coincidències mútues i notificar-te quan es produeixen.",
+      "dataSharing": "Compartició de Dades",
+      "dataSharingText": "Només compartim la teva informació de contacte amb usuaris amb els quals tens una coincidència mútua. Mai venem ni compartim les teves dades amb tercers.",
+      "userRights": "Els Teus Drets (GDPR)",
+      "userRightsText": "Tens dret a accedir, rectificar i eliminar les teves dades personals. Pots exercir aquests drets des dels ajustos del teu compte o contactant-nos directament.",
+      "dataDeletion": "Eliminació de Dades",
+      "dataDeletionText": "Pots sol·licitar l'eliminació completa del teu compte i totes les dades associades des dels ajustos. Aquest procés és irreversible i elimina eleccions, coincidències, bloquejos i el teu perfil.",
+      "contact": "Contacte",
+      "contactText": "Per a qualsevol consulta relacionada amb la privacitat, pots contactar-nos a través de l'aplicació."
+    }
+  },
+  "block": {
+    "confirmTitle": "Bloquejar usuari",
+    "confirmDescription": "Segur que vols bloquejar {{name}}? Ja no veureu el vostre match ni podreu contactar-vos.",
+    "confirm": "Bloquejar",
+    "success": "Usuari bloquejat",
+    "alreadyBlocked": "Aquest usuari ja està bloquejat",
+    "unblocked": "Usuari desbloquejat"
+  },
+  "settings": {
+    "title": "Ajustos",
+    "legal": "Legal",
+    "dangerZone": "Zona de perill",
+    "deleteAccount": "Eliminar el meu compte",
+    "deleteAccountDescription": "Això eliminarà permanentment el teu compte, eleccions, coincidències i totes les teves dades. Aquesta acció no es pot desfer.",
+    "deleteConfirmTitle": "Eliminar el teu compte?",
+    "deleteConfirmDescription": "Aquesta acció és permanent i irreversible. S'eliminaran totes les teves dades: eleccions, coincidències, bloquejos i perfil. No podràs recuperar el teu compte.",
+    "confirmDelete": "Sí, eliminar el meu compte",
+    "accountDeleted": "El teu compte ha estat eliminat"
+  },
+  "ageVerification": {
+    "title": "Verificació d'edat",
+    "description": "Aquest contingut és només per a majors de 18 anys. En continuar, confirmes que tens almenys 18 anys.",
+    "legalNote": "És la teva responsabilitat verificar que compleixes amb els requisits legals d'edat a la teva jurisdicció.",
+    "confirm": "Sóc major de 18 anys",
+    "decline": "Sortir"
   }
 }

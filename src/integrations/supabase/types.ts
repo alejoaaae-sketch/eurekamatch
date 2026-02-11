@@ -47,6 +47,27 @@ export type Database = {
         }
         Relationships: []
       }
+      blocked_users: {
+        Row: {
+          blocked_id: string
+          blocker_id: string
+          created_at: string
+          id: string
+        }
+        Insert: {
+          blocked_id: string
+          blocker_id: string
+          created_at?: string
+          id?: string
+        }
+        Update: {
+          blocked_id?: string
+          blocker_id?: string
+          created_at?: string
+          id?: string
+        }
+        Relationships: []
+      }
       email_verifications: {
         Row: {
           created_at: string
@@ -169,18 +190,21 @@ export type Database = {
       }
       matches_safe: {
         Row: {
+          blocked: boolean
           created_at: string
           id: string
           user1_id: string
           user2_id: string
         }
         Insert: {
+          blocked?: boolean
           created_at?: string
           id: string
           user1_id: string
           user2_id: string
         }
         Update: {
+          blocked?: boolean
           created_at?: string
           id?: string
           user1_id?: string
@@ -274,6 +298,7 @@ export type Database = {
       }
       profiles: {
         Row: {
+          age_verified: boolean
           created_at: string
           display_name: string | null
           email: string | null
@@ -286,6 +311,7 @@ export type Database = {
           user_id: string
         }
         Insert: {
+          age_verified?: boolean
           created_at?: string
           display_name?: string | null
           email?: string | null
@@ -298,6 +324,7 @@ export type Database = {
           user_id: string
         }
         Update: {
+          age_verified?: boolean
           created_at?: string
           display_name?: string | null
           email?: string | null
@@ -378,6 +405,10 @@ export type Database = {
           email: string
           phone: string
         }[]
+      }
+      has_block_between: {
+        Args: { user_a: string; user_b: string }
+        Returns: boolean
       }
       has_role: {
         Args: {

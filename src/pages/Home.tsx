@@ -5,13 +5,16 @@ import { Heart, Plus, User, Sparkles, Loader2 } from "lucide-react";
 import PickCard from "@/components/PickCard";
 import MatchCard from "@/components/MatchCard";
 import LanguageSelector from "@/components/LanguageSelector";
+import AgeVerificationGate from "@/components/AgeVerificationGate";
 import { useAuth } from "@/hooks/useAuth";
 import { usePicks } from "@/hooks/usePicks";
 import { useMatches } from "@/hooks/useMatches";
+import { useProfile } from "@/hooks/useProfile";
 import { useState, useEffect } from "react";
 import { toast } from "sonner";
 import { appConfig } from "@/config/app.config";
 import { useAppConfig } from "@/hooks/useAppConfig";
+import { supabase } from "@/integrations/supabase/client";
 import { Ban } from "lucide-react";
 
 const Home = () => {
@@ -20,8 +23,10 @@ const Home = () => {
   const { user, loading: authLoading } = useAuth();
   const { pendingPicks, loading: picksLoading, deletePick } = usePicks();
   const { matches, loading: matchesLoading } = useMatches();
+  const { profile } = useProfile();
   const { appEnabled, loading: configLoading } = useAppConfig();
   const [activeTab, setActiveTab] = useState<"picks" | "matches">("picks");
+  const [showAgeGate, setShowAgeGate] = useState(false);
   const [, forceUpdate] = useState(0);
   
   // Force re-render when language changes
@@ -38,6 +43,26 @@ const Home = () => {
       navigate("/login");
     }
   }, [user, authLoading, navigate]);
+
+  // Age verification gate for sex app
+  useEffect(() => {
+    if (appConfig.appType === 'sex' && profile && !profile.age_verified) {
+      setShowAgeGate(true);
+    }
+  }, [profile]);
+
+  const handleAgeVerified = async () => {
+    if (!user) return;
+    await supabase
+      .from('profiles')
+      .update({ age_verified: true })
+      .eq('user_id', user.id);
+    setShowAgeGate(false);
+  };
+
+  const handleAgeDeclined = () => {
+    navigate("/");
+  };
 
   const handleDeletePick = async (pickId: string) => {
     const result = await deletePick(pickId);
@@ -77,6 +102,10 @@ const Home = () => {
 
   return (
     <div className="min-h-screen bg-background flex flex-col">
+      {/* Age verification gate for sex app */}
+      {showAgeGate && (
+        <AgeVerificationGate onVerified={handleAgeVerified} onCancel={handleAgeDeclined} />
+      )}
       {/* Header */}
       <header className="sticky top-0 z-10 bg-background/80 backdrop-blur-xl border-b border-border/50 px-6 py-4">
         <div className="flex items-center justify-between">

@@ -229,5 +229,64 @@
         "description": "Quand il y a un match, vous pouvez vous contacter directement."
       }
     }
+  },
+  "legal": {
+    "termsTitle": "Conditions générales",
+    "privacyTitle": "Politique de confidentialité",
+    "lastUpdated": "Dernière mise à jour",
+    "terms": {
+      "acceptance": "Acceptation des conditions",
+      "acceptanceText": "En accédant et en utilisant EUREKA, vous acceptez ces conditions générales. Si vous n'êtes pas d'accord, n'utilisez pas le service.",
+      "service": "Description du service",
+      "serviceText": "EUREKA est une plateforme qui permet de découvrir les intérêts mutuels entre les personnes. Le service connecte les utilisateurs qui se choisissent mutuellement, en maintenant la confidentialité jusqu'à ce qu'une correspondance se produise.",
+      "userConduct": "Conduite de l'utilisateur",
+      "userConductText": "Vous vous engagez à utiliser le service de manière responsable, à ne pas harceler d'autres utilisateurs, à ne pas créer de faux comptes et à respecter la vie privée des autres utilisateurs.",
+      "privacy": "Confidentialité",
+      "privacyText": "Votre vie privée est fondamentale. Vos choix sont totalement privés et ne sont révélés que lorsqu'une correspondance mutuelle existe. Consultez notre Politique de confidentialité pour plus de détails.",
+      "termination": "Résiliation",
+      "terminationText": "Nous nous réservons le droit de suspendre ou de supprimer votre compte si vous violez ces conditions. Vous pouvez supprimer votre compte à tout moment depuis les paramètres.",
+      "liability": "Limitation de responsabilité",
+      "liabilityText": "EUREKA n'est pas responsable des interactions entre utilisateurs en dehors de la plateforme. Le service est fourni 'en l'état' sans garantie d'aucune sorte."
+    },
+    "privacy": {
+      "dataCollection": "Données que nous collectons",
+      "dataCollectionText": "Nous collectons votre numéro de téléphone, email, nom et les choix que vous faites dans l'application. Nous ne collectons pas de données de localisation ni n'accédons à vos contacts.",
+      "dataUse": "Utilisation des données",
+      "dataUseText": "Nous utilisons vos données exclusivement pour le fonctionnement du service : trouver des correspondances mutuelles et vous notifier quand elles se produisent.",
+      "dataSharing": "Partage des données",
+      "dataSharingText": "Nous partageons vos informations de contact uniquement avec les utilisateurs avec lesquels vous avez une correspondance mutuelle. Nous ne vendons ni ne partageons jamais vos données avec des tiers.",
+      "userRights": "Vos droits (RGPD)",
+      "userRightsText": "Vous avez le droit d'accéder, de rectifier et de supprimer vos données personnelles. Vous pouvez exercer ces droits depuis les paramètres de votre compte ou en nous contactant directement.",
+      "dataDeletion": "Suppression des données",
+      "dataDeletionText": "Vous pouvez demander la suppression complète de votre compte et de toutes les données associées depuis les paramètres. Ce processus est irréversible et supprime les choix, correspondances, blocages et votre profil.",
+      "contact": "Contact",
+      "contactText": "Pour toute question relative à la confidentialité, vous pouvez nous contacter via l'application."
+    }
+  },
+  "block": {
+    "confirmTitle": "Bloquer l'utilisateur",
+    "confirmDescription": "Êtes-vous sûr de vouloir bloquer {{name}} ? Vous ne verrez plus votre correspondance et ne pourrez plus vous contacter.",
+    "confirm": "Bloquer",
+    "success": "Utilisateur bloqué",
+    "alreadyBlocked": "Cet utilisateur est déjà bloqué",
+    "unblocked": "Utilisateur débloqué"
+  },
+  "settings": {
+    "title": "Paramètres",
+    "legal": "Juridique",
+    "dangerZone": "Zone de danger",
+    "deleteAccount": "Supprimer mon compte",
+    "deleteAccountDescription": "Cela supprimera définitivement votre compte, choix, correspondances et toutes vos données. Cette action ne peut pas être annulée.",
+    "deleteConfirmTitle": "Supprimer votre compte ?",
+    "deleteConfirmDescription": "Cette action est permanente et irréversible. Toutes vos données seront supprimées : choix, correspondances, blocages et profil. Vous ne pourrez pas récupérer votre compte.",
+    "confirmDelete": "Oui, supprimer mon compte",
+    "accountDeleted": "Votre compte a été supprimé"
+  },
+  "ageVerification": {
+    "title": "Vérification de l'âge",
+    "description": "Ce contenu est réservé aux utilisateurs de 18 ans et plus. En continuant, vous confirmez avoir au moins 18 ans.",
+    "legalNote": "Il est de votre responsabilité de vérifier que vous remplissez les conditions d'âge légales dans votre juridiction.",
+    "confirm": "J'ai 18 ans ou plus",
+    "decline": "Quitter"
   }
 }

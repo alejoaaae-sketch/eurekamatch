@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { ArrowLeft, User, Phone, Loader2, AlertCircle, Globe, Settings, Mail, CheckCircle2, XCircle } from "lucide-react";
+import { ArrowLeft, User, Phone, Loader2, AlertCircle, Globe, Settings, Mail, CheckCircle2, XCircle, Cog } from "lucide-react";
 import {
   Select,
   SelectContent,
@@ -266,8 +266,20 @@ const Profile = () => {
           </div>
         )}
 
-        {/* Sign out */}
+        {/* Settings link */}
         <div className={`${isAdmin ? 'mt-4' : 'mt-8 pt-8 border-t border-border'}`}>
+          <Button
+            variant="outline"
+            className="w-full gap-2"
+            onClick={() => navigate("/settings")}
+          >
+            <Cog className="w-4 h-4" />
+            {t("settings.title")}
+          </Button>
+        </div>
+
+        {/* Sign out */}
+        <div className="mt-4">
           <Button
             variant="outline"
             className="w-full"

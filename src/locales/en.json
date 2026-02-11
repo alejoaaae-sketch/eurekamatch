@@ -255,5 +255,64 @@
         "description": "When there's a match, you can contact each other directly."
       }
     }
+  },
+  "legal": {
+    "termsTitle": "Terms & Conditions",
+    "privacyTitle": "Privacy Policy",
+    "lastUpdated": "Last updated",
+    "terms": {
+      "acceptance": "Acceptance of Terms",
+      "acceptanceText": "By accessing and using EUREKA, you agree to these terms and conditions. If you do not agree, do not use the service.",
+      "service": "Service Description",
+      "serviceText": "EUREKA is a platform that allows you to discover mutual interests between people. The service connects users who mutually choose each other, maintaining privacy until a match occurs.",
+      "userConduct": "User Conduct",
+      "userConductText": "You agree to use the service responsibly, not harass other users, not create fake accounts, and respect the privacy of other users.",
+      "privacy": "Privacy",
+      "privacyText": "Your privacy is fundamental. Your picks are completely private and are only revealed when a mutual match exists. See our Privacy Policy for more details.",
+      "termination": "Termination",
+      "terminationText": "We reserve the right to suspend or delete your account if you violate these terms. You can delete your account at any time from the settings.",
+      "liability": "Limitation of Liability",
+      "liabilityText": "EUREKA is not responsible for interactions between users outside the platform. The service is provided 'as is' without warranties of any kind."
+    },
+    "privacy": {
+      "dataCollection": "Data We Collect",
+      "dataCollectionText": "We collect your phone number, email, name, and the picks you make within the app. We do not collect location data or access your contacts.",
+      "dataUse": "Use of Data",
+      "dataUseText": "We use your data exclusively for the operation of the service: finding mutual matches and notifying you when they occur.",
+      "dataSharing": "Data Sharing",
+      "dataSharingText": "We only share your contact information with users with whom you have a mutual match. We never sell or share your data with third parties.",
+      "userRights": "Your Rights (GDPR)",
+      "userRightsText": "You have the right to access, rectify, and delete your personal data. You can exercise these rights from your account settings or by contacting us directly.",
+      "dataDeletion": "Data Deletion",
+      "dataDeletionText": "You can request the complete deletion of your account and all associated data from the settings. This process is irreversible and deletes picks, matches, blocks, and your profile.",
+      "contact": "Contact",
+      "contactText": "For any privacy-related inquiries, you can contact us through the application."
+    }
+  },
+  "block": {
+    "confirmTitle": "Block user",
+    "confirmDescription": "Are you sure you want to block {{name}}? You will no longer see your match or be able to contact each other.",
+    "confirm": "Block",
+    "success": "User blocked",
+    "alreadyBlocked": "This user is already blocked",
+    "unblocked": "User unblocked"
+  },
+  "settings": {
+    "title": "Settings",
+    "legal": "Legal",
+    "dangerZone": "Danger zone",
+    "deleteAccount": "Delete my account",
+    "deleteAccountDescription": "This will permanently delete your account, picks, matches, and all your data. This action cannot be undone.",
+    "deleteConfirmTitle": "Delete your account?",
+    "deleteConfirmDescription": "This action is permanent and irreversible. All your data will be deleted: picks, matches, blocks, and profile. You will not be able to recover your account.",
+    "confirmDelete": "Yes, delete my account",
+    "accountDeleted": "Your account has been deleted"
+  },
+  "ageVerification": {
+    "title": "Age verification",
+    "description": "This content is for users aged 18 and over only. By continuing, you confirm that you are at least 18 years old.",
+    "legalNote": "It is your responsibility to verify that you meet the legal age requirements in your jurisdiction.",
+    "confirm": "I am 18 or older",
+    "decline": "Exit"
   }
 }

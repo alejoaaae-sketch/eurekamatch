@@ -255,5 +255,64 @@
         "description": "Cuando hay match, podéis contactar directamente."
       }
     }
+  },
+  "legal": {
+    "termsTitle": "Términos y Condiciones",
+    "privacyTitle": "Política de Privacidad",
+    "lastUpdated": "Última actualización",
+    "terms": {
+      "acceptance": "Aceptación de los Términos",
+      "acceptanceText": "Al acceder y utilizar EUREKA, aceptas estos términos y condiciones. Si no estás de acuerdo, no utilices el servicio.",
+      "service": "Descripción del Servicio",
+      "serviceText": "EUREKA es una plataforma que permite descubrir intereses mutuos entre personas. El servicio conecta usuarios que se eligen mutuamente, manteniendo la privacidad hasta que se produce una coincidencia.",
+      "userConduct": "Conducta del Usuario",
+      "userConductText": "Te comprometes a usar el servicio de forma responsable, no acosar a otros usuarios, no crear cuentas falsas y respetar la privacidad de los demás usuarios.",
+      "privacy": "Privacidad",
+      "privacyText": "Tu privacidad es fundamental. Tus elecciones son completamente privadas y solo se revelan cuando existe una coincidencia mutua. Consulta nuestra Política de Privacidad para más detalles.",
+      "termination": "Terminación",
+      "terminationText": "Nos reservamos el derecho de suspender o eliminar tu cuenta si violas estos términos. Puedes eliminar tu cuenta en cualquier momento desde los ajustes.",
+      "liability": "Limitación de Responsabilidad",
+      "liabilityText": "EUREKA no se hace responsable de las interacciones entre usuarios fuera de la plataforma. El servicio se proporciona 'tal cual' sin garantías de ningún tipo."
+    },
+    "privacy": {
+      "dataCollection": "Datos que Recopilamos",
+      "dataCollectionText": "Recopilamos tu número de teléfono, email, nombre y las elecciones que realizas dentro de la app. No recopilamos datos de ubicación ni accedemos a tus contactos.",
+      "dataUse": "Uso de los Datos",
+      "dataUseText": "Utilizamos tus datos exclusivamente para el funcionamiento del servicio: encontrar coincidencias mutuas y notificarte cuando se producen.",
+      "dataSharing": "Compartición de Datos",
+      "dataSharingText": "Solo compartimos tu información de contacto con usuarios con los que tienes una coincidencia mutua. Nunca vendemos ni compartimos tus datos con terceros.",
+      "userRights": "Tus Derechos (GDPR)",
+      "userRightsText": "Tienes derecho a acceder, rectificar y eliminar tus datos personales. Puedes ejercer estos derechos desde los ajustes de tu cuenta o contactándonos directamente.",
+      "dataDeletion": "Eliminación de Datos",
+      "dataDeletionText": "Puedes solicitar la eliminación completa de tu cuenta y todos los datos asociados desde los ajustes. Este proceso es irreversible y elimina picks, matches, bloqueos y tu perfil.",
+      "contact": "Contacto",
+      "contactText": "Para cualquier consulta relacionada con la privacidad, puedes contactarnos a través de la aplicación."
+    }
+  },
+  "block": {
+    "confirmTitle": "Bloquear usuario",
+    "confirmDescription": "¿Seguro que quieres bloquear a {{name}}? Ya no veréis vuestro match ni podréis contactaros.",
+    "confirm": "Bloquear",
+    "success": "Usuario bloqueado",
+    "alreadyBlocked": "Este usuario ya está bloqueado",
+    "unblocked": "Usuario desbloqueado"
+  },
+  "settings": {
+    "title": "Ajustes",
+    "legal": "Legal",
+    "dangerZone": "Zona de peligro",
+    "deleteAccount": "Eliminar mi cuenta",
+    "deleteAccountDescription": "Esto eliminará permanentemente tu cuenta, picks, matches y todos tus datos. Esta acción no se puede deshacer.",
+    "deleteConfirmTitle": "¿Eliminar tu cuenta?",
+    "deleteConfirmDescription": "Esta acción es permanente e irreversible. Se eliminarán todos tus datos: picks, matches, bloqueos y perfil. No podrás recuperar tu cuenta.",
+    "confirmDelete": "Sí, eliminar mi cuenta",
+    "accountDeleted": "Tu cuenta ha sido eliminada"
+  },
+  "ageVerification": {
+    "title": "Verificación de edad",
+    "description": "Este contenido es solo para mayores de 18 años. Al continuar, confirmas que tienes al menos 18 años de edad.",
+    "legalNote": "Es tu responsabilidad verificar que cumples con los requisitos legales de edad en tu jurisdicción.",
+    "confirm": "Soy mayor de 18 años",
+    "decline": "Salir"
   }
 }

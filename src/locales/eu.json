@@ -229,5 +229,64 @@
         "description": "Bat-etortzea dagoenean, zuzenean harremanetan jar zaitezke."
       }
     }
+  },
+  "legal": {
+    "termsTitle": "Baldintza Orokorrak",
+    "privacyTitle": "Pribatutasun Politika",
+    "lastUpdated": "Azken eguneratzea",
+    "terms": {
+      "acceptance": "Baldintzen Onarpena",
+      "acceptanceText": "EUREKA atzitu eta erabiltzean, baldintza hauek onartzen dituzu. Ados ez bazaude, ez erabili zerbitzua.",
+      "service": "Zerbitzuaren Deskribapena",
+      "serviceText": "EUREKA pertsonen arteko interes elkarrekikoak aurkitzeko plataforma bat da. Zerbitzuak elkar hautatzen duten erabiltzaileak konektatzen ditu, pribatutasuna mantenduz bat-etortzea gertatzen den arte.",
+      "userConduct": "Erabiltzailearen Jokabidea",
+      "userConductText": "Konpromisoa hartzen duzu zerbitzua modu arduratsuan erabiltzeko, beste erabiltzaileak ez jazartzeko, kontu faltsuak ez sortzeko eta beste erabiltzaileen pribatutasuna errespetatzeko.",
+      "privacy": "Pribatutasuna",
+      "privacyText": "Zure pribatutasuna funtsezkoa da. Zure aukerak guztiz pribatuak dira eta elkarrekiko bat-etortzea dagoenean bakarrik agertzen dira. Kontsultatu gure Pribatutasun Politika xehetasun gehiagorako.",
+      "termination": "Amaiera",
+      "terminationText": "Baldintza hauek urratzen badituzu, zure kontua eteteko edo ezabatzeko eskubidea erreserbatzen dugu. Zure kontua edozein unetan ezabatu dezakezu ezarpenetatik.",
+      "liability": "Erantzukizun Mugaketa",
+      "liabilityText": "EUREKA ez da plataformatik kanpoko erabiltzaileen arteko interakzioen arduraduna. Zerbitzua 'dagoen bezala' eskaintzen da, inolako bermerik gabe."
+    },
+    "privacy": {
+      "dataCollection": "Biltzen ditugun Datuak",
+      "dataCollectionText": "Zure telefono zenbakia, emaila, izena eta aplikazioan egiten dituzun aukerak biltzen ditugu. Ez ditugu kokapen-datuak biltzen ez zure kontaktuetara sartzen.",
+      "dataUse": "Datuen Erabilera",
+      "dataUseText": "Zure datuak zerbitzuaren funtzionamendurako soilik erabiltzen ditugu: elkarrekiko bat-etortzeak aurkitzeko eta gertatzen direnean jakinarazteko.",
+      "dataSharing": "Datuen Partekatzea",
+      "dataSharingText": "Zure kontaktu-informazioa elkarrekiko bat-etortzea duten erabiltzaileekin soilik partekatzen dugu. Ez ditugu inoiz zure datuak hirugarrenei saltzen edo partekatzen.",
+      "userRights": "Zure Eskubideak (GDPR)",
+      "userRightsText": "Zure datu pertsonalak atzitzeko, zuzentzeko eta ezabatzeko eskubidea duzu. Eskubide hauek zure kontuko ezarpenetatik edo zuzenean gurekin harremanetan jarriz gauzatu ditzakezu.",
+      "dataDeletion": "Datuen Ezabatzea",
+      "dataDeletionText": "Zure kontuaren eta erlazionatutako datu guztien ezabatze osoa eskatu dezakezu ezarpenetatik. Prozesu hau itzulezina da eta aukerak, bat-etortzeak, blokeoak eta zure profila ezabatzen ditu.",
+      "contact": "Kontaktua",
+      "contactText": "Pribatutasunarekin lotutako edozein kontsultarako, aplikazioaren bidez harremanetan jar zaitezke gurekin."
+    }
+  },
+  "block": {
+    "confirmTitle": "Erabiltzailea blokeatu",
+    "confirmDescription": "Ziur zaude {{name}} blokeatu nahi duzula? Jada ez duzue zuen bat-etortzea ikusiko eta ezingo duzue elkarrekin harremanetan jarri.",
+    "confirm": "Blokeatu",
+    "success": "Erabiltzailea blokeatuta",
+    "alreadyBlocked": "Erabiltzaile hau dagoeneko blokeatuta dago",
+    "unblocked": "Erabiltzailea desblokeatu da"
+  },
+  "settings": {
+    "title": "Ezarpenak",
+    "legal": "Legala",
+    "dangerZone": "Arrisku-zona",
+    "deleteAccount": "Nire kontua ezabatu",
+    "deleteAccountDescription": "Honek zure kontua, aukerak, bat-etortzeak eta datu guztiak betirako ezabatuko ditu. Ekintza hau ezin da desegin.",
+    "deleteConfirmTitle": "Zure kontua ezabatu?",
+    "deleteConfirmDescription": "Ekintza hau iraunkorra eta itzulezina da. Zure datu guztiak ezabatuko dira: aukerak, bat-etortzeak, blokeoak eta profila. Ezin izango duzu zure kontua berreskuratu.",
+    "confirmDelete": "Bai, nire kontua ezabatu",
+    "accountDeleted": "Zure kontua ezabatu da"
+  },
+  "ageVerification": {
+    "title": "Adin-egiaztapena",
+    "description": "Eduki hau 18 urtetik gorakoentzat soilik da. Jarraitzean, gutxienez 18 urte dituzula baieztatzen duzu.",
+    "legalNote": "Zure erantzukizuna da zure jurisdikzioko adin-legezko baldintzak betetzen dituzula egiaztatzea.",
+    "confirm": "18 urte edo gehiago ditut",
+    "decline": "Irten"
   }
 }

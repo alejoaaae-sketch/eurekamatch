@@ -12,6 +12,9 @@ import AddPick from "./pages/AddPick";
 import PickDetail from "./pages/PickDetail";
 import Match from "./pages/Match";
 import Profile from "./pages/Profile";
+import Settings from "./pages/Settings";
+import Terms from "./pages/Terms";
+import Privacy from "./pages/Privacy";
 import Install from "./pages/Install";
 import NotFound from "./pages/NotFound";
 import Admin from "./pages/Admin";
@@ -34,6 +37,9 @@ const App = () => (
             <Route path="/pick/:id" element={<PickDetail />} />
             <Route path="/match/:id" element={<Match />} />
             <Route path="/profile" element={<Profile />} />
+            <Route path="/settings" element={<Settings />} />
+            <Route path="/terms" element={<Terms />} />
+            <Route path="/privacy" element={<Privacy />} />
             <Route path="/install" element={<Install />} />
             <Route path="/admin" element={<Admin />} />
             <Route path="*" element={<NotFound />} />

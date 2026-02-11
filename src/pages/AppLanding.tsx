@@ -5,6 +5,7 @@ import { Heart, Users, Flame, Sparkles, ArrowLeft, Shield, Lock, MessageCircle }
 import { useAuth } from "@/hooks/useAuth";
 import { useEffect } from "react";
 import LanguageSelector from "@/components/LanguageSelector";
+import LegalFooter from "@/components/LegalFooter";
 import { getAppConfig, AppType } from "@/config/app.config";
 import { useAllAppConfigs } from "@/hooks/useAllAppConfigs";
 import { Ban } from "lucide-react";
@@ -284,7 +285,8 @@ const AppLanding = () => {
 
       {/* Footer */}
       <footer className="py-8 px-6 border-t border-border/50">
-        <div className="max-w-4xl mx-auto text-center">
+        <div className="max-w-4xl mx-auto text-center space-y-3">
+          <LegalFooter />
           <p className="text-muted-foreground text-sm">
             © {new Date().getFullYear()} EUREKA. {t("landing.footer.rights")}
           </p>

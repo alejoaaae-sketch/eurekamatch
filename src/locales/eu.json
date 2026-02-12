@@ -39,7 +39,7 @@
     "taglines": {
       "love": "Ezagutu maitasuna elkarrekikoa den",
       "friends": "Kontatu dezakezun lagunak. Elkarrekikoa delako.",
-      "sex": "Ezagutu erakarpen elkarrekikoa"
+      "mude": "Ezagutu desira elkarrekikoa"
     }
   },
   "home": {
@@ -154,8 +154,8 @@
       "plan": {
         "tagline": "Aurkitu zuk ere aukeratzen zaituzten lagunak. Adiskidetasuna elkarrekikoa delako."
       },
-      "sex": {
-        "tagline": "Ezagutu erakarpen elkarrekikoa. Diskretua eta segurua."
+      "mude": {
+        "tagline": "Ezagutu desira elkarrekikoa. Diskretua eta segurua."
       }
     },
     "concept": {
@@ -181,8 +181,8 @@
     "plan": {
       "description": "Eureka lagunak. Elkarrekikoa dela dakizun lagunak. Ondo pasatzen duzun jendea dago... baina inoiz ez dakizu besteari ere gogoa duen. Eureka Friends-ek zalantza hori argitasun bihurtzen du. Helduen adiskidetasuna: batzuetan bai, batzuetan ez... eta ez da ezer gertatzen."
     },
-    "sex": {
-      "description": "Eureka Sex aplikazio bat da elkar ezagutzen duten bi pertsonen artean desira elkarrekikoa den jakiteko, presiorik eta esposiziorik gabe. Ez da bilatzeko. Baieztatzeko da."
+    "mude": {
+      "description": "Eureka MUDE aplikazio bat da elkar ezagutzen duten bi pertsonen artean desira elkarrekikoa den jakiteko, presiorik eta esposiziorik gabe. Ez da bilatzeko. Baieztatzeko da."
     },
     "steps": {
       "step1": {
@@ -198,7 +198,7 @@
           "title": "Gehitu interesatzen zaizuna",
           "description": "Aukeratu 5 pertsona arte. Sartu haien telefono zenbakia. Inork ez du abisurik jasotzen."
         },
-        "sex": {
+        "mude": {
           "title": "Gehitu interesatzen zaizuna",
           "description": "Aukeratu 2 pertsona arte. Sartu haien telefono zenbakia. Inork ez du abisurik jasotzen."
         }

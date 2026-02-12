@@ -44,9 +44,9 @@ const Home = () => {
     }
   }, [user, authLoading, navigate]);
 
-  // Age verification gate for sex app
+   // Age verification gate for mude app
   useEffect(() => {
-    if (appConfig.appType === 'sex' && profile && !profile.age_verified) {
+    if (appConfig.appType === 'mude' && profile && !profile.age_verified) {
       setShowAgeGate(true);
     }
   }, [profile]);
@@ -102,7 +102,7 @@ const Home = () => {
 
   return (
     <div className="min-h-screen bg-background flex flex-col">
-      {/* Age verification gate for sex app */}
+      {/* Age verification gate for mude app */}
       {showAgeGate && (
         <AgeVerificationGate onVerified={handleAgeVerified} onCancel={handleAgeDeclined} />
       )}
@@ -124,7 +124,7 @@ const Home = () => {
               >
 {appConfig.appType === 'love' && '💕 LOVE'}
                 {appConfig.appType === 'plan' && '🤝 FRIENDS'}
-                {appConfig.appType === 'sex' && '🔥 SEX'}
+                {appConfig.appType === 'mude' && '🔥 MUDE'}
               </span>
             </div>
           </div>

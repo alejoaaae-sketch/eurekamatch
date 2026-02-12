@@ -65,7 +65,7 @@
     "taglines": {
       "love": "Discover if love is mutual",
       "friends": "Friends you can count on. Because it's mutual.",
-      "sex": "Discover mutual attraction"
+      "mude": "Discover mutual desire"
     }
   },
   "home": {
@@ -180,8 +180,8 @@
       "plan": {
         "tagline": "Find friends who choose you back. Because friendship is mutual."
       },
-      "sex": {
-        "tagline": "Discover mutual attraction. Discreet and safe."
+      "mude": {
+        "tagline": "Discover mutual desire. Discreet and safe."
       }
     },
     "concept": {
@@ -207,8 +207,8 @@
     "plan": {
       "description": "Eureka Friends. Friends you know are mutual. There are people you have a great time with… but you never know if they feel the same. Eureka Friends turns that doubt into clarity. Adult friendship: sometimes yes, sometimes no… and that's okay."
     },
-    "sex": {
-      "description": "Eureka Sex is an app to find out if desire is mutual between two people who already know each other, without pressure or exposure. It's not for searching. It's for confirming."
+    "mude": {
+      "description": "Eureka MUDE is an app to find out if desire is mutual between two people who already know each other, without pressure or exposure. It's not for searching. It's for confirming."
     },
     "steps": {
       "step1": {
@@ -224,7 +224,7 @@
           "title": "Add who interests you",
           "description": "Choose up to 5 people. Enter their phone number. No one gets notified."
         },
-        "sex": {
+        "mude": {
           "title": "Add who interests you",
           "description": "Choose up to 2 people. Enter their phone number. No one gets notified."
         }

@@ -39,7 +39,7 @@
     "taglines": {
       "love": "Descobreix si l'amor és mutu",
       "friends": "Amics amb qui pots comptar. Perquè és mutu.",
-      "sex": "Descobreix l'atracció mútua"
+      "mude": "Descobreix el desig mutu"
     }
   },
   "home": {
@@ -154,8 +154,8 @@
       "plan": {
         "tagline": "Troba amics que també et triïn. Perquè l'amistat és mútua."
       },
-      "sex": {
-        "tagline": "Descobreix l'atracció mútua. Discret i segur."
+      "mude": {
+        "tagline": "Descobreix el desig mutu. Discret i segur."
       }
     },
     "concept": {
@@ -181,8 +181,8 @@
     "plan": {
       "description": "Amics Eureka. Amics amb qui saps que és mutu. Hi ha gent amb qui t'ho passes genial… però mai saps si a l'altre també li ve de gust. Eureka Friends converteix aquest dubte en claredat. Amistat adulta: de vegades sí, de vegades no… i no passa res."
     },
-    "sex": {
-      "description": "Eureka Sex és una app per saber si el desig és mutu entre dues persones que ja es coneixen, sense pressió i sense exposició. No és per buscar. És per confirmar."
+    "mude": {
+      "description": "Eureka MUDE és una app per saber si el desig és mutu entre dues persones que ja es coneixen, sense pressió i sense exposició. No és per buscar. És per confirmar."
     },
     "steps": {
       "step1": {
@@ -198,7 +198,7 @@
           "title": "Afegeix a qui t'interessa",
           "description": "Escull fins a 5 persones. Introdueix el seu mòbil. Ningú rep avís."
         },
-        "sex": {
+        "mude": {
           "title": "Afegeix a qui t'interessa",
           "description": "Escull fins a 2 persones. Introdueix el seu mòbil. Ningú rep avís."
         }

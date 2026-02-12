@@ -65,7 +65,7 @@
     "taglines": {
       "love": "Descubre si el amor es mutuo",
       "friends": "Amigos con los que puedes contar. Porque es mutuo.",
-      "sex": "Descubre la atracción mutua"
+      "mude": "Descubre la atracción mutua"
     }
   },
   "home": {
@@ -180,7 +180,7 @@
       "plan": {
         "tagline": "Encuentra amigos que también te elijan. Porque la amistad es mutua."
       },
-      "sex": {
+      "mude": {
         "tagline": "Descubre la atracción mutua. Discreto y seguro."
       }
     },
@@ -207,8 +207,8 @@
     "plan": {
       "description": "Amigos Eureka. Amigos con los que sabes que es mutuo. Hay gente con la que te lo pasas genial… pero nunca sabes si al otro también le apetece. Eureka Friends convierte esa duda en claridad. Amistad adulta: a veces sí, a veces no… y no pasa nada."
     },
-    "sex": {
-      "description": "Eureka Sex es una app para saber si el deseo es mutuo entre dos personas que ya se conocen, sin presión y sin exposición. No es para buscar. Es para confirmar."
+    "mude": {
+      "description": "Eureka MUDE es una app para saber si el deseo es mutuo entre dos personas que ya se conocen, sin presión y sin exposición. No es para buscar. Es para confirmar."
     },
     "steps": {
       "step1": {
@@ -224,7 +224,7 @@
           "title": "Añade a quien te interesa",
           "description": "Elige hasta 5 personas. Introduce su móvil. Nadie recibe aviso."
         },
-        "sex": {
+        "mude": {
           "title": "Añade a quien te interesa",
           "description": "Elige hasta 2 personas. Introduce su móvil. Nadie recibe aviso."
         }

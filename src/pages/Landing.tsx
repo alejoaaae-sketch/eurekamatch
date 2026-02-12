@@ -36,7 +36,7 @@ const Landing = () => {
       hoverGradient: 'hover:from-orange-600 hover:to-amber-600',
     },
     {
-      type: 'sex',
+      type: 'mude',
       icon: <Flame className="w-8 h-8" fill="currentColor" />,
       gradient: 'from-red-600 to-rose-500',
       hoverGradient: 'hover:from-red-700 hover:to-rose-600',

@@ -41,7 +41,7 @@ const AppLanding = () => {
         return <Heart className="w-10 h-10" fill="currentColor" />;
       case 'plan':
         return <Users className="w-10 h-10" />;
-      case 'sex':
+      case 'mude':
         return <Flame className="w-10 h-10" fill="currentColor" />;
       default:
         return <Heart className="w-10 h-10" fill="currentColor" />;
@@ -54,7 +54,7 @@ const AppLanding = () => {
         return 'from-rose-500 to-pink-500';
       case 'plan':
         return 'from-orange-500 to-amber-500';
-      case 'sex':
+      case 'mude':
         return 'from-red-600 to-rose-500';
       default:
         return 'from-rose-500 to-pink-500';
@@ -67,7 +67,7 @@ const AppLanding = () => {
         return 'text-rose-400';
       case 'plan':
         return 'text-orange-400';
-      case 'sex':
+      case 'mude':
         return 'text-red-400';
       default:
         return 'text-rose-400';
@@ -80,7 +80,7 @@ const AppLanding = () => {
         return 'bg-rose-500';
       case 'plan':
         return 'bg-orange-500';
-      case 'sex':
+      case 'mude':
         return 'bg-red-500';
       default:
         return 'bg-rose-500';

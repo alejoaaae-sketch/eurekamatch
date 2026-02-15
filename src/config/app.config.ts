@@ -35,7 +35,7 @@ const appConfigs: Record<AppType, AppConfig> = {
   },
   mude: {
     appType: 'mude',
-    appName: 'EUREKA MUDE',
+    appName: 'EUREKA MUDE (MUtual DEsire)',
     maxPicks: 2,
     primaryColor: 'hsl(0, 84%, 50%)', // Red
     accentColor: 'hsl(0, 84%, 60%)',

@@ -132,6 +132,21 @@
     "success": "Ordainketa osatuta!",
     "thankYou": "Eskerrik asko zure erosketagatik"
   },
+  "packs": {
+    "title": "Pick-ak erosi",
+    "currentBalance": "Zure saldo aktuala",
+    "basic": "Pack oinarrizkoa",
+    "small": "Pack txikia",
+    "medium": "Pack ertaina",
+    "large": "Pack handia",
+    "popular": "Ezaguna",
+    "info": "Erosten dituzun pick-ak ez dira inoiz iraungitzen. App guztietarako baliogarriak.",
+    "purchaseSuccess": "{{count}} pick erosi dituzu!",
+    "noPicks": "Ez duzu pick-ik geratzen",
+    "noPicksHint": "Erosi pack bat aukerak gehitzen jarraitzeko.",
+    "buyPacks": "Pick-ak erosi",
+    "picksRemaining": "{{count}} pick geratzen zaizkizu"
+  },
   "time": {
     "now": "Orain",
     "yesterday": "Atzo"

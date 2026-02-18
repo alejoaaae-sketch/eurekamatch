@@ -158,6 +158,21 @@
     "success": "Payment completed!",
     "thankYou": "Thank you for your purchase"
   },
+  "packs": {
+    "title": "Buy picks",
+    "currentBalance": "Your current balance",
+    "basic": "Basic pack",
+    "small": "Small pack",
+    "medium": "Medium pack",
+    "large": "Large pack",
+    "popular": "Popular",
+    "info": "Purchased picks never expire. Valid for all apps.",
+    "purchaseSuccess": "You bought {{count}} picks!",
+    "noPicks": "No picks remaining",
+    "noPicksHint": "Buy a pack to keep adding picks.",
+    "buyPacks": "Buy picks",
+    "picksRemaining": "You have {{count}} picks remaining"
+  },
   "time": {
     "now": "Now",
     "yesterday": "Yesterday"

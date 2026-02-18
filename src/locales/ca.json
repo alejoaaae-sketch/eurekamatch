@@ -132,6 +132,21 @@
     "success": "Pagament completat!",
     "thankYou": "Gràcies per la teva compra"
   },
+  "packs": {
+    "title": "Comprar picks",
+    "currentBalance": "El teu saldo actual",
+    "basic": "Pack bàsic",
+    "small": "Pack petit",
+    "medium": "Pack mitjà",
+    "large": "Pack gran",
+    "popular": "Popular",
+    "info": "Els picks comprats no caduquen mai. Vàlids per a totes les apps.",
+    "purchaseSuccess": "Has comprat {{count}} picks!",
+    "noPicks": "No et queden picks",
+    "noPicksHint": "Compra un pack per seguir afegint eleccions.",
+    "buyPacks": "Comprar picks",
+    "picksRemaining": "Et queden {{count}} picks disponibles"
+  },
   "time": {
     "now": "Ara",
     "yesterday": "Ahir"

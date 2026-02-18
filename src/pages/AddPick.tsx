@@ -3,14 +3,14 @@ import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { ArrowLeft, UserPlus, Phone, AlertCircle, Loader2, Ban } from "lucide-react";
+import { ArrowLeft, UserPlus, Phone, AlertCircle, Loader2, ShoppingCart } from "lucide-react";
 import { useAuth } from "@/hooks/useAuth";
 import { usePicks } from "@/hooks/usePicks";
 import { useAppConfig } from "@/hooks/useAppConfig";
 import { useProfile } from "@/hooks/useProfile";
+import { usePickBalance } from "@/hooks/usePickBalance";
 import { toast } from "sonner";
 import { appConfig } from "@/config/app.config";
-import PaymentSimulationModal from "@/components/PaymentSimulationModal";
 import PhoneVerification from "@/components/PhoneVerification";
 import { supabase } from "@/integrations/supabase/client";
 import {
@@ -28,13 +28,13 @@ const AddPick = () => {
   const navigate = useNavigate();
   const { t, i18n } = useTranslation();
   const { user, loading: authLoading } = useAuth();
-  const { addPick, picks, loading: picksLoading } = usePicks();
-  const { effectiveMaxPicks, pricePerChange, appEnabled, verifyMobile, betaMode, loading: configLoading } = useAppConfig();
+  const { addPick, loading: picksLoading } = usePicks();
+  const { appEnabled, verifyMobile, betaMode, loading: configLoading } = useAppConfig();
   const { profile, refetch: refetchProfile } = useProfile();
+  const { picksRemaining, consumePick, loading: balanceLoading } = usePickBalance();
   const [value, setValue] = useState("");
   const [name, setName] = useState("");
   const [loading, setLoading] = useState(false);
-  const [showPaymentModal, setShowPaymentModal] = useState(false);
   const [showPhoneVerification, setShowPhoneVerification] = useState(false);
   const [showVerifyPrompt, setShowVerifyPrompt] = useState(false);
   const [sendingOtp, setSendingOtp] = useState(false);
@@ -58,19 +58,7 @@ const AddPick = () => {
     };
   }, [i18n]);
 
-  const currentPicksCount = picks.filter(p => !p.is_matched).length;
-  const canAddMore = currentPicksCount < effectiveMaxPicks;
-  
-  // Check if payment is required (user deleted a pick and is adding a new one)
-  // In beta_mode, payments are disabled
-  const paymentRequired = !betaMode && localStorage.getItem(`payment_required_${appConfig.appType}`) === 'true';
-
-  // Clear payment flag if in beta mode
-  useEffect(() => {
-    if (betaMode) {
-      localStorage.removeItem(`payment_required_${appConfig.appType}`);
-    }
-  }, [betaMode]);
+  const canAddMore = betaMode || picksRemaining > 0;
 
   useEffect(() => {
     if (!authLoading && !user) {
@@ -101,19 +89,13 @@ const AddPick = () => {
     e.preventDefault();
     
     if (!canAddMore) {
-      toast.error(t("pick.limitMessage", { count: effectiveMaxPicks }));
+      navigate("/buy-packs");
       return;
     }
 
     // Check if phone verification is required and not yet done
     if (verifyMobile && !profile?.phone_verified) {
       setShowVerifyPrompt(true);
-      return;
-    }
-
-    // If payment is required, show payment modal instead of adding directly
-    if (paymentRequired) {
-      setShowPaymentModal(true);
       return;
     }
 
@@ -134,7 +116,6 @@ const AddPick = () => {
   };
 
   const handlePhoneVerified = async () => {
-    // Mark phone as verified in profile
     if (user) {
       await supabase
         .from('profiles')
@@ -144,22 +125,25 @@ const AddPick = () => {
     }
     setShowPhoneVerification(false);
     toast.success(t("auth.phoneVerified"));
-    // Now proceed with the pick
-    if (paymentRequired) {
-      setShowPaymentModal(true);
-    } else {
-      await proceedWithAddPick();
-    }
+    await proceedWithAddPick();
   };
 
   const proceedWithAddPick = async () => {
     setLoading(true);
 
     try {
+      // Consume a pick from balance (skip in beta mode)
+      if (!betaMode) {
+        const consumeResult = await consumePick();
+        if (!consumeResult.success) {
+          toast.error(consumeResult.error || t("common.error"));
+          setLoading(false);
+          return;
+        }
+      }
+
       const result = await addPick(name, value, 'phone');
       if (result.success) {
-        // Clear the payment required flag after successful addition
-        localStorage.removeItem(`payment_required_${appConfig.appType}`);
         toast.success(t("pick.added"));
         navigate("/home");
       } else {
@@ -170,17 +154,12 @@ const AddPick = () => {
     }
   };
 
-  const handlePaymentComplete = async () => {
-    setShowPaymentModal(false);
-    await proceedWithAddPick();
-  };
-
   if (!configLoading && !appEnabled) {
     navigate("/home");
     return null;
   }
 
-  if (authLoading || picksLoading || configLoading || !user) {
+  if (authLoading || picksLoading || configLoading || balanceLoading || !user) {
     return (
       <div className="min-h-screen bg-background flex items-center justify-center">
         <Loader2 className="w-8 h-8 animate-spin text-primary" />
@@ -188,7 +167,7 @@ const AddPick = () => {
     );
   }
 
-  // Show limit reached screen
+  // Show no picks remaining screen
   if (!canAddMore) {
     return (
       <div className="min-h-screen bg-background flex flex-col">
@@ -206,16 +185,16 @@ const AddPick = () => {
 
         <div className="flex-1 px-6 py-8 flex flex-col items-center justify-center">
           <div className="w-20 h-20 rounded-full bg-secondary flex items-center justify-center mb-6">
-            <Ban className="w-10 h-10 text-muted-foreground" />
+            <ShoppingCart className="w-10 h-10 text-muted-foreground" />
           </div>
           <h2 className="text-xl font-medium text-foreground mb-2 text-center">
-            {t("pick.limit")}
+            {t("packs.noPicks")}
           </h2>
           <p className="text-muted-foreground text-sm text-center mb-6">
-            {t("pick.limitMessage", { count: effectiveMaxPicks })}
+            {t("packs.noPicksHint")}
           </p>
-          <Button onClick={() => navigate("/home")} variant="outline">
-            {t("common.back")}
+          <Button onClick={() => navigate("/buy-packs")} variant="gradient">
+            {t("packs.buyPacks")}
           </Button>
         </div>
       </div>
@@ -325,22 +304,17 @@ const AddPick = () => {
             <Button type="submit" className="w-full" size="lg" disabled={loading}>
               {loading ? (
                 <Loader2 className="w-5 h-5 animate-spin" />
-              ) : paymentRequired ? (
-                `${t("pick.save")} (${pricePerChange.toFixed(2).replace('.', ',')} €)`
               ) : (
                 t("pick.save")
               )}
             </Button>
+            {!betaMode && (
+              <p className="text-xs text-muted-foreground text-center mt-2">
+                {t("packs.picksRemaining", { count: picksRemaining })}
+              </p>
+            )}
           </div>
         </form>
-
-        {/* Payment Modal */}
-        <PaymentSimulationModal
-          open={showPaymentModal}
-          onOpenChange={setShowPaymentModal}
-          onPaymentComplete={handlePaymentComplete}
-          action="change"
-        />
 
         {/* Phone Verification Prompt */}
         <AlertDialog open={showVerifyPrompt} onOpenChange={setShowVerifyPrompt}>

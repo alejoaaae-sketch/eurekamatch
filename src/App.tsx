@@ -9,6 +9,7 @@ import AppLanding from "./pages/AppLanding";
 import Login from "./pages/Login";
 import Home from "./pages/Home";
 import AddPick from "./pages/AddPick";
+import BuyPacks from "./pages/BuyPacks";
 import PickDetail from "./pages/PickDetail";
 import Match from "./pages/Match";
 import Profile from "./pages/Profile";
@@ -34,6 +35,7 @@ const App = () => (
             <Route path="/login" element={<Login />} />
             <Route path="/home" element={<Home />} />
             <Route path="/add" element={<AddPick />} />
+            <Route path="/buy-packs" element={<BuyPacks />} />
             <Route path="/pick/:id" element={<PickDetail />} />
             <Route path="/match/:id" element={<Match />} />
             <Route path="/profile" element={<Profile />} />

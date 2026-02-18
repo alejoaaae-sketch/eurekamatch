@@ -132,6 +132,21 @@
     "success": "Paiement effectué !",
     "thankYou": "Merci pour votre achat"
   },
+  "packs": {
+    "title": "Acheter des picks",
+    "currentBalance": "Votre solde actuel",
+    "basic": "Pack basique",
+    "small": "Pack petit",
+    "medium": "Pack moyen",
+    "large": "Pack grand",
+    "popular": "Populaire",
+    "info": "Les picks achetés n'expirent jamais. Valables pour toutes les apps.",
+    "purchaseSuccess": "Vous avez acheté {{count}} picks !",
+    "noPicks": "Plus de picks disponibles",
+    "noPicksHint": "Achetez un pack pour continuer à ajouter des choix.",
+    "buyPacks": "Acheter des picks",
+    "picksRemaining": "Il vous reste {{count}} picks"
+  },
   "time": {
     "now": "Maintenant",
     "yesterday": "Hier"

@@ -17,6 +17,7 @@ interface PaymentSimulationModalProps {
   onOpenChange: (open: boolean) => void;
   onPaymentComplete: () => void;
   action: "add" | "change";
+  amount?: number;
 }
 
 const PaymentSimulationModal = ({
@@ -24,6 +25,7 @@ const PaymentSimulationModal = ({
   onOpenChange,
   onPaymentComplete,
   action,
+  amount = 1,
 }: PaymentSimulationModalProps) => {
   const { t } = useTranslation();
   const [step, setStep] = useState<"form" | "processing" | "success">("form");
@@ -99,7 +101,7 @@ const PaymentSimulationModal = ({
             
             <form onSubmit={handleSubmit} className="space-y-4 py-4">
               <div className="bg-secondary/50 rounded-lg p-4 text-center">
-                <span className="text-2xl font-bold text-foreground">1,00 €</span>
+                <span className="text-2xl font-bold text-foreground">{amount.toFixed(2).replace('.', ',')} €</span>
                 <p className="text-xs text-muted-foreground mt-1">
                   {t("payment.oneTimeFee")}
                 </p>
@@ -156,7 +158,7 @@ const PaymentSimulationModal = ({
                   {t("common.cancel")}
                 </Button>
                 <Button type="submit" variant="gradient">
-                  {t("payment.pay")} 1,00 €
+                  {t("payment.pay")} {amount.toFixed(2).replace('.', ',')} €
                 </Button>
               </DialogFooter>
             </form>

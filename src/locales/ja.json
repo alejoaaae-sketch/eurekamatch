@@ -132,6 +132,21 @@
     "success": "支払いが完了しました！",
     "thankYou": "ご購入ありがとうございます"
   },
+  "packs": {
+    "title": "ピックを購入",
+    "currentBalance": "現在の残高",
+    "basic": "ベーシックパック",
+    "small": "スモールパック",
+    "medium": "ミディアムパック",
+    "large": "ラージパック",
+    "popular": "人気",
+    "info": "購入したピックは期限切れになりません。すべてのアプリで有効です。",
+    "purchaseSuccess": "{{count}}ピックを購入しました！",
+    "noPicks": "ピックが残っていません",
+    "noPicksHint": "パックを購入して選択を続けてください。",
+    "buyPacks": "ピックを購入",
+    "picksRemaining": "{{count}}ピック残っています"
+  },
   "time": {
     "now": "今",
     "yesterday": "昨日"

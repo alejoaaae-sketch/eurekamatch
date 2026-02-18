@@ -68,8 +68,6 @@ const Home = () => {
     const result = await deletePick(pickId);
     if (result.success) {
       toast.success(t("pick.deleted"));
-      // Mark that next pick addition requires payment (user is changing a pick)
-      localStorage.setItem(`payment_required_${appConfig.appType}`, 'true');
     } else {
       toast.error(result.error || t("common.error"));
     }

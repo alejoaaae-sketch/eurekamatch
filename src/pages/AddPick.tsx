@@ -59,6 +59,24 @@ const AddPick = () => {
   }, [i18n]);
 
   const canAddMore = betaMode || picksRemaining > 0;
+  const [activePicksCount, setActivePicksCount] = useState<number | null>(null);
+
+  // Fetch active picks count for this app
+  useEffect(() => {
+    if (!user) return;
+    const fetchCount = async () => {
+      const { count } = await supabase
+        .from('picks')
+        .select('*', { count: 'exact', head: true })
+        .eq('picker_id', user.id)
+        .eq('app_type', appConfig.appType)
+        .is('deleted_at', null);
+      setActivePicksCount(count ?? 0);
+    };
+    fetchCount();
+  }, [user]);
+
+  const atPickLimit = !betaMode && activePicksCount !== null && activePicksCount >= effectiveMaxPicks;
 
   useEffect(() => {
     if (!authLoading && !user) {
@@ -88,6 +106,11 @@ const AddPick = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
+    if (atPickLimit) {
+      toast.error(t("pick.limit"));
+      return;
+    }
+
     if (!canAddMore) {
       navigate("/buy-packs");
       return;
@@ -185,7 +208,40 @@ const AddPick = () => {
     );
   }
 
-  // Show no picks remaining screen
+  // Show at pick limit screen - must delete one first
+  if (atPickLimit) {
+    return (
+      <div className="min-h-screen bg-background flex flex-col">
+        <header className="sticky top-0 z-10 bg-background/80 backdrop-blur-xl border-b border-border/50 px-6 py-4">
+          <div className="flex items-center gap-4">
+            <button
+              onClick={() => navigate(-1)}
+              className="w-9 h-9 rounded-full bg-secondary flex items-center justify-center text-muted-foreground hover:text-foreground transition-colors"
+            >
+              <ArrowLeft className="w-5 h-5" />
+            </button>
+            <h1 className="text-lg font-semibold text-foreground">{t("pick.add")}</h1>
+          </div>
+        </header>
+        <div className="flex-1 px-6 py-8 flex flex-col items-center justify-center">
+          <div className="w-20 h-20 rounded-full bg-secondary flex items-center justify-center mb-6">
+            <AlertCircle className="w-10 h-10 text-muted-foreground" />
+          </div>
+          <h2 className="text-xl font-medium text-foreground mb-2 text-center">
+            {t("pick.limit")}
+          </h2>
+          <p className="text-muted-foreground text-sm text-center mb-6">
+            {t("pick.limitMessage", { count: effectiveMaxPicks })}
+          </p>
+          <Button onClick={() => navigate("/home")} variant="gradient">
+            {t("common.back")}
+          </Button>
+        </div>
+      </div>
+    );
+  }
+
+  // Show no picks remaining screen (no balance for replacements)
   if (!canAddMore) {
     return (
       <div className="min-h-screen bg-background flex flex-col">
@@ -200,7 +256,6 @@ const AddPick = () => {
             <h1 className="text-lg font-semibold text-foreground">{t("pick.add")}</h1>
           </div>
         </header>
-
         <div className="flex-1 px-6 py-8 flex flex-col items-center justify-center">
           <div className="w-20 h-20 rounded-full bg-secondary flex items-center justify-center mb-6">
             <ShoppingCart className="w-10 h-10 text-muted-foreground" />

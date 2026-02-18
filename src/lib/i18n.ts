@@ -28,6 +28,52 @@ const resources = {
   ja: { translation: ja },
 };
 
+// Country code (ISO 3166-1 alpha-2) to language code mapping
+const countryToLanguage: Record<string, LanguageCode> = {
+  ES: 'es',
+  MX: 'es',
+  AR: 'es',
+  CO: 'es',
+  CL: 'es',
+  PE: 'es',
+  VE: 'es',
+  EC: 'es',
+  GT: 'es',
+  CU: 'es',
+  BO: 'es',
+  DO: 'es',
+  HN: 'es',
+  PY: 'es',
+  SV: 'es',
+  NI: 'es',
+  CR: 'es',
+  PA: 'es',
+  UY: 'es',
+  FR: 'fr',
+  BE: 'fr',
+  CH: 'fr',
+  CA: 'fr',
+  JP: 'ja',
+  GB: 'en',
+  US: 'en',
+  AU: 'en',
+  NZ: 'en',
+  IE: 'en',
+  AD: 'ca',
+};
+
+// Detect language from IP geolocation (async, best-effort)
+export const detectLanguageFromIP = async (): Promise<LanguageCode> => {
+  try {
+    const response = await fetch('https://ip-api.com/json/?fields=countryCode', { signal: AbortSignal.timeout(3000) });
+    const data = await response.json();
+    const country = data?.countryCode as string;
+    return countryToLanguage[country] ?? 'en';
+  } catch {
+    return 'en';
+  }
+};
+
 // Get initial language from localStorage or default to 'es'
 const getInitialLanguage = (): LanguageCode => {
   const stored = localStorage.getItem('language');
@@ -42,10 +88,18 @@ i18n
   .init({
     resources,
     lng: getInitialLanguage(),
-    fallbackLng: 'es',
+    fallbackLng: 'en',
     interpolation: {
       escapeValue: false,
     },
   });
+
+// On first visit (no stored language), detect from IP and update
+if (!localStorage.getItem('language')) {
+  detectLanguageFromIP().then((lang) => {
+    i18n.changeLanguage(lang);
+    localStorage.setItem('language', lang);
+  });
+}
 
 export default i18n;

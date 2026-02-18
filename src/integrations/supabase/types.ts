@@ -104,6 +104,7 @@ export type Database = {
           created_at: string
           enabled_countries: string[]
           enabled_languages: string[]
+          free_picks_on_signup: number
           id: string
           max_new_users_per_day: number
           promo_enabled: boolean
@@ -119,6 +120,7 @@ export type Database = {
           created_at?: string
           enabled_countries?: string[]
           enabled_languages?: string[]
+          free_picks_on_signup?: number
           id?: string
           max_new_users_per_day?: number
           promo_enabled?: boolean
@@ -134,6 +136,7 @@ export type Database = {
           created_at?: string
           enabled_countries?: string[]
           enabled_languages?: string[]
+          free_picks_on_signup?: number
           id?: string
           max_new_users_per_day?: number
           promo_enabled?: boolean
@@ -230,6 +233,47 @@ export type Database = {
         }
         Relationships: []
       }
+      pack_purchases: {
+        Row: {
+          created_at: string
+          id: string
+          pack_id: string | null
+          pack_name: string
+          payment_method: string
+          picks_count: number
+          price: number
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          pack_id?: string | null
+          pack_name: string
+          payment_method?: string
+          picks_count: number
+          price: number
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          pack_id?: string | null
+          pack_name?: string
+          payment_method?: string
+          picks_count?: number
+          price?: number
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "pack_purchases_pack_id_fkey"
+            columns: ["pack_id"]
+            isOneToOne: false
+            referencedRelation: "pick_packs"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       phone_otps: {
         Row: {
           created_at: string
@@ -254,6 +298,45 @@ export type Database = {
           otp_code?: string
           phone?: string
           verified?: boolean
+        }
+        Relationships: []
+      }
+      pick_packs: {
+        Row: {
+          created_at: string
+          enabled: boolean
+          id: string
+          name: string
+          picks_count: number
+          price: number
+          price_per_pick: number | null
+          savings_percent: number
+          sort_order: number
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          enabled?: boolean
+          id?: string
+          name: string
+          picks_count: number
+          price: number
+          price_per_pick?: number | null
+          savings_percent?: number
+          sort_order?: number
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          enabled?: boolean
+          id?: string
+          name?: string
+          picks_count?: number
+          price?: number
+          price_per_pick?: number | null
+          savings_percent?: number
+          sort_order?: number
+          updated_at?: string
         }
         Relationships: []
       }
@@ -333,6 +416,36 @@ export type Database = {
           language?: string
           phone?: string | null
           phone_verified?: boolean
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
+      user_pick_balance: {
+        Row: {
+          created_at: string
+          id: string
+          picks_remaining: number
+          total_purchased: number
+          total_used: number
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          picks_remaining?: number
+          total_purchased?: number
+          total_used?: number
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          picks_remaining?: number
+          total_purchased?: number
+          total_used?: number
           updated_at?: string
           user_id?: string
         }

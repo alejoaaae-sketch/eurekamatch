@@ -227,7 +227,7 @@
         "description": "Si l'autre personne vous choisit aussi, nous vous notifions par email et dans l'app."
       },
       "step5": {
-        "description": "Nous sommes actuellement en phase de test. Plus tard, chaque changement de personne aura un coût symbolique de {{price}}."
+        "description": "Nous sommes actuellement en phase de test. Plus tard, chaque changement de personne aura un coût symbolique."
       }
     },
     "features": {

@@ -29,7 +29,7 @@ const AddPick = () => {
   const { t, i18n } = useTranslation();
   const { user, loading: authLoading } = useAuth();
   const { addPick, loading: picksLoading } = usePicks();
-  const { appEnabled, verifyMobile, betaMode, loading: configLoading } = useAppConfig();
+  const { appEnabled, verifyMobile, betaMode, effectiveMaxPicks, loading: configLoading } = useAppConfig();
   const { profile, refetch: refetchProfile } = useProfile();
   const { picksRemaining, consumePick, loading: balanceLoading } = usePickBalance();
   const [value, setValue] = useState("");
@@ -132,13 +132,31 @@ const AddPick = () => {
     setLoading(true);
 
     try {
-      // Consume a pick from balance (skip in beta mode)
+      // Check if this is a replacement (user has already filled all initial slots before)
+      // by counting ALL picks ever created (including soft-deleted) for this app_type
       if (!betaMode) {
-        const consumeResult = await consumePick();
-        if (!consumeResult.success) {
-          toast.error(consumeResult.error || t("common.error"));
+        const { count, error: countError } = await supabase
+          .from('picks')
+          .select('*', { count: 'exact', head: true })
+          .eq('picker_id', user!.id)
+          .eq('app_type', appConfig.appType);
+
+        if (countError) {
+          toast.error(t("common.error"));
           setLoading(false);
           return;
+        }
+
+        const totalEverCreated = count ?? 0;
+        const isReplacement = totalEverCreated >= effectiveMaxPicks;
+
+        if (isReplacement) {
+          const consumeResult = await consumePick();
+          if (!consumeResult.success) {
+            toast.error(consumeResult.error || t("common.error"));
+            setLoading(false);
+            return;
+          }
         }
       }
 

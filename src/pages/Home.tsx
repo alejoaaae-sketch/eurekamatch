@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { Button } from "@/components/ui/button";
-import { Heart, Plus, User, Sparkles, Loader2 } from "lucide-react";
+import { Heart, Plus, User, Sparkles, Loader2, Coins } from "lucide-react";
 import PickCard from "@/components/PickCard";
 import MatchCard from "@/components/MatchCard";
 import LanguageSelector from "@/components/LanguageSelector";
@@ -9,6 +9,7 @@ import AgeVerificationGate from "@/components/AgeVerificationGate";
 import { useAuth } from "@/hooks/useAuth";
 import { usePicks } from "@/hooks/usePicks";
 import { useMatches } from "@/hooks/useMatches";
+import { usePickBalance } from "@/hooks/usePickBalance";
 import { useProfile } from "@/hooks/useProfile";
 import { useState, useEffect } from "react";
 import { toast } from "sonner";
@@ -25,6 +26,7 @@ const Home = () => {
   const { matches, loading: matchesLoading } = useMatches();
   const { profile } = useProfile();
   const { appEnabled, loading: configLoading } = useAppConfig();
+  const { picksRemaining } = usePickBalance();
   const [activeTab, setActiveTab] = useState<"picks" | "matches">("picks");
   const [showAgeGate, setShowAgeGate] = useState(false);
   const [, forceUpdate] = useState(0);
@@ -127,6 +129,13 @@ const Home = () => {
             </div>
           </div>
           <div className="flex items-center gap-2">
+            <button
+              onClick={() => navigate("/buy-packs")}
+              className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-secondary text-sm font-medium text-foreground hover:bg-secondary/80 transition-colors"
+            >
+              <Coins className="w-4 h-4 text-amber-500" />
+              <span>{picksRemaining}</span>
+            </button>
             <LanguageSelector />
             <button 
               onClick={() => navigate("/profile")}

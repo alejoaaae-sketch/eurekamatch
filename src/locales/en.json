@@ -65,7 +65,8 @@
     "taglines": {
       "love": "Discover if love is mutual",
       "friends": "Friends you can count on. Because it's mutual.",
-      "mude": "Discover mutual desire"
+      "mude": "Discover mutual desire",
+      "colab": "Discover if they want to collaborate with you"
     }
   },
   "home": {
@@ -197,6 +198,9 @@
       },
       "mude": {
         "tagline": "Discover mutual desire. Discreet and safe."
+      },
+      "colab": {
+        "tagline": "Discover if they want to collaborate with you. Professional and discreet."
       }
     },
     "concept": {
@@ -225,6 +229,9 @@
     "mude": {
       "description": "Eureka MUDE (MUtual DEsire) is an app to find out if desire is mutual between two people who already know each other, without pressure or exposure. It's not for searching. It's for confirming."
     },
+    "colab": {
+      "description": "EUREKA COLAB is a tool to discover if someone wants to collaborate with you. Projects, ideas, business... If the interest is mutual, we connect you. No exposure, no rejection."
+    },
     "steps": {
       "step1": {
         "title": "Create your account",
@@ -242,6 +249,10 @@
         "mude": {
           "title": "Add who interests you",
           "description": "Choose up to 2 people. Enter their phone number. No one gets notified."
+        },
+        "colab": {
+          "title": "Add who interests you",
+          "description": "Choose up to 5 people. Enter their phone number. No one gets notified."
         }
       },
       "step3": {

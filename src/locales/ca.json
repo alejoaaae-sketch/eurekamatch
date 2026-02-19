@@ -39,7 +39,8 @@
     "taglines": {
       "love": "Descobreix si l'amor és mutu",
       "friends": "Amics amb qui pots comptar. Perquè és mutu.",
-      "mude": "Descobreix el desig mutu"
+      "mude": "Descobreix el desig mutu",
+      "colab": "Descobreix si vol col·laborar amb tu"
     }
   },
   "home": {
@@ -171,6 +172,9 @@
       },
       "mude": {
         "tagline": "Descobreix el desig mutu. Discret i segur."
+      },
+      "colab": {
+        "tagline": "Descobreix si vol col·laborar amb tu. Professional i discret."
       }
     },
     "concept": {
@@ -199,6 +203,9 @@
     "mude": {
       "description": "Eureka MUDE (MUtual DEsire) és una app per saber si el desig és mutu entre dues persones que ja es coneixen, sense pressió i sense exposició. No és per buscar. És per confirmar."
     },
+    "colab": {
+      "description": "EUREKA COLAB és una eina per descobrir si algú vol col·laborar amb tu. Projectes, idees, negocis... Si l'interès és mutu, us posem en contacte. Sense exposició, sense rebuig."
+    },
     "steps": {
       "step1": {
         "title": "Crea el teu compte",
@@ -216,6 +223,10 @@
         "mude": {
           "title": "Afegeix a qui t'interessa",
           "description": "Escull fins a 2 persones. Introdueix el seu mòbil. Ningú rep avís."
+        },
+        "colab": {
+          "title": "Afegeix a qui t'interessa",
+          "description": "Escull fins a 5 persones. Introdueix el seu mòbil. Ningú rep avís."
         }
       },
       "step3": {

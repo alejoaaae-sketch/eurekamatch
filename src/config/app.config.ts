@@ -1,5 +1,5 @@
 // App configuration - can be overridden by environment variables
-export type AppType = 'love' | 'plan' | 'mude';
+export type AppType = 'love' | 'plan' | 'mude' | 'colab';
 
 // BETA MODE: Set to false to enable payments
 export const BETA_MODE = true;
@@ -41,6 +41,14 @@ const appConfigs: Record<AppType, AppConfig> = {
     accentColor: 'hsl(0, 84%, 60%)',
     tagline: 'Descubre la atracción mutua',
   },
+  colab: {
+    appType: 'colab',
+    appName: 'EUREKA COLAB',
+    maxPicks: 5,
+    primaryColor: 'hsl(192, 82%, 45%)', // Teal/cyan
+    accentColor: 'hsl(192, 82%, 55%)',
+    tagline: 'Descubre si quiere colaborar contigo',
+  },
 };
 
 // Get app type from URL parameter, environment, or default to 'love'
@@ -49,20 +57,20 @@ const getAppType = (): AppType => {
   if (typeof window !== 'undefined') {
     const urlParams = new URLSearchParams(window.location.search);
     const urlAppType = urlParams.get('app');
-    if (urlAppType && ['love', 'plan', 'mude'].includes(urlAppType)) {
+    if (urlAppType && ['love', 'plan', 'mude', 'colab'].includes(urlAppType)) {
       // Store in sessionStorage to persist during navigation
       sessionStorage.setItem('eureka_app_type', urlAppType);
       return urlAppType as AppType;
     }
     // Check sessionStorage for previously set app type
     const storedAppType = sessionStorage.getItem('eureka_app_type');
-    if (storedAppType && ['love', 'plan', 'mude'].includes(storedAppType)) {
+    if (storedAppType && ['love', 'plan', 'mude', 'colab'].includes(storedAppType)) {
       return storedAppType as AppType;
     }
   }
   // Fall back to environment variable
   const envAppType = import.meta.env.VITE_APP_TYPE as string;
-  if (envAppType && ['love', 'plan', 'mude'].includes(envAppType)) {
+  if (envAppType && ['love', 'plan', 'mude', 'colab'].includes(envAppType)) {
     return envAppType as AppType;
   }
   return 'love';

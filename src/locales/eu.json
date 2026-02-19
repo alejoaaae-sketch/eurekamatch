@@ -39,7 +39,8 @@
     "taglines": {
       "love": "Ezagutu maitasuna elkarrekikoa den",
       "friends": "Kontatu dezakezun lagunak. Elkarrekikoa delako.",
-      "mude": "Ezagutu desira elkarrekikoa"
+      "mude": "Ezagutu desira elkarrekikoa",
+      "colab": "Ezagutu zurekin kolaboratu nahi duen"
     }
   },
   "home": {
@@ -171,6 +172,9 @@
       },
       "mude": {
         "tagline": "Ezagutu desira elkarrekikoa. Diskretua eta segurua."
+      },
+      "colab": {
+        "tagline": "Ezagutu zurekin kolaboratu nahi duen. Profesionala eta diskretua."
       }
     },
     "concept": {
@@ -199,6 +203,9 @@
     "mude": {
       "description": "Eureka MUDE (MUtual DEsire) aplikazio bat da elkar ezagutzen duten bi pertsonen artean desira elkarrekikoa den jakiteko, presiorik eta esposiziorik gabe. Ez da bilatzeko. Baieztatzeko da."
     },
+    "colab": {
+      "description": "EUREKA COLAB zurekin kolaboratu nahi duen norbait dagoen jakiteko tresna bat da. Proiektuak, ideiak, negozioak... Interesa elkarrekikoa bada, konektatzen zaituztegu. Esposiziorik gabe, bazterketarik gabe."
+    },
     "steps": {
       "step1": {
         "title": "Sortu zure kontua",
@@ -216,6 +223,10 @@
         "mude": {
           "title": "Gehitu interesatzen zaizuna",
           "description": "Aukeratu 2 pertsona arte. Sartu haien telefono zenbakia. Inork ez du abisurik jasotzen."
+        },
+        "colab": {
+          "title": "Gehitu interesatzen zaizuna",
+          "description": "Aukeratu 5 pertsona arte. Sartu haien telefono zenbakia. Inork ez du abisurik jasotzen."
         }
       },
       "step3": {

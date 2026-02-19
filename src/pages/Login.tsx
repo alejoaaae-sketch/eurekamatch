@@ -1,9 +1,9 @@
 import { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Heart, Eye, EyeOff, Loader2, Phone, User, Mail } from "lucide-react";
+import { Heart, Eye, EyeOff, Loader2, Phone, User, Mail, Users, Flame, Handshake } from "lucide-react";
 import { useAuth } from "@/hooks/useAuth";
 import LanguageSelector from "@/components/LanguageSelector";
 import LegalFooter from "@/components/LegalFooter";
@@ -11,12 +11,16 @@ import LegalFooter from "@/components/LegalFooter";
 import PasswordStrengthIndicator from "@/components/PasswordStrengthIndicator";
 import { toast } from "sonner";
 import { useAppConfig } from "@/hooks/useAppConfig";
+import { getAppConfig, AppType } from "@/config/app.config";
 
 type LoginStep = "form";
 
 const Login = () => {
   const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
   const { t } = useTranslation();
+  const appType = (searchParams.get('app') as AppType) || 'love';
+  const config = getAppConfig(appType);
   const { user, loading: authLoading, signIn, signUp } = useAuth();
   const { verifyEmail } = useAppConfig();
   const [step] = useState<LoginStep>("form");
@@ -133,14 +137,22 @@ const Login = () => {
 
       {/* Logo */}
       <div className="mb-12 animate-fade-in-up">
-        <div className="w-20 h-20 rounded-full gradient-match flex items-center justify-center glow-primary float-animation">
-          <Heart className="w-10 h-10 text-primary-foreground" fill="currentColor" />
+        <div className={`w-20 h-20 rounded-2xl flex items-center justify-center shadow-xl float-animation bg-gradient-to-br ${
+          appType === 'love' ? 'from-rose-500 to-pink-500' :
+          appType === 'plan' ? 'from-orange-500 to-amber-500' :
+          appType === 'mude' ? 'from-red-600 to-rose-500' :
+          'from-teal-500 to-cyan-500'
+        } text-white`}>
+          {appType === 'love' && <Heart className="w-10 h-10" fill="currentColor" />}
+          {appType === 'plan' && <Users className="w-10 h-10" />}
+          {appType === 'mude' && <Flame className="w-10 h-10" fill="currentColor" />}
+          {appType === 'colab' && <Handshake className="w-10 h-10" />}
         </div>
       </div>
 
       {/* Title */}
       <div className="text-center mb-10 animate-fade-in-up animate-delay-100">
-        <h1 className="text-3xl font-semibold text-foreground mb-2">{t("app.name")}</h1>
+        <h1 className="text-3xl font-semibold text-foreground mb-2">{config.appName}</h1>
         <p className="text-muted-foreground text-sm">
           {t("app.tagline")}
         </p>

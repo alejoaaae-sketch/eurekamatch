@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { Button } from "@/components/ui/button";
-import { Heart, Users, Flame, Sparkles, ArrowRight, Beaker } from "lucide-react";
+import { Heart, Users, Flame, Sparkles, ArrowRight, Beaker, Handshake } from "lucide-react";
 import { useAuth } from "@/hooks/useAuth";
 import { useEffect } from "react";
 import LanguageSelector from "@/components/LanguageSelector";
@@ -40,6 +40,12 @@ const Landing = () => {
       icon: <Flame className="w-8 h-8" fill="currentColor" />,
       gradient: 'from-red-600 to-rose-500',
       hoverGradient: 'hover:from-red-700 hover:to-rose-600',
+    },
+    {
+      type: 'colab',
+      icon: <Handshake className="w-8 h-8" />,
+      gradient: 'from-teal-500 to-cyan-500',
+      hoverGradient: 'hover:from-teal-600 hover:to-cyan-600',
     },
   ];
 
@@ -104,7 +110,7 @@ const Landing = () => {
               {t("landing.variants.title")}
             </h2>
 
-            <div className="grid md:grid-cols-3 gap-6 max-w-4xl mx-auto">
+            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-5xl mx-auto">
               {appVariants.map((variant) => {
                 const config = getAppConfig(variant.type);
                 const enabled = isAppEnabled(variant.type);
@@ -140,7 +146,7 @@ const Landing = () => {
                     {enabled ? (
                       <div className={`inline-flex items-center gap-2 text-sm font-medium bg-gradient-to-r ${variant.gradient} bg-clip-text text-transparent`}>
                         {t("landing.variants.explore")}
-                        <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" style={{ color: variant.type === 'love' ? '#f43f5e' : variant.type === 'plan' ? '#f97316' : '#dc2626' }} />
+                        <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" style={{ color: variant.type === 'love' ? '#f43f5e' : variant.type === 'plan' ? '#f97316' : variant.type === 'mude' ? '#dc2626' : '#14b8a6' }} />
                       </div>
                     ) : (
                       <span className="text-xs font-medium text-muted-foreground/60 uppercase tracking-wider">

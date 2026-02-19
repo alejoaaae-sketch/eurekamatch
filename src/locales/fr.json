@@ -39,7 +39,8 @@
     "taglines": {
       "love": "Découvrez si l'amour est mutuel",
       "friends": "Des amis sur qui compter. Parce que c'est mutuel.",
-      "mude": "Découvrez le désir mutuel"
+      "mude": "Découvrez le désir mutuel",
+      "colab": "Découvrez s'il veut collaborer avec vous"
     }
   },
   "home": {
@@ -171,6 +172,9 @@
       },
       "mude": {
         "tagline": "Découvrez le désir mutuel. Discret et sûr."
+      },
+      "colab": {
+        "tagline": "Découvrez s'il veut collaborer avec vous. Professionnel et discret."
       }
     },
     "concept": {
@@ -199,6 +203,9 @@
     "mude": {
       "description": "Eureka MUDE (MUtual DEsire) est une app pour savoir si le désir est mutuel entre deux personnes qui se connaissent déjà, sans pression et sans exposition. Ce n'est pas pour chercher. C'est pour confirmer."
     },
+    "colab": {
+      "description": "EUREKA COLAB est un outil pour découvrir si quelqu'un veut collaborer avec vous. Projets, idées, business... Si l'intérêt est mutuel, nous vous mettons en contact. Sans exposition, sans rejet."
+    },
     "steps": {
       "step1": {
         "title": "Créez votre compte",
@@ -216,6 +223,10 @@
         "mude": {
           "title": "Ajoutez qui vous intéresse",
           "description": "Choisissez jusqu'à 2 personnes. Entrez leur numéro de téléphone. Personne n'est averti."
+        },
+        "colab": {
+          "title": "Ajoutez qui vous intéresse",
+          "description": "Choisissez jusqu'à 5 personnes. Entrez leur numéro de téléphone. Personne n'est averti."
         }
       },
       "step3": {

@@ -77,7 +77,14 @@ const getAppType = (): AppType => {
 };
 
 export const currentAppType = getAppType();
-export const appConfig = appConfigs[currentAppType];
+
+// Use a Proxy so appConfig always reflects the current app type (which may
+// change via sessionStorage during SPA navigation between app modes).
+export const appConfig: AppConfig = new Proxy({} as AppConfig, {
+  get(_, prop: string) {
+    return appConfigs[getAppType()][prop as keyof AppConfig];
+  },
+});
 
 export const getAppConfig = (type?: AppType): AppConfig => {
   return appConfigs[type || currentAppType];

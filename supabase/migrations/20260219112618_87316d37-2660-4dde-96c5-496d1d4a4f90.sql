@@ -1,0 +1,2 @@
+ALTER TABLE public.picks DROP CONSTRAINT picks_app_type_check;
+ALTER TABLE public.picks ADD CONSTRAINT picks_app_type_check CHECK (app_type = ANY (ARRAY['love'::text, 'plan'::text, 'mude'::text, 'colab'::text]));

@@ -3,7 +3,7 @@ import { useNavigate, useSearchParams } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Heart, Eye, EyeOff, Loader2, Phone, User, Mail, Users, Flame, Handshake } from "lucide-react";
+import { Heart, Eye, EyeOff, Loader2, Phone, User, Mail, Users, Flame, Handshake, ArrowLeft } from "lucide-react";
 import { useAuth } from "@/hooks/useAuth";
 import LanguageSelector from "@/components/LanguageSelector";
 import LegalFooter from "@/components/LegalFooter";
@@ -130,7 +130,16 @@ const Login = () => {
 
   return (
     <div className="min-h-screen bg-background flex flex-col items-center justify-center p-6 relative">
-      {/* Language Selector */}
+      {/* Top bar */}
+      <div className="absolute top-6 left-6">
+        <button
+          onClick={() => navigate(-1)}
+          className="p-2 rounded-full hover:bg-secondary transition-colors text-muted-foreground hover:text-foreground"
+          aria-label="Back"
+        >
+          <ArrowLeft className="w-5 h-5" />
+        </button>
+      </div>
       <div className="absolute top-6 right-6">
         <LanguageSelector />
       </div>

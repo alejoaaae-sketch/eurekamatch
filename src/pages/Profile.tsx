@@ -3,7 +3,8 @@ import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { ArrowLeft, User, Phone, Loader2, AlertCircle, Globe, Settings, Mail, CheckCircle2, XCircle, Cog } from "lucide-react";
+import { ArrowLeft, User, Phone, Loader2, AlertCircle, Globe, Settings, Mail, CheckCircle2, XCircle, Cog, History } from "lucide-react";
+import PickHistory from "@/components/PickHistory";
 import {
   Select,
   SelectContent,
@@ -251,6 +252,15 @@ const Profile = () => {
             </Button>
           </div>
         </form>
+
+        {/* Pick History */}
+        <div className="mt-8 pt-8 border-t border-border">
+          <div className="flex items-center gap-2 mb-4">
+            <History className="w-4 h-4 text-muted-foreground" />
+            <h2 className="text-sm font-semibold text-foreground">{t("history.title", "Historial de créditos")}</h2>
+          </div>
+          <PickHistory />
+        </div>
 
         {/* Admin panel link */}
         {isAdmin && (

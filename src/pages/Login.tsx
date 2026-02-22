@@ -133,7 +133,7 @@ const Login = () => {
       {/* Top bar */}
       <div className="absolute top-6 left-6">
         <button
-          onClick={() => navigate(-1)}
+          onClick={() => navigate("/")}
           className="p-2 rounded-full hover:bg-secondary transition-colors text-muted-foreground hover:text-foreground"
           aria-label="Back"
         >

@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { Button } from "@/components/ui/button";
-import { Heart, Plus, User, Sparkles, Loader2, Coins } from "lucide-react";
+import { Heart, Plus, User, Sparkles, Loader2, Coins, ArrowLeft } from "lucide-react";
 import PickCard from "@/components/PickCard";
 import MatchCard from "@/components/MatchCard";
 import LanguageSelector from "@/components/LanguageSelector";
@@ -109,7 +109,13 @@ const Home = () => {
       {/* Header */}
       <header className="sticky top-0 z-10 bg-background/80 backdrop-blur-xl border-b border-border/50 px-6 py-4">
         <div className="flex items-center justify-between">
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-2">
+            <button
+              onClick={() => navigate("/")}
+              className="w-9 h-9 rounded-full bg-secondary flex items-center justify-center text-muted-foreground hover:text-foreground transition-colors"
+            >
+              <ArrowLeft className="w-5 h-5" />
+            </button>
             <div 
               className="w-9 h-9 rounded-full flex items-center justify-center"
               style={{ background: appConfig.primaryColor }}

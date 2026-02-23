@@ -15,12 +15,7 @@ const Landing = () => {
   const { user, loading } = useAuth();
   const { isAppEnabled, loading: configLoading } = useAllAppConfigs();
 
-  // Redirect to home if already logged in
-  useEffect(() => {
-    if (!loading && user) {
-      navigate("/home");
-    }
-  }, [user, loading, navigate]);
+  // No redirect — logged-in users can use this page as an app switcher
 
   const appVariants: { type: AppType; icon: React.ReactNode; gradient: string; hoverGradient: string }[] = [
     {
@@ -50,9 +45,13 @@ const Landing = () => {
   ];
 
   const handleAppSelect = (appType: AppType) => {
-    // Store the selected app type and navigate to app landing
     sessionStorage.setItem('eureka_app_type', appType);
-    navigate(`/app?app=${appType}`);
+    // If logged in, go straight to home; otherwise show app landing
+    if (user) {
+      navigate("/home");
+    } else {
+      navigate(`/app?app=${appType}`);
+    }
   };
 
   return (

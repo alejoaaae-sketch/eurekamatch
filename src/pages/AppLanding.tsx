@@ -1,7 +1,7 @@
 import { useNavigate, useSearchParams } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { Button } from "@/components/ui/button";
-import { Heart, Users, Flame, Sparkles, ArrowLeft, Shield, Lock, MessageCircle, Handshake } from "lucide-react";
+import { Heart, Users, Flame, Sparkles, ArrowLeft, Shield, Lock, MessageCircle, Trophy } from "lucide-react";
 import { useAuth } from "@/hooks/useAuth";
 import { useEffect } from "react";
 import LanguageSelector from "@/components/LanguageSelector";
@@ -43,8 +43,8 @@ const AppLanding = () => {
         return <Users className="w-10 h-10" />;
       case 'mude':
         return <Flame className="w-10 h-10" fill="currentColor" />;
-      case 'colab':
-        return <Handshake className="w-10 h-10" />;
+      case 'sport':
+        return <Trophy className="w-10 h-10" />;
       default:
         return <Heart className="w-10 h-10" fill="currentColor" />;
     }
@@ -58,8 +58,8 @@ const AppLanding = () => {
         return 'from-orange-500 to-amber-500';
       case 'mude':
         return 'from-red-600 to-rose-500';
-      case 'colab':
-        return 'from-teal-500 to-cyan-500';
+      case 'sport':
+        return 'from-green-500 to-emerald-500';
       default:
         return 'from-rose-500 to-pink-500';
     }
@@ -73,8 +73,8 @@ const AppLanding = () => {
         return 'text-orange-400';
       case 'mude':
         return 'text-red-400';
-      case 'colab':
-        return 'text-teal-400';
+      case 'sport':
+        return 'text-green-400';
       default:
         return 'text-rose-400';
     }
@@ -88,8 +88,8 @@ const AppLanding = () => {
         return 'bg-orange-500';
       case 'mude':
         return 'bg-red-500';
-      case 'colab':
-        return 'bg-teal-500';
+      case 'sport':
+        return 'bg-green-500';
       default:
         return 'bg-rose-500';
     }

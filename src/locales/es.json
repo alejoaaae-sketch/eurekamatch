@@ -66,7 +66,7 @@
       "love": "Descubre si el amor es mutuo",
       "friends": "Amigos con los que puedes contar. Porque es mutuo.",
       "mude": "Descubre la atracción mutua",
-      "colab": "Descubre si quiere colaborar contigo"
+      "sport": "Descubre si quiere hacer deporte contigo"
     }
   },
   "home": {
@@ -199,8 +199,8 @@
       "mude": {
         "tagline": "Descubre la atracción mutua. Discreto y seguro."
       },
-      "colab": {
-        "tagline": "Descubre si quiere colaborar contigo. Profesional y discreto."
+      "sport": {
+        "tagline": "Descubre si quiere hacer deporte contigo. Sin compromiso."
       }
     },
     "concept": {
@@ -229,8 +229,8 @@
     "mude": {
       "description": "Eureka MUDE (MUtual DEsire) es una app para saber si el deseo es mutuo entre dos personas que ya se conocen, sin presión y sin exposición. No es para buscar. Es para confirmar."
     },
-    "colab": {
-      "description": "EUREKA COLAB es una herramienta para descubrir si alguien quiere colaborar contigo. Proyectos, ideas, negocios... Si el interés es mutuo, os ponemos en contacto. Sin exposición, sin rechazo."
+    "sport": {
+      "description": "EUREKA SPORT es para descubrir si alguien quiere hacer deporte contigo. Pádel, running, bici, gym... Si el interés es mutuo, os ponemos en contacto. Sin exposición, sin rechazo."
     },
     "steps": {
       "step1": {
@@ -250,7 +250,7 @@
           "title": "Añade a quien te interesa",
           "description": "Elige hasta 2 personas. Introduce su móvil. Nadie recibe aviso."
         },
-        "colab": {
+        "sport": {
           "title": "Añade a quien te interesa",
           "description": "Elige hasta 5 personas. Introduce su móvil. Nadie recibe aviso."
         }

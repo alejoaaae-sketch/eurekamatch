@@ -3,7 +3,7 @@ import { useNavigate, useSearchParams } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Heart, Eye, EyeOff, Loader2, Phone, User, Mail, Users, Flame, Handshake, ArrowLeft } from "lucide-react";
+import { Heart, Eye, EyeOff, Loader2, Phone, User, Mail, Users, Flame, Trophy, ArrowLeft } from "lucide-react";
 import { useAuth } from "@/hooks/useAuth";
 import LanguageSelector from "@/components/LanguageSelector";
 import LegalFooter from "@/components/LegalFooter";
@@ -150,12 +150,12 @@ const Login = () => {
           appType === 'love' ? 'from-rose-500 to-pink-500' :
           appType === 'plan' ? 'from-orange-500 to-amber-500' :
           appType === 'mude' ? 'from-red-600 to-rose-500' :
-          'from-teal-500 to-cyan-500'
+          'from-green-500 to-emerald-500'
         } text-white`}>
           {appType === 'love' && <Heart className="w-10 h-10" fill="currentColor" />}
           {appType === 'plan' && <Users className="w-10 h-10" />}
           {appType === 'mude' && <Flame className="w-10 h-10" fill="currentColor" />}
-          {appType === 'colab' && <Handshake className="w-10 h-10" />}
+          {appType === 'sport' && <Trophy className="w-10 h-10" />}
         </div>
       </div>
 

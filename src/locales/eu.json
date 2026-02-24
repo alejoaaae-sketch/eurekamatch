@@ -40,7 +40,7 @@
       "love": "Ezagutu maitasuna elkarrekikoa den",
       "friends": "Kontatu dezakezun lagunak. Elkarrekikoa delako.",
       "mude": "Ezagutu desira elkarrekikoa",
-      "colab": "Ezagutu zurekin kolaboratu nahi duen"
+      "sport": "Ezagutu zurekin kirola egin nahi duen"
     }
   },
   "home": {
@@ -173,8 +173,8 @@
       "mude": {
         "tagline": "Ezagutu desira elkarrekikoa. Diskretua eta segurua."
       },
-      "colab": {
-        "tagline": "Ezagutu zurekin kolaboratu nahi duen. Profesionala eta diskretua."
+      "sport": {
+        "tagline": "Ezagutu zurekin kirola egin nahi duen. Presiorik gabe."
       }
     },
     "concept": {
@@ -203,8 +203,8 @@
     "mude": {
       "description": "Eureka MUDE (MUtual DEsire) aplikazio bat da elkar ezagutzen duten bi pertsonen artean desira elkarrekikoa den jakiteko, presiorik eta esposiziorik gabe. Ez da bilatzeko. Baieztatzeko da."
     },
-    "colab": {
-      "description": "EUREKA COLAB zurekin kolaboratu nahi duen norbait dagoen jakiteko tresna bat da. Proiektuak, ideiak, negozioak... Interesa elkarrekikoa bada, konektatzen zaituztegu. Esposiziorik gabe, bazterketarik gabe."
+    "sport": {
+      "description": "EUREKA SPORT zurekin kirola egin nahi duen norbait dagoen jakiteko tresna bat da. Padela, korrika, bizikleta, gimnasioa... Interesa elkarrekikoa bada, konektatzen zaituztegu. Esposiziorik gabe, bazterketarik gabe."
     },
     "steps": {
       "step1": {
@@ -224,7 +224,7 @@
           "title": "Gehitu interesatzen zaizuna",
           "description": "Aukeratu 2 pertsona arte. Sartu haien telefono zenbakia. Inork ez du abisurik jasotzen."
         },
-        "colab": {
+        "sport": {
           "title": "Gehitu interesatzen zaizuna",
           "description": "Aukeratu 5 pertsona arte. Sartu haien telefono zenbakia. Inork ez du abisurik jasotzen."
         }

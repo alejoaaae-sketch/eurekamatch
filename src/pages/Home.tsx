@@ -131,6 +131,7 @@ const Home = () => {
 {appConfig.appType === 'love' && '💕 LOVE'}
                 {appConfig.appType === 'plan' && '🤝 FRIENDS'}
                 {appConfig.appType === 'mude' && '🔥 MUDE'}
+                {appConfig.appType === 'sport' && '⚽ SPORT'}
               </span>
             </div>
           </div>

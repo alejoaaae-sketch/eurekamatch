@@ -1,17 +1,24 @@
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { ArrowLeft, Phone, Mail, Calendar, Clock, Trash2, Loader2 } from "lucide-react";
+import { useTranslation } from "react-i18next";
+import { ArrowLeft, Phone, Mail, Calendar, Clock, Trash2, Loader2, Send, CheckCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useAuth } from "@/hooks/useAuth";
 import { usePicks } from "@/hooks/usePicks";
+import { usePickNotifications } from "@/hooks/usePickNotifications";
+import { usePickBalance } from "@/hooks/usePickBalance";
 import { toast } from "sonner";
 
 const PickDetail = () => {
   const navigate = useNavigate();
   const { id } = useParams<{ id: string }>();
   const { user, loading: authLoading } = useAuth();
+  const { t } = useTranslation();
   const { picks, loading: picksLoading, deletePick } = usePicks();
+  const { notificationsEnabled, canNotify, wasSentThisMonth, sendNotification } = usePickNotifications();
+  const { picksRemaining, refetch: refetchBalance } = usePickBalance();
   const [deleting, setDeleting] = useState(false);
+  const [sending, setSending] = useState(false);
 
   useEffect(() => {
     if (!authLoading && !user) {
@@ -144,8 +151,53 @@ const PickDetail = () => {
           </div>
         </div>
 
+        {/* Notification button */}
+        {notificationsEnabled && !pick.is_matched && (
+          <div className="mt-8">
+            {wasSentThisMonth(pick.id) ? (
+              <div className="flex items-center justify-center gap-2 py-3 px-4 rounded-xl bg-secondary text-muted-foreground text-sm">
+                <CheckCircle className="w-4 h-4 text-primary" />
+                {t("notification.alreadySent")}
+              </div>
+            ) : canNotify(pick.id, pick.picked_user_id) ? (
+              <Button
+                className="w-full"
+                onClick={async () => {
+                  if (picksRemaining <= 0) {
+                    toast.error(t("packs.noPicks"));
+                    return;
+                  }
+                  setSending(true);
+                  const result = await sendNotification(pick.id);
+                  if (result.success) {
+                    toast.success(t("notification.sent"));
+                    await refetchBalance();
+                  } else {
+                    toast.error(result.error || t("common.error"));
+                  }
+                  setSending(false);
+                }}
+                disabled={sending || picksRemaining <= 0}
+              >
+                {sending ? (
+                  <Loader2 className="w-4 h-4 animate-spin" />
+                ) : (
+                  <>
+                    <Send className="w-4 h-4 mr-2" />
+                    {t("notification.sendHint")} (1 pick)
+                  </>
+                )}
+              </Button>
+            ) : !pick.picked_user_id ? (
+              <div className="text-center text-xs text-muted-foreground py-3">
+                {t("notification.notRegistered")}
+              </div>
+            ) : null}
+          </div>
+        )}
+
         {/* Delete button */}
-        <div className="mt-8">
+        <div className="mt-4">
           <Button
             variant="outline"
             className="w-full text-destructive hover:text-destructive hover:bg-destructive/10"
@@ -157,7 +209,7 @@ const PickDetail = () => {
             ) : (
               <>
                 <Trash2 className="w-4 h-4 mr-2" />
-                Eliminar elección
+                {t("pick.deleteConfirm")}
               </>
             )}
           </Button>

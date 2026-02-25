@@ -314,5 +314,11 @@
     "legalNote": "Zure erantzukizuna da zure jurisdikzioko adin-legezko baldintzak betetzen dituzula egiaztatzea.",
     "confirm": "18 urte edo gehiago ditut",
     "decline": "Irten"
+  },
+  "notification": {
+    "sendHint": "Pista anonimoa bidali",
+    "sent": "Pista bidalita! Pick 1 kendu da.",
+    "alreadySent": "Hilabete honetan pista bidalita",
+    "notRegistered": "Erabiltzaile hau ez da oraindik izena eman"
   }
 }

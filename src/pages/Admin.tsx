@@ -1,10 +1,11 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
-import { ArrowLeft, Loader2, Settings, Globe, Megaphone, Users, Save } from "lucide-react";
+import { ArrowLeft, Loader2, Settings, Globe, Megaphone, Users, Save, Bell } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Switch } from "@/components/ui/switch";
+import { Textarea } from "@/components/ui/textarea";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { useAuth } from "@/hooks/useAuth";
 import { useAdmin } from "@/hooks/useAdmin";
@@ -32,6 +33,8 @@ interface GlobalConfigRow {
   verify_mobile: boolean;
   verify_email: boolean;
   beta_mode: boolean;
+  notifications_enabled: boolean;
+  notification_sms_template: string;
 }
 
 const Admin = () => {
@@ -57,6 +60,8 @@ const Admin = () => {
     verify_mobile: false,
     verify_email: true,
     beta_mode: true,
+    notifications_enabled: false,
+    notification_sms_template: "",
   });
 
   useEffect(() => {
@@ -95,6 +100,8 @@ const Admin = () => {
         verify_mobile: g.verify_mobile,
         verify_email: g.verify_email,
         beta_mode: g.beta_mode,
+        notifications_enabled: g.notifications_enabled,
+        notification_sms_template: g.notification_sms_template,
       });
     }
     setLoading(false);
@@ -141,7 +148,9 @@ const Admin = () => {
         verify_mobile: globalForm.verify_mobile,
         verify_email: globalForm.verify_email,
         beta_mode: globalForm.beta_mode,
-      })
+        notifications_enabled: globalForm.notifications_enabled,
+        notification_sms_template: globalForm.notification_sms_template,
+      } as any)
       .eq("id", globalConfig.id)
       .select();
 
@@ -191,7 +200,7 @@ const Admin = () => {
 
       <div className="flex-1 px-4 py-6 max-w-2xl mx-auto w-full">
         <Tabs defaultValue="modes" className="w-full">
-          <TabsList className="grid w-full grid-cols-3 mb-6">
+          <TabsList className="grid w-full grid-cols-4 mb-6">
             <TabsTrigger value="modes" className="text-xs gap-1">
               <Users className="w-3.5 h-3.5" />
               Modos
@@ -199,6 +208,10 @@ const Admin = () => {
             <TabsTrigger value="global" className="text-xs gap-1">
               <Globe className="w-3.5 h-3.5" />
               Global
+            </TabsTrigger>
+            <TabsTrigger value="notifications" className="text-xs gap-1">
+              <Bell className="w-3.5 h-3.5" />
+              Notif.
             </TabsTrigger>
             <TabsTrigger value="promo" className="text-xs gap-1">
               <Megaphone className="w-3.5 h-3.5" />
@@ -337,6 +350,47 @@ const Admin = () => {
 
               <Button className="w-full" onClick={updateGlobalConfig} disabled={saving}>
                 {saving ? <Loader2 className="w-4 h-4 animate-spin" /> : <><Save className="w-4 h-4 mr-1" /> Guardar configuración global</>}
+              </Button>
+            </div>
+          </TabsContent>
+
+          {/* === NOTIFICATIONS TAB === */}
+          <TabsContent value="notifications" className="space-y-4">
+            <div className="glass-card p-5 space-y-4">
+              <div className="flex items-center justify-between">
+                <h3 className="text-base font-semibold text-foreground">Notificaciones SMS</h3>
+                <div className="flex items-center gap-2">
+                  <span className="text-xs text-muted-foreground">Activas</span>
+                  <Switch
+                    checked={globalForm.notifications_enabled}
+                    onCheckedChange={(v) => setGlobalForm((p) => ({ ...p, notifications_enabled: v }))}
+                  />
+                </div>
+              </div>
+
+              {globalForm.notifications_enabled && (
+                <div className="space-y-3 animate-fade-in-up">
+                  <div>
+                    <label className="text-xs text-muted-foreground mb-1 block">Plantilla SMS (texto que recibe el destinatario)</label>
+                    <Textarea
+                      value={globalForm.notification_sms_template}
+                      onChange={(e) => setGlobalForm((p) => ({ ...p, notification_sms_template: e.target.value }))}
+                      placeholder="Alguien ha pensado en ti en EurekaMatch 💫"
+                      rows={3}
+                    />
+                    <p className="text-xs text-muted-foreground mt-1">El mensaje es anónimo. No se revela quién lo envía.</p>
+                  </div>
+                  <div className="bg-secondary/50 rounded-lg p-3 text-xs text-muted-foreground space-y-1">
+                    <p>• Solo usuarios registrados pueden ser notificados</p>
+                    <p>• Límite: 1 SMS por pick al mes</p>
+                    <p>• Cuesta 1 crédito (pick) al remitente</p>
+                    <p>• Solo picks activos (no borrados, no matched)</p>
+                  </div>
+                </div>
+              )}
+
+              <Button className="w-full" onClick={updateGlobalConfig} disabled={saving}>
+                {saving ? <Loader2 className="w-4 h-4 animate-spin" /> : <><Save className="w-4 h-4 mr-1" /> Guardar notificaciones</>}
               </Button>
             </div>
           </TabsContent>

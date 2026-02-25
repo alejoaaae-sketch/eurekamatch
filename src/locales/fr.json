@@ -314,5 +314,11 @@
     "legalNote": "Il est de votre responsabilité de vérifier que vous remplissez les conditions d'âge légales dans votre juridiction.",
     "confirm": "J'ai 18 ans ou plus",
     "decline": "Quitter"
+  },
+  "notification": {
+    "sendHint": "Envoyer un indice anonyme",
+    "sent": "Indice envoyé ! 1 pick déduit.",
+    "alreadySent": "Indice envoyé ce mois-ci",
+    "notRegistered": "Cet utilisateur n'est pas encore inscrit"
   }
 }

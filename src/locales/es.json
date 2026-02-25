@@ -340,5 +340,11 @@
     "legalNote": "Es tu responsabilidad verificar que cumples con los requisitos legales de edad en tu jurisdicción.",
     "confirm": "Soy mayor de 18 años",
     "decline": "Salir"
+  },
+  "notification": {
+    "sendHint": "Enviar pista anónima",
+    "sent": "¡Pista enviada! Se ha descontado 1 pick.",
+    "alreadySent": "Pista enviada este mes",
+    "notRegistered": "Este usuario aún no se ha registrado en la app"
   }
 }

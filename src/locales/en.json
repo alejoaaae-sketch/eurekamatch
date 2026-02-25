@@ -340,5 +340,11 @@
     "legalNote": "It is your responsibility to verify that you meet the legal age requirements in your jurisdiction.",
     "confirm": "I am 18 or older",
     "decline": "Exit"
+  },
+  "notification": {
+    "sendHint": "Send anonymous hint",
+    "sent": "Hint sent! 1 pick deducted.",
+    "alreadySent": "Hint sent this month",
+    "notRegistered": "This user hasn't registered in the app yet"
   }
 }

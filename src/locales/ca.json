@@ -314,5 +314,11 @@
     "legalNote": "És la teva responsabilitat verificar que compleixes amb els requisits legals d'edat a la teva jurisdicció.",
     "confirm": "Sóc major de 18 anys",
     "decline": "Sortir"
+  },
+  "notification": {
+    "sendHint": "Enviar pista anònima",
+    "sent": "Pista enviada! S'ha descomptat 1 pick.",
+    "alreadySent": "Pista enviada aquest mes",
+    "notRegistered": "Aquest usuari encara no s'ha registrat a l'app"
   }
 }

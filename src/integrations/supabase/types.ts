@@ -107,6 +107,8 @@ export type Database = {
           free_picks_on_signup: number
           id: string
           max_new_users_per_day: number
+          notification_sms_template: string
+          notifications_enabled: boolean
           promo_enabled: boolean
           promo_end: string | null
           promo_max_picks_override: number | null
@@ -123,6 +125,8 @@ export type Database = {
           free_picks_on_signup?: number
           id?: string
           max_new_users_per_day?: number
+          notification_sms_template?: string
+          notifications_enabled?: boolean
           promo_enabled?: boolean
           promo_end?: string | null
           promo_max_picks_override?: number | null
@@ -139,6 +143,8 @@ export type Database = {
           free_picks_on_signup?: number
           id?: string
           max_new_users_per_day?: number
+          notification_sms_template?: string
+          notifications_enabled?: boolean
           promo_enabled?: boolean
           promo_end?: string | null
           promo_max_picks_override?: number | null
@@ -298,6 +304,33 @@ export type Database = {
           otp_code?: string
           phone?: string
           verified?: boolean
+        }
+        Relationships: []
+      }
+      pick_notifications: {
+        Row: {
+          created_at: string
+          id: string
+          pick_id: string
+          recipient_phone: string
+          recipient_user_id: string
+          sender_id: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          pick_id: string
+          recipient_phone: string
+          recipient_user_id: string
+          sender_id: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          pick_id?: string
+          recipient_phone?: string
+          recipient_user_id?: string
+          sender_id?: string
         }
         Relationships: []
       }

@@ -17,7 +17,7 @@ serve(async (req: Request) => {
 
     // Validate auth
     const authHeader = req.headers.get("authorization");
-    if (!authHeader) {
+    if (!authHeader?.startsWith("Bearer ")) {
       return new Response(JSON.stringify({ error: "Unauthorized" }), {
         status: 401,
         headers: { "Content-Type": "application/json", ...corsHeaders },
@@ -26,17 +26,21 @@ serve(async (req: Request) => {
 
     const { createClient } = await import("https://esm.sh/@supabase/supabase-js@2.49.1");
 
-    // Get user from token
     const userClient = createClient(supabaseUrl, Deno.env.get("SUPABASE_ANON_KEY")!, {
       global: { headers: { authorization: authHeader } },
     });
-    const { data: { user }, error: authError } = await userClient.auth.getUser();
-    if (authError || !user) {
+
+    const token = authHeader.replace("Bearer ", "");
+    const { data: claimsData, error: claimsError } = await userClient.auth.getClaims(token);
+    if (claimsError || !claimsData?.claims) {
+      console.error("JWT validation error:", claimsError);
       return new Response(JSON.stringify({ error: "Unauthorized" }), {
         status: 401,
         headers: { "Content-Type": "application/json", ...corsHeaders },
       });
     }
+
+    const user = { id: claimsData.claims.sub };
 
     const { pickId } = await req.json();
     if (!pickId) {

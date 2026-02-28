@@ -159,8 +159,10 @@ serve(async (req: Request) => {
       throw new Error("Twilio credentials not configured");
     }
 
-    const smsBody = globalConfig.notification_sms_template ||
+    const optOutText = "\n\nPara dejar de recibir estos mensajes, entra en eurekamatch.lovable.app y desactívalo en Ajustes.";
+    const template = globalConfig.notification_sms_template ||
       "Alguien ha pensado en ti en EurekaMatch 💫 Descubre quién en eurekamatch.lovable.app";
+    const smsBody = template + optOutText;
 
     const twilioUrl = `https://api.twilio.com/2010-04-01/Accounts/${accountSid}/Messages.json`;
     const formData = new URLSearchParams();

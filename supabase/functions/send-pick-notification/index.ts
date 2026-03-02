@@ -1,4 +1,5 @@
 import { serve } from "https://deno.land/std@0.190.0/http/server.ts";
+import { createClient } from "npm:@supabase/supabase-js@2.49.1";
 
 const corsHeaders = {
   "Access-Control-Allow-Origin": "*",
@@ -23,8 +24,6 @@ serve(async (req: Request) => {
         headers: { "Content-Type": "application/json", ...corsHeaders },
       });
     }
-
-    const { createClient } = await import("https://esm.sh/@supabase/supabase-js@2.49.1");
 
     const token = authHeader.replace("Bearer ", "");
     const userClient = createClient(supabaseUrl, Deno.env.get("SUPABASE_ANON_KEY")!, {

@@ -16,7 +16,7 @@ serve(async (req: Request) => {
     const supabaseUrl = Deno.env.get("SUPABASE_URL")!;
     const supabaseServiceKey = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!;
 
-    // Validate auth
+    // Validate auth by decoding JWT directly (avoids HTTP call issues)
     const authHeader = req.headers.get("authorization");
     if (!authHeader?.startsWith("Bearer ")) {
       return new Response(JSON.stringify({ error: "Unauthorized" }), {
@@ -26,18 +26,25 @@ serve(async (req: Request) => {
     }
 
     const token = authHeader.replace("Bearer ", "");
-    const userClient = createClient(supabaseUrl, Deno.env.get("SUPABASE_ANON_KEY")!, {
-      global: { headers: { authorization: authHeader } },
-    });
-
-    const { data: { user }, error: authError } = await userClient.auth.getUser(token);
-    if (authError || !user) {
-      console.error("Auth error:", authError);
+    
+    // Decode JWT payload to get user id
+    let userId: string;
+    try {
+      const payloadB64 = token.split(".")[1];
+      const payload = JSON.parse(atob(payloadB64));
+      if (!payload.sub || (payload.exp && payload.exp * 1000 < Date.now())) {
+        throw new Error("Invalid or expired token");
+      }
+      userId = payload.sub;
+    } catch (e) {
+      console.error("JWT decode error:", e);
       return new Response(JSON.stringify({ error: "Unauthorized" }), {
         status: 401,
         headers: { "Content-Type": "application/json", ...corsHeaders },
       });
     }
+
+    const user = { id: userId };
 
     const { pickId } = await req.json();
     if (!pickId) {

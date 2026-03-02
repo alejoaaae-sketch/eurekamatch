@@ -160,19 +160,20 @@
     "thankYou": "Thank you for your purchase"
   },
   "packs": {
-    "title": "Buy picks",
+    "title": "Buy credits",
     "currentBalance": "Your current balance",
     "basic": "Basic pack",
     "small": "Small pack",
     "medium": "Medium pack",
     "large": "Large pack",
     "popular": "Popular",
-    "info": "Purchased picks never expire. Valid for all apps.",
-    "purchaseSuccess": "You bought {{count}} picks!",
-    "noPicks": "No picks remaining",
-    "noPicksHint": "Buy a pack to keep adding picks.",
-    "buyPacks": "Buy picks",
-    "picksRemaining": "You have {{count}} picks remaining"
+    "info": "Purchased credits never expire. Valid for all apps.",
+    "purchaseSuccess": "You bought {{count}} credits!",
+    "noPicks": "No credits remaining",
+    "noPicksHint": "Buy a pack to keep making changes.",
+    "buyPacks": "Buy credits",
+    "picksRemaining": "You have {{count}} credits remaining",
+    "creditsUnit": "credits"
   },
   "time": {
     "now": "Now",
@@ -343,8 +344,18 @@
   },
   "notification": {
     "sendHint": "Send anonymous hint",
-    "sent": "Hint sent! 1 pick deducted.",
+    "sent": "Hint sent! 1 credit deducted.",
     "alreadySent": "Hint sent this month",
     "notRegistered": "This user hasn't registered in the app yet"
+  },
+  "history": {
+    "balance": "Current balance",
+    "totalPurchased": "Purchased",
+    "totalUsed": "Used",
+    "timeline": "History",
+    "empty": "No activity yet",
+    "purchase": "Purchase",
+    "pickCreated": "Pick sent",
+    "pickDeleted": "Pick deleted"
   }
 }

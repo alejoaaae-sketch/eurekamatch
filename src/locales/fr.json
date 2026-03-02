@@ -134,19 +134,20 @@
     "thankYou": "Merci pour votre achat"
   },
   "packs": {
-    "title": "Acheter des picks",
+    "title": "Acheter des crédits",
     "currentBalance": "Votre solde actuel",
     "basic": "Pack basique",
     "small": "Pack petit",
     "medium": "Pack moyen",
     "large": "Pack grand",
     "popular": "Populaire",
-    "info": "Les picks achetés n'expirent jamais. Valables pour toutes les apps.",
-    "purchaseSuccess": "Vous avez acheté {{count}} picks !",
-    "noPicks": "Plus de picks disponibles",
-    "noPicksHint": "Achetez un pack pour continuer à ajouter des choix.",
-    "buyPacks": "Acheter des picks",
-    "picksRemaining": "Il vous reste {{count}} picks"
+    "info": "Les crédits achetés n'expirent jamais. Valables pour toutes les apps.",
+    "purchaseSuccess": "Vous avez acheté {{count}} crédits !",
+    "noPicks": "Plus de crédits disponibles",
+    "noPicksHint": "Achetez un pack pour continuer à faire des changements.",
+    "buyPacks": "Acheter des crédits",
+    "picksRemaining": "Il vous reste {{count}} crédits",
+    "creditsUnit": "crédits"
   },
   "time": {
     "now": "Maintenant",
@@ -317,8 +318,18 @@
   },
   "notification": {
     "sendHint": "Envoyer un indice anonyme",
-    "sent": "Indice envoyé ! 1 pick déduit.",
+    "sent": "Indice envoyé ! 1 crédit déduit.",
     "alreadySent": "Indice envoyé ce mois-ci",
     "notRegistered": "Cet utilisateur n'est pas encore inscrit"
+  },
+  "history": {
+    "balance": "Solde actuel",
+    "totalPurchased": "Achetés",
+    "totalUsed": "Utilisés",
+    "timeline": "Historique",
+    "empty": "Pas encore d'activité",
+    "purchase": "Achat",
+    "pickCreated": "Choix envoyé",
+    "pickDeleted": "Choix supprimé"
   }
 }

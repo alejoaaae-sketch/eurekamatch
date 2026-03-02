@@ -160,19 +160,20 @@
     "thankYou": "Gracias por tu compra"
   },
   "packs": {
-    "title": "Comprar picks",
+    "title": "Comprar créditos",
     "currentBalance": "Tu saldo actual",
     "basic": "Pack básico",
     "small": "Pack pequeño",
     "medium": "Pack mediano",
     "large": "Pack grande",
     "popular": "Popular",
-    "info": "Los picks comprados no caducan. Válidos para todas las apps.",
-    "purchaseSuccess": "¡Has comprado {{count}} picks!",
-    "noPicks": "No te quedan picks",
-    "noPicksHint": "Compra un pack para seguir añadiendo elecciones.",
-    "buyPacks": "Comprar picks",
-    "picksRemaining": "Te quedan {{count}} picks disponibles"
+    "info": "Los créditos comprados no caducan. Válidos para todas las apps.",
+    "purchaseSuccess": "¡Has comprado {{count}} créditos!",
+    "noPicks": "No te quedan créditos",
+    "noPicksHint": "Compra un pack para seguir haciendo cambios.",
+    "buyPacks": "Comprar créditos",
+    "picksRemaining": "Te quedan {{count}} créditos disponibles",
+    "creditsUnit": "créditos"
   },
   "time": {
     "now": "Ahora",
@@ -343,8 +344,18 @@
   },
   "notification": {
     "sendHint": "Enviar pista anónima",
-    "sent": "¡Pista enviada! Se ha descontado 1 pick.",
+    "sent": "¡Pista enviada! Se ha descontado 1 crédito.",
     "alreadySent": "Pista enviada este mes",
     "notRegistered": "Este usuario aún no se ha registrado en la app"
+  },
+  "history": {
+    "balance": "Saldo actual",
+    "totalPurchased": "Comprados",
+    "totalUsed": "Usados",
+    "timeline": "Historial",
+    "empty": "Sin actividad todavía",
+    "purchase": "Compra",
+    "pickCreated": "Pick enviado",
+    "pickDeleted": "Pick eliminado"
   }
 }

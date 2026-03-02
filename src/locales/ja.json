@@ -134,19 +134,20 @@
     "thankYou": "ご購入ありがとうございます"
   },
   "packs": {
-    "title": "ピックを購入",
+    "title": "クレジットを購入",
     "currentBalance": "現在の残高",
     "basic": "ベーシックパック",
     "small": "スモールパック",
     "medium": "ミディアムパック",
     "large": "ラージパック",
     "popular": "人気",
-    "info": "購入したピックは期限切れになりません。すべてのアプリで有効です。",
-    "purchaseSuccess": "{{count}}ピックを購入しました！",
-    "noPicks": "ピックが残っていません",
-    "noPicksHint": "パックを購入して選択を続けてください。",
-    "buyPacks": "ピックを購入",
-    "picksRemaining": "{{count}}ピック残っています"
+    "info": "購入したクレジットは期限切れになりません。すべてのアプリで有効です。",
+    "purchaseSuccess": "{{count}}クレジットを購入しました！",
+    "noPicks": "クレジットが残っていません",
+    "noPicksHint": "パックを購入して変更を続けてください。",
+    "buyPacks": "クレジットを購入",
+    "picksRemaining": "{{count}}クレジット残っています",
+    "creditsUnit": "クレジット"
   },
   "time": {
     "now": "今",
@@ -317,8 +318,18 @@
   },
   "notification": {
     "sendHint": "匿名ヒントを送信",
-    "sent": "ヒント送信完了！1ピック消費しました。",
+    "sent": "ヒント送信完了！1クレジット消費しました。",
     "alreadySent": "今月すでにヒントを送信済み",
     "notRegistered": "このユーザーはまだアプリに登録していません"
+  },
+  "history": {
+    "balance": "現在の残高",
+    "totalPurchased": "購入済み",
+    "totalUsed": "使用済み",
+    "timeline": "履歴",
+    "empty": "まだ活動がありません",
+    "purchase": "購入",
+    "pickCreated": "選択を送信",
+    "pickDeleted": "選択を削除"
   }
 }

@@ -134,19 +134,20 @@
     "thankYou": "Eskerrik asko zure erosketagatik"
   },
   "packs": {
-    "title": "Pick-ak erosi",
+    "title": "Kreditoak erosi",
     "currentBalance": "Zure saldo aktuala",
     "basic": "Pack oinarrizkoa",
     "small": "Pack txikia",
     "medium": "Pack ertaina",
     "large": "Pack handia",
     "popular": "Ezaguna",
-    "info": "Erosten dituzun pick-ak ez dira inoiz iraungitzen. App guztietarako baliogarriak.",
-    "purchaseSuccess": "{{count}} pick erosi dituzu!",
-    "noPicks": "Ez duzu pick-ik geratzen",
-    "noPicksHint": "Erosi pack bat aukerak gehitzen jarraitzeko.",
-    "buyPacks": "Pick-ak erosi",
-    "picksRemaining": "{{count}} pick geratzen zaizkizu"
+    "info": "Erosten dituzun kreditoak ez dira inoiz iraungitzen. App guztietarako baliogarriak.",
+    "purchaseSuccess": "{{count}} kreditu erosi dituzu!",
+    "noPicks": "Ez duzu krediturik geratzen",
+    "noPicksHint": "Erosi pack bat aldaketak egiten jarraitzeko.",
+    "buyPacks": "Kreditoak erosi",
+    "picksRemaining": "{{count}} kreditu geratzen zaizkizu",
+    "creditsUnit": "kreditu"
   },
   "time": {
     "now": "Orain",
@@ -317,8 +318,18 @@
   },
   "notification": {
     "sendHint": "Pista anonimoa bidali",
-    "sent": "Pista bidalita! Pick 1 kendu da.",
+    "sent": "Pista bidalita! Kreditu 1 kendu da.",
     "alreadySent": "Hilabete honetan pista bidalita",
     "notRegistered": "Erabiltzaile hau ez da oraindik izena eman"
+  },
+  "history": {
+    "balance": "Uneko saldoa",
+    "totalPurchased": "Erositakoak",
+    "totalUsed": "Erabilitakoak",
+    "timeline": "Historiala",
+    "empty": "Oraindik jarduerarik ez",
+    "purchase": "Erosketa",
+    "pickCreated": "Aukera bidalita",
+    "pickDeleted": "Aukera ezabatuta"
   }
 }

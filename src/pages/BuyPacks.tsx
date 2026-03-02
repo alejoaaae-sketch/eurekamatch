@@ -75,7 +75,7 @@ const BuyPacks = () => {
           </div>
           <p className="text-muted-foreground text-sm mb-1">{t("packs.currentBalance")}</p>
           <p className="text-3xl font-bold text-foreground">
-            {picksRemaining} <span className="text-base font-normal text-muted-foreground">picks</span>
+            {picksRemaining} <span className="text-base font-normal text-muted-foreground">{t("packs.creditsUnit")}</span>
           </p>
         </div>
 
@@ -109,7 +109,7 @@ const BuyPacks = () => {
                     <div>
                       <p className="font-semibold text-foreground">{meta.label}</p>
                       <p className="text-sm text-muted-foreground">
-                        {pack.picks_count} picks · {Number(pack.price_per_pick).toFixed(2).replace('.', ',')} €/pick
+                        {pack.picks_count} {t("packs.creditsUnit")} · {Number(pack.price_per_pick).toFixed(2).replace('.', ',')} €/{t("packs.creditsUnit").slice(0, -1)}
                       </p>
                     </div>
                   </div>

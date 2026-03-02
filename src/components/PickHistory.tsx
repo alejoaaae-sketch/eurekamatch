@@ -42,7 +42,7 @@ const PickHistory = () => {
             id: `purchase-${p.id}`,
             type: "purchase",
             label: p.pack_name,
-            detail: `+${p.picks_count} picks · ${p.price}€`,
+            detail: `+${p.picks_count} ${t("packs.creditsUnit")} · ${p.price}€`,
             date: p.created_at,
             timestamp: new Date(p.created_at).getTime(),
           });

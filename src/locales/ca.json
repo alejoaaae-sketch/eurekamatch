@@ -134,19 +134,20 @@
     "thankYou": "Gràcies per la teva compra"
   },
   "packs": {
-    "title": "Comprar picks",
+    "title": "Comprar crèdits",
     "currentBalance": "El teu saldo actual",
     "basic": "Pack bàsic",
     "small": "Pack petit",
     "medium": "Pack mitjà",
     "large": "Pack gran",
     "popular": "Popular",
-    "info": "Els picks comprats no caduquen mai. Vàlids per a totes les apps.",
-    "purchaseSuccess": "Has comprat {{count}} picks!",
-    "noPicks": "No et queden picks",
-    "noPicksHint": "Compra un pack per seguir afegint eleccions.",
-    "buyPacks": "Comprar picks",
-    "picksRemaining": "Et queden {{count}} picks disponibles"
+    "info": "Els crèdits comprats no caduquen mai. Vàlids per a totes les apps.",
+    "purchaseSuccess": "Has comprat {{count}} crèdits!",
+    "noPicks": "No et queden crèdits",
+    "noPicksHint": "Compra un pack per seguir fent canvis.",
+    "buyPacks": "Comprar crèdits",
+    "picksRemaining": "Et queden {{count}} crèdits disponibles",
+    "creditsUnit": "crèdits"
   },
   "time": {
     "now": "Ara",
@@ -317,8 +318,18 @@
   },
   "notification": {
     "sendHint": "Enviar pista anònima",
-    "sent": "Pista enviada! S'ha descomptat 1 pick.",
+    "sent": "Pista enviada! S'ha descomptat 1 crèdit.",
     "alreadySent": "Pista enviada aquest mes",
     "notRegistered": "Aquest usuari encara no s'ha registrat a l'app"
+  },
+  "history": {
+    "balance": "Saldo actual",
+    "totalPurchased": "Comprats",
+    "totalUsed": "Usats",
+    "timeline": "Historial",
+    "empty": "Sense activitat encara",
+    "purchase": "Compra",
+    "pickCreated": "Elecció enviada",
+    "pickDeleted": "Elecció eliminada"
   }
 }

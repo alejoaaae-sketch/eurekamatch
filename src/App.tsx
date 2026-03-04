@@ -20,6 +20,7 @@ import Privacy from "./pages/Privacy";
 import Install from "./pages/Install";
 import NotFound from "./pages/NotFound";
 import Admin from "./pages/Admin";
+import PaymentSuccess from "./pages/PaymentSuccess";
 
 const queryClient = new QueryClient();
 

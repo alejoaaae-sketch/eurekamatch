@@ -1,12 +1,12 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
-import { Button } from "@/components/ui/button";
-import { ArrowLeft, Package, Check, Loader2, Sparkles, CreditCard } from "lucide-react";
+import { ArrowLeft, Package, Loader2, Sparkles } from "lucide-react";
 import { useAuth } from "@/hooks/useAuth";
 import { usePickBalance, PickPack } from "@/hooks/usePickBalance";
+import { useProfile } from "@/hooks/useProfile";
+import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
-import PaymentSimulationModal from "@/components/PaymentSimulationModal";
 
 const BuyPacks = () => {
   const navigate = useNavigate();

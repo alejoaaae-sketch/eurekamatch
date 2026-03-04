@@ -4,6 +4,7 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { AuthProvider } from "@/hooks/useAuth";
+import SessionTracker from "@/components/SessionTracker";
 import Landing from "./pages/Landing";
 import AppLanding from "./pages/AppLanding";
 import Login from "./pages/Login";
@@ -25,6 +26,7 @@ const queryClient = new QueryClient();
 const App = () => (
   <QueryClientProvider client={queryClient}>
     <AuthProvider>
+      <SessionTracker>
       <TooltipProvider>
         <Toaster />
         <Sonner />
@@ -48,6 +50,7 @@ const App = () => (
           </Routes>
         </BrowserRouter>
       </TooltipProvider>
+      </SessionTracker>
     </AuthProvider>
   </QueryClientProvider>
 );

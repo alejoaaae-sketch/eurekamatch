@@ -502,6 +502,36 @@ export type Database = {
         }
         Relationships: []
       }
+      user_sessions: {
+        Row: {
+          app_type: string
+          created_at: string
+          ended_at: string | null
+          exit_type: string | null
+          id: string
+          started_at: string
+          user_id: string
+        }
+        Insert: {
+          app_type?: string
+          created_at?: string
+          ended_at?: string | null
+          exit_type?: string | null
+          id?: string
+          started_at?: string
+          user_id: string
+        }
+        Update: {
+          app_type?: string
+          created_at?: string
+          ended_at?: string | null
+          exit_type?: string | null
+          id?: string
+          started_at?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
       user_usage: {
         Row: {
           app_mode: string

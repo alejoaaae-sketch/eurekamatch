@@ -24,24 +24,28 @@ const BuyPacks = () => {
     );
   }
 
-  const handleSelectPack = (pack: PickPack) => {
-    setSelectedPack(pack);
-    setShowPaymentModal(true);
-  };
-
-  const handlePaymentComplete = async () => {
-    if (!selectedPack) return;
-    setShowPaymentModal(false);
+  const handleSelectPack = async (pack: PickPack) => {
     setProcessing(true);
+    try {
+      const { data, error } = await supabase.functions.invoke("create-checkout", {
+        body: {
+          packName: pack.name,
+          packId: pack.id,
+          picksCount: pack.picks_count,
+          price: pack.price,
+          userEmail: profile?.email || user?.email,
+        },
+      });
 
-    const result = await purchasePack(selectedPack);
-    setProcessing(false);
-
-    if (result.success) {
-      toast.success(t("packs.purchaseSuccess", { count: selectedPack.picks_count }));
-      navigate("/home");
-    } else {
-      toast.error(result.error || t("common.error"));
+      if (error) throw error;
+      if (data?.url) {
+        window.location.href = data.url;
+      } else {
+        throw new Error("No checkout URL");
+      }
+    } catch (err) {
+      toast.error(t("common.error"));
+      setProcessing(false);
     }
   };
 

@@ -138,14 +138,6 @@ const BuyPacks = () => {
         </div>
       </div>
 
-      {/* Payment Modal */}
-      <PaymentSimulationModal
-        open={showPaymentModal}
-        onOpenChange={setShowPaymentModal}
-        onPaymentComplete={handlePaymentComplete}
-        action="add"
-        amount={selectedPack ? Number(selectedPack.price) : 0}
-      />
     </div>
   );
 };

@@ -117,6 +117,19 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   };
 
   const signOut = async () => {
+    // End session tracking before signing out
+    const sessionId = localStorage.getItem('eureka_session_id');
+    if (sessionId) {
+      try {
+        await supabase
+          .from('user_sessions')
+          .update({ ended_at: new Date().toISOString(), exit_type: 'logout' })
+          .eq('id', sessionId);
+      } catch (e) {
+        console.error('Failed to end session:', e);
+      }
+      localStorage.removeItem('eureka_session_id');
+    }
     await supabase.auth.signOut();
   };
 

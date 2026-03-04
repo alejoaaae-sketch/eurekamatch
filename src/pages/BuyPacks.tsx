@@ -1,20 +1,19 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
-import { Button } from "@/components/ui/button";
-import { ArrowLeft, Package, Check, Loader2, Sparkles, CreditCard } from "lucide-react";
+import { ArrowLeft, Package, Loader2, Sparkles } from "lucide-react";
 import { useAuth } from "@/hooks/useAuth";
 import { usePickBalance, PickPack } from "@/hooks/usePickBalance";
+import { useProfile } from "@/hooks/useProfile";
+import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
-import PaymentSimulationModal from "@/components/PaymentSimulationModal";
 
 const BuyPacks = () => {
   const navigate = useNavigate();
   const { t } = useTranslation();
   const { user, loading: authLoading } = useAuth();
-  const { packs, picksRemaining, purchasePack, loading: balanceLoading } = usePickBalance();
-  const [selectedPack, setSelectedPack] = useState<PickPack | null>(null);
-  const [showPaymentModal, setShowPaymentModal] = useState(false);
+  const { packs, picksRemaining, loading: balanceLoading } = usePickBalance();
+  const { profile } = useProfile();
   const [processing, setProcessing] = useState(false);
 
   if (authLoading || balanceLoading || !user) {
@@ -25,24 +24,28 @@ const BuyPacks = () => {
     );
   }
 
-  const handleSelectPack = (pack: PickPack) => {
-    setSelectedPack(pack);
-    setShowPaymentModal(true);
-  };
-
-  const handlePaymentComplete = async () => {
-    if (!selectedPack) return;
-    setShowPaymentModal(false);
+  const handleSelectPack = async (pack: PickPack) => {
     setProcessing(true);
+    try {
+      const { data, error } = await supabase.functions.invoke("create-checkout", {
+        body: {
+          packName: pack.name,
+          packId: pack.id,
+          picksCount: pack.picks_count,
+          price: pack.price,
+          userEmail: profile?.email || user?.email,
+        },
+      });
 
-    const result = await purchasePack(selectedPack);
-    setProcessing(false);
-
-    if (result.success) {
-      toast.success(t("packs.purchaseSuccess", { count: selectedPack.picks_count }));
-      navigate("/home");
-    } else {
-      toast.error(result.error || t("common.error"));
+      if (error) throw error;
+      if (data?.url) {
+        window.location.href = data.url;
+      } else {
+        throw new Error("No checkout URL");
+      }
+    } catch (err) {
+      toast.error(t("common.error"));
+      setProcessing(false);
     }
   };
 
@@ -135,14 +138,6 @@ const BuyPacks = () => {
         </div>
       </div>
 
-      {/* Payment Modal */}
-      <PaymentSimulationModal
-        open={showPaymentModal}
-        onOpenChange={setShowPaymentModal}
-        onPaymentComplete={handlePaymentComplete}
-        action="add"
-        amount={selectedPack ? Number(selectedPack.price) : 0}
-      />
     </div>
   );
 };

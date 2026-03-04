@@ -12,9 +12,8 @@ const BuyPacks = () => {
   const navigate = useNavigate();
   const { t } = useTranslation();
   const { user, loading: authLoading } = useAuth();
-  const { packs, picksRemaining, purchasePack, loading: balanceLoading } = usePickBalance();
-  const [selectedPack, setSelectedPack] = useState<PickPack | null>(null);
-  const [showPaymentModal, setShowPaymentModal] = useState(false);
+  const { packs, picksRemaining, loading: balanceLoading } = usePickBalance();
+  const { profile } = useProfile();
   const [processing, setProcessing] = useState(false);
 
   if (authLoading || balanceLoading || !user) {

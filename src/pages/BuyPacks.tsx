@@ -5,18 +5,23 @@ import { ArrowLeft, Package, Loader2, Sparkles } from "lucide-react";
 import { useAuth } from "@/hooks/useAuth";
 import { usePickBalance, PickPack } from "@/hooks/usePickBalance";
 import { useProfile } from "@/hooks/useProfile";
+import { useAppConfig } from "@/hooks/useAppConfig";
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
+import PaymentSimulationModal from "@/components/PaymentSimulationModal";
 
 const BuyPacks = () => {
   const navigate = useNavigate();
   const { t } = useTranslation();
   const { user, loading: authLoading } = useAuth();
-  const { packs, picksRemaining, loading: balanceLoading } = usePickBalance();
+  const { packs, picksRemaining, loading: balanceLoading, refetch: refetchBalance } = usePickBalance();
   const { profile } = useProfile();
+  const { betaMode, loading: configLoading } = useAppConfig();
   const [processing, setProcessing] = useState(false);
+  const [selectedPack, setSelectedPack] = useState<PickPack | null>(null);
+  const [showSimulation, setShowSimulation] = useState(false);
 
-  if (authLoading || balanceLoading || !user) {
+  if (authLoading || balanceLoading || configLoading || !user) {
     return (
       <div className="min-h-screen bg-background flex items-center justify-center">
         <Loader2 className="w-8 h-8 animate-spin text-primary" />
@@ -25,6 +30,14 @@ const BuyPacks = () => {
   }
 
   const handleSelectPack = async (pack: PickPack) => {
+    if (betaMode) {
+      // In beta mode, use simulation modal
+      setSelectedPack(pack);
+      setShowSimulation(true);
+      return;
+    }
+
+    // Real Stripe payment
     setProcessing(true);
     try {
       const { data, error } = await supabase.functions.invoke("create-checkout", {
@@ -47,6 +60,44 @@ const BuyPacks = () => {
       toast.error(t("common.error"));
       setProcessing(false);
     }
+  };
+
+  const handleBetaPaymentComplete = async () => {
+    if (!selectedPack || !user) return;
+    try {
+      // Record simulated purchase
+      await supabase.from("pack_purchases").insert({
+        user_id: user.id,
+        pack_id: selectedPack.id,
+        pack_name: selectedPack.name,
+        picks_count: selectedPack.picks_count,
+        price: selectedPack.price,
+        payment_method: "beta_simulation",
+      });
+
+      // Update balance
+      const { data: currentBalance } = await supabase
+        .from("user_pick_balance")
+        .select("picks_remaining, total_purchased, total_used")
+        .eq("user_id", user.id)
+        .single();
+
+      const remaining = (currentBalance?.picks_remaining ?? 0) + selectedPack.picks_count;
+      const purchased = (currentBalance?.total_purchased ?? 0) + selectedPack.picks_count;
+      const used = currentBalance?.total_used ?? 0;
+
+      await supabase.from("user_pick_balance").upsert(
+        { user_id: user.id, picks_remaining: remaining, total_purchased: purchased, total_used: used },
+        { onConflict: "user_id" }
+      );
+
+      refetchBalance();
+      toast.success(t("payment.success"));
+    } catch {
+      toast.error(t("common.error"));
+    }
+    setShowSimulation(false);
+    setSelectedPack(null);
   };
 
   const packLabels: Record<string, { label: string; icon: string }> = {
@@ -138,6 +189,18 @@ const BuyPacks = () => {
         </div>
       </div>
 
+      {selectedPack && (
+        <PaymentSimulationModal
+          open={showSimulation}
+          onOpenChange={(open) => {
+            setShowSimulation(open);
+            if (!open) setSelectedPack(null);
+          }}
+          onPaymentComplete={handleBetaPaymentComplete}
+          action="add"
+          amount={Number(selectedPack.price)}
+        />
+      )}
     </div>
   );
 };

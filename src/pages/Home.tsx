@@ -25,7 +25,7 @@ const Home = () => {
   const { pendingPicks, loading: picksLoading, deletePick } = usePicks();
   const { matches, loading: matchesLoading } = useMatches();
   const { profile } = useProfile();
-  const { appEnabled, loading: configLoading } = useAppConfig();
+  const { appEnabled, effectiveMaxPicks, loading: configLoading } = useAppConfig();
   const { picksRemaining } = usePickBalance();
   const [activeTab, setActiveTab] = useState<"picks" | "matches">("picks");
   const [showAgeGate, setShowAgeGate] = useState(false);

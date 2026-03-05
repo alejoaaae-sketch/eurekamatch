@@ -230,12 +230,17 @@ const AddPick = () => {
           <h2 className="text-xl font-medium text-foreground mb-2 text-center">
             {t("pick.limit")}
           </h2>
-          <p className="text-muted-foreground text-sm text-center mb-6">
-            {t("pick.limitMessage", { count: effectiveMaxPicks })}
+          <p className="text-muted-foreground text-sm text-center mb-6 leading-relaxed">
+            {t("pick.limitReached", { count: effectiveMaxPicks })}
           </p>
-          <Button onClick={() => navigate("/home")} variant="gradient">
-            {t("common.back")}
-          </Button>
+          <div className="flex flex-col gap-3 w-full max-w-xs">
+            <Button onClick={() => navigate("/home")} variant="gradient">
+              {t("pick.managePicks")}
+            </Button>
+            <Button onClick={() => navigate(-1)} variant="outline">
+              {t("common.back")}
+            </Button>
+          </div>
         </div>
       </div>
     );

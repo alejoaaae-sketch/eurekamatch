@@ -66,7 +66,7 @@
       "love": "Descubre si el amor es mutuo",
       "friends": "Amigos con los que puedes contar. Porque es mutuo.",
       "mude": "Descubre la atracción mutua",
-      "sport": "Descubre si quiere hacer deporte contigo"
+      "sport": "Descubre si quiere compartir hobby contigo"
     }
   },
   "home": {
@@ -202,7 +202,7 @@
         "tagline": "Descubre la atracción mutua. Discreto y seguro."
       },
       "sport": {
-        "tagline": "Descubre si quiere hacer deporte contigo. Sin compromiso."
+        "tagline": "Descubre si quiere compartir hobby contigo. Deporte, viajes, planes... Sin compromiso."
       }
     },
     "concept": {
@@ -229,10 +229,10 @@
       "description": "Amigos Eureka. Amigos con los que sabes que es mutuo. Hay gente con la que te lo pasas genial… pero nunca sabes si al otro también le apetece. Eureka Friends convierte esa duda en claridad. Amistad adulta: a veces sí, a veces no… y no pasa nada."
     },
     "mude": {
-      "description": "Eureka MUDE (MUtual DEsire) es una app para saber si el deseo es mutuo entre dos personas que ya se conocen, sin presión y sin exposición. No es para buscar. Es para confirmar."
+      "description": "EUREKA SEX es una app para saber si el deseo es mutuo entre dos personas que ya se conocen, sin presión y sin exposición. No es para buscar. Es para confirmar."
     },
     "sport": {
-      "description": "EUREKA SPORT es para descubrir si alguien quiere hacer deporte contigo. Pádel, running, bici, gym... Si el interés es mutuo, os ponemos en contacto. Sin exposición, sin rechazo."
+      "description": "EUREKA HOBBY es para descubrir si alguien quiere compartir un hobby contigo. Deporte, viajes, planes, cocina, música... Si el interés es mutuo, os ponemos en contacto. Sin exposición, sin rechazo."
     },
     "steps": {
       "step1": {
@@ -254,7 +254,7 @@
         },
         "sport": {
           "title": "Añade a quien te interesa",
-          "description": "Elige hasta 5 personas. Introduce su móvil. Nadie recibe aviso."
+          "description": "Elige hasta 5 personas con las que compartir hobby. Introduce su móvil. Nadie recibe aviso."
         }
       },
       "step3": {

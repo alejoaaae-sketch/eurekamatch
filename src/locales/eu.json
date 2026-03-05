@@ -40,7 +40,7 @@
       "love": "Ezagutu maitasuna elkarrekikoa den",
       "friends": "Kontatu dezakezun lagunak. Elkarrekikoa delako.",
       "mude": "Ezagutu desira elkarrekikoa",
-      "sport": "Ezagutu zurekin kirola egin nahi duen"
+      "sport": "Ezagutu zurekin hobby bat partekatu nahi duen"
     }
   },
   "home": {
@@ -176,7 +176,7 @@
         "tagline": "Ezagutu desira elkarrekikoa. Diskretua eta segurua."
       },
       "sport": {
-        "tagline": "Ezagutu zurekin kirola egin nahi duen. Presiorik gabe."
+        "tagline": "Ezagutu zurekin hobby bat partekatu nahi duen. Kirola, bidaiak, planak... Presiorik gabe."
       }
     },
     "concept": {
@@ -203,10 +203,10 @@
       "description": "Eureka lagunak. Elkarrekikoa dela dakizun lagunak. Ondo pasatzen duzun jendea dago... baina inoiz ez dakizu besteari ere gogoa duen. Eureka Friends-ek zalantza hori argitasun bihurtzen du. Helduen adiskidetasuna: batzuetan bai, batzuetan ez... eta ez da ezer gertatzen."
     },
     "mude": {
-      "description": "Eureka MUDE (MUtual DEsire) aplikazio bat da elkar ezagutzen duten bi pertsonen artean desira elkarrekikoa den jakiteko, presiorik eta esposiziorik gabe. Ez da bilatzeko. Baieztatzeko da."
+      "description": "EUREKA SEX aplikazio bat da elkar ezagutzen duten bi pertsonen artean desira elkarrekikoa den jakiteko, presiorik eta esposiziorik gabe. Ez da bilatzeko. Baieztatzeko da."
     },
     "sport": {
-      "description": "EUREKA SPORT zurekin kirola egin nahi duen norbait dagoen jakiteko tresna bat da. Padela, korrika, bizikleta, gimnasioa... Interesa elkarrekikoa bada, konektatzen zaituztegu. Esposiziorik gabe, bazterketarik gabe."
+      "description": "EUREKA HOBBY zurekin hobby bat partekatu nahi duen norbait dagoen jakiteko tresna bat da. Kirola, bidaiak, planak, sukaldea, musika... Interesa elkarrekikoa bada, konektatzen zaituztegu. Esposiziorik gabe, bazterketarik gabe."
     },
     "steps": {
       "step1": {
@@ -228,7 +228,7 @@
         },
         "sport": {
           "title": "Gehitu interesatzen zaizuna",
-          "description": "Aukeratu 5 pertsona arte. Sartu haien telefono zenbakia. Inork ez du abisurik jasotzen."
+          "description": "Aukeratu 5 pertsona arte hobby partekatzeko. Sartu haien telefono zenbakia. Inork ez du abisurik jasotzen."
         }
       },
       "step3": {

@@ -25,7 +25,7 @@ const Home = () => {
   const { pendingPicks, loading: picksLoading, deletePick } = usePicks();
   const { matches, loading: matchesLoading } = useMatches();
   const { profile } = useProfile();
-  const { appEnabled, loading: configLoading } = useAppConfig();
+  const { appEnabled, effectiveMaxPicks, loading: configLoading } = useAppConfig();
   const { picksRemaining } = usePickBalance();
   const [activeTab, setActiveTab] = useState<"picks" | "matches">("picks");
   const [showAgeGate, setShowAgeGate] = useState(false);
@@ -265,7 +265,13 @@ const Home = () => {
       {/* FAB */}
       <div className="fixed bottom-6 right-6">
         <Button
-          onClick={() => navigate("/add")}
+          onClick={() => {
+            if (pendingPicks.length >= effectiveMaxPicks) {
+              toast.error(t("pick.limitReached", { count: effectiveMaxPicks }));
+              return;
+            }
+            navigate("/add");
+          }}
           size="icon"
           className="w-14 h-14 rounded-full shadow-lg"
           variant="gradient"

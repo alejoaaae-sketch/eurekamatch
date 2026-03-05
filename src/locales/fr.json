@@ -40,7 +40,7 @@
       "love": "Découvrez si l'amour est mutuel",
       "friends": "Des amis sur qui compter. Parce que c'est mutuel.",
       "mude": "Découvrez le désir mutuel",
-      "sport": "Découvrez s'il veut faire du sport avec vous"
+      "sport": "Découvrez s'il veut partager un hobby avec vous"
     }
   },
   "home": {
@@ -176,7 +176,7 @@
         "tagline": "Découvrez le désir mutuel. Discret et sûr."
       },
       "sport": {
-        "tagline": "Découvrez s'il veut faire du sport avec vous. Sans pression."
+        "tagline": "Découvrez s'il veut partager un hobby avec vous. Sport, voyages, plans... Sans pression."
       }
     },
     "concept": {
@@ -203,10 +203,10 @@
       "description": "Amis Eureka. Des amis dont tu sais que c'est mutuel. Il y a des gens avec qui tu passes de super moments… mais tu ne sais jamais si l'autre en a aussi envie. Eureka Friends transforme ce doute en clarté. Amitié adulte : parfois oui, parfois non… et ce n'est pas grave."
     },
     "mude": {
-      "description": "Eureka MUDE (MUtual DEsire) est une app pour savoir si le désir est mutuel entre deux personnes qui se connaissent déjà, sans pression et sans exposition. Ce n'est pas pour chercher. C'est pour confirmer."
+      "description": "EUREKA SEX est une app pour savoir si le désir est mutuel entre deux personnes qui se connaissent déjà, sans pression et sans exposition. Ce n'est pas pour chercher. C'est pour confirmer."
     },
     "sport": {
-      "description": "EUREKA SPORT est fait pour découvrir si quelqu'un veut faire du sport avec vous. Padel, running, vélo, salle... Si l'intérêt est mutuel, nous vous mettons en contact. Sans exposition, sans rejet."
+      "description": "EUREKA HOBBY est fait pour découvrir si quelqu'un veut partager un hobby avec vous. Sport, voyages, plans, cuisine, musique... Si l'intérêt est mutuel, nous vous mettons en contact. Sans exposition, sans rejet."
     },
     "steps": {
       "step1": {
@@ -228,7 +228,7 @@
         },
         "sport": {
           "title": "Ajoutez qui vous intéresse",
-          "description": "Choisissez jusqu'à 5 personnes. Entrez leur numéro de téléphone. Personne n'est averti."
+          "description": "Choisissez jusqu'à 5 personnes pour partager un hobby. Entrez leur numéro de téléphone. Personne n'est averti."
         }
       },
       "step3": {

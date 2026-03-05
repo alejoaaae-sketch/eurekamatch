@@ -35,7 +35,7 @@ const appConfigs: Record<AppType, AppConfig> = {
   },
   mude: {
     appType: 'mude',
-    appName: 'EUREKA MUDE (MUtual DEsire)',
+    appName: 'EUREKA SEX',
     maxPicks: 2,
     primaryColor: 'hsl(0, 84%, 50%)', // Red
     accentColor: 'hsl(0, 84%, 60%)',
@@ -43,11 +43,11 @@ const appConfigs: Record<AppType, AppConfig> = {
   },
   sport: {
     appType: 'sport',
-    appName: 'EUREKA SPORT',
+    appName: 'EUREKA HOBBY',
     maxPicks: 5,
     primaryColor: 'hsl(142, 71%, 45%)', // Green
     accentColor: 'hsl(142, 71%, 55%)',
-    tagline: 'Descubre si quiere hacer deporte contigo',
+    tagline: 'Descubre si quiere compartir hobby contigo',
   },
 };
 

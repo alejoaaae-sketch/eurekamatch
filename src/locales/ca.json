@@ -40,7 +40,7 @@
       "love": "Descobreix si l'amor és mutu",
       "friends": "Amics amb qui pots comptar. Perquè és mutu.",
       "mude": "Descobreix el desig mutu",
-      "sport": "Descobreix si vol fer esport amb tu"
+      "sport": "Descobreix si vol compartir hobby amb tu"
     }
   },
   "home": {
@@ -176,7 +176,7 @@
         "tagline": "Descobreix el desig mutu. Discret i segur."
       },
       "sport": {
-        "tagline": "Descobreix si vol fer esport amb tu. Sense compromís."
+        "tagline": "Descobreix si vol compartir hobby amb tu. Esport, viatges, plans... Sense compromís."
       }
     },
     "concept": {
@@ -203,10 +203,10 @@
       "description": "Amics Eureka. Amics amb qui saps que és mutu. Hi ha gent amb qui t'ho passes genial… però mai saps si a l'altre també li ve de gust. Eureka Friends converteix aquest dubte en claredat. Amistat adulta: de vegades sí, de vegades no… i no passa res."
     },
     "mude": {
-      "description": "Eureka MUDE (MUtual DEsire) és una app per saber si el desig és mutu entre dues persones que ja es coneixen, sense pressió i sense exposició. No és per buscar. És per confirmar."
+      "description": "EUREKA SEX és una app per saber si el desig és mutu entre dues persones que ja es coneixen, sense pressió i sense exposició. No és per buscar. És per confirmar."
     },
     "sport": {
-      "description": "EUREKA SPORT és per descobrir si algú vol fer esport amb tu. Pàdel, running, bici, gimnàs... Si l'interès és mutu, us posem en contacte. Sense exposició, sense rebuig."
+      "description": "EUREKA HOBBY és per descobrir si algú vol compartir un hobby amb tu. Esport, viatges, plans, cuina, música... Si l'interès és mutu, us posem en contacte. Sense exposició, sense rebuig."
     },
     "steps": {
       "step1": {
@@ -228,7 +228,7 @@
         },
         "sport": {
           "title": "Afegeix a qui t'interessa",
-          "description": "Escull fins a 5 persones. Introdueix el seu mòbil. Ningú rep avís."
+          "description": "Escull fins a 5 persones per compartir hobby. Introdueix el seu mòbil. Ningú rep avís."
         }
       },
       "step3": {

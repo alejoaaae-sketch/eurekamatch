@@ -66,7 +66,7 @@
       "love": "Discover if love is mutual",
       "friends": "Friends you can count on. Because it's mutual.",
       "mude": "Discover mutual desire",
-      "sport": "Discover if they want to play sports with you"
+      "sport": "Discover if they want to share a hobby with you"
     }
   },
   "home": {
@@ -202,7 +202,7 @@
         "tagline": "Discover mutual desire. Discreet and safe."
       },
       "sport": {
-        "tagline": "Discover if they want to play sports with you. No pressure."
+        "tagline": "Discover if they want to share a hobby with you. Sports, trips, plans... No pressure."
       }
     },
     "concept": {
@@ -229,10 +229,10 @@
       "description": "Eureka Friends. Friends you know are mutual. There are people you have a great time with… but you never know if they feel the same. Eureka Friends turns that doubt into clarity. Adult friendship: sometimes yes, sometimes no… and that's okay."
     },
     "mude": {
-      "description": "Eureka MUDE (MUtual DEsire) is an app to find out if desire is mutual between two people who already know each other, without pressure or exposure. It's not for searching. It's for confirming."
+      "description": "EUREKA SEX is an app to find out if desire is mutual between two people who already know each other, without pressure or exposure. It's not for searching. It's for confirming."
     },
     "sport": {
-      "description": "EUREKA SPORT is for discovering if someone wants to play sports with you. Padel, running, cycling, gym... If the interest is mutual, we connect you. No exposure, no rejection."
+      "description": "EUREKA HOBBY is for discovering if someone wants to share a hobby with you. Sports, trips, plans, cooking, music... If the interest is mutual, we connect you. No exposure, no rejection."
     },
     "steps": {
       "step1": {
@@ -254,7 +254,7 @@
         },
         "sport": {
           "title": "Add who interests you",
-          "description": "Choose up to 5 people. Enter their phone number. No one gets notified."
+          "description": "Choose up to 5 people to share hobbies with. Enter their phone number. No one gets notified."
         }
       },
       "step3": {

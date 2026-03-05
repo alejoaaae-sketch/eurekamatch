@@ -76,7 +76,7 @@ const AddPick = () => {
     fetchCount();
   }, [user]);
 
-  const atPickLimit = !betaMode && activePicksCount !== null && activePicksCount >= effectiveMaxPicks;
+  const atPickLimit = activePicksCount !== null && activePicksCount >= effectiveMaxPicks;
 
   useEffect(() => {
     if (!authLoading && !user) {

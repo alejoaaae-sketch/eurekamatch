@@ -112,9 +112,9 @@ const handler = async (req: Request): Promise<Response> => {
 
     // Send verification email
     await resend.emails.send({
-      from: "Mútuo <info@eurekamatch.com>",
+      from: "EurekaMatch <info@eurekamatch.com>",
       to: [email],
-      subject: "✉️ Verifica tu email en Mútuo",
+      subject: "✉️ Verifica tu email en EurekaMatch",
       html: generateVerificationEmail(verifyUrl),
     });
 

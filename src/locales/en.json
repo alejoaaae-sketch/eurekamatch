@@ -100,7 +100,8 @@
     "deleteDescription": "This action cannot be undone.",
     "deleted": "Pick deleted",
     "limit": "Limit reached",
-    "limitMessage": "You can only have {{count}} active picks"
+    "limitReached": "You've reached the limit of {{count}} picks. You can't add more. If you want to add a new one, you need to delete one or more existing picks. Thanks!",
+    "managePicks": "Manage my picks"
   },
   "match": {
     "title": "It's mutual!",

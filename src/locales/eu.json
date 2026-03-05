@@ -74,7 +74,8 @@
     "deleteDescription": "Ekintza hau ezin da desegin.",
     "deleted": "Aukera ezabatuta",
     "limit": "Muga iritsi da",
-    "limitMessage": "{{count}} aukera aktibo bakarrik izan ditzakezu"
+    "limitReached": "{{count}} aukera mugara iritsi zara. Ezin duzu gehiago gehitu. Berri bat gehitu nahi baduzu, lehendik dauden aukera bat edo gehiago ezabatu behar dituzu. Eskerrik asko!",
+    "managePicks": "Nire aukerak kudeatu"
   },
   "match": {
     "title": "Elkarrekikoa da!",

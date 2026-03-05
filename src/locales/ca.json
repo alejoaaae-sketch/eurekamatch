@@ -74,7 +74,8 @@
     "deleteDescription": "Aquesta acció no es pot desfer.",
     "deleted": "Elecció eliminada",
     "limit": "Límit assolit",
-    "limitMessage": "Només pots tenir {{count}} eleccions actives"
+    "limitReached": "Has arribat al límit de {{count}} eleccions. No pots afegir-ne més. Si vols afegir-ne una de nova, has d'eliminar una o diverses eleccions existents. Gràcies!",
+    "managePicks": "Gestionar les meves eleccions"
   },
   "match": {
     "title": "És mutu!",

@@ -141,35 +141,38 @@ function generateVerificationEmail(verifyUrl: string): string {
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
-    <body style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif; margin: 0; padding: 0; background-color: #f5f5f5;">
-      <div style="max-width: 500px; margin: 0 auto; padding: 20px;">
-        <div style="background: linear-gradient(135deg, #ff6b9d 0%, #c44569 100%); border-radius: 16px 16px 0 0; padding: 30px; text-align: center;">
-          <div style="font-size: 48px; margin-bottom: 10px;">✉️</div>
-          <h1 style="color: white; margin: 0; font-size: 24px;">Verifica tu email</h1>
+    <body style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif; margin: 0; padding: 0; background-color: #1a1a2e;">
+      <div style="max-width: 500px; margin: 0 auto; padding: 30px 20px;">
+        
+        <div style="text-align: center; padding: 30px 0 20px;">
+          <div style="font-size: 42px; margin-bottom: 8px;">💌</div>
+          <h1 style="color: #ffffff; margin: 0; font-size: 26px; font-weight: 700; letter-spacing: -0.5px;">EurekaMatch</h1>
         </div>
         
-        <div style="background: white; padding: 30px; border-radius: 0 0 16px 16px; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
-          <p style="font-size: 16px; color: #333; margin-bottom: 20px;">
+        <div style="background: #16213e; border-radius: 16px; padding: 32px; border: 1px solid rgba(255,255,255,0.08);">
+          <h2 style="color: #ffffff; margin: 0 0 16px; font-size: 20px; font-weight: 600;">Verifica tu email</h2>
+          
+          <p style="font-size: 15px; color: #a0a0b8; margin-bottom: 12px; line-height: 1.6;">
             ¡Hola! Necesitamos verificar tu correo electrónico para poder enviarte notificaciones cuando tengas un match.
           </p>
           
-          <p style="font-size: 16px; color: #333; margin-bottom: 25px;">
+          <p style="font-size: 15px; color: #a0a0b8; margin-bottom: 28px; line-height: 1.6;">
             Haz clic en el botón de abajo para confirmar tu email:
           </p>
           
-          <div style="text-align: center; margin: 25px 0;">
-            <a href="${verifyUrl}" style="display: inline-block; background: linear-gradient(135deg, #ff6b9d 0%, #c44569 100%); color: white; text-decoration: none; padding: 14px 32px; border-radius: 25px; font-weight: 600; font-size: 16px;">
+          <div style="text-align: center; margin: 28px 0;">
+            <a href="${verifyUrl}" style="display: inline-block; background: linear-gradient(135deg, #ff6b9d 0%, #e84393 100%); color: #ffffff; text-decoration: none; padding: 15px 40px; border-radius: 30px; font-weight: 700; font-size: 16px; letter-spacing: 0.3px; box-shadow: 0 4px 15px rgba(232, 67, 147, 0.4);">
               Verificar mi email ✓
             </a>
           </div>
           
-          <p style="font-size: 14px; color: #666; margin-top: 25px; text-align: center;">
+          <p style="font-size: 13px; color: #6b6b80; margin-top: 28px; text-align: center;">
             Este enlace expira en 24 horas.
           </p>
         </div>
         
-        <p style="text-align: center; font-size: 12px; color: #999; margin-top: 20px;">
-          Este email fue enviado desde Mútuo<br>
+        <p style="text-align: center; font-size: 12px; color: #4a4a5e; margin-top: 24px; line-height: 1.5;">
+          Este email fue enviado desde EurekaMatch<br>
           Si no creaste una cuenta, puedes ignorar este email.
         </p>
       </div>

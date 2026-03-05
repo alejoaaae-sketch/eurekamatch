@@ -48,6 +48,7 @@ const App = () => (
             <Route path="/privacy" element={<Privacy />} />
             <Route path="/install" element={<Install />} />
             <Route path="/payment-success" element={<PaymentSuccess />} />
+            <Route path="/verify-email" element={<VerifyEmail />} />
             <Route path="/admin" element={<Admin />} />
             <Route path="*" element={<NotFound />} />
           </Routes>

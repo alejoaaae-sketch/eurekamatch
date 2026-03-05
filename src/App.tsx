@@ -21,6 +21,7 @@ import Install from "./pages/Install";
 import NotFound from "./pages/NotFound";
 import Admin from "./pages/Admin";
 import PaymentSuccess from "./pages/PaymentSuccess";
+import VerifyEmail from "./pages/VerifyEmail";
 
 const queryClient = new QueryClient();
 
@@ -47,6 +48,7 @@ const App = () => (
             <Route path="/privacy" element={<Privacy />} />
             <Route path="/install" element={<Install />} />
             <Route path="/payment-success" element={<PaymentSuccess />} />
+            <Route path="/verify-email" element={<VerifyEmail />} />
             <Route path="/admin" element={<Admin />} />
             <Route path="*" element={<NotFound />} />
           </Routes>

@@ -107,8 +107,8 @@ const handler = async (req: Request): Promise<Response> => {
       throw new Error("Failed to create verification token");
     }
 
-    // Build verification URL
-    const verifyUrl = `${supabaseUrl}/functions/v1/verify-email?token=${verificationToken}`;
+    // Build verification URL using the app's custom domain
+    const verifyUrl = `https://eurekamatch.com/verify-email?token=${verificationToken}`;
 
     // Send verification email
     await resend.emails.send({

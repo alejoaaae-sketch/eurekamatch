@@ -265,7 +265,13 @@ const Home = () => {
       {/* FAB */}
       <div className="fixed bottom-6 right-6">
         <Button
-          onClick={() => navigate("/add")}
+          onClick={() => {
+            if (pendingPicks.length >= effectiveMaxPicks) {
+              toast.error(t("pick.limitReached", { count: effectiveMaxPicks }));
+              return;
+            }
+            navigate("/add");
+          }}
           size="icon"
           className="w-14 h-14 rounded-full shadow-lg"
           variant="gradient"

@@ -100,7 +100,8 @@
     "deleteDescription": "Esta acción no se puede deshacer.",
     "deleted": "Elección eliminada",
     "limit": "Límite alcanzado",
-    "limitMessage": "Solo puedes tener {{count}} elecciones activas"
+    "limitReached": "Ya has llegado al límite de {{count}} picks. No puedes añadir más. Si quieres añadir uno nuevo, debes borrar uno o varios picks existentes. ¡Gracias!",
+    "managePicks": "Gestionar mis picks"
   },
   "match": {
     "title": "¡Es mutuo!",

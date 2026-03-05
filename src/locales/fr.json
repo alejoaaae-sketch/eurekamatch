@@ -74,7 +74,8 @@
     "deleteDescription": "Cette action est irréversible.",
     "deleted": "Choix supprimé",
     "limit": "Limite atteinte",
-    "limitMessage": "Vous ne pouvez avoir que {{count}} choix actifs"
+    "limitReached": "Vous avez atteint la limite de {{count}} choix. Vous ne pouvez pas en ajouter d'autres. Si vous souhaitez en ajouter un nouveau, vous devez supprimer un ou plusieurs choix existants. Merci !",
+    "managePicks": "Gérer mes choix"
   },
   "match": {
     "title": "C'est mutuel !",

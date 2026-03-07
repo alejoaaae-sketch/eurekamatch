@@ -21,6 +21,8 @@ export interface GlobalConfig {
   verify_mobile: boolean;
   verify_email: boolean;
   beta_mode: boolean;
+  beta_countries: string[];
+  notification_countries: string[];
 }
 
 export interface UserUsage {
@@ -101,6 +103,8 @@ export const useAppConfig = () => {
     verifyMobile: globalConfig?.verify_mobile ?? false,
     verifyEmail: globalConfig?.verify_email ?? true,
     betaMode: globalConfig?.beta_mode ?? true,
+    betaCountries: globalConfig?.beta_countries ?? [],
+    notificationCountries: globalConfig?.notification_countries ?? [],
     refetch: fetchConfig,
   };
 };

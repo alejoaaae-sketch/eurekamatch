@@ -35,6 +35,8 @@ interface GlobalConfigRow {
   beta_mode: boolean;
   notifications_enabled: boolean;
   notification_sms_template: string;
+  beta_countries: string[];
+  notification_countries: string[];
 }
 
 const Admin = () => {
@@ -62,6 +64,8 @@ const Admin = () => {
     beta_mode: true,
     notifications_enabled: false,
     notification_sms_template: "",
+    beta_countries: "",
+    notification_countries: "",
   });
 
   useEffect(() => {
@@ -102,6 +106,8 @@ const Admin = () => {
         beta_mode: g.beta_mode,
         notifications_enabled: g.notifications_enabled,
         notification_sms_template: g.notification_sms_template,
+        beta_countries: g.beta_countries?.join(", ") ?? "",
+        notification_countries: g.notification_countries?.join(", ") ?? "",
       });
     }
     setLoading(false);
@@ -150,6 +156,8 @@ const Admin = () => {
         beta_mode: globalForm.beta_mode,
         notifications_enabled: globalForm.notifications_enabled,
         notification_sms_template: globalForm.notification_sms_template,
+        beta_countries: globalForm.beta_countries.split(",").map((s: string) => s.trim()).filter(Boolean),
+        notification_countries: globalForm.notification_countries.split(",").map((s: string) => s.trim()).filter(Boolean),
       } as any)
       .eq("id", globalConfig.id)
       .select();
@@ -326,6 +334,17 @@ const Admin = () => {
                     onCheckedChange={(v) => setGlobalForm((p) => ({ ...p, beta_mode: v }))}
                   />
                 </div>
+                {globalForm.beta_mode && (
+                  <div className="ml-4 animate-fade-in-up">
+                    <label className="text-xs text-muted-foreground mb-1 block">Países con beta activa (vacío = todos)</label>
+                    <Input
+                      value={globalForm.beta_countries}
+                      onChange={(e) => setGlobalForm((p) => ({ ...p, beta_countries: e.target.value }))}
+                      placeholder="ES, FR"
+                    />
+                    <p className="text-xs text-muted-foreground mt-1">Códigos ISO (ES, FR, MX…). Vacío = aplica a todos.</p>
+                  </div>
+                )}
                 <div className="flex items-center justify-between">
                   <div>
                     <span className="text-sm text-foreground">Verificar móvil (SMS)</span>
@@ -370,6 +389,15 @@ const Admin = () => {
 
               {globalForm.notifications_enabled && (
                 <div className="space-y-3 animate-fade-in-up">
+                  <div>
+                    <label className="text-xs text-muted-foreground mb-1 block">Países con notificaciones activas (vacío = todos)</label>
+                    <Input
+                      value={globalForm.notification_countries}
+                      onChange={(e) => setGlobalForm((p) => ({ ...p, notification_countries: e.target.value }))}
+                      placeholder="ES, FR"
+                    />
+                    <p className="text-xs text-muted-foreground mt-1">Códigos ISO (ES, FR, MX…). Vacío = aplica a todos.</p>
+                  </div>
                   <div>
                     <label className="text-xs text-muted-foreground mb-1 block">Plantilla SMS (texto que recibe el destinatario)</label>
                     <Textarea

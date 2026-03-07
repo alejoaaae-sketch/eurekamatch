@@ -103,6 +103,8 @@ export const useAppConfig = () => {
     verifyMobile: globalConfig?.verify_mobile ?? false,
     verifyEmail: globalConfig?.verify_email ?? true,
     betaMode: globalConfig?.beta_mode ?? true,
+    betaCountries: globalConfig?.beta_countries ?? [],
+    notificationCountries: globalConfig?.notification_countries ?? [],
     refetch: fetchConfig,
   };
 };

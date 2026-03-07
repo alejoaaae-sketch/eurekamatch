@@ -167,10 +167,25 @@ serve(async (req: Request) => {
       throw new Error("Twilio credentials not configured");
     }
 
+    // Map app_type to friendly app name
+    const appNames: Record<string, string> = {
+      love: "Eureka Love 💕",
+      plan: "Eureka Friends 🎉",
+      mude: "Eureka Sex 🔥",
+      sport: "Eureka Hobby 🏆",
+    };
+    const appLabel = appNames[pick.app_type] || "EurekaMatch";
+
     const optOutText = "\n\nPara dejar de recibir estos mensajes, entra en eurekamatch.lovable.app y desactívalo en Ajustes.";
     const template = globalConfig.notification_sms_template ||
-      "Alguien ha pensado en ti en EurekaMatch 💫 Descubre quién en eurekamatch.lovable.app";
-    const smsBody = template + optOutText;
+      "Alguien ha pensado en ti en {app} 💫 Descubre quién en eurekamatch.lovable.app";
+    // Replace {app} placeholder; if not present, append app name
+    let smsBody: string;
+    if (template.includes("{app}")) {
+      smsBody = template.replace(/\{app\}/g, appLabel) + optOutText;
+    } else {
+      smsBody = template + ` (${appLabel})` + optOutText;
+    }
 
     const twilioUrl = `https://api.twilio.com/2010-04-01/Accounts/${accountSid}/Messages.json`;
     const formData = new URLSearchParams();

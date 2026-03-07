@@ -334,6 +334,17 @@ const Admin = () => {
                     onCheckedChange={(v) => setGlobalForm((p) => ({ ...p, beta_mode: v }))}
                   />
                 </div>
+                {globalForm.beta_mode && (
+                  <div className="ml-4 animate-fade-in-up">
+                    <label className="text-xs text-muted-foreground mb-1 block">Países con beta activa (vacío = todos)</label>
+                    <Input
+                      value={globalForm.beta_countries}
+                      onChange={(e) => setGlobalForm((p) => ({ ...p, beta_countries: e.target.value }))}
+                      placeholder="ES, FR"
+                    />
+                    <p className="text-xs text-muted-foreground mt-1">Códigos ISO (ES, FR, MX…). Vacío = aplica a todos.</p>
+                  </div>
+                )}
                 <div className="flex items-center justify-between">
                   <div>
                     <span className="text-sm text-foreground">Verificar móvil (SMS)</span>

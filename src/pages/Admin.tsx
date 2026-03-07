@@ -64,6 +64,8 @@ const Admin = () => {
     beta_mode: true,
     notifications_enabled: false,
     notification_sms_template: "",
+    beta_countries: "",
+    notification_countries: "",
   });
 
   useEffect(() => {

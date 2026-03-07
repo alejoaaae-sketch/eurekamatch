@@ -21,6 +21,8 @@ export interface GlobalConfig {
   verify_mobile: boolean;
   verify_email: boolean;
   beta_mode: boolean;
+  beta_countries: string[];
+  notification_countries: string[];
 }
 
 export interface UserUsage {

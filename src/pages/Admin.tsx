@@ -35,6 +35,8 @@ interface GlobalConfigRow {
   beta_mode: boolean;
   notifications_enabled: boolean;
   notification_sms_template: string;
+  beta_countries: string[];
+  notification_countries: string[];
 }
 
 const Admin = () => {

@@ -390,6 +390,15 @@ const Admin = () => {
               {globalForm.notifications_enabled && (
                 <div className="space-y-3 animate-fade-in-up">
                   <div>
+                    <label className="text-xs text-muted-foreground mb-1 block">Países con notificaciones activas (vacío = todos)</label>
+                    <Input
+                      value={globalForm.notification_countries}
+                      onChange={(e) => setGlobalForm((p) => ({ ...p, notification_countries: e.target.value }))}
+                      placeholder="ES, FR"
+                    />
+                    <p className="text-xs text-muted-foreground mt-1">Códigos ISO (ES, FR, MX…). Vacío = aplica a todos.</p>
+                  </div>
+                  <div>
                     <label className="text-xs text-muted-foreground mb-1 block">Plantilla SMS (texto que recibe el destinatario)</label>
                     <Textarea
                       value={globalForm.notification_sms_template}

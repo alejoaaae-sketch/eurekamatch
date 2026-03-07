@@ -106,6 +106,8 @@ const Admin = () => {
         beta_mode: g.beta_mode,
         notifications_enabled: g.notifications_enabled,
         notification_sms_template: g.notification_sms_template,
+        beta_countries: g.beta_countries?.join(", ") ?? "",
+        notification_countries: g.notification_countries?.join(", ") ?? "",
       });
     }
     setLoading(false);

@@ -100,6 +100,7 @@ export type Database = {
       }
       global_config: {
         Row: {
+          beta_countries: string[]
           beta_mode: boolean
           created_at: string
           enabled_countries: string[]
@@ -107,6 +108,7 @@ export type Database = {
           free_picks_on_signup: number
           id: string
           max_new_users_per_day: number
+          notification_countries: string[]
           notification_sms_template: string
           notifications_enabled: boolean
           promo_enabled: boolean
@@ -118,6 +120,7 @@ export type Database = {
           verify_mobile: boolean
         }
         Insert: {
+          beta_countries?: string[]
           beta_mode?: boolean
           created_at?: string
           enabled_countries?: string[]
@@ -125,6 +128,7 @@ export type Database = {
           free_picks_on_signup?: number
           id?: string
           max_new_users_per_day?: number
+          notification_countries?: string[]
           notification_sms_template?: string
           notifications_enabled?: boolean
           promo_enabled?: boolean
@@ -136,6 +140,7 @@ export type Database = {
           verify_mobile?: boolean
         }
         Update: {
+          beta_countries?: string[]
           beta_mode?: boolean
           created_at?: string
           enabled_countries?: string[]
@@ -143,6 +148,7 @@ export type Database = {
           free_picks_on_signup?: number
           id?: string
           max_new_users_per_day?: number
+          notification_countries?: string[]
           notification_sms_template?: string
           notifications_enabled?: boolean
           promo_enabled?: boolean

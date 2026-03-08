@@ -18,25 +18,52 @@ const PaymentSuccess = () => {
   useEffect(() => {
     const verifyPayment = async () => {
       if (!user) return;
-      const sessionId = searchParams.get("session_id");
-      if (!sessionId) {
-        setStatus("error");
-        setErrorMsg("No session ID");
-        return;
-      }
+
+      const provider = searchParams.get("provider");
 
       try {
-        const { data, error } = await supabase.functions.invoke("verify-payment", {
-          body: { sessionId },
-        });
+        if (provider === "paypal") {
+          // PayPal flow: capture the order using the token (order ID)
+          const token = searchParams.get("token");
+          if (!token) {
+            setStatus("error");
+            setErrorMsg("No PayPal order token");
+            return;
+          }
 
-        if (error) throw error;
-        if (data?.success) {
-          setPicksAdded(data.picks_added || 0);
-          setStatus("success");
+          const { data, error } = await supabase.functions.invoke("capture-paypal-order", {
+            body: { orderId: token },
+          });
+
+          if (error) throw error;
+          if (data?.success) {
+            setPicksAdded(data.picks_added || 0);
+            setStatus("success");
+          } else {
+            setStatus("error");
+            setErrorMsg(data?.error || "Verification failed");
+          }
         } else {
-          setStatus("error");
-          setErrorMsg(data?.error || "Verification failed");
+          // Stripe flow (legacy)
+          const sessionId = searchParams.get("session_id");
+          if (!sessionId) {
+            setStatus("error");
+            setErrorMsg("No session ID");
+            return;
+          }
+
+          const { data, error } = await supabase.functions.invoke("verify-payment", {
+            body: { sessionId },
+          });
+
+          if (error) throw error;
+          if (data?.success) {
+            setPicksAdded(data.picks_added || 0);
+            setStatus("success");
+          } else {
+            setStatus("error");
+            setErrorMsg(data?.error || "Verification failed");
+          }
         }
       } catch (err) {
         setStatus("error");

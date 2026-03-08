@@ -30,36 +30,32 @@ const BuyPacks = () => {
     );
   }
 
-  const handleSelectPack = async (pack: PickPack) => {
+  const handleSelectPack = (pack: PickPack) => {
     if (betaMode) {
-      // In beta mode, use simulation modal
       setSelectedPack(pack);
       setShowSimulation(true);
       return;
     }
 
-    // PayPal payment
-    setProcessing(true);
-    try {
-      const { data, error } = await supabase.functions.invoke("create-paypal-order", {
-        body: {
-          packName: pack.name,
-          packId: pack.id,
-          picksCount: pack.picks_count,
-          price: pack.price,
-        },
-      });
+    // Real payment: show embedded card form
+    setSelectedPack(pack);
+    setShowCardForm(true);
+  };
 
-      if (error) throw error;
-      if (data?.url) {
-        window.location.href = data.url;
-      } else {
-        throw new Error("No PayPal approval URL");
-      }
-    } catch (err) {
-      toast.error(t("common.error"));
-      setProcessing(false);
-    }
+  const handleCardSuccess = (picksAdded: number) => {
+    setShowCardForm(false);
+    setSelectedPack(null);
+    refetchBalance();
+    toast.success(t("packs.purchaseSuccess", { count: picksAdded }));
+  };
+
+  const handleCardError = (msg: string) => {
+    toast.error(msg || t("common.error"));
+  };
+
+  const handleCardCancel = () => {
+    setShowCardForm(false);
+    setSelectedPack(null);
   };
 
   const handleBetaPaymentComplete = async () => {

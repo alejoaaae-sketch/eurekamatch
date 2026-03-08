@@ -20,6 +20,7 @@ const BuyPacks = () => {
   const [processing, setProcessing] = useState(false);
   const [selectedPack, setSelectedPack] = useState<PickPack | null>(null);
   const [showSimulation, setShowSimulation] = useState(false);
+  const [showCardForm, setShowCardForm] = useState(false);
 
   if (authLoading || balanceLoading || configLoading || !user) {
     return (

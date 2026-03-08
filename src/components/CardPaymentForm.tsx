@@ -1,4 +1,4 @@
-import { useState, useRef } from "react";
+import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import {
   PayPalScriptProvider,
@@ -6,7 +6,6 @@ import {
   PayPalNumberField,
   PayPalExpiryField,
   PayPalCVVField,
-  PayPalCardFieldsForm,
   usePayPalCardFields,
 } from "@paypal/react-paypal-js";
 import { supabase } from "@/integrations/supabase/client";
@@ -23,7 +22,15 @@ interface CardPaymentFormProps {
   onCancel: () => void;
 }
 
-function SubmitButton({ pack, isPaying, onSubmitting }: { pack: PickPack; isPaying: boolean; onSubmitting: () => void }) {
+function SubmitButton({
+  pack,
+  isPaying,
+  onCapture,
+}: {
+  pack: PickPack;
+  isPaying: boolean;
+  onCapture: (orderId: string) => Promise<void>;
+}) {
   const { t } = useTranslation();
   const { cardFieldsForm } = usePayPalCardFields();
   const [submitting, setSubmitting] = useState(false);
@@ -32,12 +39,22 @@ function SubmitButton({ pack, isPaying, onSubmitting }: { pack: PickPack; isPayi
     if (!cardFieldsForm || submitting || isPaying) return;
     const formState = await cardFieldsForm.getState();
     if (!formState.isFormValid) return;
+
     setSubmitting(true);
-    onSubmitting();
     try {
-      await cardFieldsForm.submit({
-        contingencies: ['SCA_WHEN_REQUIRED'],
-      });
+      // submit() returns a promise that resolves AFTER 3DS completes
+      const result = await cardFieldsForm.submit();
+      console.log("CardFields submit result:", result);
+
+      // After submit resolves, the order is approved — capture it
+      const orderId = (result as any)?.orderId || (result as any)?.orderID;
+      if (orderId) {
+        await onCapture(orderId);
+      } else {
+        console.error("No orderId in submit result:", result);
+        // Try to extract from any available data
+        await onCapture("");
+      }
     } catch (err) {
       console.error("Card submit error:", err);
       setSubmitting(false);
@@ -66,6 +83,7 @@ function SubmitButton({ pack, isPaying, onSubmitting }: { pack: PickPack; isPayi
 const CardPaymentForm = ({ pack, onSuccess, onError, onCancel }: CardPaymentFormProps) => {
   const { t } = useTranslation();
   const [isPaying, setIsPaying] = useState(false);
+  const [currentOrderId, setCurrentOrderId] = useState<string | null>(null);
 
   const createOrder = async () => {
     const { data, error } = await supabase.functions.invoke("create-paypal-order", {
@@ -81,14 +99,25 @@ const CardPaymentForm = ({ pack, onSuccess, onError, onCancel }: CardPaymentForm
       throw new Error("Failed to create order");
     }
 
+    console.log("Order created:", data.orderId);
+    setCurrentOrderId(data.orderId);
     return data.orderId;
   };
 
-  const onApprove = async (data: { orderID: string }) => {
+  const captureOrder = async (orderId: string) => {
     setIsPaying(true);
+    const orderToCapture = orderId || currentOrderId;
+    console.log("Capturing order:", orderToCapture);
+
+    if (!orderToCapture) {
+      onError("No order ID available");
+      setIsPaying(false);
+      return;
+    }
+
     try {
       const { data: captureData, error } = await supabase.functions.invoke("capture-paypal-order", {
-        body: { orderId: data.orderID },
+        body: { orderId: orderToCapture },
       });
 
       if (error) throw error;
@@ -103,6 +132,12 @@ const CardPaymentForm = ({ pack, onSuccess, onError, onCancel }: CardPaymentForm
     } finally {
       setIsPaying(false);
     }
+  };
+
+  // onApprove as fallback (fires for non-3DS or if SDK handles it)
+  const onApprove = async (data: { orderID: string }) => {
+    console.log("onApprove fired:", data.orderID);
+    await captureOrder(data.orderID);
   };
 
   const onErrorHandler = (err: Record<string, unknown>) => {
@@ -160,7 +195,7 @@ const CardPaymentForm = ({ pack, onSuccess, onError, onCancel }: CardPaymentForm
             </div>
           </div>
 
-          <SubmitButton pack={pack} isPaying={isPaying} onSubmitting={() => setIsPaying(true)} />
+          <SubmitButton pack={pack} isPaying={isPaying} onCapture={captureOrder} />
         </PayPalCardFieldsProvider>
       </PayPalScriptProvider>
 

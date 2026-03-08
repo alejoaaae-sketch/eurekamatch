@@ -160,7 +160,7 @@ const CardPaymentForm = ({ pack, onSuccess, onError, onCancel }: CardPaymentForm
             </div>
           </div>
 
-          <SubmitButton pack={pack} isPaying={isPaying} />
+          <SubmitButton pack={pack} isPaying={isPaying} onSubmitting={() => setIsPaying(true)} />
         </PayPalCardFieldsProvider>
       </PayPalScriptProvider>
 

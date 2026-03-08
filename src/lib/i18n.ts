@@ -63,7 +63,7 @@ const countryToLanguage: Record<string, LanguageCode> = {
   UY: 'es',
   FR: 'fr',
   BE: 'fr',
-  CH: 'fr',
+  CH: 'de',
   CA: 'fr',
   JP: 'ja',
   GB: 'en',
@@ -72,6 +72,16 @@ const countryToLanguage: Record<string, LanguageCode> = {
   NZ: 'en',
   IE: 'en',
   AD: 'ca',
+  PT: 'pt',
+  BR: 'pt',
+  AO: 'pt',
+  MZ: 'pt',
+  IT: 'it',
+  SM: 'it',
+  DE: 'de',
+  AT: 'de',
+  LI: 'de',
+  LU: 'de',
 };
 
 // Detect language from IP geolocation (async, best-effort)

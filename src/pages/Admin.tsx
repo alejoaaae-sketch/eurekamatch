@@ -110,6 +110,7 @@ const Admin = () => {
         notification_sms_template: g.notification_sms_template,
         beta_countries: g.beta_countries?.join(", ") ?? "",
         notification_countries: g.notification_countries?.join(", ") ?? "",
+        payment_countries: (g as any).payment_countries?.join(", ") ?? "",
       });
     }
     setLoading(false);

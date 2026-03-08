@@ -7,6 +7,10 @@ import eu from '@/locales/eu.json';
 import ca from '@/locales/ca.json';
 import fr from '@/locales/fr.json';
 import ja from '@/locales/ja.json';
+import gl from '@/locales/gl.json';
+import pt from '@/locales/pt.json';
+import it from '@/locales/it.json';
+import de from '@/locales/de.json';
 
 export const languages = [
   { code: 'es', name: 'Español' },
@@ -14,6 +18,10 @@ export const languages = [
   { code: 'eu', name: 'Euskera' },
   { code: 'ca', name: 'Català' },
   { code: 'fr', name: 'Français' },
+  { code: 'gl', name: 'Galego' },
+  { code: 'pt', name: 'Português' },
+  { code: 'it', name: 'Italiano' },
+  { code: 'de', name: 'Deutsch' },
   { code: 'ja', name: '日本語' },
 ] as const;
 
@@ -26,6 +34,10 @@ const resources = {
   ca: { translation: ca },
   fr: { translation: fr },
   ja: { translation: ja },
+  gl: { translation: gl },
+  pt: { translation: pt },
+  it: { translation: it },
+  de: { translation: de },
 };
 
 // Country code (ISO 3166-1 alpha-2) to language code mapping

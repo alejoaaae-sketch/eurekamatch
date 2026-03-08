@@ -1,0 +1,366 @@
+{
+  "common": {
+    "back": "Indietro",
+    "save": "Salva",
+    "cancel": "Annulla",
+    "delete": "Elimina",
+    "loading": "Caricamento...",
+    "error": "Errore",
+    "success": "Successo!",
+    "copy": "Copia",
+    "copied": "Copiato"
+  },
+  "auth": {
+    "login": "Accedi",
+    "signup": "Crea account",
+    "logout": "Esci",
+    "phone": "Numero di telefono",
+    "name": "Il tuo nome",
+    "email": "Email",
+    "emailHint": "Ti avviseremo qui quando avrai un match",
+    "emailInvalid": "Inserisci un'email valida",
+    "password": "Password",
+    "noAccount": "Non hai un account?",
+    "hasAccount": "Hai già un account?",
+    "register": "Registrati",
+    "signIn": "Accedi",
+    "welcomeBack": "Bentornato!",
+    "accountCreated": "Account creato! Controlla la tua email per verificarlo.",
+    "invalidCredentials": "Credenziali non valide",
+    "passwordMinLength": "La password deve avere almeno 8 caratteri",
+    "passwordComplexity": "La password deve includere maiuscole, minuscole e numeri",
+    "passwordStrength": {
+      "minLength": "8+ caratteri",
+      "uppercase": "Maiuscola",
+      "lowercase": "Minuscola",
+      "number": "Numero",
+      "weak": "Debole",
+      "fair": "Discreta",
+      "good": "Buona",
+      "strong": "Forte"
+    },
+    "phoneInvalid": "Inserisci un numero di telefono valido",
+    "nameRequired": "Il nome è obbligatorio",
+    "phoneAlreadyRegistered": "Questo numero è già registrato",
+    "verifyPhone": "Verifica il tuo telefono",
+    "otpSentTo": "Abbiamo inviato un codice a",
+    "otpSent": "Codice inviato via SMS",
+    "verifyCode": "Verifica codice",
+    "invalidOtp": "Codice non valido",
+    "otpIncomplete": "Inserisci il codice completo",
+    "phoneVerified": "Telefono verificato!",
+    "verificationError": "Errore di verifica",
+    "sendOtpError": "Errore nell'invio del codice",
+    "resendOtp": "Non hai ricevuto il codice? Reinvia",
+    "resending": "Reinvio in corso...",
+    "otpResent": "Codice reinviato",
+    "phoneNotVerified": "Il tuo cellulare non è verificato",
+    "phoneNotVerifiedDesc": "Per fare match devi verificare il tuo numero di telefono. Vuoi verificarlo ora?",
+    "verifyNow": "Sì, verifica"
+  },
+  "app": {
+    "name": "Mútuo",
+    "tagline": "Scopri se l'interesse è reciproco",
+    "privacyNote": "La tua privacy è la nostra priorità. Non condivideremo mai le tue scelte.",
+    "taglines": {
+      "love": "Scopri se l'amore è reciproco",
+      "friends": "Amici su cui puoi contare. Perché è reciproco.",
+      "mude": "Scopri l'attrazione reciproca",
+      "sport": "Scopri se vuole condividere un hobby con te"
+    }
+  },
+  "home": {
+    "welcome": "Ciao",
+    "matches": "Coincidenze",
+    "picks": "Le mie scelte",
+    "emptyMatches": "Ancora nessuna coincidenza",
+    "emptyMatchesHint": "Quando qualcuno che hai scelto ti sceglie a sua volta, apparirà qui",
+    "emptyPicks": "Non hai ancora scelto nessuno",
+    "emptyPicksHint": "Aggiungi qualcuno per scoprire se l'interesse è reciproco",
+    "addFirst": "Aggiungi la tua prima scelta",
+    "addPick": "Aggiungi scelta",
+    "pending": "In attesa",
+    "mutualInterest": "Interesse reciproco!",
+    "view": "Vedi"
+  },
+  "pick": {
+    "add": "Aggiungi scelta",
+    "addSubtitle": "Chi vuoi aggiungere?",
+    "name": "Nome",
+    "namePlaceholder": "Come si chiama?",
+    "phone": "Telefono",
+    "phonePlaceholder": "+39 300 000 0000",
+    "phoneHint": "Usiamo il telefono per trovare coincidenze. Non lo condividiamo mai.",
+    "save": "Salva scelta",
+    "saving": "Salvataggio...",
+    "added": "Scelta aggiunta",
+    "addedSuccess": "Aggiunto con successo",
+    "addedAt": "Aggiunto",
+    "deleteConfirm": "Eliminare questa scelta?",
+    "deleteDescription": "Questa azione non può essere annullata.",
+    "deleted": "Scelta eliminata",
+    "limit": "Limite raggiunto",
+    "limitReached": "Hai raggiunto il limite di {{count}} pick. Non puoi aggiungerne altri. Se vuoi aggiungerne uno nuovo, devi eliminare uno o più pick esistenti. Grazie!",
+    "managePicks": "Gestisci i miei pick"
+  },
+  "match": {
+    "title": "È reciproco!",
+    "subtitle": "Ti ha scelto anche lui/lei",
+    "contactNow": "Ora potete contattarvi",
+    "phone": "Telefono",
+    "email": "Email",
+    "noContact": "L'utente non ha ancora completato il suo profilo con le informazioni di contatto.",
+    "tip": "Ricorda: il primo passo è il più difficile. In bocca al lupo!",
+    "backHome": "Torna alla home",
+    "notFound": "Coincidenza non trovata"
+  },
+  "profile": {
+    "title": "Il mio profilo",
+    "displayName": "Nome visualizzato",
+    "displayNamePlaceholder": "Come vuoi essere chiamato?",
+    "phone": "Telefono",
+    "phonePlaceholder": "+39 300 000 0000",
+    "phoneHint": "Questo è il telefono che gli altri useranno per trovarti",
+    "email": "Email",
+    "emailVerified": "Email verificata",
+    "emailNotVerified": "Email non verificata",
+    "resendVerification": "Reinvia verifica",
+    "verificationSent": "Email di verifica inviata. Controlla la tua casella di posta.",
+    "language": "Lingua",
+    "save": "Salva modifiche",
+    "saving": "Salvataggio...",
+    "saved": "Profilo aggiornato",
+    "phoneRequired": "Il telefono è obbligatorio",
+    "logout": "Esci"
+  },
+  "languages": {
+    "es": "Español",
+    "en": "English",
+    "eu": "Euskera",
+    "ca": "Català",
+    "fr": "Français",
+    "ja": "日本語",
+    "gl": "Galego",
+    "pt": "Português",
+    "it": "Italiano",
+    "de": "Deutsch"
+  },
+  "nav": {
+    "home": "Home",
+    "add": "Aggiungi",
+    "profile": "Profilo"
+  },
+  "payment": {
+    "title": "Effettua pagamento",
+    "addPickDescription": "Per aggiungere questa scelta devi effettuare un pagamento unico.",
+    "changePickDescription": "Per cambiare questa scelta devi effettuare un pagamento.",
+    "oneTimeFee": "Pagamento unico",
+    "cardNumber": "Numero carta",
+    "expiry": "Scadenza",
+    "securePayment": "Pagamento sicuro e criptato",
+    "pay": "Paga",
+    "processing": "Elaborazione pagamento...",
+    "pleaseWait": "Attendi un momento",
+    "success": "Pagamento completato!",
+    "thankYou": "Grazie per il tuo acquisto"
+  },
+  "packs": {
+    "title": "Acquista crediti",
+    "currentBalance": "Il tuo saldo attuale",
+    "basic": "Pack base",
+    "small": "Pack piccolo",
+    "medium": "Pack medio",
+    "large": "Pack grande",
+    "popular": "Popolare",
+    "info": "I crediti acquistati non scadono. Validi per tutte le app.",
+    "purchaseSuccess": "Hai acquistato {{count}} crediti!",
+    "noPicks": "Nessun credito rimasto",
+    "noPicksHint": "Acquista un pack per continuare a fare modifiche.",
+    "buyPacks": "Acquista crediti",
+    "picksRemaining": "Hai {{count}} crediti disponibili",
+    "creditsUnit": "crediti"
+  },
+  "time": {
+    "now": "Adesso",
+    "yesterday": "Ieri"
+  },
+  "landing": {
+    "beta": {
+      "badge": "Strumento in sviluppo"
+    },
+    "hero": {
+      "title": "Scopri se l'interesse è reciproco",
+      "subtitle": "Un'idea semplice: sapere se qualcuno pensa anche a te, senza il rischio di rifiuto.",
+      "devNotice": "Questo è uno strumento in sviluppo. Stiamo costruendo qualcosa di speciale."
+    },
+    "variants": {
+      "title": "Scegli il tuo Eureka",
+      "explore": "Esplora",
+      "love": {
+        "tagline": "Scopri se l'amore è reciproco. Senza rischi, senza rifiuti."
+      },
+      "plan": {
+        "tagline": "Trova amici che ti scelgano a loro volta. Perché l'amicizia è reciproca."
+      },
+      "mude": {
+        "tagline": "Scopri l'attrazione reciproca. Discreto e sicuro."
+      },
+      "sport": {
+        "tagline": "Scopri se vuole condividere un hobby con te. Sport, viaggi, piani... Senza impegno."
+      }
+    },
+    "concept": {
+      "title": "Come funziona?",
+      "description": "Aggiungi le persone che ti interessano. Se anche loro ti aggiungono, avvisiamo entrambi. Se no, nessuno lo sa.",
+      "feature1": "100% privato",
+      "feature2": "Nessun rifiuto",
+      "feature3": "Scoperta reciproca"
+    },
+    "footer": {
+      "rights": "Tutti i diritti riservati."
+    }
+  },
+  "appLanding": {
+    "cta": "Inizia ora",
+    "howItWorks": "Come funziona?",
+    "whyUs": "Perché EUREKA?",
+    "readyToStart": "Pronto a scoprire?",
+    "readyDescription": "Crea il tuo account gratuito e inizia a scoprire connessioni reciproche.",
+    "love": {
+      "description": "E se anche lei/lui pensa a te? Scopri se l'amore è reciproco. Senza rischi. Senza rifiuti."
+    },
+    "plan": {
+      "description": "Eureka Friends. Amici con cui sai che è reciproco. Ci sono persone con cui ti diverti tantissimo… ma non sai mai se anche l'altro ne ha voglia. Eureka Friends trasforma quel dubbio in chiarezza. Amicizia adulta: a volte sì, a volte no… e va bene così."
+    },
+    "mude": {
+      "description": "EUREKA SEX è un'app per sapere se il desiderio è reciproco tra due persone che già si conoscono, senza pressione e senza esposizione. Non è per cercare. È per confermare."
+    },
+    "sport": {
+      "description": "EUREKA HOBBY è per scoprire se qualcuno vuole condividere un hobby con te. Sport, viaggi, piani, cucina, musica... Se l'interesse è reciproco, vi mettiamo in contatto. Senza esposizione, senza rifiuto."
+    },
+    "steps": {
+      "step1": {
+        "title": "Crea il tuo account",
+        "description": "Registrati con il tuo telefono, email e una password sicura."
+      },
+      "step2": {
+        "love": {
+          "title": "Aggiungi chi ti interessa",
+          "description": "Scegli fino a 2 persone. Inserisci il loro cellulare. Nessuno riceve avvisi."
+        },
+        "plan": {
+          "title": "Aggiungi chi ti interessa",
+          "description": "Scegli fino a 5 persone. Inserisci il loro cellulare. Nessuno riceve avvisi."
+        },
+        "mude": {
+          "title": "Aggiungi chi ti interessa",
+          "description": "Scegli fino a 2 persone. Inserisci il loro cellulare. Nessuno riceve avvisi."
+        },
+        "sport": {
+          "title": "Aggiungi chi ti interessa",
+          "description": "Scegli fino a 5 persone con cui condividere hobby. Inserisci il loro cellulare. Nessuno riceve avvisi."
+        }
+      },
+      "step3": {
+        "title": "Mantieni la privacy",
+        "description": "Le tue scelte sono 100% private. Solo tu le conosci."
+      },
+      "step4": {
+        "title": "Ricevi avviso se è reciproco",
+        "description": "Se l'altra persona ti sceglie a sua volta, ti avvisiamo via email e nell'app."
+      },
+      "step5": {
+        "description": "Ora siamo in fase di test. Più avanti, ogni cambio di persona avrà un costo simbolico."
+      }
+    },
+    "features": {
+      "privacy": {
+        "title": "100% Privato",
+        "description": "Nessuno può vedere le tue scelte finché non c'è un match."
+      },
+      "noRejection": {
+        "title": "Nessun rifiuto",
+        "description": "Se non è reciproco, nessuno lo sa. Zero imbarazzo."
+      },
+      "connection": {
+        "title": "Connessione reale",
+        "description": "Quando c'è un match, potete contattarvi direttamente."
+      }
+    }
+  },
+  "legal": {
+    "termsTitle": "Termini e Condizioni",
+    "privacyTitle": "Informativa sulla Privacy",
+    "lastUpdated": "Ultimo aggiornamento",
+    "terms": {
+      "acceptance": "Accettazione dei Termini",
+      "acceptanceText": "Accedendo e utilizzando EUREKA, accetti questi termini e condizioni. Se non sei d'accordo, non utilizzare il servizio.",
+      "service": "Descrizione del Servizio",
+      "serviceText": "EUREKA è una piattaforma che permette di scoprire interessi reciproci tra persone. Il servizio connette utenti che si scelgono reciprocamente, mantenendo la privacy fino a quando non si verifica una coincidenza.",
+      "userConduct": "Condotta dell'Utente",
+      "userConductText": "Ti impegni a utilizzare il servizio in modo responsabile, a non molestare altri utenti, a non creare account falsi e a rispettare la privacy degli altri utenti.",
+      "privacy": "Privacy",
+      "privacyText": "La tua privacy è fondamentale. Le tue scelte sono completamente private e vengono rivelate solo quando esiste una coincidenza reciproca. Consulta la nostra Informativa sulla Privacy per maggiori dettagli.",
+      "termination": "Risoluzione",
+      "terminationText": "Ci riserviamo il diritto di sospendere o eliminare il tuo account se violi questi termini. Puoi eliminare il tuo account in qualsiasi momento dalle impostazioni.",
+      "liability": "Limitazione di Responsabilità",
+      "liabilityText": "EUREKA non è responsabile delle interazioni tra utenti al di fuori della piattaforma. Il servizio è fornito 'così com'è' senza garanzie di alcun tipo."
+    },
+    "privacy": {
+      "dataCollection": "Dati che Raccogliamo",
+      "dataCollectionText": "Raccogliamo il tuo numero di telefono, email, nome e le scelte che fai all'interno dell'app. Non raccogliamo dati di posizione né accediamo ai tuoi contatti.",
+      "dataUse": "Uso dei Dati",
+      "dataUseText": "Utilizziamo i tuoi dati esclusivamente per il funzionamento del servizio: trovare coincidenze reciproche e avvisarti quando si verificano.",
+      "dataSharing": "Condivisione dei Dati",
+      "dataSharingText": "Condividiamo le tue informazioni di contatto solo con utenti con cui hai una coincidenza reciproca. Non vendiamo né condividiamo mai i tuoi dati con terze parti.",
+      "userRights": "I tuoi Diritti (GDPR)",
+      "userRightsText": "Hai il diritto di accedere, rettificare ed eliminare i tuoi dati personali. Puoi esercitare questi diritti dalle impostazioni del tuo account o contattandoci direttamente.",
+      "dataDeletion": "Eliminazione dei Dati",
+      "dataDeletionText": "Puoi richiedere l'eliminazione completa del tuo account e di tutti i dati associati dalle impostazioni. Questo processo è irreversibile ed elimina pick, match, blocchi e il tuo profilo.",
+      "contact": "Contatto",
+      "contactText": "Per qualsiasi richiesta relativa alla privacy, puoi contattarci attraverso l'applicazione."
+    }
+  },
+  "block": {
+    "confirmTitle": "Blocca utente",
+    "confirmDescription": "Sei sicuro di voler bloccare {{name}}? Non vedrete più il vostro match e non potrete più contattarvi.",
+    "confirm": "Blocca",
+    "success": "Utente bloccato",
+    "alreadyBlocked": "Questo utente è già bloccato",
+    "unblocked": "Utente sbloccato"
+  },
+  "settings": {
+    "title": "Impostazioni",
+    "legal": "Legale",
+    "dangerZone": "Zona pericolosa",
+    "deleteAccount": "Elimina il mio account",
+    "deleteAccountDescription": "Questo eliminerà permanentemente il tuo account, pick, match e tutti i tuoi dati. Questa azione non può essere annullata.",
+    "deleteConfirmTitle": "Eliminare il tuo account?",
+    "deleteConfirmDescription": "Questa azione è permanente e irreversibile. Verranno eliminati tutti i tuoi dati: pick, match, blocchi e profilo. Non potrai recuperare il tuo account.",
+    "confirmDelete": "Sì, elimina il mio account",
+    "accountDeleted": "Il tuo account è stato eliminato"
+  },
+  "ageVerification": {
+    "title": "Verifica dell'età",
+    "description": "Questo contenuto è riservato ai maggiori di 18 anni. Continuando, confermi di avere almeno 18 anni.",
+    "legalNote": "È tua responsabilità verificare di soddisfare i requisiti legali di età nella tua giurisdizione.",
+    "confirm": "Ho 18 anni o più",
+    "decline": "Esci"
+  },
+  "notification": {
+    "sendHint": "Invia indizio anonimo",
+    "sent": "Indizio inviato! 1 credito detratto.",
+    "alreadySent": "Indizio inviato questo mese",
+    "notRegistered": "Questo utente non si è ancora registrato nell'app"
+  },
+  "history": {
+    "balance": "Saldo attuale",
+    "totalPurchased": "Acquistati",
+    "totalUsed": "Usati",
+    "timeline": "Cronologia",
+    "empty": "Nessuna attività ancora",
+    "purchase": "Acquisto",
+    "pickCreated": "Pick inviato",
+    "pickDeleted": "Pick eliminato"
+  }
+}

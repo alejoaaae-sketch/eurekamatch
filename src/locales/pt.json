@@ -1,0 +1,366 @@
+{
+  "common": {
+    "back": "Voltar",
+    "save": "Guardar",
+    "cancel": "Cancelar",
+    "delete": "Eliminar",
+    "loading": "A carregar...",
+    "error": "Erro",
+    "success": "Sucesso!",
+    "copy": "Copiar",
+    "copied": "Copiado"
+  },
+  "auth": {
+    "login": "Entrar",
+    "signup": "Criar conta",
+    "logout": "Terminar sessão",
+    "phone": "Número de telefone",
+    "name": "O teu nome",
+    "email": "Email",
+    "emailHint": "Avisamos-te aqui quando tiveres um match",
+    "emailInvalid": "Introduz um email válido",
+    "password": "Palavra-passe",
+    "noAccount": "Não tens conta?",
+    "hasAccount": "Já tens conta?",
+    "register": "Regista-te",
+    "signIn": "Inicia sessão",
+    "welcomeBack": "Bem-vindo de volta!",
+    "accountCreated": "Conta criada! Verifica o teu email.",
+    "invalidCredentials": "Credenciais incorretas",
+    "passwordMinLength": "A palavra-passe deve ter pelo menos 8 caracteres",
+    "passwordComplexity": "A palavra-passe deve incluir maiúsculas, minúsculas e números",
+    "passwordStrength": {
+      "minLength": "8+ caracteres",
+      "uppercase": "Maiúscula",
+      "lowercase": "Minúscula",
+      "number": "Número",
+      "weak": "Fraca",
+      "fair": "Razoável",
+      "good": "Boa",
+      "strong": "Forte"
+    },
+    "phoneInvalid": "Introduz um número de telefone válido",
+    "nameRequired": "O nome é obrigatório",
+    "phoneAlreadyRegistered": "Este número já está registado",
+    "verifyPhone": "Verifica o teu telefone",
+    "otpSentTo": "Enviámos um código para",
+    "otpSent": "Código enviado por SMS",
+    "verifyCode": "Verificar código",
+    "invalidOtp": "Código incorreto",
+    "otpIncomplete": "Introduz o código completo",
+    "phoneVerified": "Telefone verificado!",
+    "verificationError": "Erro ao verificar",
+    "sendOtpError": "Erro ao enviar o código",
+    "resendOtp": "Não recebeste o código? Reenviar",
+    "resending": "A reenviar...",
+    "otpResent": "Código reenviado",
+    "phoneNotVerified": "O teu telemóvel não está verificado",
+    "phoneNotVerifiedDesc": "Para fazer matches precisas de verificar o teu número de telefone. Queres verificá-lo agora?",
+    "verifyNow": "Sim, verificar"
+  },
+  "app": {
+    "name": "Mútuo",
+    "tagline": "Descobre se o interesse é mútuo",
+    "privacyNote": "A tua privacidade é a nossa prioridade. Nunca partilharemos as tuas escolhas.",
+    "taglines": {
+      "love": "Descobre se o amor é mútuo",
+      "friends": "Amigos com quem podes contar. Porque é mútuo.",
+      "mude": "Descobre a atração mútua",
+      "sport": "Descobre se quer partilhar hobby contigo"
+    }
+  },
+  "home": {
+    "welcome": "Olá",
+    "matches": "Coincidências",
+    "picks": "As minhas escolhas",
+    "emptyMatches": "Ainda não há coincidências",
+    "emptyMatchesHint": "Quando alguém que escolheste também te escolher, aparecerá aqui",
+    "emptyPicks": "Ainda não escolheste ninguém",
+    "emptyPicksHint": "Adiciona alguém para descobrir se o interesse é mútuo",
+    "addFirst": "Adicionar a tua primeira escolha",
+    "addPick": "Adicionar escolha",
+    "pending": "Em espera",
+    "mutualInterest": "Interesse mútuo!",
+    "view": "Ver"
+  },
+  "pick": {
+    "add": "Adicionar escolha",
+    "addSubtitle": "Quem queres adicionar?",
+    "name": "Nome",
+    "namePlaceholder": "Como se chama?",
+    "phone": "Telefone",
+    "phonePlaceholder": "+351 900 000 000",
+    "phoneHint": "Usamos o telefone para encontrar coincidências. Nunca o partilhamos.",
+    "save": "Guardar escolha",
+    "saving": "A guardar...",
+    "added": "Escolha adicionada",
+    "addedSuccess": "Adicionado com sucesso",
+    "addedAt": "Adicionado",
+    "deleteConfirm": "Eliminar esta escolha?",
+    "deleteDescription": "Esta ação não pode ser desfeita.",
+    "deleted": "Escolha eliminada",
+    "limit": "Limite atingido",
+    "limitReached": "Já atingiste o limite de {{count}} picks. Não podes adicionar mais. Se quiseres adicionar um novo, deves apagar um ou vários picks existentes. Obrigado!",
+    "managePicks": "Gerir os meus picks"
+  },
+  "match": {
+    "title": "É mútuo!",
+    "subtitle": "Também te escolheu",
+    "contactNow": "Agora podem contactar-se",
+    "phone": "Telefone",
+    "email": "Email",
+    "noContact": "O utilizador ainda não completou o seu perfil com informação de contacto.",
+    "tip": "Lembra-te: o primeiro passo é o mais difícil. Boa sorte!",
+    "backHome": "Voltar ao início",
+    "notFound": "Coincidência não encontrada"
+  },
+  "profile": {
+    "title": "O meu perfil",
+    "displayName": "Nome a apresentar",
+    "displayNamePlaceholder": "Como queres que te chamem?",
+    "phone": "Telefone",
+    "phonePlaceholder": "+351 900 000 000",
+    "phoneHint": "Este é o telefone que outros usarão para te encontrar",
+    "email": "Email",
+    "emailVerified": "Email verificado",
+    "emailNotVerified": "Email não verificado",
+    "resendVerification": "Reenviar verificação",
+    "verificationSent": "Email de verificação enviado. Verifica a tua caixa de entrada.",
+    "language": "Idioma",
+    "save": "Guardar alterações",
+    "saving": "A guardar...",
+    "saved": "Perfil atualizado",
+    "phoneRequired": "O telefone é obrigatório",
+    "logout": "Terminar sessão"
+  },
+  "languages": {
+    "es": "Español",
+    "en": "English",
+    "eu": "Euskera",
+    "ca": "Català",
+    "fr": "Français",
+    "ja": "日本語",
+    "gl": "Galego",
+    "pt": "Português",
+    "it": "Italiano",
+    "de": "Deutsch"
+  },
+  "nav": {
+    "home": "Início",
+    "add": "Adicionar",
+    "profile": "Perfil"
+  },
+  "payment": {
+    "title": "Efetuar pagamento",
+    "addPickDescription": "Para adicionar esta escolha precisas de efetuar um pagamento único.",
+    "changePickDescription": "Para alterar esta escolha precisas de efetuar um pagamento.",
+    "oneTimeFee": "Pagamento único",
+    "cardNumber": "Número do cartão",
+    "expiry": "Validade",
+    "securePayment": "Pagamento seguro e encriptado",
+    "pay": "Pagar",
+    "processing": "A processar pagamento...",
+    "pleaseWait": "Por favor, aguarda um momento",
+    "success": "Pagamento concluído!",
+    "thankYou": "Obrigado pela tua compra"
+  },
+  "packs": {
+    "title": "Comprar créditos",
+    "currentBalance": "O teu saldo atual",
+    "basic": "Pack básico",
+    "small": "Pack pequeno",
+    "medium": "Pack médio",
+    "large": "Pack grande",
+    "popular": "Popular",
+    "info": "Os créditos comprados não expiram. Válidos para todas as apps.",
+    "purchaseSuccess": "Compraste {{count}} créditos!",
+    "noPicks": "Sem créditos restantes",
+    "noPicksHint": "Compra um pack para continuar a fazer alterações.",
+    "buyPacks": "Comprar créditos",
+    "picksRemaining": "Tens {{count}} créditos disponíveis",
+    "creditsUnit": "créditos"
+  },
+  "time": {
+    "now": "Agora",
+    "yesterday": "Ontem"
+  },
+  "landing": {
+    "beta": {
+      "badge": "Ferramenta em desenvolvimento"
+    },
+    "hero": {
+      "title": "Descobre se o interesse é mútuo",
+      "subtitle": "Uma ideia simples: saber se alguém também pensa em ti, sem o risco de rejeição.",
+      "devNotice": "Esta é uma ferramenta em desenvolvimento. Estamos a construir algo especial."
+    },
+    "variants": {
+      "title": "Escolhe o teu Eureka",
+      "explore": "Explorar",
+      "love": {
+        "tagline": "Descobre se o amor é mútuo. Sem riscos, sem rejeições."
+      },
+      "plan": {
+        "tagline": "Encontra amigos que também te escolham. Porque a amizade é mútua."
+      },
+      "mude": {
+        "tagline": "Descobre a atração mútua. Discreto e seguro."
+      },
+      "sport": {
+        "tagline": "Descobre se quer partilhar hobby contigo. Desporto, viagens, planos... Sem compromisso."
+      }
+    },
+    "concept": {
+      "title": "Como funciona?",
+      "description": "Adiciona as pessoas que te interessam. Se também te adicionarem, avisamos ambos. Se não, ninguém fica a saber.",
+      "feature1": "100% privado",
+      "feature2": "Sem rejeições",
+      "feature3": "Descoberta mútua"
+    },
+    "footer": {
+      "rights": "Todos os direitos reservados."
+    }
+  },
+  "appLanding": {
+    "cta": "Começar agora",
+    "howItWorks": "Como funciona?",
+    "whyUs": "Porquê EUREKA?",
+    "readyToStart": "Pronto para descobrir?",
+    "readyDescription": "Cria a tua conta grátis e começa a descobrir conexões mútuas.",
+    "love": {
+      "description": "E se também pensa em ti? Descobre se o amor é mútuo. Sem riscos. Sem rejeições."
+    },
+    "plan": {
+      "description": "Eureka Friends. Amigos com quem sabes que é mútuo. Há pessoas com quem te divertes imenso… mas nunca sabes se o outro também quer. Eureka Friends transforma essa dúvida em clareza. Amizade adulta: às vezes sim, às vezes não… e não faz mal."
+    },
+    "mude": {
+      "description": "EUREKA SEX é uma app para saber se o desejo é mútuo entre duas pessoas que já se conhecem, sem pressão e sem exposição. Não é para procurar. É para confirmar."
+    },
+    "sport": {
+      "description": "EUREKA HOBBY é para descobrir se alguém quer partilhar um hobby contigo. Desporto, viagens, planos, cozinha, música... Se o interesse é mútuo, colocamos-vos em contacto. Sem exposição, sem rejeição."
+    },
+    "steps": {
+      "step1": {
+        "title": "Cria a tua conta",
+        "description": "Regista-te com o teu telefone, email e uma palavra-passe segura."
+      },
+      "step2": {
+        "love": {
+          "title": "Adiciona quem te interessa",
+          "description": "Escolhe até 2 pessoas. Introduz o seu telemóvel. Ninguém recebe aviso."
+        },
+        "plan": {
+          "title": "Adiciona quem te interessa",
+          "description": "Escolhe até 5 pessoas. Introduz o seu telemóvel. Ninguém recebe aviso."
+        },
+        "mude": {
+          "title": "Adiciona quem te interessa",
+          "description": "Escolhe até 2 pessoas. Introduz o seu telemóvel. Ninguém recebe aviso."
+        },
+        "sport": {
+          "title": "Adiciona quem te interessa",
+          "description": "Escolhe até 5 pessoas com quem partilhar hobby. Introduz o seu telemóvel. Ninguém recebe aviso."
+        }
+      },
+      "step3": {
+        "title": "Mantém a privacidade",
+        "description": "As tuas escolhas são 100% privadas. Só tu as conheces."
+      },
+      "step4": {
+        "title": "Recebe aviso se é mútuo",
+        "description": "Se a outra pessoa também te escolher, notificamos-te por email e na app."
+      },
+      "step5": {
+        "description": "Agora estamos em fase de testes. Mais tarde, cada mudança de pessoa terá um custo simbólico."
+      }
+    },
+    "features": {
+      "privacy": {
+        "title": "100% Privado",
+        "description": "Ninguém pode ver as tuas escolhas até haver match."
+      },
+      "noRejection": {
+        "title": "Sem rejeições",
+        "description": "Se não é mútuo, ninguém fica a saber. Zero vergonha."
+      },
+      "connection": {
+        "title": "Conexão real",
+        "description": "Quando há match, podem contactar-se diretamente."
+      }
+    }
+  },
+  "legal": {
+    "termsTitle": "Termos e Condições",
+    "privacyTitle": "Política de Privacidade",
+    "lastUpdated": "Última atualização",
+    "terms": {
+      "acceptance": "Aceitação dos Termos",
+      "acceptanceText": "Ao aceder e utilizar EUREKA, aceitas estes termos e condições. Se não concordas, não utilizes o serviço.",
+      "service": "Descrição do Serviço",
+      "serviceText": "EUREKA é uma plataforma que permite descobrir interesses mútuos entre pessoas. O serviço conecta utilizadores que se escolhem mutuamente, mantendo a privacidade até que se produz uma coincidência.",
+      "userConduct": "Conduta do Utilizador",
+      "userConductText": "Comprometes-te a usar o serviço de forma responsável, não assediar outros utilizadores, não criar contas falsas e respeitar a privacidade dos demais utilizadores.",
+      "privacy": "Privacidade",
+      "privacyText": "A tua privacidade é fundamental. As tuas escolhas são completamente privadas e só se revelam quando existe uma coincidência mútua. Consulta a nossa Política de Privacidade para mais detalhes.",
+      "termination": "Terminação",
+      "terminationText": "Reservamo-nos o direito de suspender ou eliminar a tua conta se violares estes termos. Podes eliminar a tua conta a qualquer momento a partir das definições.",
+      "liability": "Limitação de Responsabilidade",
+      "liabilityText": "EUREKA não se responsabiliza pelas interações entre utilizadores fora da plataforma. O serviço é fornecido 'tal como está' sem garantias de qualquer tipo."
+    },
+    "privacy": {
+      "dataCollection": "Dados que Recolhemos",
+      "dataCollectionText": "Recolhemos o teu número de telefone, email, nome e as escolhas que realizas dentro da app. Não recolhemos dados de localização nem acedemos aos teus contactos.",
+      "dataUse": "Uso dos Dados",
+      "dataUseText": "Utilizamos os teus dados exclusivamente para o funcionamento do serviço: encontrar coincidências mútuas e notificar-te quando se produzem.",
+      "dataSharing": "Partilha de Dados",
+      "dataSharingText": "Só partilhamos a tua informação de contacto com utilizadores com os quais tens uma coincidência mútua. Nunca vendemos nem partilhamos os teus dados com terceiros.",
+      "userRights": "Os teus Direitos (RGPD)",
+      "userRightsText": "Tens o direito de aceder, retificar e eliminar os teus dados pessoais. Podes exercer estes direitos a partir das definições da tua conta ou contactando-nos diretamente.",
+      "dataDeletion": "Eliminação de Dados",
+      "dataDeletionText": "Podes solicitar a eliminação completa da tua conta e todos os dados associados a partir das definições. Este processo é irreversível e elimina picks, matches, bloqueios e o teu perfil.",
+      "contact": "Contacto",
+      "contactText": "Para qualquer consulta relacionada com a privacidade, podes contactar-nos através da aplicação."
+    }
+  },
+  "block": {
+    "confirmTitle": "Bloquear utilizador",
+    "confirmDescription": "Tens a certeza que queres bloquear {{name}}? Já não verão o vosso match nem poderão contactar-se.",
+    "confirm": "Bloquear",
+    "success": "Utilizador bloqueado",
+    "alreadyBlocked": "Este utilizador já está bloqueado",
+    "unblocked": "Utilizador desbloqueado"
+  },
+  "settings": {
+    "title": "Definições",
+    "legal": "Legal",
+    "dangerZone": "Zona de perigo",
+    "deleteAccount": "Eliminar a minha conta",
+    "deleteAccountDescription": "Isto eliminará permanentemente a tua conta, picks, matches e todos os teus dados. Esta ação não pode ser desfeita.",
+    "deleteConfirmTitle": "Eliminar a tua conta?",
+    "deleteConfirmDescription": "Esta ação é permanente e irreversível. Serão eliminados todos os teus dados: picks, matches, bloqueios e perfil. Não poderás recuperar a tua conta.",
+    "confirmDelete": "Sim, eliminar a minha conta",
+    "accountDeleted": "A tua conta foi eliminada"
+  },
+  "ageVerification": {
+    "title": "Verificação de idade",
+    "description": "Este conteúdo é apenas para maiores de 18 anos. Ao continuar, confirmas que tens pelo menos 18 anos de idade.",
+    "legalNote": "É da tua responsabilidade verificar que cumpres os requisitos legais de idade na tua jurisdição.",
+    "confirm": "Tenho 18 anos ou mais",
+    "decline": "Sair"
+  },
+  "notification": {
+    "sendHint": "Enviar pista anónima",
+    "sent": "Pista enviada! Foi descontado 1 crédito.",
+    "alreadySent": "Pista enviada este mês",
+    "notRegistered": "Este utilizador ainda não se registou na app"
+  },
+  "history": {
+    "balance": "Saldo atual",
+    "totalPurchased": "Comprados",
+    "totalUsed": "Usados",
+    "timeline": "Histórico",
+    "empty": "Sem atividade ainda",
+    "purchase": "Compra",
+    "pickCreated": "Pick enviado",
+    "pickDeleted": "Pick eliminado"
+  }
+}

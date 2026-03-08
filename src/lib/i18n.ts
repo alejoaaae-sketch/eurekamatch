@@ -99,7 +99,7 @@ export const detectLanguageFromIP = async (): Promise<LanguageCode> => {
 // Get initial language from localStorage or default to 'es'
 const getInitialLanguage = (): LanguageCode => {
   const stored = localStorage.getItem('language');
-  if (stored && ['es', 'en', 'eu', 'ca', 'fr', 'ja'].includes(stored)) {
+  if (stored && ['es', 'en', 'eu', 'ca', 'fr', 'ja', 'gl', 'pt', 'it', 'de'].includes(stored)) {
     return stored as LanguageCode;
   }
   return 'es';

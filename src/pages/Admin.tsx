@@ -37,6 +37,7 @@ interface GlobalConfigRow {
   notification_sms_template: string;
   beta_countries: string[];
   notification_countries: string[];
+  payment_countries: string[];
 }
 
 const Admin = () => {

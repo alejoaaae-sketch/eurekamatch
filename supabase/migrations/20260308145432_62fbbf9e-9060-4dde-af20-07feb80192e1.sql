@@ -1,0 +1,1 @@
+ALTER TABLE public.global_config ADD COLUMN payment_countries text[] NOT NULL DEFAULT '{}'::text[];

@@ -111,6 +111,7 @@ export type Database = {
           notification_countries: string[]
           notification_sms_template: string
           notifications_enabled: boolean
+          payment_countries: string[]
           promo_enabled: boolean
           promo_end: string | null
           promo_max_picks_override: number | null
@@ -131,6 +132,7 @@ export type Database = {
           notification_countries?: string[]
           notification_sms_template?: string
           notifications_enabled?: boolean
+          payment_countries?: string[]
           promo_enabled?: boolean
           promo_end?: string | null
           promo_max_picks_override?: number | null
@@ -151,6 +153,7 @@ export type Database = {
           notification_countries?: string[]
           notification_sms_template?: string
           notifications_enabled?: boolean
+          payment_countries?: string[]
           promo_enabled?: boolean
           promo_end?: string | null
           promo_max_picks_override?: number | null

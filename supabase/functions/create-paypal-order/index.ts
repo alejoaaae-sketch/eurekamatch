@@ -78,8 +78,10 @@ serve(async (req) => {
         ],
         application_context: {
           brand_name: "EUREKA",
-          landing_page: "NO_PREFERENCE",
+          landing_page: "BILLING",
+          shipping_preference: "NO_SHIPPING",
           user_action: "PAY_NOW",
+          payment_method_preference: "UNRESTRICTED",
           return_url: `${origin}/payment-success?provider=paypal`,
           cancel_url: `${origin}/buy-packs`,
         },

@@ -162,7 +162,8 @@
     "processing": "Processing payment...",
     "pleaseWait": "Please wait a moment",
     "success": "Payment completed!",
-    "thankYou": "Thank you for your purchase"
+    "thankYou": "Thank you for your purchase",
+    "cardDetails": "Card details"
   },
   "packs": {
     "title": "Buy credits",

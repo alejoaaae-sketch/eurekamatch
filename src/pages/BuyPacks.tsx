@@ -4,11 +4,11 @@ import { useTranslation } from "react-i18next";
 import { ArrowLeft, Package, Loader2, Sparkles } from "lucide-react";
 import { useAuth } from "@/hooks/useAuth";
 import { usePickBalance, PickPack } from "@/hooks/usePickBalance";
-
 import { useAppConfig } from "@/hooks/useAppConfig";
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
 import PaymentSimulationModal from "@/components/PaymentSimulationModal";
+import CardPaymentForm from "@/components/CardPaymentForm";
 
 const BuyPacks = () => {
   const navigate = useNavigate();
@@ -20,6 +20,7 @@ const BuyPacks = () => {
   const [processing, setProcessing] = useState(false);
   const [selectedPack, setSelectedPack] = useState<PickPack | null>(null);
   const [showSimulation, setShowSimulation] = useState(false);
+  const [showCardForm, setShowCardForm] = useState(false);
 
   if (authLoading || balanceLoading || configLoading || !user) {
     return (
@@ -29,36 +30,32 @@ const BuyPacks = () => {
     );
   }
 
-  const handleSelectPack = async (pack: PickPack) => {
+  const handleSelectPack = (pack: PickPack) => {
     if (betaMode) {
-      // In beta mode, use simulation modal
       setSelectedPack(pack);
       setShowSimulation(true);
       return;
     }
 
-    // PayPal payment
-    setProcessing(true);
-    try {
-      const { data, error } = await supabase.functions.invoke("create-paypal-order", {
-        body: {
-          packName: pack.name,
-          packId: pack.id,
-          picksCount: pack.picks_count,
-          price: pack.price,
-        },
-      });
+    // Real payment: show embedded card form
+    setSelectedPack(pack);
+    setShowCardForm(true);
+  };
 
-      if (error) throw error;
-      if (data?.url) {
-        window.location.href = data.url;
-      } else {
-        throw new Error("No PayPal approval URL");
-      }
-    } catch (err) {
-      toast.error(t("common.error"));
-      setProcessing(false);
-    }
+  const handleCardSuccess = (picksAdded: number) => {
+    setShowCardForm(false);
+    setSelectedPack(null);
+    refetchBalance();
+    toast.success(t("packs.purchaseSuccess", { count: picksAdded }));
+  };
+
+  const handleCardError = (msg: string) => {
+    toast.error(msg || t("common.error"));
+  };
+
+  const handleCardCancel = () => {
+    setShowCardForm(false);
+    setSelectedPack(null);
   };
 
   const handleBetaPaymentComplete = async () => {
@@ -121,71 +118,93 @@ const BuyPacks = () => {
       </header>
 
       <div className="flex-1 px-6 py-8">
-        {/* Balance display */}
-        <div className="text-center mb-8">
-          <div className="w-20 h-20 rounded-full bg-secondary flex items-center justify-center mx-auto mb-4">
-            <Package className="w-10 h-10 text-muted-foreground" />
+        {showCardForm && selectedPack ? (
+          /* Embedded card payment form */
+          <div className="max-w-sm mx-auto">
+            <div className="text-center mb-6">
+              <p className="text-lg font-semibold text-foreground">
+                {packLabels[selectedPack.name]?.icon} {packLabels[selectedPack.name]?.label}
+              </p>
+              <p className="text-sm text-muted-foreground">
+                {selectedPack.picks_count} {t("packs.creditsUnit")}
+              </p>
+            </div>
+            <CardPaymentForm
+              pack={selectedPack}
+              onSuccess={handleCardSuccess}
+              onError={handleCardError}
+              onCancel={handleCardCancel}
+            />
           </div>
-          <p className="text-muted-foreground text-sm mb-1">{t("packs.currentBalance")}</p>
-          <p className="text-3xl font-bold text-foreground">
-            {picksRemaining} <span className="text-base font-normal text-muted-foreground">{t("packs.creditsUnit")}</span>
-          </p>
-        </div>
+        ) : (
+          <>
+            {/* Balance display */}
+            <div className="text-center mb-8">
+              <div className="w-20 h-20 rounded-full bg-secondary flex items-center justify-center mx-auto mb-4">
+                <Package className="w-10 h-10 text-muted-foreground" />
+              </div>
+              <p className="text-muted-foreground text-sm mb-1">{t("packs.currentBalance")}</p>
+              <p className="text-3xl font-bold text-foreground">
+                {picksRemaining} <span className="text-base font-normal text-muted-foreground">{t("packs.creditsUnit")}</span>
+              </p>
+            </div>
 
-        {/* Packs grid */}
-        <div className="space-y-3">
-          {packs.map((pack) => {
-            const meta = packLabels[pack.name] || { label: pack.name, icon: "📦" };
-            const isPopular = pack.name === "medium";
+            {/* Packs grid */}
+            <div className="space-y-3">
+              {packs.map((pack) => {
+                const meta = packLabels[pack.name] || { label: pack.name, icon: "📦" };
+                const isPopular = pack.name === "medium";
 
-            return (
-              <button
-                key={pack.id}
-                onClick={() => handleSelectPack(pack)}
-                disabled={processing}
-                className={`w-full relative rounded-2xl border-2 p-5 text-left transition-all hover:scale-[1.02] active:scale-[0.98] ${
-                  isPopular
-                    ? "border-primary bg-primary/5"
-                    : "border-border/50 bg-secondary/30 hover:border-border"
-                }`}
-              >
-                {isPopular && (
-                  <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-primary text-primary-foreground text-xs font-medium px-3 py-1 rounded-full flex items-center gap-1">
-                    <Sparkles className="w-3 h-3" />
-                    {t("packs.popular")}
-                  </div>
-                )}
-
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center gap-3">
-                    <span className="text-2xl">{meta.icon}</span>
-                    <div>
-                      <p className="font-semibold text-foreground">{meta.label}</p>
-                      <p className="text-sm text-muted-foreground">
-                        {pack.picks_count} {t("packs.creditsUnit")} · {Number(pack.price_per_pick).toFixed(2).replace('.', ',')} €/{t("packs.creditsUnit").slice(0, -1)}
-                      </p>
-                    </div>
-                  </div>
-                  <div className="text-right">
-                    <p className="text-xl font-bold text-foreground">{Number(pack.price).toFixed(0)} €</p>
-                    {pack.savings_percent > 0 && (
-                      <p className="text-xs font-medium text-primary">
-                        -{pack.savings_percent}%
-                      </p>
+                return (
+                  <button
+                    key={pack.id}
+                    onClick={() => handleSelectPack(pack)}
+                    disabled={processing}
+                    className={`w-full relative rounded-2xl border-2 p-5 text-left transition-all hover:scale-[1.02] active:scale-[0.98] ${
+                      isPopular
+                        ? "border-primary bg-primary/5"
+                        : "border-border/50 bg-secondary/30 hover:border-border"
+                    }`}
+                  >
+                    {isPopular && (
+                      <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-primary text-primary-foreground text-xs font-medium px-3 py-1 rounded-full flex items-center gap-1">
+                        <Sparkles className="w-3 h-3" />
+                        {t("packs.popular")}
+                      </div>
                     )}
-                  </div>
-                </div>
-              </button>
-            );
-          })}
-        </div>
 
-        {/* Info */}
-        <div className="mt-8 text-center">
-          <p className="text-xs text-muted-foreground">
-            🔒 {t("packs.info")}
-          </p>
-        </div>
+                    <div className="flex items-center justify-between">
+                      <div className="flex items-center gap-3">
+                        <span className="text-2xl">{meta.icon}</span>
+                        <div>
+                          <p className="font-semibold text-foreground">{meta.label}</p>
+                          <p className="text-sm text-muted-foreground">
+                            {pack.picks_count} {t("packs.creditsUnit")} · {Number(pack.price_per_pick).toFixed(2).replace('.', ',')} €/{t("packs.creditsUnit").slice(0, -1)}
+                          </p>
+                        </div>
+                      </div>
+                      <div className="text-right">
+                        <p className="text-xl font-bold text-foreground">{Number(pack.price).toFixed(0)} €</p>
+                        {pack.savings_percent > 0 && (
+                          <p className="text-xs font-medium text-primary">
+                            -{pack.savings_percent}%
+                          </p>
+                        )}
+                      </div>
+                    </div>
+                  </button>
+                );
+              })}
+            </div>
+
+            {/* Info */}
+            <div className="mt-8 text-center">
+              <p className="text-xs text-muted-foreground">
+                🔒 {t("packs.info")}
+              </p>
+            </div>
+          </>
+        )}
       </div>
 
       {selectedPack && (

@@ -162,7 +162,8 @@
     "processing": "Procesando pago...",
     "pleaseWait": "Por favor, espera un momento",
     "success": "¡Pago completado!",
-    "thankYou": "Gracias por tu compra"
+    "thankYou": "Gracias por tu compra",
+    "cardDetails": "Datos de la tarjeta"
   },
   "packs": {
     "title": "Comprar créditos",

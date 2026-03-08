@@ -6,7 +6,7 @@ const corsHeaders = {
     "authorization, x-client-info, apikey, content-type, x-supabase-client-platform, x-supabase-client-platform-version, x-supabase-client-runtime, x-supabase-client-runtime-version",
 };
 
-const PAYPAL_API = "https://api-m.sandbox.paypal.com"; // Change to https://api-m.paypal.com for production
+const PAYPAL_API = "https://api-m.paypal.com";
 
 async function getAccessToken(): Promise<string> {
   const clientId = Deno.env.get("PAYPAL_CLIENT_ID") || "";

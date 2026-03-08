@@ -4,7 +4,7 @@ import { useTranslation } from "react-i18next";
 import { ArrowLeft, Package, Loader2, Sparkles } from "lucide-react";
 import { useAuth } from "@/hooks/useAuth";
 import { usePickBalance, PickPack } from "@/hooks/usePickBalance";
-import { useProfile } from "@/hooks/useProfile";
+
 import { useAppConfig } from "@/hooks/useAppConfig";
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
@@ -15,7 +15,7 @@ const BuyPacks = () => {
   const { t } = useTranslation();
   const { user, loading: authLoading } = useAuth();
   const { packs, picksRemaining, loading: balanceLoading, refetch: refetchBalance } = usePickBalance();
-  const { profile } = useProfile();
+  
   const { betaMode, loading: configLoading } = useAppConfig();
   const [processing, setProcessing] = useState(false);
   const [selectedPack, setSelectedPack] = useState<PickPack | null>(null);
@@ -37,16 +37,15 @@ const BuyPacks = () => {
       return;
     }
 
-    // Real Stripe payment
+    // PayPal payment
     setProcessing(true);
     try {
-      const { data, error } = await supabase.functions.invoke("create-checkout", {
+      const { data, error } = await supabase.functions.invoke("create-paypal-order", {
         body: {
           packName: pack.name,
           packId: pack.id,
           picksCount: pack.picks_count,
           price: pack.price,
-          userEmail: profile?.email || user?.email,
         },
       });
 
@@ -54,7 +53,7 @@ const BuyPacks = () => {
       if (data?.url) {
         window.location.href = data.url;
       } else {
-        throw new Error("No checkout URL");
+        throw new Error("No PayPal approval URL");
       }
     } catch (err) {
       toast.error(t("common.error"));

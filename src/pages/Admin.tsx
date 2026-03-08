@@ -338,15 +338,15 @@ const Admin = () => {
                     onCheckedChange={(v) => setGlobalForm((p) => ({ ...p, beta_mode: v }))}
                   />
                 </div>
-                {globalForm.beta_mode && (
+                {!globalForm.beta_mode && (
                   <div className="ml-4 animate-fade-in-up">
-                    <label className="text-xs text-muted-foreground mb-1 block">Países con beta activa (vacío = todos)</label>
+                    <label className="text-xs text-muted-foreground mb-1 block">Países con pagos reales activos (vacío = todos)</label>
                     <Input
-                      value={globalForm.beta_countries}
-                      onChange={(e) => setGlobalForm((p) => ({ ...p, beta_countries: e.target.value }))}
+                      value={globalForm.payment_countries}
+                      onChange={(e) => setGlobalForm((p) => ({ ...p, payment_countries: e.target.value }))}
                       placeholder="ES, FR"
                     />
-                    <p className="text-xs text-muted-foreground mt-1">Códigos ISO (ES, FR, MX…). Vacío = aplica a todos.</p>
+                    <p className="text-xs text-muted-foreground mt-1">Códigos ISO (ES, FR, MX…). Vacío = pagos reales en todos los países.</p>
                   </div>
                 )}
                 <div className="flex items-center justify-between">

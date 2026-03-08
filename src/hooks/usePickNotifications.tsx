@@ -1,11 +1,12 @@
 import { useState, useEffect, useCallback } from 'react';
 import { supabase } from '@/integrations/supabase/client';
 import { useAuth } from './useAuth';
+import { useAppConfig } from './useAppConfig';
 
 export const usePickNotifications = () => {
   const { user } = useAuth();
+  const { canUseNotifications } = useAppConfig();
   const [sentNotifications, setSentNotifications] = useState<Record<string, string>>({});
-  const [notificationsEnabled, setNotificationsEnabled] = useState(false);
   const [loading, setLoading] = useState(true);
 
   const fetchData = useCallback(async () => {
@@ -18,29 +19,18 @@ export const usePickNotifications = () => {
       const oneMonthAgo = new Date();
       oneMonthAgo.setMonth(oneMonthAgo.getMonth() - 1);
 
-      const [notifRes, configRes] = await Promise.all([
-        supabase
-          .from('pick_notifications')
-          .select('pick_id, created_at')
-          .eq('sender_id', user.id)
-          .gte('created_at', oneMonthAgo.toISOString()),
-        supabase
-          .from('global_config')
-          .select('notifications_enabled')
-          .limit(1)
-          .single(),
-      ]);
+      const { data } = await supabase
+        .from('pick_notifications')
+        .select('pick_id, created_at')
+        .eq('sender_id', user.id)
+        .gte('created_at', oneMonthAgo.toISOString());
 
-      if (notifRes.data) {
+      if (data) {
         const map: Record<string, string> = {};
-        for (const n of notifRes.data) {
+        for (const n of data) {
           map[n.pick_id] = n.created_at;
         }
         setSentNotifications(map);
-      }
-
-      if (configRes.data) {
-        setNotificationsEnabled((configRes.data as any).notifications_enabled ?? false);
       }
     } catch (err) {
       console.error('Error fetching notifications data:', err);
@@ -54,9 +44,9 @@ export const usePickNotifications = () => {
   }, [fetchData]);
 
   const canNotify = (pickId: string, pickedUserId: string | null): boolean => {
-    if (!notificationsEnabled) return false;
-    if (!pickedUserId) return false; // not registered
-    if (sentNotifications[pickId]) return false; // already sent this month
+    if (!canUseNotifications) return false;
+    if (!pickedUserId) return false;
+    if (sentNotifications[pickId]) return false;
     return true;
   };
 
@@ -71,7 +61,6 @@ export const usePickNotifications = () => {
       });
 
       if (error) {
-        // Try to parse the error message from the function response
         const msg = typeof error === 'object' && 'message' in error ? error.message : String(error);
         return { success: false, error: msg };
       }
@@ -80,7 +69,6 @@ export const usePickNotifications = () => {
         return { success: false, error: data.error };
       }
 
-      // Refresh data
       await fetchData();
       return { success: true };
     } catch (err) {
@@ -89,7 +77,7 @@ export const usePickNotifications = () => {
   };
 
   return {
-    notificationsEnabled,
+    notificationsEnabled: canUseNotifications,
     canNotify,
     wasSentThisMonth,
     sendNotification,

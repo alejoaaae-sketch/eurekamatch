@@ -15,7 +15,7 @@ const BuyPacks = () => {
   const { t } = useTranslation();
   const { user, loading: authLoading } = useAuth();
   const { packs, picksRemaining, loading: balanceLoading, refetch: refetchBalance } = usePickBalance();
-  const { profile } = useProfile();
+  
   const { betaMode, loading: configLoading } = useAppConfig();
   const [processing, setProcessing] = useState(false);
   const [selectedPack, setSelectedPack] = useState<PickPack | null>(null);

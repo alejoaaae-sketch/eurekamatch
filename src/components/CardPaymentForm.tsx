@@ -23,25 +23,37 @@ interface CardPaymentFormProps {
   onCancel: () => void;
 }
 
-function SubmitButton({ pack, isPaying }: { pack: PickPack; isPaying: boolean }) {
+function SubmitButton({ pack, isPaying, onSubmitting }: { pack: PickPack; isPaying: boolean; onSubmitting: () => void }) {
   const { t } = useTranslation();
   const { cardFieldsForm } = usePayPalCardFields();
+  const [submitting, setSubmitting] = useState(false);
 
   const handleClick = async () => {
-    if (!cardFieldsForm) return;
+    if (!cardFieldsForm || submitting || isPaying) return;
     const formState = await cardFieldsForm.getState();
     if (!formState.isFormValid) return;
-    cardFieldsForm.submit();
+    setSubmitting(true);
+    onSubmitting();
+    try {
+      await cardFieldsForm.submit({
+        contingencies: ['SCA_WHEN_REQUIRED'],
+      });
+    } catch (err) {
+      console.error("Card submit error:", err);
+      setSubmitting(false);
+    }
   };
+
+  const isLoading = submitting || isPaying;
 
   return (
     <Button
       variant="gradient"
       className="w-full mt-4"
       onClick={handleClick}
-      disabled={isPaying}
+      disabled={isLoading}
     >
-      {isPaying ? (
+      {isLoading ? (
         <Loader2 className="w-4 h-4 animate-spin mr-2" />
       ) : (
         <Lock className="w-4 h-4 mr-2" />
@@ -148,7 +160,7 @@ const CardPaymentForm = ({ pack, onSuccess, onError, onCancel }: CardPaymentForm
             </div>
           </div>
 
-          <SubmitButton pack={pack} isPaying={isPaying} />
+          <SubmitButton pack={pack} isPaying={isPaying} onSubmitting={() => setIsPaying(true)} />
         </PayPalCardFieldsProvider>
       </PayPalScriptProvider>
 

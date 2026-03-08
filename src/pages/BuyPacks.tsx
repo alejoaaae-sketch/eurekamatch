@@ -4,11 +4,11 @@ import { useTranslation } from "react-i18next";
 import { ArrowLeft, Package, Loader2, Sparkles } from "lucide-react";
 import { useAuth } from "@/hooks/useAuth";
 import { usePickBalance, PickPack } from "@/hooks/usePickBalance";
-
 import { useAppConfig } from "@/hooks/useAppConfig";
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
 import PaymentSimulationModal from "@/components/PaymentSimulationModal";
+import CardPaymentForm from "@/components/CardPaymentForm";
 
 const BuyPacks = () => {
   const navigate = useNavigate();

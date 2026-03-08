@@ -63,9 +63,9 @@ serve(async (req) => {
       );
     }
 
-    if (orderDetails.status !== "APPROVED") {
+    if (orderDetails.status !== "APPROVED" && orderDetails.status !== "CREATED") {
       return new Response(
-        JSON.stringify({ success: false, error: `Order not approved. Status: ${orderDetails.status}` }),
+        JSON.stringify({ success: false, error: `Order not in capturable state. Status: ${orderDetails.status}` }),
         { headers: { ...corsHeaders, "Content-Type": "application/json" }, status: 200 }
       );
     }

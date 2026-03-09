@@ -183,6 +183,10 @@
         "tagline": "Découvrez s'il veut partager un hobby avec vous. Sport, voyages, plans... Sans pression."
       }
     },
+    "video": {
+      "title": "Découvrez comment ça marche",
+      "subtitle": "En 28 secondes"
+    },
     "concept": {
       "title": "Comment ça marche ?",
       "description": "Ajoutez les personnes qui vous intéressent. S'ils vous ajoutent aussi, on vous prévient tous les deux. Sinon, personne ne le sait.",

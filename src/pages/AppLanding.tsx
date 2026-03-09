@@ -1,7 +1,7 @@
 import { useNavigate, useSearchParams } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { Button } from "@/components/ui/button";
-import { Heart, Users, Flame, Sparkles, ArrowLeft, Shield, Lock, MessageCircle, Trophy } from "lucide-react";
+import { Heart, Users, Flame, Sparkles, ArrowLeft, Shield, Lock, MessageCircle, Trophy, Smartphone, EyeOff, UserX } from "lucide-react";
 import { useAuth } from "@/hooks/useAuth";
 import { useEffect } from "react";
 import LanguageSelector from "@/components/LanguageSelector";

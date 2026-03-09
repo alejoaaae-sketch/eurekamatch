@@ -289,6 +289,39 @@ const AppLanding = () => {
         </div>
       </section>
 
+      {/* Privacy Marketing Section */}
+      <section className="py-16 px-6 bg-card/30 border-t border-border/30">
+        <div className="max-w-3xl mx-auto">
+          <div className="text-center mb-10">
+            <div className={`w-14 h-14 rounded-full flex items-center justify-center mx-auto mb-4 bg-secondary ${getAccentColor()}`}>
+              <Shield className="w-7 h-7" />
+            </div>
+            <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-3">
+              {t("appLanding.privacyMarketing.title")}
+            </h2>
+            <p className="text-muted-foreground max-w-lg mx-auto">
+              {t("appLanding.privacyMarketing.subtitle")}
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-6">
+            {privacyFeatures.map((feature, index) => (
+              <div 
+                key={index}
+                className="text-center p-6 rounded-xl bg-card border border-border/50 animate-fade-in-up"
+                style={{ animationDelay: `${index * 0.1}s` }}
+              >
+                <div className={`w-14 h-14 rounded-full flex items-center justify-center mx-auto mb-4 bg-gradient-to-br ${getGradient()} text-white shadow-lg`}>
+                  {feature.icon}
+                </div>
+                <h3 className="font-semibold text-foreground mb-2">{feature.title}</h3>
+                <p className="text-sm text-muted-foreground">{feature.description}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* Bottom CTA */}
       <section className="py-16 px-6 bg-card/30">
         <div className="max-w-xl mx-auto text-center">

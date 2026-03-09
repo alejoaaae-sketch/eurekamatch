@@ -290,7 +290,23 @@
       "connection": {
         "title": "Real connection",
         "description": "When there's a match, you can contact each other directly."
+      },
+      "noAppStore": {
+        "title": "No App Store. No Google Play.",
+        "description": "We don't go through Apple or Google. Your privacy doesn't depend on third parties. Access directly from your browser."
+      },
+      "noDataSharing": {
+        "title": "Your data is never shared",
+        "description": "We don't sell or share data with anyone. No advertisers, no social networks, no data brokers."
+      },
+      "noProfiles": {
+        "title": "No public profiles",
+        "description": "No photos, no bios, no swiping. Nobody can search for you or find you here."
       }
+    },
+    "privacyMarketing": {
+      "title": "Real privacy, not marketing talk",
+      "subtitle": "We're not a dating app. We're not in app stores. And there's a reason."
     }
   },
   "legal": {

@@ -138,6 +138,24 @@ const AppLanding = () => {
     },
   ];
 
+  const privacyFeatures = [
+    {
+      icon: <Smartphone className="w-6 h-6" />,
+      title: t("appLanding.features.noAppStore.title"),
+      description: t("appLanding.features.noAppStore.description"),
+    },
+    {
+      icon: <EyeOff className="w-6 h-6" />,
+      title: t("appLanding.features.noDataSharing.title"),
+      description: t("appLanding.features.noDataSharing.description"),
+    },
+    {
+      icon: <UserX className="w-6 h-6" />,
+      title: t("appLanding.features.noProfiles.title"),
+      description: t("appLanding.features.noProfiles.description"),
+    },
+  ];
+
   if (!appEnabled && !configLoading) {
     return (
       <div className="min-h-screen bg-background flex flex-col items-center justify-center px-6">

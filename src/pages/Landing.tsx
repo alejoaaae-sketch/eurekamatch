@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { Button } from "@/components/ui/button";
-import { Heart, Users, Flame, Sparkles, ArrowRight, Beaker, Trophy } from "lucide-react";
+import { Heart, Users, Flame, Sparkles, ArrowRight, Beaker, Trophy, Play } from "lucide-react";
 import { useAuth } from "@/hooks/useAuth";
 import { useEffect } from "react";
 import LanguageSelector from "@/components/LanguageSelector";
@@ -160,8 +160,31 @@ const Landing = () => {
         </div>
       </section>
 
-      {/* How it works - simplified */}
+      {/* Video Section */}
       <section className="py-16 px-6 bg-card/30">
+        <div className="max-w-2xl mx-auto text-center">
+          <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-2">
+            {t("landing.video.title")}
+          </h2>
+          <p className="text-sm text-muted-foreground mb-8">
+            {t("landing.video.subtitle")}
+          </p>
+          <div className="relative rounded-2xl overflow-hidden shadow-2xl border border-border/50 bg-black">
+            <video
+              className="w-full aspect-video"
+              controls
+              preload="metadata"
+              playsInline
+              poster=""
+            >
+              <source src="/videos/eureka-explainer.mp4" type="video/mp4" />
+            </video>
+          </div>
+        </div>
+      </section>
+
+      {/* How it works - simplified */}
+      <section className="py-16 px-6">
         <div className="max-w-3xl mx-auto text-center">
           <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-6">
             {t("landing.concept.title")}

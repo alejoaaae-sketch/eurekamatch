@@ -183,6 +183,10 @@
         "tagline": "Ezagutu zurekin hobby bat partekatu nahi duen. Kirola, bidaiak, planak... Presiorik gabe."
       }
     },
+    "video": {
+      "title": "Ikusi nola funtzionatzen duen",
+      "subtitle": "28 segundotan"
+    },
     "concept": {
       "title": "Nola funtzionatzen du?",
       "description": "Gehitu interesatzen zaizkizun pertsonak. Haiek ere gehitzen bazaituzte, biei jakinaraziko dizuegu. Bestela, inork ez daki ezer.",
@@ -259,7 +263,23 @@
       "connection": {
         "title": "Benetako konexioa",
         "description": "Bat-etortzea dagoenean, zuzenean harremanetan jar zaitezke."
+      },
+      "noAppStore": {
+        "title": "App Store-rik ez. Google Play-rik ez.",
+        "description": "Ez dugu Apple-ren edo Google-ren bidez pasatzen. Zure pribatutasuna ez dago hirugarrenen menpe. Sartu zuzenean nabigatzailetik."
+      },
+      "noDataSharing": {
+        "title": "Zure datuak ez dira inoiz partekatzen",
+        "description": "Ez ditugu datuak inorekin saltzen edo partekatzen. Iragarle-rik ez, sare sozialetatik ez, datu-artekaririk ez."
+      },
+      "noProfiles": {
+        "title": "Profil publikorik ez",
+        "description": "Argazkirik ez, biografiarik ez, swipe-rik ez. Inork ezin zaitu hemen bilatu edo aurkitu."
       }
+    },
+    "privacyMarketing": {
+      "title": "Benetako pribatutasuna, ez marketina",
+      "subtitle": "Ez gara zita-app bat. Ez gaude app dendetako. Eta arrazoi bat dago."
     }
   },
   "legal": {

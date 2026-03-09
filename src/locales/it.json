@@ -209,6 +209,10 @@
         "tagline": "Scopri se vuole condividere un hobby con te. Sport, viaggi, piani... Senza impegno."
       }
     },
+    "video": {
+      "title": "Guarda come funziona",
+      "subtitle": "In 28 secondi"
+    },
     "concept": {
       "title": "Come funziona?",
       "description": "Aggiungi le persone che ti interessano. Se anche loro ti aggiungono, avvisiamo entrambi. Se no, nessuno lo sa.",
@@ -285,7 +289,23 @@
       "connection": {
         "title": "Connessione reale",
         "description": "Quando c'è un match, potete contattarvi direttamente."
+      },
+      "noAppStore": {
+        "title": "Nessun App Store. Nessun Google Play.",
+        "description": "Non passiamo per Apple o Google. La tua privacy non dipende da terzi. Accedi direttamente dal browser."
+      },
+      "noDataSharing": {
+        "title": "I tuoi dati non vengono mai condivisi",
+        "description": "Non vendiamo né condividiamo dati con nessuno. Nessun inserzionista, nessun social network, nessun broker di dati."
+      },
+      "noProfiles": {
+        "title": "Nessun profilo pubblico",
+        "description": "Niente foto, niente bio, niente swipe. Nessuno può cercarti o trovarti qui."
       }
+    },
+    "privacyMarketing": {
+      "title": "Privacy vera, non di marketing",
+      "subtitle": "Non siamo un'app di incontri. Non siamo negli store. E c'è un motivo."
     }
   },
   "legal": {

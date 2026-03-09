@@ -210,6 +210,10 @@
         "tagline": "Discover if they want to share a hobby with you. Sports, trips, plans... No pressure."
       }
     },
+    "video": {
+      "title": "See how it works",
+      "subtitle": "In 28 seconds"
+    },
     "concept": {
       "title": "How does it work?",
       "description": "Add the people you're interested in. If they also add you, we'll let you both know. If not, no one finds out.",
@@ -286,7 +290,23 @@
       "connection": {
         "title": "Real connection",
         "description": "When there's a match, you can contact each other directly."
+      },
+      "noAppStore": {
+        "title": "No App Store. No Google Play.",
+        "description": "We don't go through Apple or Google. Your privacy doesn't depend on third parties. Access directly from your browser."
+      },
+      "noDataSharing": {
+        "title": "Your data is never shared",
+        "description": "We don't sell or share data with anyone. No advertisers, no social networks, no data brokers."
+      },
+      "noProfiles": {
+        "title": "No public profiles",
+        "description": "No photos, no bios, no swiping. Nobody can search for you or find you here."
       }
+    },
+    "privacyMarketing": {
+      "title": "Real privacy, not marketing talk",
+      "subtitle": "We're not a dating app. We're not in app stores. And there's a reason."
     }
   },
   "legal": {

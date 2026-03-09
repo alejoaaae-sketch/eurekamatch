@@ -183,6 +183,10 @@
         "tagline": "Descobreix si vol compartir hobby amb tu. Esport, viatges, plans... Sense compromís."
       }
     },
+    "video": {
+      "title": "Mira com funciona",
+      "subtitle": "En 28 segons"
+    },
     "concept": {
       "title": "Com funciona?",
       "description": "Afegeix les persones que t'interessen. Si també t'afegeixen, us avisem a tots dos. Si no, ningú s'assabenta.",

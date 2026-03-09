@@ -263,7 +263,23 @@
       "connection": {
         "title": "Connexion réelle",
         "description": "Quand il y a un match, vous pouvez vous contacter directement."
+      },
+      "noAppStore": {
+        "title": "Ni App Store, ni Google Play",
+        "description": "Nous ne passons pas par Apple ni Google. Votre vie privée ne dépend pas de tiers. Accédez directement depuis votre navigateur."
+      },
+      "noDataSharing": {
+        "title": "Vos données ne sont jamais partagées",
+        "description": "Nous ne vendons ni ne partageons de données avec quiconque. Ni annonceurs, ni réseaux sociaux, ni courtiers en données."
+      },
+      "noProfiles": {
+        "title": "Pas de profils publics",
+        "description": "Pas de photos, pas de bios, pas de swipe. Personne ne peut vous chercher ni vous trouver ici."
       }
+    },
+    "privacyMarketing": {
+      "title": "Une vraie confidentialité, pas du marketing",
+      "subtitle": "Nous ne sommes pas une app de rencontres. Nous ne sommes pas dans les stores. Et il y a une raison."
     }
   },
   "legal": {

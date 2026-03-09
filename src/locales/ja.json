@@ -263,7 +263,23 @@
       "connection": {
         "title": "本物のつながり",
         "description": "マッチしたら、直接連絡を取ることができます。"
+      },
+      "noAppStore": {
+        "title": "App StoreもGoogle Playも不要",
+        "description": "AppleやGoogleを経由しません。プライバシーは第三者に依存しません。ブラウザから直接アクセスできます。"
+      },
+      "noDataSharing": {
+        "title": "データは誰とも共有されません",
+        "description": "データを誰にも販売・共有しません。広告主も、SNSも、データブローカーもなし。"
+      },
+      "noProfiles": {
+        "title": "公開プロフィールなし",
+        "description": "写真も、自己紹介も、スワイプもなし。誰もあなたを検索したり見つけたりできません。"
       }
+    },
+    "privacyMarketing": {
+      "title": "本物のプライバシー、マーケティングではない",
+      "subtitle": "マッチングアプリではありません。アプリストアにもありません。それには理由があります。"
     }
   },
   "legal": {

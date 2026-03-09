@@ -263,7 +263,23 @@
       "connection": {
         "title": "Connexió real",
         "description": "Quan hi ha match, podeu contactar directament."
+      },
+      "noAppStore": {
+        "title": "Sense App Store ni Google Play",
+        "description": "No passem per Apple ni Google. La teva privacitat no depèn de tercers. Accedeix directament des del navegador."
+      },
+      "noDataSharing": {
+        "title": "Les teves dades mai es comparteixen",
+        "description": "No venem ni compartim dades amb ningú. Ni anunciants, ni xarxes socials, ni brokers de dades."
+      },
+      "noProfiles": {
+        "title": "Sense perfils públics",
+        "description": "Sense fotos, sense biografies, sense swipes. Ningú et pot buscar ni trobar aquí."
       }
+    },
+    "privacyMarketing": {
+      "title": "Privacitat real, no de màrqueting",
+      "subtitle": "No som una app de cites. No som a les botigues d'apps. I hi ha un motiu."
     }
   },
   "legal": {

@@ -93,6 +93,11 @@ const Login = () => {
           setLoading(false);
           return;
         }
+        if (!consentAccepted) {
+          toast.error(t("auth.consentRequired"));
+          setLoading(false);
+          return;
+        }
 
         // Skip mobile verification during registration - it will happen when creating first pick
         await handlePhoneVerified();

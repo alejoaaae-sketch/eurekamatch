@@ -252,6 +252,28 @@ const Login = () => {
             {/* Password strength indicator - only show during signup */}
             {!isLogin && <PasswordStrengthIndicator password={password} />}
 
+            {/* Consent checkbox - only show on signup */}
+            {!isLogin && (
+              <div className="flex items-start space-x-3">
+                <Checkbox
+                  id="consent"
+                  checked={consentAccepted}
+                  onCheckedChange={(checked) => setConsentAccepted(checked === true)}
+                  disabled={loading}
+                  className="mt-1"
+                />
+                <label htmlFor="consent" className="text-xs text-muted-foreground leading-relaxed cursor-pointer">
+                  <Trans
+                    i18nKey="auth.consentText"
+                    components={{
+                      termsLink: <Link to="/terms" className="text-primary underline hover:text-primary/80" />,
+                      privacyLink: <Link to="/privacy" className="text-primary underline hover:text-primary/80" />,
+                    }}
+                  />
+                </label>
+              </div>
+            )}
+
             <Button type="submit" className="w-full" size="lg" disabled={loading}>
               {loading ? (
                 <Loader2 className="w-5 h-5 animate-spin" />

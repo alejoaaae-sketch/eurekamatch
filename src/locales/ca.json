@@ -30,7 +30,9 @@
     "passwordMinLength": "La contrasenya ha de tenir almenys 6 caràcters",
     "phoneInvalid": "Introdueix un número de telèfon vàlid",
     "nameRequired": "El nom és obligatori",
-    "phoneAlreadyRegistered": "Aquest número ja està registrat"
+    "phoneAlreadyRegistered": "Aquest número ja està registrat",
+    "consentRequired": "Has d'acceptar els termes per registrar-te",
+    "consentText": "Accepto els <termsLink>Termes i Condicions</termsLink> i la <privacyLink>Política de Privacitat</privacyLink>, i consento expressament que el meu número de telèfon sigui utilitzat perquè altres usuaris puguin afegir-me a les seves llistes de \"picks\" i per determinar possibles matches. Puc revocar aquest consentiment eliminant el meu compte en qualsevol moment."
   },
   "app": {
     "name": "Mútuo",

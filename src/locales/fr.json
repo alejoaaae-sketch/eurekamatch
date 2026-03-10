@@ -30,7 +30,9 @@
     "passwordMinLength": "Le mot de passe doit contenir au moins 6 caractères",
     "phoneInvalid": "Veuillez entrer un numéro de téléphone valide",
     "nameRequired": "Le nom est obligatoire",
-    "phoneAlreadyRegistered": "Ce numéro est déjà enregistré"
+    "phoneAlreadyRegistered": "Ce numéro est déjà enregistré",
+    "consentRequired": "Vous devez accepter les conditions pour vous inscrire",
+    "consentText": "J'accepte les <termsLink>Conditions Générales</termsLink> et la <privacyLink>Politique de Confidentialité</privacyLink>, et je consens expressément à ce que mon numéro de téléphone soit utilisé pour que d'autres utilisateurs puissent m'ajouter à leurs listes de \"picks\" et pour déterminer des matches possibles. Je peux révoquer ce consentement en supprimant mon compte à tout moment."
   },
   "app": {
     "name": "Mútuo",

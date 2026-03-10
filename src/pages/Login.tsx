@@ -32,6 +32,7 @@ const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
+  const [consentAccepted, setConsentAccepted] = useState(false);
 
   const supabaseUrl = import.meta.env.VITE_SUPABASE_URL;
 

@@ -1,11 +1,13 @@
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
+import { useMemo } from "react";
 import { Button } from "@/components/ui/button";
 import { Heart, Users, Flame, Sparkles, ArrowRight, Beaker, Trophy, Play } from "lucide-react";
 import { useAuth } from "@/hooks/useAuth";
 import { useEffect } from "react";
 import LanguageSelector from "@/components/LanguageSelector";
 import LegalFooter from "@/components/LegalFooter";
+import { getAppConfig, AppType } from "@/config/app.config";
 import { getAppConfig, AppType } from "@/config/app.config";
 import { useAllAppConfigs } from "@/hooks/useAllAppConfigs";
 

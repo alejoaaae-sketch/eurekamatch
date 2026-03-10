@@ -424,6 +424,7 @@ export type Database = {
       profiles: {
         Row: {
           age_verified: boolean
+          consent_accepted_at: string | null
           created_at: string
           display_name: string | null
           email: string | null
@@ -437,6 +438,7 @@ export type Database = {
         }
         Insert: {
           age_verified?: boolean
+          consent_accepted_at?: string | null
           created_at?: string
           display_name?: string | null
           email?: string | null
@@ -450,6 +452,7 @@ export type Database = {
         }
         Update: {
           age_verified?: boolean
+          consent_accepted_at?: string | null
           created_at?: string
           display_name?: string | null
           email?: string | null

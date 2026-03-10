@@ -78,6 +78,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
           phone: phone,
           display_name: displayName,
           email: userEmail,
+          consent_accepted_at: new Date().toISOString(),
         }, {
           onConflict: 'user_id',
         });

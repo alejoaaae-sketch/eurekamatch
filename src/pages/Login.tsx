@@ -1,8 +1,9 @@
 import { useState, useEffect } from "react";
-import { useNavigate, useSearchParams } from "react-router-dom";
-import { useTranslation } from "react-i18next";
+import { useNavigate, useSearchParams, Link } from "react-router-dom";
+import { useTranslation, Trans } from "react-i18next";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { Checkbox } from "@/components/ui/checkbox";
 import { Heart, Eye, EyeOff, Loader2, Phone, User, Mail, Users, Flame, Trophy, ArrowLeft } from "lucide-react";
 import { useAuth } from "@/hooks/useAuth";
 import LanguageSelector from "@/components/LanguageSelector";
@@ -31,6 +32,7 @@ const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
+  const [consentAccepted, setConsentAccepted] = useState(false);
 
   const supabaseUrl = import.meta.env.VITE_SUPABASE_URL;
 
@@ -88,6 +90,11 @@ const Login = () => {
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         if (!email.trim() || !emailRegex.test(email.trim())) {
           toast.error(t("auth.emailInvalid"));
+          setLoading(false);
+          return;
+        }
+        if (!consentAccepted) {
+          toast.error(t("auth.consentRequired"));
           setLoading(false);
           return;
         }
@@ -244,6 +251,28 @@ const Login = () => {
 
             {/* Password strength indicator - only show during signup */}
             {!isLogin && <PasswordStrengthIndicator password={password} />}
+
+            {/* Consent checkbox - only show on signup */}
+            {!isLogin && (
+              <div className="flex items-start space-x-3">
+                <Checkbox
+                  id="consent"
+                  checked={consentAccepted}
+                  onCheckedChange={(checked) => setConsentAccepted(checked === true)}
+                  disabled={loading}
+                  className="mt-1"
+                />
+                <label htmlFor="consent" className="text-xs text-muted-foreground leading-relaxed cursor-pointer">
+                  <Trans
+                    i18nKey="auth.consentText"
+                    components={{
+                      termsLink: <Link to="/terms" className="text-primary underline hover:text-primary/80" />,
+                      privacyLink: <Link to="/privacy" className="text-primary underline hover:text-primary/80" />,
+                    }}
+                  />
+                </label>
+              </div>
+            )}
 
             <Button type="submit" className="w-full" size="lg" disabled={loading}>
               {loading ? (

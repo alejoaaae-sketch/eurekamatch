@@ -42,6 +42,8 @@
     "phoneInvalid": "Please enter a valid phone number",
     "nameRequired": "Name is required",
     "phoneAlreadyRegistered": "This phone number is already registered",
+    "consentRequired": "You must accept the terms to sign up",
+    "consentText": "I accept the <termsLink>Terms and Conditions</termsLink> and the <privacyLink>Privacy Policy</privacyLink>, and I expressly consent to my phone number being used so that other users can add me to their \"picks\" lists and to determine possible matches. I can revoke this consent by deleting my account at any time.",
     "verifyPhone": "Verify your phone",
     "otpSentTo": "We've sent a code to",
     "otpSent": "Code sent via SMS",

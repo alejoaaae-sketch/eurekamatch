@@ -42,6 +42,8 @@
     "phoneInvalid": "Introduce un número de teléfono válido",
     "nameRequired": "O nome é obrigatorio",
     "phoneAlreadyRegistered": "Este número xa está rexistrado",
+    "consentRequired": "Debes aceptar os termos para rexistrarte",
+    "consentText": "Acepto os <termsLink>Termos e Condicións</termsLink> e a <privacyLink>Política de Privacidade</privacyLink>, e consinto expresamente que o meu número de teléfono sexa utilizado para que outros usuarios poidan engadirme ás súas listas de \"picks\" e para determinar posibles matches. Podo revogar este consentimento eliminando a miña conta en calquera momento.",
     "verifyPhone": "Verifica o teu teléfono",
     "otpSentTo": "Enviamos un código a",
     "otpSent": "Código enviado por SMS",

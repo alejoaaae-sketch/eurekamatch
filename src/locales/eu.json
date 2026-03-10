@@ -30,7 +30,9 @@
     "passwordMinLength": "Pasahitzak gutxienez 6 karaktere izan behar ditu",
     "phoneInvalid": "Sartu telefono zenbaki baliogarria",
     "nameRequired": "Izena derrigorrezkoa da",
-    "phoneAlreadyRegistered": "Telefono hau dagoeneko erregistratuta dago"
+    "phoneAlreadyRegistered": "Telefono hau dagoeneko erregistratuta dago",
+    "consentRequired": "Baldintzak onartu behar dituzu erregistratzeko",
+    "consentText": "Onartzen ditut <termsLink>Baldintzak</termsLink> eta <privacyLink>Pribatutasun Politika</privacyLink>, eta berariaz baimena ematen dut nire telefono zenbakia beste erabiltzaileek beren \"picks\" zerrendetan gehitzeko eta match posibleak zehazteko erabiltzeko. Baimen hau edozein unetan ezeztatu dezaket nire kontua ezabatuz."
   },
   "app": {
     "name": "Mútuo",

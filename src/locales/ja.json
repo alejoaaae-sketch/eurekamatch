@@ -30,7 +30,9 @@
     "passwordMinLength": "パスワードは6文字以上必要です",
     "phoneInvalid": "有効な電話番号を入力してください",
     "nameRequired": "名前は必須です",
-    "phoneAlreadyRegistered": "この電話番号はすでに登録されています"
+    "phoneAlreadyRegistered": "この電話番号はすでに登録されています",
+    "consentRequired": "登録するには利用規約に同意する必要があります",
+    "consentText": "<termsLink>利用規約</termsLink>および<privacyLink>プライバシーポリシー</privacyLink>に同意し、他のユーザーが私を「picks」リストに追加し、マッチの可能性を判断するために私の電話番号が使用されることに明示的に同意します。アカウントを削除することで、いつでもこの同意を取り消すことができます。"
   },
   "app": {
     "name": "Mútuo",

@@ -42,6 +42,8 @@
     "phoneInvalid": "Bitte gib eine gültige Telefonnummer ein",
     "nameRequired": "Der Name ist erforderlich",
     "phoneAlreadyRegistered": "Diese Nummer ist bereits registriert",
+    "consentRequired": "Du musst die Bedingungen akzeptieren, um dich zu registrieren",
+    "consentText": "Ich akzeptiere die <termsLink>Allgemeinen Geschäftsbedingungen</termsLink> und die <privacyLink>Datenschutzrichtlinie</privacyLink> und stimme ausdrücklich zu, dass meine Telefonnummer verwendet wird, damit andere Nutzer mich zu ihren \"Picks\"-Listen hinzufügen und mögliche Matches ermitteln können. Ich kann diese Einwilligung jederzeit durch Löschung meines Kontos widerrufen.",
     "verifyPhone": "Bestätige dein Telefon",
     "otpSentTo": "Wir haben einen Code gesendet an",
     "otpSent": "Code per SMS gesendet",

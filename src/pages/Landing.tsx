@@ -1,19 +1,39 @@
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
+import { useMemo, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Heart, Users, Flame, Sparkles, ArrowRight, Beaker, Trophy, Play } from "lucide-react";
 import { useAuth } from "@/hooks/useAuth";
-import { useEffect } from "react";
 import LanguageSelector from "@/components/LanguageSelector";
 import LegalFooter from "@/components/LegalFooter";
 import { getAppConfig, AppType } from "@/config/app.config";
 import { useAllAppConfigs } from "@/hooks/useAllAppConfigs";
 
+const YOUTUBE_VIDEOS: Record<string, string> = {
+  es: "cd2WTc-sh7w",
+  fr: "Ttk-L5WnLtU",
+  default: "qgHIIkfP3bQ",
+};
+
+const SPANISH_LANGS = ["es", "gl", "ca", "eu"];
+const FRENCH_LANGS = ["fr"];
+
+const getYoutubeId = (lang: string): string => {
+  if (SPANISH_LANGS.includes(lang)) return YOUTUBE_VIDEOS.es;
+  if (FRENCH_LANGS.includes(lang)) return YOUTUBE_VIDEOS.fr;
+  return YOUTUBE_VIDEOS.default;
+};
+
 const Landing = () => {
   const navigate = useNavigate();
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const { user, loading } = useAuth();
   const { isAppEnabled, loading: configLoading } = useAllAppConfigs();
+
+  const youtubeEmbedUrl = useMemo(
+    () => `https://www.youtube-nocookie.com/embed/${getYoutubeId(i18n.language)}`,
+    [i18n.language]
+  );
 
   // No redirect — logged-in users can use this page as an app switcher
 

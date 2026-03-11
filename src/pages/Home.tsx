@@ -5,6 +5,7 @@ import { Heart, Plus, User, Sparkles, Loader2, Coins, ArrowLeft } from "lucide-r
 import PickCard from "@/components/PickCard";
 import MatchCard from "@/components/MatchCard";
 import LanguageSelector from "@/components/LanguageSelector";
+import WelcomeCreditsBanner from "@/components/WelcomeCreditsBanner";
 import AgeVerificationGate from "@/components/AgeVerificationGate";
 import { useAuth } from "@/hooks/useAuth";
 import { usePicks } from "@/hooks/usePicks";
@@ -153,6 +154,9 @@ const Home = () => {
           </div>
         </div>
       </header>
+
+      {/* Welcome banner */}
+      <WelcomeCreditsBanner />
 
       {/* Tabs */}
       <div className="px-6 pt-6">

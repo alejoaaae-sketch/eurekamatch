@@ -358,5 +358,10 @@
     "purchase": "購入",
     "pickCreated": "選択を送信",
     "pickDeleted": "選択を削除"
+  },
+  "welcome": {
+    "title": "🎉 4つの無料クレジット！",
+    "subtitle": "各アプリに1つずつ、すべてお試しいただけます",
+    "description": "Love、Friends、Sex、Hobbyそれぞれに1つの無料クレジットがあります。いつでもお使いください！"
   }
 }

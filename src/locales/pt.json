@@ -384,5 +384,10 @@
     "purchase": "Compra",
     "pickCreated": "Pick enviado",
     "pickDeleted": "Pick eliminado"
+  },
+  "welcome": {
+    "title": "🎉 4 créditos grátis!",
+    "subtitle": "Um para cada app, para experimentares todas",
+    "description": "Tens 1 crédito grátis para Love, Friends, Sex e Hobby. Usa-os quando quiseres!"
   }
 }

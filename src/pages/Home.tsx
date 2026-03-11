@@ -155,6 +155,9 @@ const Home = () => {
         </div>
       </header>
 
+      {/* Welcome banner */}
+      <WelcomeCreditsBanner />
+
       {/* Tabs */}
       <div className="px-6 pt-6">
         <div className="flex gap-8 border-b border-border/50">

@@ -358,5 +358,10 @@
     "purchase": "Erosketa",
     "pickCreated": "Aukera bidalita",
     "pickDeleted": "Aukera ezabatuta"
+  },
+  "welcome": {
+    "title": "🎉 4 kreditu dohainik!",
+    "subtitle": "Bat app bakoitzeko, denak probatzeko",
+    "description": "Kreditu dohainik 1 duzu Love, Friends, Sex eta Hobby-rako. Erabili nahi duzunean!"
   }
 }

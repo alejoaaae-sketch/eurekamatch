@@ -358,5 +358,10 @@
     "purchase": "Compra",
     "pickCreated": "Elecció enviada",
     "pickDeleted": "Elecció eliminada"
+  },
+  "welcome": {
+    "title": "🎉 4 crèdits de regal!",
+    "subtitle": "Un per cada app, perquè les provis totes",
+    "description": "Tens 1 crèdit gratuït per a Love, Friends, Sex i Hobby. Fes-los servir quan vulguis!"
   }
 }

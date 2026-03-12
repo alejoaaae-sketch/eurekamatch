@@ -172,6 +172,8 @@ const Admin = () => {
         notification_countries: globalForm.notification_countries.split(",").map((s: string) => s.trim()).filter(Boolean),
         payment_countries: globalForm.payment_countries.split(",").map((s: string) => s.trim()).filter(Boolean),
         max_notifications_per_user: globalForm.max_notifications_per_user,
+        max_notifications_per_recipient_month: globalForm.max_notifications_per_recipient_month,
+        max_notifications_per_recipient_total: globalForm.max_notifications_per_recipient_total,
       } as any)
       .eq("id", globalConfig.id)
       .select();

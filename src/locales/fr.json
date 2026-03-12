@@ -347,6 +347,10 @@
     "sendHint": "Envoyer un indice anonyme",
     "sent": "Indice envoyé ! 1 crédit déduit.",
     "alreadySent": "Indice envoyé ce mois-ci",
+    "notRegistered": "Cet utilisateur ne s'est pas encore inscrit",
+    "historyTitle": "Indices envoyés",
+    "maxReached": "Nombre maximum d'indices atteint pour cet utilisateur"
+  },
     "notRegistered": "Cet utilisateur n'est pas encore inscrit"
   },
   "history": {

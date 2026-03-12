@@ -118,6 +118,8 @@ const Admin = () => {
         notification_countries: g.notification_countries?.join(", ") ?? "",
         payment_countries: (g as any).payment_countries?.join(", ") ?? "",
         max_notifications_per_user: (g as any).max_notifications_per_user ?? 2,
+        max_notifications_per_recipient_month: (g as any).max_notifications_per_recipient_month ?? 5,
+        max_notifications_per_recipient_total: (g as any).max_notifications_per_recipient_total ?? 10,
       });
     }
     setLoading(false);

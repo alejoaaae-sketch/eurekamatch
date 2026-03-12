@@ -165,6 +165,7 @@ const Admin = () => {
         beta_countries: globalForm.beta_countries.split(",").map((s: string) => s.trim()).filter(Boolean),
         notification_countries: globalForm.notification_countries.split(",").map((s: string) => s.trim()).filter(Boolean),
         payment_countries: globalForm.payment_countries.split(",").map((s: string) => s.trim()).filter(Boolean),
+        max_notifications_per_user: globalForm.max_notifications_per_user,
       } as any)
       .eq("id", globalConfig.id)
       .select();

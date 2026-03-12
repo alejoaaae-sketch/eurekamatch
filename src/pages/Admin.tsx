@@ -39,6 +39,8 @@ interface GlobalConfigRow {
   notification_countries: string[];
   payment_countries: string[];
   max_notifications_per_user: number;
+  max_notifications_per_recipient_month: number;
+  max_notifications_per_recipient_total: number;
 }
 
 const Admin = () => {

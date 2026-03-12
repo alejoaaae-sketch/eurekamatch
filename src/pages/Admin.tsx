@@ -38,6 +38,7 @@ interface GlobalConfigRow {
   beta_countries: string[];
   notification_countries: string[];
   payment_countries: string[];
+  max_notifications_per_user: number;
 }
 
 const Admin = () => {

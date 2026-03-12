@@ -49,7 +49,7 @@ serve(async (req: Request) => {
     // 1. Get global config
     const { data: globalConfig } = await admin
       .from("global_config")
-      .select("notifications_enabled, notification_sms_template, max_notifications_per_user")
+      .select("notifications_enabled, notification_sms_template, max_notifications_per_user, max_notifications_per_recipient_month, max_notifications_per_recipient_total")
       .limit(1)
       .single();
 
@@ -58,6 +58,8 @@ serve(async (req: Request) => {
     }
 
     const maxPerUser = globalConfig.max_notifications_per_user ?? 2;
+    const maxPerRecipientMonth = globalConfig.max_notifications_per_recipient_month ?? 5;
+    const maxPerRecipientTotal = globalConfig.max_notifications_per_recipient_total ?? 10;
 
     // 2. Get the pick and validate ownership
     const { data: pick } = await admin

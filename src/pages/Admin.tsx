@@ -418,9 +418,21 @@ const Admin = () => {
                   </div>
                   <div className="bg-secondary/50 rounded-lg p-3 text-xs text-muted-foreground space-y-1">
                     <p>• Solo usuarios registrados pueden ser notificados</p>
-                    <p>• Límite: 1 SMS por pick al mes</p>
+                    <p>• Límite: 1 SMS por teléfono al mes</p>
+                    <p>• Máximo total por usuario destinatario: configurable abajo</p>
                     <p>• Cuesta 1 crédito (pick) al remitente</p>
                     <p>• Solo picks activos (no borrados, no matched)</p>
+                  </div>
+                  <div>
+                    <label className="text-xs text-muted-foreground mb-1 block">Máx. notificaciones por usuario destinatario</label>
+                    <Input
+                      type="number"
+                      min={1}
+                      value={globalForm.max_notifications_per_user}
+                      onChange={(e) => setGlobalForm((p) => ({ ...p, max_notifications_per_user: parseInt(e.target.value) || 1 }))}
+                      placeholder="2"
+                    />
+                    <p className="text-xs text-muted-foreground mt-1">Máximo de veces que un usuario puede enviar pistas a un mismo destinatario (total, sin importar el pick).</p>
                   </div>
                 </div>
               )}

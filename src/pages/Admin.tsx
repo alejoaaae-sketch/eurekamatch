@@ -69,6 +69,7 @@ const Admin = () => {
     beta_countries: "",
     notification_countries: "",
     payment_countries: "",
+    max_notifications_per_user: 2,
   });
 
   useEffect(() => {

@@ -374,7 +374,9 @@
     "sendHint": "Send anonymous hint",
     "sent": "Hint sent! 1 credit deducted.",
     "alreadySent": "Hint sent this month",
-    "notRegistered": "This user hasn't registered in the app yet"
+    "notRegistered": "This user hasn't registered in the app yet",
+    "historyTitle": "Hints sent",
+    "maxReached": "Maximum hints reached for this user"
   },
   "history": {
     "balance": "Current balance",

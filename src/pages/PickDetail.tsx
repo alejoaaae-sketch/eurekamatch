@@ -15,7 +15,7 @@ const PickDetail = () => {
   const { user, loading: authLoading } = useAuth();
   const { t } = useTranslation();
   const { picks, loading: picksLoading, deletePick } = usePicks();
-  const { notificationsEnabled, canNotify, wasSentThisMonth, sendNotification } = usePickNotifications();
+  const { notificationsEnabled, canNotify, wasSentThisMonth, sendNotification, getNotificationDates } = usePickNotifications();
   const { picksRemaining, refetch: refetchBalance } = usePickBalance();
   const [deleting, setDeleting] = useState(false);
   const [sending, setSending] = useState(false);
@@ -151,9 +151,40 @@ const PickDetail = () => {
           </div>
         </div>
 
+        {/* Notification history */}
+        {(() => {
+          const dates = getNotificationDates(pick.id);
+          if (dates.length === 0) return null;
+          return (
+            <div className="mt-6">
+              <div className="bg-card rounded-xl p-4 border border-border/50">
+                <div className="flex items-center gap-2 mb-3">
+                  <Send className="w-4 h-4 text-muted-foreground" />
+                  <p className="text-xs font-medium text-muted-foreground">{t("notification.historyTitle")}</p>
+                </div>
+                <div className="space-y-2">
+                  {dates.map((date, i) => {
+                    const d = new Date(date);
+                    return (
+                      <div key={i} className="flex items-center gap-2 text-sm">
+                        <CheckCircle className="w-3.5 h-3.5 text-primary shrink-0" />
+                        <span className="text-foreground">
+                          {d.toLocaleDateString('es-ES', { day: 'numeric', month: 'short', year: 'numeric' })}
+                          {' · '}
+                          {d.toLocaleTimeString('es-ES', { hour: '2-digit', minute: '2-digit' })}
+                        </span>
+                      </div>
+                    );
+                  })}
+                </div>
+              </div>
+            </div>
+          );
+        })()}
+
         {/* Notification button */}
         {notificationsEnabled && !pick.is_matched && (
-          <div className="mt-8">
+          <div className="mt-4">
             {wasSentThisMonth(pick.id) ? (
               <div className="flex items-center justify-center gap-2 py-3 px-4 rounded-xl bg-secondary text-muted-foreground text-sm">
                 <CheckCircle className="w-4 h-4 text-primary" />

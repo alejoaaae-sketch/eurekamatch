@@ -108,6 +108,7 @@ export type Database = {
           free_picks_on_signup: number
           id: string
           max_new_users_per_day: number
+          max_notifications_per_user: number
           notification_countries: string[]
           notification_sms_template: string
           notifications_enabled: boolean
@@ -129,6 +130,7 @@ export type Database = {
           free_picks_on_signup?: number
           id?: string
           max_new_users_per_day?: number
+          max_notifications_per_user?: number
           notification_countries?: string[]
           notification_sms_template?: string
           notifications_enabled?: boolean
@@ -150,6 +152,7 @@ export type Database = {
           free_picks_on_signup?: number
           id?: string
           max_new_users_per_day?: number
+          max_notifications_per_user?: number
           notification_countries?: string[]
           notification_sms_template?: string
           notifications_enabled?: boolean

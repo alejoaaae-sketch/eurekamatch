@@ -38,6 +38,7 @@ interface GlobalConfigRow {
   beta_countries: string[];
   notification_countries: string[];
   payment_countries: string[];
+  max_notifications_per_user: number;
 }
 
 const Admin = () => {
@@ -68,6 +69,7 @@ const Admin = () => {
     beta_countries: "",
     notification_countries: "",
     payment_countries: "",
+    max_notifications_per_user: 2,
   });
 
   useEffect(() => {
@@ -111,6 +113,7 @@ const Admin = () => {
         beta_countries: g.beta_countries?.join(", ") ?? "",
         notification_countries: g.notification_countries?.join(", ") ?? "",
         payment_countries: (g as any).payment_countries?.join(", ") ?? "",
+        max_notifications_per_user: (g as any).max_notifications_per_user ?? 2,
       });
     }
     setLoading(false);
@@ -162,6 +165,7 @@ const Admin = () => {
         beta_countries: globalForm.beta_countries.split(",").map((s: string) => s.trim()).filter(Boolean),
         notification_countries: globalForm.notification_countries.split(",").map((s: string) => s.trim()).filter(Boolean),
         payment_countries: globalForm.payment_countries.split(",").map((s: string) => s.trim()).filter(Boolean),
+        max_notifications_per_user: globalForm.max_notifications_per_user,
       } as any)
       .eq("id", globalConfig.id)
       .select();
@@ -414,9 +418,21 @@ const Admin = () => {
                   </div>
                   <div className="bg-secondary/50 rounded-lg p-3 text-xs text-muted-foreground space-y-1">
                     <p>• Solo usuarios registrados pueden ser notificados</p>
-                    <p>• Límite: 1 SMS por pick al mes</p>
+                    <p>• Límite: 1 SMS por teléfono al mes</p>
+                    <p>• Máximo total por usuario destinatario: configurable abajo</p>
                     <p>• Cuesta 1 crédito (pick) al remitente</p>
                     <p>• Solo picks activos (no borrados, no matched)</p>
+                  </div>
+                  <div>
+                    <label className="text-xs text-muted-foreground mb-1 block">Máx. notificaciones por usuario destinatario</label>
+                    <Input
+                      type="number"
+                      min={1}
+                      value={globalForm.max_notifications_per_user}
+                      onChange={(e) => setGlobalForm((p) => ({ ...p, max_notifications_per_user: parseInt(e.target.value) || 1 }))}
+                      placeholder="2"
+                    />
+                    <p className="text-xs text-muted-foreground mt-1">Máximo de veces que un usuario puede enviar pistas a un mismo destinatario (total, sin importar el pick).</p>
                   </div>
                 </div>
               )}

@@ -15,7 +15,7 @@ const PickDetail = () => {
   const { user, loading: authLoading } = useAuth();
   const { t } = useTranslation();
   const { picks, loading: picksLoading, deletePick } = usePicks();
-  const { notificationsEnabled, canNotify, wasSentThisMonth, sendNotification } = usePickNotifications();
+  const { notificationsEnabled, canNotify, wasSentThisMonth, sendNotification, getNotificationDates } = usePickNotifications();
   const { picksRemaining, refetch: refetchBalance } = usePickBalance();
   const [deleting, setDeleting] = useState(false);
   const [sending, setSending] = useState(false);

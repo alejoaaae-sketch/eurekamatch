@@ -1,0 +1,1 @@
+ALTER TABLE public.global_config ADD COLUMN max_notifications_per_user integer NOT NULL DEFAULT 2;

@@ -347,7 +347,9 @@
     "sendHint": "匿名ヒントを送信",
     "sent": "ヒント送信完了！1クレジット消費しました。",
     "alreadySent": "今月すでにヒントを送信済み",
-    "notRegistered": "このユーザーはまだアプリに登録していません"
+    "notRegistered": "このユーザーはまだアプリに登録していません",
+    "historyTitle": "送信済みヒント",
+    "maxReached": "このユーザーへのヒント送信上限に達しました"
   },
   "history": {
     "balance": "現在の残高",

@@ -347,7 +347,9 @@
     "sendHint": "Pista anonimoa bidali",
     "sent": "Pista bidalita! Kreditu 1 kendu da.",
     "alreadySent": "Hilabete honetan pista bidalita",
-    "notRegistered": "Erabiltzaile hau ez da oraindik izena eman"
+    "notRegistered": "Erabiltzaile hau ez da oraindik izena eman",
+    "historyTitle": "Bidalitako pistak",
+    "maxReached": "Erabiltzaile honetarako pista kopuru maximoa lortu da"
   },
   "history": {
     "balance": "Uneko saldoa",

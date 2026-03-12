@@ -373,7 +373,9 @@
     "sendHint": "Anonymen Hinweis senden",
     "sent": "Hinweis gesendet! 1 Credit abgezogen.",
     "alreadySent": "Hinweis diesen Monat gesendet",
-    "notRegistered": "Dieser Benutzer hat sich noch nicht in der App registriert"
+    "notRegistered": "Dieser Benutzer hat sich noch nicht in der App registriert",
+    "historyTitle": "Gesendete Hinweise",
+    "maxReached": "Maximale Hinweise für diesen Benutzer erreicht"
   },
   "history": {
     "balance": "Aktuelles Guthaben",

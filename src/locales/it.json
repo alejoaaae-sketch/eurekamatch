@@ -373,7 +373,9 @@
     "sendHint": "Invia indizio anonimo",
     "sent": "Indizio inviato! 1 credito detratto.",
     "alreadySent": "Indizio inviato questo mese",
-    "notRegistered": "Questo utente non si è ancora registrato nell'app"
+    "notRegistered": "Questo utente non si è ancora registrato nell'app",
+    "historyTitle": "Indizi inviati",
+    "maxReached": "Numero massimo di indizi raggiunto per questo utente"
   },
   "history": {
     "balance": "Saldo attuale",

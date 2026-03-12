@@ -374,7 +374,9 @@
     "sendHint": "Enviar pista anónima",
     "sent": "¡Pista enviada! Se ha descontado 1 crédito.",
     "alreadySent": "Pista enviada este mes",
-    "notRegistered": "Este usuario aún no se ha registrado en la app"
+    "notRegistered": "Este usuario aún no se ha registrado en la app",
+    "historyTitle": "Pistas enviadas",
+    "maxReached": "Máximo de pistas alcanzado para este usuario"
   },
   "history": {
     "balance": "Saldo actual",

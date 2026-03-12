@@ -113,6 +113,7 @@ const Admin = () => {
         beta_countries: g.beta_countries?.join(", ") ?? "",
         notification_countries: g.notification_countries?.join(", ") ?? "",
         payment_countries: (g as any).payment_countries?.join(", ") ?? "",
+        max_notifications_per_user: (g as any).max_notifications_per_user ?? 2,
       });
     }
     setLoading(false);

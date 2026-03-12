@@ -117,7 +117,27 @@ serve(async (req: Request) => {
       return respond({ error: "Maximum notifications to this user reached" }, 429);
     }
 
-    // 6. Check user has credits
+    // 5b. Global recipient limit: max per month (from any sender)
+    const { count: recipientMonthCount } = await admin
+      .from("pick_notifications")
+      .select("id", { count: "exact", head: true })
+      .eq("recipient_user_id", pick.picked_user_id)
+      .gte("created_at", oneMonthAgo.toISOString());
+
+    if ((recipientMonthCount ?? 0) >= maxPerRecipientMonth) {
+      return respond({ error: "Recipient has reached monthly notification limit" }, 429);
+    }
+
+    // 5c. Global recipient limit: max total (from any sender, lifetime)
+    const { count: recipientTotalCount } = await admin
+      .from("pick_notifications")
+      .select("id", { count: "exact", head: true })
+      .eq("recipient_user_id", pick.picked_user_id);
+
+    if ((recipientTotalCount ?? 0) >= maxPerRecipientTotal) {
+      return respond({ error: "Recipient has reached total notification limit" }, 429);
+    }
+
     const { data: balance } = await admin
       .from("user_pick_balance")
       .select("picks_remaining, total_used")

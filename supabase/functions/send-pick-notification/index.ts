@@ -7,6 +7,12 @@ const corsHeaders = {
     "authorization, x-client-info, apikey, content-type, x-supabase-client-platform, x-supabase-client-platform-version, x-supabase-client-runtime, x-supabase-client-runtime-version",
 };
 
+const respond = (body: object, status = 200) =>
+  new Response(JSON.stringify(body), {
+    status,
+    headers: { "Content-Type": "application/json", ...corsHeaders },
+  });
+
 serve(async (req: Request) => {
   if (req.method === "OPTIONS") {
     return new Response(null, { headers: corsHeaders });
@@ -16,21 +22,15 @@ serve(async (req: Request) => {
     const supabaseUrl = Deno.env.get("SUPABASE_URL")!;
     const supabaseServiceKey = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!;
 
-    // Validate auth by decoding JWT directly (avoids HTTP call issues)
+    // Validate auth
     const authHeader = req.headers.get("authorization");
     if (!authHeader?.startsWith("Bearer ")) {
-      return new Response(JSON.stringify({ error: "Unauthorized" }), {
-        status: 401,
-        headers: { "Content-Type": "application/json", ...corsHeaders },
-      });
+      return respond({ error: "Unauthorized" }, 401);
     }
 
-    const token = authHeader.replace("Bearer ", "");
-    
-    // Decode JWT payload to get user id
     let userId: string;
     try {
-      const payloadB64 = token.split(".")[1];
+      const payloadB64 = authHeader.replace("Bearer ", "").split(".")[1];
       const payload = JSON.parse(atob(payloadB64));
       if (!payload.sub || (payload.exp && payload.exp * 1000 < Date.now())) {
         throw new Error("Invalid or expired token");
@@ -38,37 +38,26 @@ serve(async (req: Request) => {
       userId = payload.sub;
     } catch (e) {
       console.error("JWT decode error:", e);
-      return new Response(JSON.stringify({ error: "Unauthorized" }), {
-        status: 401,
-        headers: { "Content-Type": "application/json", ...corsHeaders },
-      });
+      return respond({ error: "Unauthorized" }, 401);
     }
-
-    const user = { id: userId };
 
     const { pickId } = await req.json();
-    if (!pickId) {
-      return new Response(JSON.stringify({ error: "pickId is required" }), {
-        status: 400,
-        headers: { "Content-Type": "application/json", ...corsHeaders },
-      });
-    }
+    if (!pickId) return respond({ error: "pickId is required" }, 400);
 
     const admin = createClient(supabaseUrl, supabaseServiceKey);
 
-    // 1. Check notifications_enabled in global_config
+    // 1. Get global config
     const { data: globalConfig } = await admin
       .from("global_config")
-      .select("notifications_enabled, notification_sms_template")
+      .select("notifications_enabled, notification_sms_template, max_notifications_per_user")
       .limit(1)
       .single();
 
     if (!globalConfig?.notifications_enabled) {
-      return new Response(JSON.stringify({ error: "Notifications are disabled" }), {
-        status: 403,
-        headers: { "Content-Type": "application/json", ...corsHeaders },
-      });
+      return respond({ error: "Notifications are disabled" }, 403);
     }
+
+    const maxPerUser = globalConfig.max_notifications_per_user ?? 2;
 
     // 2. Get the pick and validate ownership
     const { data: pick } = await admin
@@ -77,36 +66,12 @@ serve(async (req: Request) => {
       .eq("id", pickId)
       .single();
 
-    if (!pick) {
-      return new Response(JSON.stringify({ error: "Pick not found" }), {
-        status: 404,
-        headers: { "Content-Type": "application/json", ...corsHeaders },
-      });
-    }
+    if (!pick) return respond({ error: "Pick not found" }, 404);
+    if (pick.picker_id !== userId) return respond({ error: "Not your pick" }, 403);
+    if (pick.deleted_at || pick.is_matched) return respond({ error: "Pick is not active" }, 400);
+    if (!pick.picked_user_id) return respond({ error: "Recipient is not registered" }, 400);
 
-    if (pick.picker_id !== user.id) {
-      return new Response(JSON.stringify({ error: "Not your pick" }), {
-        status: 403,
-        headers: { "Content-Type": "application/json", ...corsHeaders },
-      });
-    }
-
-    if (pick.deleted_at || pick.is_matched) {
-      return new Response(JSON.stringify({ error: "Pick is not active" }), {
-        status: 400,
-        headers: { "Content-Type": "application/json", ...corsHeaders },
-      });
-    }
-
-    // 3. Check picked_user_id exists (must be registered)
-    if (!pick.picked_user_id) {
-      return new Response(JSON.stringify({ error: "Recipient is not registered" }), {
-        status: 400,
-        headers: { "Content-Type": "application/json", ...corsHeaders },
-      });
-    }
-
-    // 4. Get recipient's phone from profile
+    // 3. Get recipient's phone
     const { data: recipientProfile } = await admin
       .from("profiles")
       .select("phone")
@@ -114,51 +79,54 @@ serve(async (req: Request) => {
       .single();
 
     if (!recipientProfile?.phone) {
-      return new Response(JSON.stringify({ error: "Recipient has no phone number" }), {
-        status: 400,
-        headers: { "Content-Type": "application/json", ...corsHeaders },
-      });
+      return respond({ error: "Recipient has no phone number" }, 400);
     }
 
-    // 5. Check 1/month rate limit for this pick
+    let normalizedPhone = recipientProfile.phone.replace(/[\s\-\(\)\.]/g, "");
+    if (!normalizedPhone.startsWith("+")) {
+      normalizedPhone = "+34" + normalizedPhone;
+    }
+
+    // 4. Rate limit: no SMS to same phone number in the last month
     const oneMonthAgo = new Date();
     oneMonthAgo.setMonth(oneMonthAgo.getMonth() - 1);
 
-    const { data: recentNotification } = await admin
+    const { data: recentToPhone } = await admin
       .from("pick_notifications")
       .select("id")
-      .eq("pick_id", pickId)
+      .eq("recipient_phone", normalizedPhone)
+      .eq("sender_id", userId)
       .gte("created_at", oneMonthAgo.toISOString())
       .limit(1)
       .maybeSingle();
 
-    if (recentNotification) {
-      return new Response(JSON.stringify({ error: "Already notified this month" }), {
-        status: 429,
-        headers: { "Content-Type": "application/json", ...corsHeaders },
-      });
+    if (recentToPhone) {
+      return respond({ error: "Already notified this phone number this month" }, 429);
+    }
+
+    // 5. Max lifetime notifications to this recipient user
+    const { count: totalToRecipient } = await admin
+      .from("pick_notifications")
+      .select("id", { count: "exact", head: true })
+      .eq("sender_id", userId)
+      .eq("recipient_user_id", pick.picked_user_id);
+
+    if ((totalToRecipient ?? 0) >= maxPerUser) {
+      return respond({ error: "Maximum notifications to this user reached" }, 429);
     }
 
     // 6. Check user has credits
     const { data: balance } = await admin
       .from("user_pick_balance")
       .select("picks_remaining, total_used")
-      .eq("user_id", user.id)
+      .eq("user_id", userId)
       .single();
 
     if (!balance || balance.picks_remaining <= 0) {
-      return new Response(JSON.stringify({ error: "No credits remaining" }), {
-        status: 402,
-        headers: { "Content-Type": "application/json", ...corsHeaders },
-      });
+      return respond({ error: "No credits remaining" }, 402);
     }
 
-    // 7. Normalize phone and send SMS via Twilio
-    let normalizedPhone = recipientProfile.phone.replace(/[\s\-\(\)\.]/g, "");
-    if (!normalizedPhone.startsWith("+")) {
-      normalizedPhone = "+34" + normalizedPhone;
-    }
-
+    // 7. Send SMS via Twilio
     const accountSid = Deno.env.get("TWILIO_ACCOUNT_SID");
     const authToken = Deno.env.get("TWILIO_AUTH_TOKEN");
     const twilioPhone = Deno.env.get("TWILIO_PHONE_NUMBER");
@@ -167,7 +135,6 @@ serve(async (req: Request) => {
       throw new Error("Twilio credentials not configured");
     }
 
-    // Map app_type to friendly app name
     const appNames: Record<string, string> = {
       love: "Eureka Love 💕",
       plan: "Eureka Friends 🎉",
@@ -179,7 +146,6 @@ serve(async (req: Request) => {
     const optOutText = "\n\nPara dejar de recibir estos mensajes, entra en eurekamatch.lovable.app y desactívalo en Ajustes.";
     const template = globalConfig.notification_sms_template ||
       "Alguien ha pensado en ti en {app} 💫 Descubre quién en eurekamatch.lovable.app";
-    // Replace {app} placeholder; if not present, append app name
     let smsBody: string;
     if (template.includes("{app}")) {
       smsBody = template.replace(/\{app\}/g, appLabel) + optOutText;
@@ -215,29 +181,22 @@ serve(async (req: Request) => {
         picks_remaining: balance.picks_remaining - 1,
         total_used: balance.total_used + 1,
       })
-      .eq("user_id", user.id);
+      .eq("user_id", userId);
 
     // 9. Record notification
     await admin
       .from("pick_notifications")
       .insert({
         pick_id: pickId,
-        sender_id: user.id,
+        sender_id: userId,
         recipient_user_id: pick.picked_user_id,
         recipient_phone: normalizedPhone,
       });
 
-    console.log(`Notification sent for pick ${pickId} by user ${user.id}`);
-
-    return new Response(JSON.stringify({ success: true }), {
-      status: 200,
-      headers: { "Content-Type": "application/json", ...corsHeaders },
-    });
+    console.log(`Notification sent for pick ${pickId} by user ${userId}`);
+    return respond({ success: true });
   } catch (error: any) {
     console.error("Error in send-pick-notification:", error);
-    return new Response(JSON.stringify({ error: error.message }), {
-      status: 500,
-      headers: { "Content-Type": "application/json", ...corsHeaders },
-    });
+    return respond({ error: error.message }, 500);
   }
 });

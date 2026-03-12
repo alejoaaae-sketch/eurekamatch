@@ -3,10 +3,15 @@ import { supabase } from '@/integrations/supabase/client';
 import { useAuth } from './useAuth';
 import { useAppConfig } from './useAppConfig';
 
+interface NotificationRecord {
+  created_at: string;
+  pick_id: string;
+}
+
 export const usePickNotifications = () => {
   const { user } = useAuth();
   const { canUseNotifications } = useAppConfig();
-  const [sentNotifications, setSentNotifications] = useState<Record<string, string>>({});
+  const [sentNotifications, setSentNotifications] = useState<Record<string, NotificationRecord[]>>({});
   const [loading, setLoading] = useState(true);
 
   const fetchData = useCallback(async () => {
@@ -16,19 +21,17 @@ export const usePickNotifications = () => {
     }
 
     try {
-      const oneMonthAgo = new Date();
-      oneMonthAgo.setMonth(oneMonthAgo.getMonth() - 1);
-
       const { data } = await supabase
         .from('pick_notifications')
         .select('pick_id, created_at')
         .eq('sender_id', user.id)
-        .gte('created_at', oneMonthAgo.toISOString());
+        .order('created_at', { ascending: false });
 
       if (data) {
-        const map: Record<string, string> = {};
+        const map: Record<string, NotificationRecord[]> = {};
         for (const n of data) {
-          map[n.pick_id] = n.created_at;
+          if (!map[n.pick_id]) map[n.pick_id] = [];
+          map[n.pick_id].push({ created_at: n.created_at, pick_id: n.pick_id });
         }
         setSentNotifications(map);
       }
@@ -46,12 +49,27 @@ export const usePickNotifications = () => {
   const canNotify = (pickId: string, pickedUserId: string | null): boolean => {
     if (!canUseNotifications) return false;
     if (!pickedUserId) return false;
-    if (sentNotifications[pickId]) return false;
+    // Check if sent this month for this pick
+    const records = sentNotifications[pickId];
+    if (records?.length) {
+      const oneMonthAgo = new Date();
+      oneMonthAgo.setMonth(oneMonthAgo.getMonth() - 1);
+      const recentSend = records.find(r => new Date(r.created_at) >= oneMonthAgo);
+      if (recentSend) return false;
+    }
     return true;
   };
 
   const wasSentThisMonth = (pickId: string): boolean => {
-    return !!sentNotifications[pickId];
+    const records = sentNotifications[pickId];
+    if (!records?.length) return false;
+    const oneMonthAgo = new Date();
+    oneMonthAgo.setMonth(oneMonthAgo.getMonth() - 1);
+    return records.some(r => new Date(r.created_at) >= oneMonthAgo);
+  };
+
+  const getNotificationDates = (pickId: string): string[] => {
+    return (sentNotifications[pickId] || []).map(r => r.created_at);
   };
 
   const sendNotification = async (pickId: string): Promise<{ success: boolean; error?: string }> => {
@@ -80,6 +98,7 @@ export const usePickNotifications = () => {
     notificationsEnabled: canUseNotifications,
     canNotify,
     wasSentThisMonth,
+    getNotificationDates,
     sendNotification,
     loading,
     refetch: fetchData,

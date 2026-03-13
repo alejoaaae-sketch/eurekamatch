@@ -10,8 +10,33 @@ export const useLanguage = () => {
   const [loading, setLoading] = useState(false);
   const [enabledLanguages, setEnabledLanguages] = useState<string[]>([]);
 
+  // Fetch enabled languages from global_config
+  useEffect(() => {
+    const fetchEnabledLangs = async () => {
+      try {
+        const { data } = await supabase
+          .from('global_config')
+          .select('enabled_languages')
+          .limit(1)
+          .single();
+        if (data?.enabled_languages) {
+          setEnabledLanguages(data.enabled_languages as string[]);
+        }
+      } catch (e) {
+        console.warn('Could not fetch enabled languages:', e);
+      }
+    };
+    fetchEnabledLangs();
+  }, []);
+
+  // Filter languages to only show enabled ones
+  const languages = useMemo(() => {
+    if (enabledLanguages.length === 0) return allLanguages;
+    return allLanguages.filter(l => enabledLanguages.includes(l.code));
+  }, [enabledLanguages]);
+
   const isLanguageCode = (value: unknown): value is LanguageCode =>
-    typeof value === 'string' && languages.some((l) => l.code === value);
+    typeof value === 'string' && allLanguages.some((l) => l.code === value);
 
   const getStoredLanguage = (): LanguageCode | undefined => {
     const stored = localStorage.getItem('language');
@@ -19,15 +44,12 @@ export const useLanguage = () => {
   };
 
   // Sync language from storage/profile on mount/user change
-  // IMPORTANT: Prefer localStorage over DB to avoid a race where a slow profile fetch
-  // overrides a user-initiated language change ("flicker" then revert).
   useEffect(() => {
     if (!user) return;
 
     let cancelled = false;
 
     const syncLanguage = async () => {
-
       try {
         const { data, error } = await supabase
           .from('profiles')
@@ -36,10 +58,8 @@ export const useLanguage = () => {
           .maybeSingle();
 
         if (error) throw error;
-
         if (cancelled) return;
 
-        // Re-read localStorage AFTER the fetch to avoid race conditions with user changes.
         const storedLang = getStoredLanguage();
         const dbLang = isLanguageCode(data?.language) ? (data!.language as LanguageCode) : undefined;
         const desiredLang: LanguageCode = storedLang ?? dbLang ?? 'es';
@@ -49,7 +69,6 @@ export const useLanguage = () => {
         }
         localStorage.setItem('language', desiredLang);
 
-        // If the user has a stored preference, keep the DB in sync (best-effort).
         if (storedLang && storedLang !== dbLang) {
           const { error: updateError } = await supabase
             .from('profiles')
@@ -57,7 +76,6 @@ export const useLanguage = () => {
             .eq('user_id', user.id);
 
           if (updateError) {
-            // Don't block UX if DB sync fails.
             console.warn('Could not persist language preference:', updateError);
           }
         }
@@ -67,27 +85,20 @@ export const useLanguage = () => {
     };
 
     syncLanguage();
-
-    return () => {
-      cancelled = true;
-    };
+    return () => { cancelled = true; };
   }, [user?.id, i18n]);
 
   const changeLanguage = useCallback(async (langCode: LanguageCode) => {
     setLoading(true);
-    
     try {
-      // Change language immediately in i18n
       await i18n.changeLanguage(langCode);
       localStorage.setItem('language', langCode);
 
-      // Persist to database if user is logged in
       if (user) {
         const { error } = await supabase
           .from('profiles')
           .update({ language: langCode })
           .eq('user_id', user.id);
-
         if (error) throw error;
       }
     } catch (error) {

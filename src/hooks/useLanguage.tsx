@@ -1,13 +1,14 @@
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useCallback, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { supabase } from '@/integrations/supabase/client';
 import { useAuth } from './useAuth';
-import { LanguageCode, languages } from '@/lib/i18n';
+import { LanguageCode, languages as allLanguages } from '@/lib/i18n';
 
 export const useLanguage = () => {
   const { i18n } = useTranslation();
   const { user } = useAuth();
   const [loading, setLoading] = useState(false);
+  const [enabledLanguages, setEnabledLanguages] = useState<string[]>([]);
 
   const isLanguageCode = (value: unknown): value is LanguageCode =>
     typeof value === 'string' && languages.some((l) => l.code === value);

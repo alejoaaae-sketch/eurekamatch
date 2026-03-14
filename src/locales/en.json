@@ -361,7 +361,13 @@
     "deleteConfirmTitle": "Delete your account?",
     "deleteConfirmDescription": "This action is permanent and irreversible. All your data will be deleted: picks, matches, blocks, and profile. You will not be able to recover your account.",
     "confirmDelete": "Yes, delete my account",
-    "accountDeleted": "Your account has been deleted"
+    "accountDeleted": "Your account has been deleted",
+    "myApps": "My apps",
+    "myAppsDescription": "Disable the apps you don't want to use. You won't receive picks or matches in disabled apps.",
+    "appEnabled": "Enabled",
+    "appDisabled": "Disabled",
+    "appToggleSuccess": "Preference saved",
+    "appToggleError": "Error saving preference"
   },
   "ageVerification": {
     "title": "Age verification",

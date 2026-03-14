@@ -361,7 +361,13 @@
     "deleteConfirmTitle": "¿Eliminar tu cuenta?",
     "deleteConfirmDescription": "Esta acción es permanente e irreversible. Se eliminarán todos tus datos: picks, matches, bloqueos y perfil. No podrás recuperar tu cuenta.",
     "confirmDelete": "Sí, eliminar mi cuenta",
-    "accountDeleted": "Tu cuenta ha sido eliminada"
+    "accountDeleted": "Tu cuenta ha sido eliminada",
+    "myApps": "Mis apps",
+    "myAppsDescription": "Desactiva las apps que no quieras usar. No recibirás picks ni matches en las apps desactivadas.",
+    "appEnabled": "Activada",
+    "appDisabled": "Desactivada",
+    "appToggleSuccess": "Preferencia guardada",
+    "appToggleError": "Error al guardar preferencia"
   },
   "ageVerification": {
     "title": "Verificación de edad",

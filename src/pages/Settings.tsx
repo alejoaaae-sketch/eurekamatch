@@ -2,10 +2,13 @@ import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { Button } from "@/components/ui/button";
-import { ArrowLeft, Trash2, Loader2, AlertTriangle } from "lucide-react";
+import { Switch } from "@/components/ui/switch";
+import { ArrowLeft, Trash2, Loader2, AlertTriangle, Heart, Users, Flame, Trophy } from "lucide-react";
 import { useAuth } from "@/hooks/useAuth";
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
+import { useAllAppConfigs } from "@/hooks/useAllAppConfigs";
+import { getAppConfig, AppType } from "@/config/app.config";
 import {
   AlertDialog,
   AlertDialogAction,
@@ -18,17 +21,63 @@ import {
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
 
+const APP_VARIANTS: { type: AppType; dbMode: string; icon: React.ReactNode; gradient: string }[] = [
+  { type: 'love', dbMode: 'love', icon: <Heart className="w-5 h-5" fill="currentColor" />, gradient: 'from-rose-500 to-pink-500' },
+  { type: 'plan', dbMode: 'friends', icon: <Users className="w-5 h-5" />, gradient: 'from-orange-500 to-amber-500' },
+  { type: 'mude', dbMode: 'mude', icon: <Flame className="w-5 h-5" fill="currentColor" />, gradient: 'from-red-600 to-rose-500' },
+  { type: 'sport', dbMode: 'sport', icon: <Trophy className="w-5 h-5" />, gradient: 'from-green-500 to-emerald-500' },
+];
+
 const Settings = () => {
   const navigate = useNavigate();
   const { t } = useTranslation();
   const { user, loading: authLoading, signOut } = useAuth();
+  const { isAppEnabled } = useAllAppConfigs();
   const [deleting, setDeleting] = useState(false);
+  const [disabledApps, setDisabledApps] = useState<string[]>([]);
+  const [loadingToggle, setLoadingToggle] = useState<string | null>(null);
 
   useEffect(() => {
     if (!authLoading && !user) {
       navigate("/login");
     }
   }, [user, authLoading, navigate]);
+
+  // Fetch user's disabled apps
+  useEffect(() => {
+    if (!user) return;
+    const fetchDisabled = async () => {
+      const { data } = await supabase
+        .from('user_disabled_apps')
+        .select('app_mode')
+        .eq('user_id', user.id);
+      if (data) setDisabledApps(data.map(d => d.app_mode));
+    };
+    fetchDisabled();
+  }, [user]);
+
+  const handleToggleApp = async (dbMode: string, currentlyEnabled: boolean) => {
+    if (!user) return;
+    setLoadingToggle(dbMode);
+    try {
+      if (currentlyEnabled) {
+        // Disable: insert row
+        const { error } = await supabase.from('user_disabled_apps').insert({ user_id: user.id, app_mode: dbMode });
+        if (error) throw error;
+        setDisabledApps(prev => [...prev, dbMode]);
+      } else {
+        // Enable: delete row
+        const { error } = await supabase.from('user_disabled_apps').delete().eq('user_id', user.id).eq('app_mode', dbMode);
+        if (error) throw error;
+        setDisabledApps(prev => prev.filter(m => m !== dbMode));
+      }
+      toast.success(t("settings.appToggleSuccess"));
+    } catch {
+      toast.error(t("settings.appToggleError"));
+    } finally {
+      setLoadingToggle(null);
+    }
+  };
 
   const handleDeleteAccount = async () => {
     if (!user) return;
@@ -107,6 +156,42 @@ const Settings = () => {
           >
             {t("legal.privacyTitle")}
           </button>
+        </div>
+
+        {/* My Apps toggles */}
+        <div className="space-y-3 mb-8">
+          <h2 className="text-sm font-medium text-muted-foreground uppercase tracking-wider mb-2">{t("settings.myApps")}</h2>
+          <p className="text-xs text-muted-foreground mb-4">{t("settings.myAppsDescription")}</p>
+          {APP_VARIANTS.filter(v => isAppEnabled(v.type)).map((variant) => {
+            const config = getAppConfig(variant.type);
+            const userEnabled = !disabledApps.includes(variant.dbMode);
+            return (
+              <div
+                key={variant.type}
+                className="flex items-center justify-between p-4 rounded-xl bg-card border border-border/50"
+              >
+                <div className="flex items-center gap-3">
+                  <div className={`w-10 h-10 rounded-full flex items-center justify-center bg-gradient-to-br ${variant.gradient} text-white`}>
+                    {variant.icon}
+                  </div>
+                  <div>
+                    <p className="text-sm font-medium text-foreground">{config.appName}</p>
+                    <p className="text-xs text-muted-foreground">
+                      {userEnabled ? t("settings.appEnabled") : t("settings.appDisabled")}
+                    </p>
+                  </div>
+                </div>
+                <div className="flex items-center gap-2">
+                  {loadingToggle === variant.dbMode && <Loader2 className="w-4 h-4 animate-spin text-muted-foreground" />}
+                  <Switch
+                    checked={userEnabled}
+                    onCheckedChange={() => handleToggleApp(variant.dbMode, userEnabled)}
+                    disabled={loadingToggle !== null}
+                  />
+                </div>
+              </div>
+            );
+          })}
         </div>
 
         {/* Danger zone */}

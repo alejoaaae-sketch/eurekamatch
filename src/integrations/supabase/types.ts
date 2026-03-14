@@ -475,6 +475,27 @@ export type Database = {
         }
         Relationships: []
       }
+      user_disabled_apps: {
+        Row: {
+          app_mode: string
+          created_at: string
+          id: string
+          user_id: string
+        }
+        Insert: {
+          app_mode: string
+          created_at?: string
+          id?: string
+          user_id: string
+        }
+        Update: {
+          app_mode?: string
+          created_at?: string
+          id?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
       user_pick_balance: {
         Row: {
           created_at: string
@@ -612,6 +633,10 @@ export type Database = {
           _role: Database["public"]["Enums"]["app_role"]
           _user_id: string
         }
+        Returns: boolean
+      }
+      is_app_disabled_for_user: {
+        Args: { _app_mode: string; _user_id: string }
         Returns: boolean
       }
       normalize_phone: { Args: { phone_input: string }; Returns: string }

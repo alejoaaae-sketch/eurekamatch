@@ -158,6 +158,42 @@ const Settings = () => {
           </button>
         </div>
 
+        {/* My Apps toggles */}
+        <div className="space-y-3 mb-8">
+          <h2 className="text-sm font-medium text-muted-foreground uppercase tracking-wider mb-2">{t("settings.myApps")}</h2>
+          <p className="text-xs text-muted-foreground mb-4">{t("settings.myAppsDescription")}</p>
+          {APP_VARIANTS.filter(v => isAppEnabled(v.type)).map((variant) => {
+            const config = getAppConfig(variant.type);
+            const userEnabled = !disabledApps.includes(variant.dbMode);
+            return (
+              <div
+                key={variant.type}
+                className="flex items-center justify-between p-4 rounded-xl bg-card border border-border/50"
+              >
+                <div className="flex items-center gap-3">
+                  <div className={`w-10 h-10 rounded-full flex items-center justify-center bg-gradient-to-br ${variant.gradient} text-white`}>
+                    {variant.icon}
+                  </div>
+                  <div>
+                    <p className="text-sm font-medium text-foreground">{config.appName}</p>
+                    <p className="text-xs text-muted-foreground">
+                      {userEnabled ? t("settings.appEnabled") : t("settings.appDisabled")}
+                    </p>
+                  </div>
+                </div>
+                <div className="flex items-center gap-2">
+                  {loadingToggle === variant.dbMode && <Loader2 className="w-4 h-4 animate-spin text-muted-foreground" />}
+                  <Switch
+                    checked={userEnabled}
+                    onCheckedChange={() => handleToggleApp(variant.dbMode, userEnabled)}
+                    disabled={loadingToggle !== null}
+                  />
+                </div>
+              </div>
+            );
+          })}
+        </div>
+
         {/* Danger zone */}
         <div className="border-t border-border pt-8">
           <h2 className="text-sm font-medium text-destructive uppercase tracking-wider mb-4">{t("settings.dangerZone")}</h2>

@@ -36,6 +36,8 @@ const Settings = () => {
   const [deleting, setDeleting] = useState(false);
   const [disabledApps, setDisabledApps] = useState<string[]>([]);
   const [loadingToggle, setLoadingToggle] = useState<string | null>(null);
+  const [referralCode, setReferralCode] = useState<string>("");
+  const [referralCount, setReferralCount] = useState(0);
 
   useEffect(() => {
     if (!authLoading && !user) {

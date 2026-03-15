@@ -442,6 +442,8 @@ export type Database = {
           language: string
           phone: string | null
           phone_verified: boolean
+          referral_code: string | null
+          referred_by: string | null
           updated_at: string
           user_id: string
         }
@@ -456,6 +458,8 @@ export type Database = {
           language?: string
           phone?: string | null
           phone_verified?: boolean
+          referral_code?: string | null
+          referred_by?: string | null
           updated_at?: string
           user_id: string
         }
@@ -470,6 +474,8 @@ export type Database = {
           language?: string
           phone?: string | null
           phone_verified?: boolean
+          referral_code?: string | null
+          referred_by?: string | null
           updated_at?: string
           user_id?: string
         }

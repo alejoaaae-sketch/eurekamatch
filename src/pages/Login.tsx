@@ -21,6 +21,7 @@ const Login = () => {
   const [searchParams] = useSearchParams();
   const { t } = useTranslation();
   const appType = (searchParams.get('app') as AppType) || 'love';
+  const referralCode = searchParams.get('ref') || '';
   const config = getAppConfig(appType);
   const { user, loading: authLoading, signIn, signUp } = useAuth();
   const { verifyEmail } = useAppConfig();

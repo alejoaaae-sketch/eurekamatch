@@ -26,7 +26,7 @@ const Login = () => {
   const { user, loading: authLoading, signIn, signUp } = useAuth();
   const { verifyEmail } = useAppConfig();
   const [step] = useState<LoginStep>("form");
-  const [isLogin, setIsLogin] = useState(true);
+  const [isLogin, setIsLogin] = useState(!referralCode);
   const [showPassword, setShowPassword] = useState(false);
   const [phone, setPhone] = useState("");
   const [displayName, setDisplayName] = useState("");

@@ -394,6 +394,14 @@
     "pickCreated": "Pick sent",
     "pickDeleted": "Pick deleted"
   },
+  "referral": {
+    "title": "Invite & earn",
+    "description": "Share your code with friends. Every time someone signs up with your code, you get 1 free credit!",
+    "yourCode": "Your invite code",
+    "share": "Share link",
+    "shareText": "Join EurekaMatch! Discover if the interest is mutual. Use my code to sign up:",
+    "invited": "{{count}} people invited"
+  },
   "welcome": {
     "title": "🎉 4 free credits!",
     "subtitle": "One for each app, so you can try them all",

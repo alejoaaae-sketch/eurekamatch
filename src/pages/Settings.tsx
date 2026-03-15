@@ -180,6 +180,55 @@ const Settings = () => {
           </button>
         </div>
 
+        {/* Referral section */}
+        <div className="space-y-3 mb-8">
+          <h2 className="text-sm font-medium text-muted-foreground uppercase tracking-wider mb-4">
+            <Gift className="w-4 h-4 inline mr-1" />
+            {t("referral.title")}
+          </h2>
+          <p className="text-xs text-muted-foreground mb-4">{t("referral.description")}</p>
+          
+          <div className="p-4 rounded-xl bg-card border border-border/50 space-y-3">
+            <div className="flex items-center justify-between">
+              <div>
+                <p className="text-xs text-muted-foreground">{t("referral.yourCode")}</p>
+                <p className="text-lg font-mono font-bold text-foreground tracking-widest">{referralCode}</p>
+              </div>
+              <Button
+                variant="outline"
+                size="sm"
+                onClick={() => {
+                  navigator.clipboard.writeText(referralCode);
+                  toast.success(t("common.copied"));
+                }}
+              >
+                <Copy className="w-4 h-4" />
+              </Button>
+            </div>
+
+            <Button
+              variant="secondary"
+              className="w-full gap-2"
+              onClick={() => {
+                const url = `${window.location.origin}/login?ref=${referralCode}`;
+                if (navigator.share) {
+                  navigator.share({ title: 'EurekaMatch', text: t("referral.shareText"), url });
+                } else {
+                  navigator.clipboard.writeText(url);
+                  toast.success(t("common.copied"));
+                }
+              }}
+            >
+              <Share2 className="w-4 h-4" />
+              {t("referral.share")}
+            </Button>
+
+            <p className="text-xs text-muted-foreground text-center">
+              {t("referral.invited", { count: referralCount })}
+            </p>
+          </div>
+        </div>
+
         {/* My Apps toggles */}
         <div className="space-y-3 mb-8">
           <h2 className="text-sm font-medium text-muted-foreground uppercase tracking-wider mb-2">{t("settings.myApps")}</h2>

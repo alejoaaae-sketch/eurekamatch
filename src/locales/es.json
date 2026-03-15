@@ -394,6 +394,14 @@
     "pickCreated": "Pick enviado",
     "pickDeleted": "Pick eliminado"
   },
+  "referral": {
+    "title": "Invita y gana",
+    "description": "Comparte tu código con amigos. Cada vez que alguien se registre con tu código, ¡recibes 1 crédito gratis!",
+    "yourCode": "Tu código de invitación",
+    "share": "Compartir enlace",
+    "shareText": "¡Únete a EurekaMatch! Descubre si el interés es mutuo. Usa mi código para registrarte:",
+    "invited": "{{count}} personas invitadas"
+  },
   "welcome": {
     "title": "🎉 ¡4 créditos de regalo!",
     "subtitle": "Uno por cada app, para que pruebes todas",

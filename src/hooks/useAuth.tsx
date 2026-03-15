@@ -53,7 +53,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     return () => subscription.unsubscribe();
   }, []);
 
-  const signUp = async (phone: string, password: string, displayName: string, userEmail: string, verifyEmail: boolean = true) => {
+  const signUp = async (phone: string, password: string, displayName: string, userEmail: string, verifyEmail: boolean = true, referralCode?: string) => {
     const authEmail = phoneToEmail(phone);
     
     const { data, error } = await supabase.auth.signUp({

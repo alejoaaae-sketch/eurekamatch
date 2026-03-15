@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { Button } from "@/components/ui/button";
 import { Switch } from "@/components/ui/switch";
-import { ArrowLeft, Trash2, Loader2, AlertTriangle, Heart, Users, Flame, Trophy } from "lucide-react";
+import { ArrowLeft, Trash2, Loader2, AlertTriangle, Heart, Users, Flame, Trophy, Share2, Copy, Gift } from "lucide-react";
 import { useAuth } from "@/hooks/useAuth";
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
@@ -36,6 +36,8 @@ const Settings = () => {
   const [deleting, setDeleting] = useState(false);
   const [disabledApps, setDisabledApps] = useState<string[]>([]);
   const [loadingToggle, setLoadingToggle] = useState<string | null>(null);
+  const [referralCode, setReferralCode] = useState<string>("");
+  const [referralCount, setReferralCount] = useState(0);
 
   useEffect(() => {
     if (!authLoading && !user) {
@@ -54,6 +56,26 @@ const Settings = () => {
       if (data) setDisabledApps(data.map(d => d.app_mode));
     };
     fetchDisabled();
+  }, [user]);
+
+  // Fetch referral code and count
+  useEffect(() => {
+    if (!user) return;
+    const fetchReferral = async () => {
+      const { data } = await supabase
+        .from('profiles')
+        .select('referral_code')
+        .eq('user_id', user.id)
+        .single();
+      if (data?.referral_code) setReferralCode(data.referral_code);
+
+      const { count } = await supabase
+        .from('profiles')
+        .select('*', { count: 'exact', head: true })
+        .eq('referred_by', data?.referral_code || '');
+      setReferralCount(count || 0);
+    };
+    fetchReferral();
   }, [user]);
 
   const handleToggleApp = async (dbMode: string, currentlyEnabled: boolean) => {
@@ -156,6 +178,55 @@ const Settings = () => {
           >
             {t("legal.privacyTitle")}
           </button>
+        </div>
+
+        {/* Referral section */}
+        <div className="space-y-3 mb-8">
+          <h2 className="text-sm font-medium text-muted-foreground uppercase tracking-wider mb-4">
+            <Gift className="w-4 h-4 inline mr-1" />
+            {t("referral.title")}
+          </h2>
+          <p className="text-xs text-muted-foreground mb-4">{t("referral.description")}</p>
+          
+          <div className="p-4 rounded-xl bg-card border border-border/50 space-y-3">
+            <div className="flex items-center justify-between">
+              <div>
+                <p className="text-xs text-muted-foreground">{t("referral.yourCode")}</p>
+                <p className="text-lg font-mono font-bold text-foreground tracking-widest">{referralCode}</p>
+              </div>
+              <Button
+                variant="outline"
+                size="sm"
+                onClick={() => {
+                  navigator.clipboard.writeText(referralCode);
+                  toast.success(t("common.copied"));
+                }}
+              >
+                <Copy className="w-4 h-4" />
+              </Button>
+            </div>
+
+            <Button
+              variant="secondary"
+              className="w-full gap-2"
+              onClick={() => {
+                const url = `${window.location.origin}/login?ref=${referralCode}`;
+                if (navigator.share) {
+                  navigator.share({ title: 'EurekaMatch', text: t("referral.shareText"), url });
+                } else {
+                  navigator.clipboard.writeText(url);
+                  toast.success(t("common.copied"));
+                }
+              }}
+            >
+              <Share2 className="w-4 h-4" />
+              {t("referral.share")}
+            </Button>
+
+            <p className="text-xs text-muted-foreground text-center">
+              {t("referral.invited", { count: referralCount })}
+            </p>
+          </div>
         </div>
 
         {/* My Apps toggles */}

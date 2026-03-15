@@ -29,6 +29,7 @@
     "invalidCredentials": "Credenciales incorrectas",
     "passwordMinLength": "La contraseña debe tener al menos 8 caracteres",
     "passwordComplexity": "La contraseña debe incluir mayúsculas, minúsculas y números",
+    "referralBadge": "Te han invitado — ¡regístrate y ambos ganáis!",
     "passwordStrength": {
       "minLength": "8+ caracteres",
       "uppercase": "Mayúscula",
@@ -393,6 +394,14 @@
     "purchase": "Compra",
     "pickCreated": "Pick enviado",
     "pickDeleted": "Pick eliminado"
+  },
+  "referral": {
+    "title": "Invita y gana",
+    "description": "Comparte tu código con amigos. Cada vez que alguien se registre con tu código, ¡recibes 1 crédito gratis!",
+    "yourCode": "Tu código de invitación",
+    "share": "Compartir enlace",
+    "shareText": "¡Únete a EurekaMatch! Descubre si el interés es mutuo. Usa mi código para registrarte:",
+    "invited": "{{count}} personas invitadas"
   },
   "welcome": {
     "title": "🎉 ¡4 créditos de regalo!",

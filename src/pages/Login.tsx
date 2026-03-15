@@ -21,11 +21,12 @@ const Login = () => {
   const [searchParams] = useSearchParams();
   const { t } = useTranslation();
   const appType = (searchParams.get('app') as AppType) || 'love';
+  const referralCode = searchParams.get('ref') || '';
   const config = getAppConfig(appType);
   const { user, loading: authLoading, signIn, signUp } = useAuth();
   const { verifyEmail } = useAppConfig();
   const [step] = useState<LoginStep>("form");
-  const [isLogin, setIsLogin] = useState(true);
+  const [isLogin, setIsLogin] = useState(!referralCode);
   const [showPassword, setShowPassword] = useState(false);
   const [phone, setPhone] = useState("");
   const [displayName, setDisplayName] = useState("");
@@ -110,7 +111,7 @@ const Login = () => {
   const handlePhoneVerified = async () => {
     setLoading(true);
     try {
-      const { error } = await signUp(phone, password, displayName.trim(), email.trim(), verifyEmail);
+      const { error } = await signUp(phone, password, displayName.trim(), email.trim(), verifyEmail, referralCode || undefined);
       if (error) {
         if (error.message.includes("already registered")) {
           toast.error(t("auth.phoneAlreadyRegistered"));
@@ -176,6 +177,13 @@ const Login = () => {
 
       {step === "form" && (
         <>
+          {/* Referral badge */}
+          {referralCode && !isLogin && (
+            <div className="w-full max-w-sm mb-4 p-3 rounded-xl bg-primary/10 border border-primary/20 text-center animate-fade-in-up">
+              <p className="text-sm text-primary font-medium">🎁 {t("auth.referralBadge")}</p>
+            </div>
+          )}
+
           {/* Form */}
           <form onSubmit={handleSubmit} className="w-full max-w-sm space-y-4 animate-fade-in-up animate-delay-200">
             {/* Name field - only show on signup */}

@@ -6,7 +6,7 @@ interface AuthContextType {
   user: User | null;
   session: Session | null;
   loading: boolean;
-  signUp: (phone: string, password: string, displayName: string, email: string, verifyEmail?: boolean) => Promise<{ error: Error | null }>;
+  signUp: (phone: string, password: string, displayName: string, email: string, verifyEmail?: boolean, referralCode?: string) => Promise<{ error: Error | null }>;
   signIn: (phone: string, password: string) => Promise<{ error: Error | null }>;
   signOut: () => Promise<void>;
 }
@@ -53,7 +53,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     return () => subscription.unsubscribe();
   }, []);
 
-  const signUp = async (phone: string, password: string, displayName: string, userEmail: string, verifyEmail: boolean = true) => {
+  const signUp = async (phone: string, password: string, displayName: string, userEmail: string, verifyEmail: boolean = true, referralCode?: string) => {
     const authEmail = phoneToEmail(phone);
     
     const { data, error } = await supabase.auth.signUp({
@@ -79,6 +79,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
           display_name: displayName,
           email: userEmail,
           consent_accepted_at: new Date().toISOString(),
+          ...(referralCode ? { referred_by: referralCode.toUpperCase() } : {}),
         }, {
           onConflict: 'user_id',
         });

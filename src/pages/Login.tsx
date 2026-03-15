@@ -111,7 +111,7 @@ const Login = () => {
   const handlePhoneVerified = async () => {
     setLoading(true);
     try {
-      const { error } = await signUp(phone, password, displayName.trim(), email.trim(), verifyEmail);
+      const { error } = await signUp(phone, password, displayName.trim(), email.trim(), verifyEmail, referralCode || undefined);
       if (error) {
         if (error.message.includes("already registered")) {
           toast.error(t("auth.phoneAlreadyRegistered"));

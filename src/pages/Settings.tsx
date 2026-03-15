@@ -58,6 +58,26 @@ const Settings = () => {
     fetchDisabled();
   }, [user]);
 
+  // Fetch referral code and count
+  useEffect(() => {
+    if (!user) return;
+    const fetchReferral = async () => {
+      const { data } = await supabase
+        .from('profiles')
+        .select('referral_code')
+        .eq('user_id', user.id)
+        .single();
+      if (data?.referral_code) setReferralCode(data.referral_code);
+
+      const { count } = await supabase
+        .from('profiles')
+        .select('*', { count: 'exact', head: true })
+        .eq('referred_by', data?.referral_code || '');
+      setReferralCount(count || 0);
+    };
+    fetchReferral();
+  }, [user]);
+
   const handleToggleApp = async (dbMode: string, currentlyEnabled: boolean) => {
     if (!user) return;
     setLoadingToggle(dbMode);

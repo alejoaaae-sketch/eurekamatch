@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { Button } from "@/components/ui/button";
 import { Switch } from "@/components/ui/switch";
-import { ArrowLeft, Trash2, Loader2, AlertTriangle, Heart, Users, Flame, Trophy } from "lucide-react";
+import { ArrowLeft, Trash2, Loader2, AlertTriangle, Heart, Users, Flame, Trophy, Share2, Copy, Gift } from "lucide-react";
 import { useAuth } from "@/hooks/useAuth";
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";

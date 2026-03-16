@@ -3,11 +3,11 @@ import { useTranslation } from "react-i18next";
 import { supabase } from "@/integrations/supabase/client";
 import { useAuth } from "@/hooks/useAuth";
 import { usePickBalance } from "@/hooks/usePickBalance";
-import { Loader2, Coins, Plus, Trash2, ShoppingBag } from "lucide-react";
+import { Loader2, Coins, Plus, Trash2, ShoppingBag, Gift } from "lucide-react";
 
 interface HistoryEntry {
   id: string;
-  type: "purchase" | "pick_created" | "pick_deleted";
+  type: "purchase" | "pick_created" | "pick_deleted" | "referral";
   label: string;
   detail?: string;
   date: string;
@@ -31,18 +31,21 @@ const PickHistory = () => {
       // Fetch purchases
       const { data: purchases } = await supabase
         .from("pack_purchases")
-        .select("id, pack_name, picks_count, price, created_at")
+        .select("id, pack_name, picks_count, price, payment_method, created_at")
         .eq("user_id", user.id)
         .order("created_at", { ascending: false })
         .limit(50);
 
       if (purchases) {
         for (const p of purchases) {
+          const isReferral = p.payment_method === 'referral';
           results.push({
             id: `purchase-${p.id}`,
-            type: "purchase",
+            type: isReferral ? "referral" : "purchase",
             label: p.pack_name,
-            detail: `+${p.picks_count} ${t("packs.creditsUnit")} · ${p.price}€`,
+            detail: isReferral 
+              ? `+${p.picks_count} ${t("packs.creditsUnit")} 🎁`
+              : `+${p.picks_count} ${t("packs.creditsUnit")} · ${p.price}€`,
             date: p.created_at,
             timestamp: new Date(p.created_at).getTime(),
           });
@@ -98,12 +101,14 @@ const PickHistory = () => {
 
   const iconMap = {
     purchase: <ShoppingBag className="w-4 h-4 text-green-500" />,
+    referral: <Gift className="w-4 h-4 text-amber-500" />,
     pick_created: <Plus className="w-4 h-4 text-primary" />,
     pick_deleted: <Trash2 className="w-4 h-4 text-destructive" />,
   };
 
   const labelMap = {
     purchase: t("history.purchase", "Compra"),
+    referral: t("history.referral", "Código promocional"),
     pick_created: t("history.pickCreated", "Pick enviado"),
     pick_deleted: t("history.pickDeleted", "Pick eliminado"),
   };

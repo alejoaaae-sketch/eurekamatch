@@ -3,7 +3,7 @@ import { useTranslation } from "react-i18next";
 import { supabase } from "@/integrations/supabase/client";
 import { useAuth } from "@/hooks/useAuth";
 import { usePickBalance } from "@/hooks/usePickBalance";
-import { Loader2, Coins, Plus, Trash2, ShoppingBag } from "lucide-react";
+import { Loader2, Coins, Plus, Trash2, ShoppingBag, Gift } from "lucide-react";
 
 interface HistoryEntry {
   id: string;

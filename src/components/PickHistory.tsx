@@ -7,7 +7,7 @@ import { Loader2, Coins, Plus, Trash2, ShoppingBag, Gift } from "lucide-react";
 
 interface HistoryEntry {
   id: string;
-  type: "purchase" | "pick_created" | "pick_deleted";
+  type: "purchase" | "pick_created" | "pick_deleted" | "referral";
   label: string;
   detail?: string;
   date: string;

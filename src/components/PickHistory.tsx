@@ -101,12 +101,14 @@ const PickHistory = () => {
 
   const iconMap = {
     purchase: <ShoppingBag className="w-4 h-4 text-green-500" />,
+    referral: <Gift className="w-4 h-4 text-amber-500" />,
     pick_created: <Plus className="w-4 h-4 text-primary" />,
     pick_deleted: <Trash2 className="w-4 h-4 text-destructive" />,
   };
 
   const labelMap = {
     purchase: t("history.purchase", "Compra"),
+    referral: t("history.referral", "Código promocional"),
     pick_created: t("history.pickCreated", "Pick enviado"),
     pick_deleted: t("history.pickDeleted", "Pick eliminado"),
   };

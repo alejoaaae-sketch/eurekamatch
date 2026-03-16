@@ -38,11 +38,14 @@ const PickHistory = () => {
 
       if (purchases) {
         for (const p of purchases) {
+          const isReferral = p.payment_method === 'referral';
           results.push({
             id: `purchase-${p.id}`,
-            type: "purchase",
+            type: isReferral ? "referral" : "purchase",
             label: p.pack_name,
-            detail: `+${p.picks_count} ${t("packs.creditsUnit")} · ${p.price}€`,
+            detail: isReferral 
+              ? `+${p.picks_count} ${t("packs.creditsUnit")} 🎁`
+              : `+${p.picks_count} ${t("packs.creditsUnit")} · ${p.price}€`,
             date: p.created_at,
             timestamp: new Date(p.created_at).getTime(),
           });

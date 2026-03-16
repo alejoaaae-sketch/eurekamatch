@@ -31,7 +31,7 @@ const PickHistory = () => {
       // Fetch purchases
       const { data: purchases } = await supabase
         .from("pack_purchases")
-        .select("id, pack_name, picks_count, price, created_at")
+        .select("id, pack_name, picks_count, price, payment_method, created_at")
         .eq("user_id", user.id)
         .order("created_at", { ascending: false })
         .limit(50);

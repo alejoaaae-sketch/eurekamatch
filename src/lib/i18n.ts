@@ -84,16 +84,37 @@ const countryToLanguage: Record<string, LanguageCode> = {
   LU: 'de',
 };
 
-// Detect language from IP geolocation (async, best-effort)
+// Detect language from browser navigator.language
+const detectLanguageFromBrowser = (): LanguageCode | null => {
+  try {
+    const langs = navigator.languages?.length ? navigator.languages : [navigator.language];
+    for (const raw of langs) {
+      const code = raw?.split('-')[0]?.toLowerCase();
+      if (code && ['es', 'en', 'eu', 'ca', 'fr', 'ja', 'gl', 'pt', 'it', 'de'].includes(code)) {
+        return code as LanguageCode;
+      }
+    }
+  } catch { /* ignore */ }
+  return null;
+};
+
+// Detect language from IP geolocation (async, best-effort), then browser, then 'es'
 export const detectLanguageFromIP = async (): Promise<LanguageCode> => {
   try {
     const response = await fetch('https://ip-api.com/json/?fields=countryCode', { signal: AbortSignal.timeout(3000) });
     const data = await response.json();
     const country = data?.countryCode as string;
-    return countryToLanguage[country] ?? 'en';
-  } catch {
-    return 'en';
-  }
+    if (country && countryToLanguage[country]) {
+      return countryToLanguage[country];
+    }
+  } catch { /* IP detection failed */ }
+
+  // Fallback: browser language
+  const browserLang = detectLanguageFromBrowser();
+  if (browserLang) return browserLang;
+
+  // Final fallback: Spanish (target audience is Spain)
+  return 'es';
 };
 
 // Get initial language from localStorage or default to 'es'

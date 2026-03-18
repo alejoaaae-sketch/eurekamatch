@@ -232,7 +232,25 @@ const Login = () => {
               </div>
             )}
 
-            {/* Phone field */}
+            {/* Birth year field - only show on signup */}
+            {!isLogin && (
+              <div className="relative">
+                <Calendar className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-muted-foreground" />
+                <Input
+                  type="number"
+                  placeholder={t("auth.birthYear", "Año de nacimiento")}
+                  value={birthYear}
+                  onChange={(e) => setBirthYear(e.target.value)}
+                  required={!isLogin}
+                  disabled={loading}
+                  className="pl-12"
+                  min="1900"
+                  max={new Date().getFullYear()}
+                />
+              </div>
+            )}
+
+
             <div className="relative">
               <Phone className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-muted-foreground" />
               <Input

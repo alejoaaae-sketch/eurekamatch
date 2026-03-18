@@ -401,7 +401,8 @@
     "yourCode": "Tu código de invitación",
     "share": "Compartir enlace",
     "shareText": "¡Únete a EurekaMatch! Descubre si el interés es mutuo. Usa mi código para registrarte:",
-    "invited": "{{count}} personas invitadas"
+    "invited": "{{count}} personas invitadas",
+    "shareHint": "Comparte y gana créditos gratis"
   },
   "welcome": {
     "title": "🎉 ¡4 créditos de regalo!",

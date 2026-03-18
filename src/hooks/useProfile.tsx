@@ -11,6 +11,7 @@ export interface Profile {
   email_verified: boolean;
   phone_verified: boolean;
   age_verified: boolean;
+  birth_year: number | null;
   created_at: string;
   updated_at: string;
   language?: string;
@@ -35,7 +36,7 @@ export const useProfile = () => {
       // rather than using select('*') to minimize data exposure
       const { data, error } = await supabase
         .from('profiles')
-        .select('id, user_id, display_name, email, phone, email_verified, phone_verified, age_verified, created_at, updated_at, language')
+        .select('id, user_id, display_name, email, phone, email_verified, phone_verified, age_verified, birth_year, created_at, updated_at, language')
         .eq('user_id', user.id)
         .maybeSingle();
 

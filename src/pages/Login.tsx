@@ -4,7 +4,7 @@ import { useTranslation, Trans } from "react-i18next";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Checkbox } from "@/components/ui/checkbox";
-import { Heart, Eye, EyeOff, Loader2, Phone, User, Mail, Users, Flame, Trophy, ArrowLeft } from "lucide-react";
+import { Heart, Eye, EyeOff, Loader2, Phone, User, Mail, Users, Flame, Trophy, ArrowLeft, Calendar } from "lucide-react";
 import { useAuth } from "@/hooks/useAuth";
 import LanguageSelector from "@/components/LanguageSelector";
 import LegalFooter from "@/components/LegalFooter";
@@ -31,6 +31,7 @@ const Login = () => {
   const [phone, setPhone] = useState("");
   const [displayName, setDisplayName] = useState("");
   const [email, setEmail] = useState("");
+  const [birthYear, setBirthYear] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
   const [consentAccepted, setConsentAccepted] = useState(false);
@@ -94,6 +95,14 @@ const Login = () => {
           setLoading(false);
           return;
         }
+        // Validate birth year
+        const yearNum = parseInt(birthYear, 10);
+        const currentYear = new Date().getFullYear();
+        if (!birthYear || isNaN(yearNum) || yearNum < 1900 || yearNum > currentYear) {
+          toast.error(t("auth.birthYearInvalid", "Introduce un año de nacimiento válido"));
+          setLoading(false);
+          return;
+        }
         if (!consentAccepted) {
           toast.error(t("auth.consentRequired"));
           setLoading(false);
@@ -111,7 +120,7 @@ const Login = () => {
   const handlePhoneVerified = async () => {
     setLoading(true);
     try {
-      const { error } = await signUp(phone, password, displayName.trim(), email.trim(), verifyEmail, referralCode || undefined);
+      const { error } = await signUp(phone, password, displayName.trim(), email.trim(), verifyEmail, referralCode || undefined, parseInt(birthYear, 10));
       if (error) {
         if (error.message.includes("already registered")) {
           toast.error(t("auth.phoneAlreadyRegistered"));
@@ -223,7 +232,25 @@ const Login = () => {
               </div>
             )}
 
-            {/* Phone field */}
+            {/* Birth year field - only show on signup */}
+            {!isLogin && (
+              <div className="relative">
+                <Calendar className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-muted-foreground" />
+                <Input
+                  type="number"
+                  placeholder={t("auth.birthYear", "Año de nacimiento")}
+                  value={birthYear}
+                  onChange={(e) => setBirthYear(e.target.value)}
+                  required={!isLogin}
+                  disabled={loading}
+                  className="pl-12"
+                  min="1900"
+                  max={new Date().getFullYear()}
+                />
+              </div>
+            )}
+
+
             <div className="relative">
               <Phone className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-muted-foreground" />
               <Input

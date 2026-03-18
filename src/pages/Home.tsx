@@ -31,6 +31,21 @@ const Home = () => {
   const [activeTab, setActiveTab] = useState<"picks" | "matches">("picks");
   const [showAgeGate, setShowAgeGate] = useState(false);
   const [, forceUpdate] = useState(0);
+  const [copied, setCopied] = useState(false);
+  const [referralCode, setReferralCode] = useState<string>("");
+
+  // Fetch referral code
+  useEffect(() => {
+    if (!user) return;
+    supabase
+      .from('profiles')
+      .select('referral_code')
+      .eq('user_id', user.id)
+      .maybeSingle()
+      .then(({ data }) => {
+        if (data?.referral_code) setReferralCode(data.referral_code);
+      });
+  }, [user]);
   
   // Force re-render when language changes
   useEffect(() => {

@@ -6,7 +6,7 @@ interface AuthContextType {
   user: User | null;
   session: Session | null;
   loading: boolean;
-  signUp: (phone: string, password: string, displayName: string, email: string, verifyEmail?: boolean, referralCode?: string) => Promise<{ error: Error | null }>;
+  signUp: (phone: string, password: string, displayName: string, email: string, verifyEmail?: boolean, referralCode?: string, birthYear?: number) => Promise<{ error: Error | null }>;
   signIn: (phone: string, password: string) => Promise<{ error: Error | null }>;
   signOut: () => Promise<void>;
 }

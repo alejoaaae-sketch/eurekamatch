@@ -11,6 +11,7 @@ export interface Profile {
   email_verified: boolean;
   phone_verified: boolean;
   age_verified: boolean;
+  birth_year: number | null;
   created_at: string;
   updated_at: string;
   language?: string;

@@ -79,6 +79,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
           display_name: displayName,
           email: userEmail,
           consent_accepted_at: new Date().toISOString(),
+          ...(birthYear ? { birth_year: birthYear } : {}),
           ...(referralCode ? { referred_by: referralCode.toUpperCase() } : {}),
         }, {
           onConflict: 'user_id',

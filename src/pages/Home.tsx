@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { Button } from "@/components/ui/button";
-import { Heart, Plus, User, Sparkles, Loader2, Coins, ArrowLeft } from "lucide-react";
+import { Heart, Plus, User, Sparkles, Loader2, Coins, ArrowLeft, Gift, Copy, Check } from "lucide-react";
 import PickCard from "@/components/PickCard";
 import MatchCard from "@/components/MatchCard";
 import LanguageSelector from "@/components/LanguageSelector";

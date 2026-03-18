@@ -95,6 +95,14 @@ const Login = () => {
           setLoading(false);
           return;
         }
+        // Validate birth year
+        const yearNum = parseInt(birthYear, 10);
+        const currentYear = new Date().getFullYear();
+        if (!birthYear || isNaN(yearNum) || yearNum < 1900 || yearNum > currentYear) {
+          toast.error(t("auth.birthYearInvalid", "Introduce un año de nacimiento válido"));
+          setLoading(false);
+          return;
+        }
         if (!consentAccepted) {
           toast.error(t("auth.consentRequired"));
           setLoading(false);

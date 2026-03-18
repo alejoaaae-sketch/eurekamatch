@@ -214,6 +214,30 @@ const Home = () => {
           </div>
         ) : activeTab === "picks" ? (
           <div className="space-y-3">
+            {/* Referral share banner */}
+            {referralCode && (
+              <div className="flex items-center gap-3 p-3 rounded-xl bg-primary/5 border border-primary/10">
+                <Gift className="w-5 h-5 text-primary shrink-0" />
+                <div className="flex-1 min-w-0">
+                  <p className="text-xs text-muted-foreground">{t("referral.shareHint", "Comparte y gana créditos gratis")}</p>
+                  <p className="text-sm font-mono font-medium text-foreground truncate">
+                    {`${window.location.origin}/login?ref=${referralCode}`}
+                  </p>
+                </div>
+                <button
+                  onClick={() => {
+                    const link = `${window.location.origin}/login?ref=${referralCode}`;
+                    navigator.clipboard.writeText(link);
+                    setCopied(true);
+                    toast.success(t("common.copied"));
+                    setTimeout(() => setCopied(false), 2000);
+                  }}
+                  className="shrink-0 p-2 rounded-lg bg-primary/10 text-primary hover:bg-primary/20 transition-colors"
+                >
+                  {copied ? <Check className="w-4 h-4" /> : <Copy className="w-4 h-4" />}
+                </button>
+              </div>
+            )}
             {pendingPicks.length === 0 ? (
               <div className="text-center py-16">
                 <div className="w-16 h-16 rounded-full bg-secondary mx-auto mb-4 flex items-center justify-center">

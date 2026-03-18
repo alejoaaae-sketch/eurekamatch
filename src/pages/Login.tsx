@@ -31,6 +31,7 @@ const Login = () => {
   const [phone, setPhone] = useState("");
   const [displayName, setDisplayName] = useState("");
   const [email, setEmail] = useState("");
+  const [birthYear, setBirthYear] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
   const [consentAccepted, setConsentAccepted] = useState(false);

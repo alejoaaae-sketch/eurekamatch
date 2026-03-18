@@ -4,7 +4,7 @@ import { useTranslation, Trans } from "react-i18next";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Checkbox } from "@/components/ui/checkbox";
-import { Heart, Eye, EyeOff, Loader2, Phone, User, Mail, Users, Flame, Trophy, ArrowLeft } from "lucide-react";
+import { Heart, Eye, EyeOff, Loader2, Phone, User, Mail, Users, Flame, Trophy, ArrowLeft, Calendar } from "lucide-react";
 import { useAuth } from "@/hooks/useAuth";
 import LanguageSelector from "@/components/LanguageSelector";
 import LegalFooter from "@/components/LegalFooter";

@@ -18,6 +18,7 @@ import { appConfig } from "@/config/app.config";
 import { useAppConfig } from "@/hooks/useAppConfig";
 import { supabase } from "@/integrations/supabase/client";
 import { Ban } from "lucide-react";
+import { toast } from "sonner";
 
 const Home = () => {
   const navigate = useNavigate();

@@ -339,6 +339,38 @@ const AddPick = () => {
           </p>
         </div>
 
+        {/* Contact Picker Button (mobile only, when API available) */}
+        {'contacts' in navigator && 'ContactsManager' in window && (
+          <Button
+            type="button"
+            variant="outline"
+            className="w-full mb-4 gap-2"
+            disabled={loading}
+            onClick={async () => {
+              try {
+                const contacts = await (navigator as any).contacts.select(
+                  ['name', 'tel'],
+                  { multiple: false }
+                );
+                if (contacts && contacts.length > 0) {
+                  const contact = contacts[0];
+                  if (contact.name && contact.name.length > 0) {
+                    setName(contact.name[0]);
+                  }
+                  if (contact.tel && contact.tel.length > 0) {
+                    setValue(contact.tel[0].replace(/\s/g, ''));
+                  }
+                }
+              } catch (err) {
+                // User cancelled or API error - do nothing
+              }
+            }}
+          >
+            <Contact className="w-5 h-5" />
+            {t("pick.selectContact")}
+          </Button>
+        )}
+
         {/* Form */}
         <form onSubmit={handleSubmit} className="space-y-4">
           <div>

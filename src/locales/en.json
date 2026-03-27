@@ -94,6 +94,7 @@
     "phone": "Phone",
     "phonePlaceholder": "+1 555 000 0000",
     "phoneHint": "We use the phone number to find matches. We never share it.",
+    "selectContact": "Select from contacts",
     "save": "Save pick",
     "saving": "Saving...",
     "added": "Pick added",

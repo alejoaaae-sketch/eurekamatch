@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { ArrowLeft, UserPlus, Phone, AlertCircle, Loader2, ShoppingCart } from "lucide-react";
+import { ArrowLeft, UserPlus, Phone, AlertCircle, Loader2, ShoppingCart, Contact } from "lucide-react";
 import { useAuth } from "@/hooks/useAuth";
 import { usePicks } from "@/hooks/usePicks";
 import { useAppConfig } from "@/hooks/useAppConfig";

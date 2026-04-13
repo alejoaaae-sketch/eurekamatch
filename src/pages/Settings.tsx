@@ -229,7 +229,7 @@ const Settings = () => {
               {t("referral.invited", { count: referralCount })}
             </p>
           </div>
-        </div>
+        </div>}
 
         {/* My Apps toggles */}
         <div className="space-y-3 mb-8">

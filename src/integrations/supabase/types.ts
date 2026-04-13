@@ -119,6 +119,7 @@ export type Database = {
           promo_end: string | null
           promo_max_picks_override: number | null
           promo_start: string | null
+          referral_enabled: boolean
           updated_at: string
           verify_email: boolean
           verify_mobile: boolean
@@ -143,6 +144,7 @@ export type Database = {
           promo_end?: string | null
           promo_max_picks_override?: number | null
           promo_start?: string | null
+          referral_enabled?: boolean
           updated_at?: string
           verify_email?: boolean
           verify_mobile?: boolean
@@ -167,6 +169,7 @@ export type Database = {
           promo_end?: string | null
           promo_max_picks_override?: number | null
           promo_start?: string | null
+          referral_enabled?: boolean
           updated_at?: string
           verify_email?: boolean
           verify_mobile?: boolean

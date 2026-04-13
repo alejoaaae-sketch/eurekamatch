@@ -26,7 +26,7 @@ const Home = () => {
   const { pendingPicks, loading: picksLoading, deletePick } = usePicks();
   const { matches, loading: matchesLoading } = useMatches();
   const { profile } = useProfile();
-  const { appEnabled, effectiveMaxPicks, loading: configLoading } = useAppConfig();
+  const { appEnabled, effectiveMaxPicks, loading: configLoading, referralEnabled } = useAppConfig();
   const { picksRemaining } = usePickBalance();
   const [activeTab, setActiveTab] = useState<"picks" | "matches">("picks");
   const [showAgeGate, setShowAgeGate] = useState(false);
@@ -215,7 +215,7 @@ const Home = () => {
         ) : activeTab === "picks" ? (
           <div className="space-y-3">
             {/* Referral share banner */}
-            {referralCode && (
+            {referralEnabled && referralCode && (
               <div className="flex items-center gap-3 p-3 rounded-xl bg-primary/5 border border-primary/10">
                 <Gift className="w-5 h-5 text-primary shrink-0" />
                 <div className="flex-1 min-w-0">

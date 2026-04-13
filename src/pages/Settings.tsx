@@ -8,6 +8,7 @@ import { useAuth } from "@/hooks/useAuth";
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
 import { useAllAppConfigs } from "@/hooks/useAllAppConfigs";
+import { useAppConfig } from "@/hooks/useAppConfig";
 import { getAppConfig, AppType } from "@/config/app.config";
 import {
   AlertDialog,
@@ -33,6 +34,7 @@ const Settings = () => {
   const { t } = useTranslation();
   const { user, loading: authLoading, signOut } = useAuth();
   const { isAppEnabled } = useAllAppConfigs();
+  const { referralEnabled } = useAppConfig();
   const [deleting, setDeleting] = useState(false);
   const [disabledApps, setDisabledApps] = useState<string[]>([]);
   const [loadingToggle, setLoadingToggle] = useState<string | null>(null);
@@ -181,7 +183,7 @@ const Settings = () => {
         </div>
 
         {/* Referral section */}
-        <div className="space-y-3 mb-8">
+        {referralEnabled && <div className="space-y-3 mb-8">
           <h2 className="text-sm font-medium text-muted-foreground uppercase tracking-wider mb-4">
             <Gift className="w-4 h-4 inline mr-1" />
             {t("referral.title")}
@@ -227,7 +229,7 @@ const Settings = () => {
               {t("referral.invited", { count: referralCount })}
             </p>
           </div>
-        </div>
+        </div>}
 
         {/* My Apps toggles */}
         <div className="space-y-3 mb-8">

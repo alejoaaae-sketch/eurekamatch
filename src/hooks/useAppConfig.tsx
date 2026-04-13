@@ -142,6 +142,7 @@ export const useAppConfig = () => {
     notificationCountries: globalConfig?.notification_countries ?? [],
     paymentCountries: globalConfig?.payment_countries ?? [],
     canUseNotifications,
+    referralEnabled: (globalConfig as any)?.referral_enabled ?? false,
     userCountry: country,
     refetch: fetchConfig,
   };

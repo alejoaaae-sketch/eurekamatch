@@ -33,6 +33,7 @@ interface GlobalConfigRow {
   verify_mobile: boolean;
   verify_email: boolean;
   beta_mode: boolean;
+  referral_enabled: boolean;
   notifications_enabled: boolean;
   notification_sms_template: string;
   beta_countries: string[];
@@ -66,6 +67,7 @@ const Admin = () => {
     verify_mobile: false,
     verify_email: true,
     beta_mode: true,
+    referral_enabled: false,
     notifications_enabled: false,
     notification_sms_template: "",
     beta_countries: "",
@@ -112,6 +114,7 @@ const Admin = () => {
         verify_mobile: g.verify_mobile,
         verify_email: g.verify_email,
         beta_mode: g.beta_mode,
+        referral_enabled: (g as any).referral_enabled ?? false,
         notifications_enabled: g.notifications_enabled,
         notification_sms_template: g.notification_sms_template,
         beta_countries: g.beta_countries?.join(", ") ?? "",
@@ -166,6 +169,7 @@ const Admin = () => {
         verify_mobile: globalForm.verify_mobile,
         verify_email: globalForm.verify_email,
         beta_mode: globalForm.beta_mode,
+        referral_enabled: globalForm.referral_enabled,
         notifications_enabled: globalForm.notifications_enabled,
         notification_sms_template: globalForm.notification_sms_template,
         beta_countries: globalForm.beta_countries.split(",").map((s: string) => s.trim()).filter(Boolean),
@@ -348,6 +352,16 @@ const Admin = () => {
                   <Switch
                     checked={globalForm.beta_mode}
                     onCheckedChange={(v) => setGlobalForm((p) => ({ ...p, beta_mode: v }))}
+                  />
+                </div>
+                <div className="flex items-center justify-between">
+                  <div>
+                    <span className="text-sm text-foreground">Promoción de referidos</span>
+                    <p className="text-xs text-muted-foreground">Muestra el banner de invitar amigos</p>
+                  </div>
+                  <Switch
+                    checked={globalForm.referral_enabled}
+                    onCheckedChange={(v) => setGlobalForm((p) => ({ ...p, referral_enabled: v }))}
                   />
                 </div>
                 {!globalForm.beta_mode && (

@@ -8,6 +8,7 @@ import { useAuth } from "@/hooks/useAuth";
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
 import { useAllAppConfigs } from "@/hooks/useAllAppConfigs";
+import { useAppConfig } from "@/hooks/useAppConfig";
 import { getAppConfig, AppType } from "@/config/app.config";
 import {
   AlertDialog,

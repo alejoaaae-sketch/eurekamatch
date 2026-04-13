@@ -1,0 +1,1 @@
+ALTER TABLE public.global_config ADD COLUMN referral_enabled boolean NOT NULL DEFAULT false;

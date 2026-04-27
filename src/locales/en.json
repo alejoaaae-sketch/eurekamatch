@@ -84,7 +84,20 @@
     "addPick": "Add pick",
     "pending": "Pending",
     "mutualInterest": "Mutual interest!",
-    "view": "View"
+    "view": "View",
+    "emptyPicksCta": "Add my first pick",
+    "emptyPicksFreeBadge": "You have free credits"
+  },
+  "onboarding": {
+    "step1Title": "Welcome to EurekaMatch",
+    "step1Desc": "Find out if the person you're thinking about is also thinking about you. 100% anonymous and private.",
+    "step2Title": "How a Pick works",
+    "step2Desc": "Add someone with their phone number. If they pick you back, it's a match — and only then will both of you know it's mutual.",
+    "step3Title": "You've got free credits 🎁",
+    "step3Desc": "We've gifted you free picks so you can try it out. Add your first pick now and start discovering matches.",
+    "next": "Next",
+    "cta": "Add my first pick",
+    "skip": "Skip tutorial"
   },
   "pick": {
     "add": "Add pick",

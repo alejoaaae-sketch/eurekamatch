@@ -45,19 +45,19 @@ const Landing = () => {
       hoverGradient: 'hover:from-rose-600 hover:to-pink-600',
     },
     {
-      type: 'plan',
+      type: 'friends',
       icon: <Users className="w-8 h-8" />,
       gradient: 'from-orange-500 to-amber-500',
       hoverGradient: 'hover:from-orange-600 hover:to-amber-600',
     },
     {
-      type: 'mude',
+      type: 'sex',
       icon: <Flame className="w-8 h-8" fill="currentColor" />,
       gradient: 'from-red-600 to-rose-500',
       hoverGradient: 'hover:from-red-700 hover:to-rose-600',
     },
     {
-      type: 'sport',
+      type: 'hobby',
       icon: <Trophy className="w-8 h-8" />,
       gradient: 'from-green-500 to-emerald-500',
       hoverGradient: 'hover:from-green-600 hover:to-emerald-600',
@@ -165,7 +165,7 @@ const Landing = () => {
                     {enabled ? (
                       <div className={`inline-flex items-center gap-2 text-sm font-medium bg-gradient-to-r ${variant.gradient} bg-clip-text text-transparent`}>
                         {t("landing.variants.explore")}
-                        <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" style={{ color: variant.type === 'love' ? '#f43f5e' : variant.type === 'plan' ? '#f97316' : variant.type === 'mude' ? '#dc2626' : '#22c55e' }} />
+                        <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" style={{ color: variant.type === 'love' ? '#f43f5e' : variant.type === 'friends' ? '#f97316' : variant.type === 'sex' ? '#dc2626' : '#22c55e' }} />
                       </div>
                     ) : (
                       <span className="text-xs font-medium text-muted-foreground/60 uppercase tracking-wider">

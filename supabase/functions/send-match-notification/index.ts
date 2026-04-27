@@ -20,8 +20,9 @@ interface MatchNotificationRequest {
 // App-specific configurations
 const appConfigs: Record<string, { name: string; emoji: string; fromName: string }> = {
   love: { name: "Eureka Love", emoji: "💕", fromName: "Eureka Love" },
-  plan: { name: "Eureka Plan", emoji: "🎉", fromName: "Eureka Plan" },
+  friends: { name: "Eureka Friends", emoji: "🎉", fromName: "Eureka Friends" },
   sex: { name: "Eureka Sex", emoji: "🔥", fromName: "Eureka Sex" },
+  hobby: { name: "Eureka Hobby", emoji: "🏆", fromName: "Eureka Hobby" },
 };
 
 // Email translations per language

@@ -63,9 +63,9 @@ const Home = () => {
     }
   }, [user, authLoading, navigate]);
 
-   // Age verification gate for mude app
+   // Age verification gate for sex app
   useEffect(() => {
-    if (appConfig.appType === 'mude' && profile && !profile.age_verified) {
+    if (appConfig.appType === 'sex' && profile && !profile.age_verified) {
       setShowAgeGate(true);
     }
   }, [profile]);
@@ -121,7 +121,7 @@ const Home = () => {
     <div className="min-h-screen bg-background flex flex-col">
       {/* Onboarding wizard for first-time users */}
       <OnboardingWizard />
-      {/* Age verification gate for mude app */}
+      {/* Age verification gate for sex app */}
       {showAgeGate && (
         <AgeVerificationGate onVerified={handleAgeVerified} onCancel={handleAgeDeclined} />
       )}
@@ -148,9 +148,9 @@ const Home = () => {
                 style={{ color: appConfig.primaryColor }}
               >
 {appConfig.appType === 'love' && '💕 LOVE'}
-                {appConfig.appType === 'plan' && '🤝 FRIENDS'}
-                {appConfig.appType === 'mude' && '🔥 MUDE'}
-                {appConfig.appType === 'sport' && '⚽ SPORT'}
+                {appConfig.appType === 'friends' && '🤝 FRIENDS'}
+                {appConfig.appType === 'sex' && '🔥 SEX'}
+                {appConfig.appType === 'hobby' && '⚽ HOBBY'}
               </span>
             </div>
           </div>

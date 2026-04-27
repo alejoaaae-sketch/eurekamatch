@@ -165,14 +165,14 @@ const Login = () => {
       <div className="mb-12 animate-fade-in-up">
         <div className={`w-20 h-20 rounded-2xl flex items-center justify-center shadow-xl float-animation bg-gradient-to-br ${
           appType === 'love' ? 'from-rose-500 to-pink-500' :
-          appType === 'plan' ? 'from-orange-500 to-amber-500' :
-          appType === 'mude' ? 'from-red-600 to-rose-500' :
+          appType === 'friends' ? 'from-orange-500 to-amber-500' :
+          appType === 'sex' ? 'from-red-600 to-rose-500' :
           'from-green-500 to-emerald-500'
         } text-white`}>
           {appType === 'love' && <Heart className="w-10 h-10" fill="currentColor" />}
-          {appType === 'plan' && <Users className="w-10 h-10" />}
-          {appType === 'mude' && <Flame className="w-10 h-10" fill="currentColor" />}
-          {appType === 'sport' && <Trophy className="w-10 h-10" />}
+          {appType === 'friends' && <Users className="w-10 h-10" />}
+          {appType === 'sex' && <Flame className="w-10 h-10" fill="currentColor" />}
+          {appType === 'hobby' && <Trophy className="w-10 h-10" />}
         </div>
       </div>
 

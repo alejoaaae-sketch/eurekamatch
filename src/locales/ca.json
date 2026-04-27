@@ -41,8 +41,8 @@
     "taglines": {
       "love": "Descobreix si l'amor és mutu",
       "friends": "Amics amb qui pots comptar. Perquè és mutu.",
-      "mude": "Descobreix el desig mutu",
-      "sport": "Descobreix si vol compartir hobby amb tu"
+      "sex": "Descobreix el desig mutu",
+      "hobby": "Descobreix si vol compartir hobby amb tu"
     }
   },
   "home": {
@@ -176,13 +176,13 @@
       "love": {
         "tagline": "Descobreix si l'amor és mutu. Sense riscos, sense rebutjos."
       },
-      "plan": {
+      "friends": {
         "tagline": "Troba amics que també et triïn. Perquè l'amistat és mútua."
       },
-      "mude": {
+      "sex": {
         "tagline": "Descobreix el desig mutu. Discret i segur."
       },
-      "sport": {
+      "hobby": {
         "tagline": "Descobreix si vol compartir hobby amb tu. Esport, viatges, plans... Sense compromís."
       }
     },
@@ -210,13 +210,13 @@
     "love": {
       "description": "I si també pensa en tu? Descobreix si l'amor és mutu. Sense riscos. Sense rebutjos."
     },
-    "plan": {
+    "friends": {
       "description": "Amics Eureka. Amics amb qui saps que és mutu. Hi ha gent amb qui t'ho passes genial… però mai saps si a l'altre també li ve de gust. Eureka Friends converteix aquest dubte en claredat. Amistat adulta: de vegades sí, de vegades no… i no passa res."
     },
-    "mude": {
+    "sex": {
       "description": "EUREKA SEX és una app per saber si el desig és mutu entre dues persones que ja es coneixen, sense pressió i sense exposició. No és per buscar. És per confirmar."
     },
-    "sport": {
+    "hobby": {
       "description": "EUREKA HOBBY és per descobrir si algú vol compartir un hobby amb tu. Esport, viatges, plans, cuina, música... Si l'interès és mutu, us posem en contacte. Sense exposició, sense rebuig."
     },
     "steps": {
@@ -229,15 +229,15 @@
           "title": "Afegeix a qui t'interessa",
           "description": "Escull fins a 2 persones. Introdueix el seu mòbil. Ningú rep avís."
         },
-        "plan": {
+        "friends": {
           "title": "Afegeix a qui t'interessa",
           "description": "Escull fins a 5 persones. Introdueix el seu mòbil. Ningú rep avís."
         },
-        "mude": {
+        "sex": {
           "title": "Afegeix a qui t'interessa",
           "description": "Escull fins a 2 persones. Introdueix el seu mòbil. Ningú rep avís."
         },
-        "sport": {
+        "hobby": {
           "title": "Afegeix a qui t'interessa",
           "description": "Escull fins a 5 persones per compartir hobby. Introdueix el seu mòbil. Ningú rep avís."
         }

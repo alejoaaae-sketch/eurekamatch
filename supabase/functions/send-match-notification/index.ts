@@ -20,8 +20,9 @@ interface MatchNotificationRequest {
 // App-specific configurations
 const appConfigs: Record<string, { name: string; emoji: string; fromName: string }> = {
   love: { name: "Eureka Love", emoji: "💕", fromName: "Eureka Love" },
-  plan: { name: "Eureka Plan", emoji: "🎉", fromName: "Eureka Plan" },
+  friends: { name: "Eureka Friends", emoji: "🎉", fromName: "Eureka Friends" },
   sex: { name: "Eureka Sex", emoji: "🔥", fromName: "Eureka Sex" },
+  hobby: { name: "Eureka Hobby", emoji: "🏆", fromName: "Eureka Hobby" },
 };
 
 // Email translations per language
@@ -311,7 +312,7 @@ function generateEmailHtml({ recipientName, matchedPersonName, matchUrl, appConf
           </p>
           
           <p style="font-size: 16px; color: #333; margin-bottom: 25px;">
-            ${t.cta === t.cta ? bodyText.includes(appConfig.name) ? "" : ""}
+            ${bodyText.includes(appConfig.name) ? "" : ""}
           </p>
           
           <div style="text-align: center; margin: 25px 0;">

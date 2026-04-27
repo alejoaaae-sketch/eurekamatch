@@ -67,8 +67,8 @@
     "taglines": {
       "love": "Finde heraus, ob die Liebe gegenseitig ist",
       "friends": "Freunde, auf die du zählen kannst. Weil es gegenseitig ist.",
-      "mude": "Entdecke die gegenseitige Anziehung",
-      "sport": "Finde heraus, ob er/sie ein Hobby mit dir teilen möchte"
+      "sex": "Entdecke die gegenseitige Anziehung",
+      "hobby": "Finde heraus, ob er/sie ein Hobby mit dir teilen möchte"
     }
   },
   "home": {
@@ -202,13 +202,13 @@
       "love": {
         "tagline": "Finde heraus, ob die Liebe gegenseitig ist. Ohne Risiko, ohne Ablehnung."
       },
-      "plan": {
+      "friends": {
         "tagline": "Finde Freunde, die dich auch wählen. Weil Freundschaft gegenseitig ist."
       },
-      "mude": {
+      "sex": {
         "tagline": "Entdecke die gegenseitige Anziehung. Diskret und sicher."
       },
-      "sport": {
+      "hobby": {
         "tagline": "Finde heraus, ob er/sie ein Hobby mit dir teilen möchte. Sport, Reisen, Pläne... Ohne Verpflichtung."
       }
     },
@@ -236,13 +236,13 @@
     "love": {
       "description": "Was, wenn er/sie auch an dich denkt? Finde heraus, ob die Liebe gegenseitig ist. Ohne Risiko. Ohne Ablehnung."
     },
-    "plan": {
+    "friends": {
       "description": "Eureka Friends. Freunde, bei denen du weißt, dass es gegenseitig ist. Es gibt Menschen, mit denen du dich super verstehst… aber du weißt nie, ob der andere auch Lust hat. Eureka Friends verwandelt diesen Zweifel in Klarheit. Erwachsene Freundschaft: manchmal ja, manchmal nein… und das ist in Ordnung."
     },
-    "mude": {
+    "sex": {
       "description": "EUREKA SEX ist eine App, um herauszufinden, ob das Verlangen zwischen zwei Personen, die sich bereits kennen, gegenseitig ist, ohne Druck und ohne Exposition. Es ist nicht zum Suchen. Es ist zum Bestätigen."
     },
-    "sport": {
+    "hobby": {
       "description": "EUREKA HOBBY ist dafür da, herauszufinden, ob jemand ein Hobby mit dir teilen möchte. Sport, Reisen, Pläne, Kochen, Musik... Wenn das Interesse gegenseitig ist, bringen wir euch in Kontakt. Ohne Exposition, ohne Ablehnung."
     },
     "steps": {
@@ -255,15 +255,15 @@
           "title": "Füge hinzu, wer dich interessiert",
           "description": "Wähle bis zu 2 Personen. Gib ihre Handynummer ein. Niemand wird benachrichtigt."
         },
-        "plan": {
+        "friends": {
           "title": "Füge hinzu, wer dich interessiert",
           "description": "Wähle bis zu 5 Personen. Gib ihre Handynummer ein. Niemand wird benachrichtigt."
         },
-        "mude": {
+        "sex": {
           "title": "Füge hinzu, wer dich interessiert",
           "description": "Wähle bis zu 2 Personen. Gib ihre Handynummer ein. Niemand wird benachrichtigt."
         },
-        "sport": {
+        "hobby": {
           "title": "Füge hinzu, wer dich interessiert",
           "description": "Wähle bis zu 5 Personen, mit denen du Hobbys teilen möchtest. Gib ihre Handynummer ein. Niemand wird benachrichtigt."
         }

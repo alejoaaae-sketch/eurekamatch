@@ -159,9 +159,9 @@ serve(async (req: Request) => {
 
     const appNames: Record<string, string> = {
       love: "Eureka Love 💕",
-      plan: "Eureka Friends 🎉",
-      mude: "Eureka Sex 🔥",
-      sport: "Eureka Hobby 🏆",
+      friends: "Eureka Friends 🎉",
+      sex: "Eureka Sex 🔥",
+      hobby: "Eureka Hobby 🏆",
     };
     const appLabel = appNames[pick.app_type] || "EurekaMatch";
 

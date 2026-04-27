@@ -39,11 +39,11 @@ const AppLanding = () => {
     switch (appType) {
       case 'love':
         return <Heart className="w-10 h-10" fill="currentColor" />;
-      case 'plan':
+      case 'friends':
         return <Users className="w-10 h-10" />;
-      case 'mude':
+      case 'sex':
         return <Flame className="w-10 h-10" fill="currentColor" />;
-      case 'sport':
+      case 'hobby':
         return <Trophy className="w-10 h-10" />;
       default:
         return <Heart className="w-10 h-10" fill="currentColor" />;
@@ -54,11 +54,11 @@ const AppLanding = () => {
     switch (appType) {
       case 'love':
         return 'from-rose-500 to-pink-500';
-      case 'plan':
+      case 'friends':
         return 'from-orange-500 to-amber-500';
-      case 'mude':
+      case 'sex':
         return 'from-red-600 to-rose-500';
-      case 'sport':
+      case 'hobby':
         return 'from-green-500 to-emerald-500';
       default:
         return 'from-rose-500 to-pink-500';
@@ -69,11 +69,11 @@ const AppLanding = () => {
     switch (appType) {
       case 'love':
         return 'text-rose-400';
-      case 'plan':
+      case 'friends':
         return 'text-orange-400';
-      case 'mude':
+      case 'sex':
         return 'text-red-400';
-      case 'sport':
+      case 'hobby':
         return 'text-green-400';
       default:
         return 'text-rose-400';
@@ -84,11 +84,11 @@ const AppLanding = () => {
     switch (appType) {
       case 'love':
         return 'bg-rose-500';
-      case 'plan':
+      case 'friends':
         return 'bg-orange-500';
-      case 'mude':
+      case 'sex':
         return 'bg-red-500';
-      case 'sport':
+      case 'hobby':
         return 'bg-green-500';
       default:
         return 'bg-rose-500';

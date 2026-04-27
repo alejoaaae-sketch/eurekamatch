@@ -6,6 +6,7 @@ import PickCard from "@/components/PickCard";
 import MatchCard from "@/components/MatchCard";
 import LanguageSelector from "@/components/LanguageSelector";
 import WelcomeCreditsBanner from "@/components/WelcomeCreditsBanner";
+import OnboardingWizard from "@/components/OnboardingWizard";
 import AgeVerificationGate from "@/components/AgeVerificationGate";
 import { useAuth } from "@/hooks/useAuth";
 import { usePicks } from "@/hooks/usePicks";
@@ -239,14 +240,33 @@ const Home = () => {
               </div>
             )}
             {pendingPicks.length === 0 ? (
-              <div className="text-center py-16">
-                <div className="w-16 h-16 rounded-full bg-secondary mx-auto mb-4 flex items-center justify-center">
-                  <Heart className="w-8 h-8 text-muted-foreground" />
+              <div className="text-center py-12 px-4">
+                <div className="w-20 h-20 rounded-2xl bg-gradient-to-br from-primary/20 to-primary/5 mx-auto mb-5 flex items-center justify-center border border-primary/20">
+                  <Heart className="w-10 h-10 text-primary" fill="currentColor" />
                 </div>
-                <p className="text-muted-foreground text-sm mb-2">{t("home.emptyPicks")}</p>
-                <p className="text-muted-foreground/60 text-xs">
+                <h3 className="text-foreground font-semibold text-base mb-2">
+                  {t("home.emptyPicks")}
+                </h3>
+                <p className="text-muted-foreground/80 text-sm mb-6 max-w-xs mx-auto">
                   {t("home.emptyPicksHint")}
                 </p>
+                {picksRemaining > 0 && (
+                  <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-amber-500/10 text-amber-600 dark:text-amber-400 text-xs font-medium mb-4">
+                    <Coins className="w-3.5 h-3.5" />
+                    <span>{t("home.emptyPicksFreeBadge")} · {picksRemaining}</span>
+                  </div>
+                )}
+                <div>
+                  <Button
+                    onClick={() => navigate("/add")}
+                    variant="gradient"
+                    size="lg"
+                    className="w-full max-w-xs"
+                  >
+                    <Plus className="w-5 h-5" />
+                    {t("home.emptyPicksCta")}
+                  </Button>
+                </div>
               </div>
             ) : (
               pendingPicks.map((pick, index) => (

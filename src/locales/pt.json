@@ -67,8 +67,8 @@
     "taglines": {
       "love": "Descobre se o amor é mútuo",
       "friends": "Amigos com quem podes contar. Porque é mútuo.",
-      "mude": "Descobre a atração mútua",
-      "sport": "Descobre se quer partilhar hobby contigo"
+      "sex": "Descobre a atração mútua",
+      "hobby": "Descobre se quer partilhar hobby contigo"
     }
   },
   "home": {
@@ -202,13 +202,13 @@
       "love": {
         "tagline": "Descobre se o amor é mútuo. Sem riscos, sem rejeições."
       },
-      "plan": {
+      "friends": {
         "tagline": "Encontra amigos que também te escolham. Porque a amizade é mútua."
       },
-      "mude": {
+      "sex": {
         "tagline": "Descobre a atração mútua. Discreto e seguro."
       },
-      "sport": {
+      "hobby": {
         "tagline": "Descobre se quer partilhar hobby contigo. Desporto, viagens, planos... Sem compromisso."
       }
     },
@@ -236,13 +236,13 @@
     "love": {
       "description": "E se também pensa em ti? Descobre se o amor é mútuo. Sem riscos. Sem rejeições."
     },
-    "plan": {
+    "friends": {
       "description": "Eureka Friends. Amigos com quem sabes que é mútuo. Há pessoas com quem te divertes imenso… mas nunca sabes se o outro também quer. Eureka Friends transforma essa dúvida em clareza. Amizade adulta: às vezes sim, às vezes não… e não faz mal."
     },
-    "mude": {
+    "sex": {
       "description": "EUREKA SEX é uma app para saber se o desejo é mútuo entre duas pessoas que já se conhecem, sem pressão e sem exposição. Não é para procurar. É para confirmar."
     },
-    "sport": {
+    "hobby": {
       "description": "EUREKA HOBBY é para descobrir se alguém quer partilhar um hobby contigo. Desporto, viagens, planos, cozinha, música... Se o interesse é mútuo, colocamos-vos em contacto. Sem exposição, sem rejeição."
     },
     "steps": {
@@ -255,15 +255,15 @@
           "title": "Adiciona quem te interessa",
           "description": "Escolhe até 2 pessoas. Introduz o seu telemóvel. Ninguém recebe aviso."
         },
-        "plan": {
+        "friends": {
           "title": "Adiciona quem te interessa",
           "description": "Escolhe até 5 pessoas. Introduz o seu telemóvel. Ninguém recebe aviso."
         },
-        "mude": {
+        "sex": {
           "title": "Adiciona quem te interessa",
           "description": "Escolhe até 2 pessoas. Introduz o seu telemóvel. Ninguém recebe aviso."
         },
-        "sport": {
+        "hobby": {
           "title": "Adiciona quem te interessa",
           "description": "Escolhe até 5 pessoas com quem partilhar hobby. Introduz o seu telemóvel. Ninguém recebe aviso."
         }

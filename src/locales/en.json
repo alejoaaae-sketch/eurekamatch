@@ -68,8 +68,8 @@
     "taglines": {
       "love": "Discover if love is mutual",
       "friends": "Friends you can count on. Because it's mutual.",
-      "mude": "Discover mutual desire",
-      "sport": "Discover if they want to share a hobby with you"
+      "sex": "Discover mutual desire",
+      "hobby": "Discover if they want to share a hobby with you"
     }
   },
   "home": {
@@ -217,13 +217,13 @@
       "love": {
         "tagline": "Discover if love is mutual. No risks, no rejection."
       },
-      "plan": {
+      "friends": {
         "tagline": "Find friends who choose you back. Because friendship is mutual."
       },
-      "mude": {
+      "sex": {
         "tagline": "Discover mutual desire. Discreet and safe."
       },
-      "sport": {
+      "hobby": {
         "tagline": "Discover if they want to share a hobby with you. Sports, trips, plans... No pressure."
       }
     },
@@ -251,13 +251,13 @@
     "love": {
       "description": "What if they're thinking of you too? Discover if love is mutual. No risks. No rejection."
     },
-    "plan": {
+    "friends": {
       "description": "Eureka Friends. Friends you know are mutual. There are people you have a great time with… but you never know if they feel the same. Eureka Friends turns that doubt into clarity. Adult friendship: sometimes yes, sometimes no… and that's okay."
     },
-    "mude": {
+    "sex": {
       "description": "EUREKA SEX is an app to find out if desire is mutual between two people who already know each other, without pressure or exposure. It's not for searching. It's for confirming."
     },
-    "sport": {
+    "hobby": {
       "description": "EUREKA HOBBY is for discovering if someone wants to share a hobby with you. Sports, trips, plans, cooking, music... If the interest is mutual, we connect you. No exposure, no rejection."
     },
     "steps": {
@@ -270,15 +270,15 @@
           "title": "Add who interests you",
           "description": "Choose up to 2 people. Enter their phone number. No one gets notified."
         },
-        "plan": {
+        "friends": {
           "title": "Add who interests you",
           "description": "Choose up to 5 people. Enter their phone number. No one gets notified."
         },
-        "mude": {
+        "sex": {
           "title": "Add who interests you",
           "description": "Choose up to 2 people. Enter their phone number. No one gets notified."
         },
-        "sport": {
+        "hobby": {
           "title": "Add who interests you",
           "description": "Choose up to 5 people to share hobbies with. Enter their phone number. No one gets notified."
         }

@@ -67,8 +67,8 @@
     "taglines": {
       "love": "Scopri se l'amore è reciproco",
       "friends": "Amici su cui puoi contare. Perché è reciproco.",
-      "mude": "Scopri l'attrazione reciproca",
-      "sport": "Scopri se vuole condividere un hobby con te"
+      "sex": "Scopri l'attrazione reciproca",
+      "hobby": "Scopri se vuole condividere un hobby con te"
     }
   },
   "home": {
@@ -202,13 +202,13 @@
       "love": {
         "tagline": "Scopri se l'amore è reciproco. Senza rischi, senza rifiuti."
       },
-      "plan": {
+      "friends": {
         "tagline": "Trova amici che ti scelgano a loro volta. Perché l'amicizia è reciproca."
       },
-      "mude": {
+      "sex": {
         "tagline": "Scopri l'attrazione reciproca. Discreto e sicuro."
       },
-      "sport": {
+      "hobby": {
         "tagline": "Scopri se vuole condividere un hobby con te. Sport, viaggi, piani... Senza impegno."
       }
     },
@@ -236,13 +236,13 @@
     "love": {
       "description": "E se anche lei/lui pensa a te? Scopri se l'amore è reciproco. Senza rischi. Senza rifiuti."
     },
-    "plan": {
+    "friends": {
       "description": "Eureka Friends. Amici con cui sai che è reciproco. Ci sono persone con cui ti diverti tantissimo… ma non sai mai se anche l'altro ne ha voglia. Eureka Friends trasforma quel dubbio in chiarezza. Amicizia adulta: a volte sì, a volte no… e va bene così."
     },
-    "mude": {
+    "sex": {
       "description": "EUREKA SEX è un'app per sapere se il desiderio è reciproco tra due persone che già si conoscono, senza pressione e senza esposizione. Non è per cercare. È per confermare."
     },
-    "sport": {
+    "hobby": {
       "description": "EUREKA HOBBY è per scoprire se qualcuno vuole condividere un hobby con te. Sport, viaggi, piani, cucina, musica... Se l'interesse è reciproco, vi mettiamo in contatto. Senza esposizione, senza rifiuto."
     },
     "steps": {
@@ -255,15 +255,15 @@
           "title": "Aggiungi chi ti interessa",
           "description": "Scegli fino a 2 persone. Inserisci il loro cellulare. Nessuno riceve avvisi."
         },
-        "plan": {
+        "friends": {
           "title": "Aggiungi chi ti interessa",
           "description": "Scegli fino a 5 persone. Inserisci il loro cellulare. Nessuno riceve avvisi."
         },
-        "mude": {
+        "sex": {
           "title": "Aggiungi chi ti interessa",
           "description": "Scegli fino a 2 persone. Inserisci il loro cellulare. Nessuno riceve avvisi."
         },
-        "sport": {
+        "hobby": {
           "title": "Aggiungi chi ti interessa",
           "description": "Scegli fino a 5 persone con cui condividere hobby. Inserisci il loro cellulare. Nessuno riceve avvisi."
         }

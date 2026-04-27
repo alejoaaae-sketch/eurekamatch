@@ -41,8 +41,8 @@
     "taglines": {
       "love": "Ezagutu maitasuna elkarrekikoa den",
       "friends": "Kontatu dezakezun lagunak. Elkarrekikoa delako.",
-      "mude": "Ezagutu desira elkarrekikoa",
-      "sport": "Ezagutu zurekin hobby bat partekatu nahi duen"
+      "sex": "Ezagutu desira elkarrekikoa",
+      "hobby": "Ezagutu zurekin hobby bat partekatu nahi duen"
     }
   },
   "home": {
@@ -176,13 +176,13 @@
       "love": {
         "tagline": "Ezagutu maitasuna elkarrekikoa den. Arriskurik gabe, bazterketarik gabe."
       },
-      "plan": {
+      "friends": {
         "tagline": "Aurkitu gustatzen zareten lagunak. Alkarrekin gustora ibiltzen zaretenak."
       },
-      "mude": {
+      "sex": {
         "tagline": "Ezagutu desira elkarrekikoa. Diskretua eta segurua."
       },
-      "sport": {
+      "hobby": {
         "tagline": "Ezagutu zurekin hobby bat partekatu nahi duen. Kirola, bidaiak, planak... Presiorik gabe."
       }
     },
@@ -210,13 +210,13 @@
     "love": {
       "description": "Eta zutaz ere pentsatzen badu? Ezagutu maitasuna elkarrekikoa den. Arriskurik gabe. Bazterketarik gabe."
     },
-    "plan": {
+    "friends": {
       "description": "Beraiekin ondo pasatzen duzun laguna, gustatzen zaizuna berarkin egotea.. eta badakizula batzutan baietz esango dizula eta beste batzutan ezetz.. baina badakizula berarekin kontatu dezakezula."
     },
-    "mude": {
+    "sex": {
       "description": "EUREKA SEX aplikazio bat da elkar ezagutzen duten bi pertsonen artean desira elkarrekikoa den jakiteko, presiorik eta esposiziorik gabe. Ez da bilatzeko. Baieztatzeko da."
     },
-    "sport": {
+    "hobby": {
       "description": "EUREKA HOBBY zurekin hobby bat partekatu nahi duen norbait dagoen jakiteko tresna bat da. Kirola, bidaiak, planak, sukaldea, musika... Interesa elkarrekikoa bada, konektatzen zaituztegu. Esposiziorik gabe, bazterketarik gabe."
     },
     "steps": {
@@ -229,15 +229,15 @@
           "title": "Gehitu interesatzen zaizuna",
           "description": "Aukeratu 2 pertsona arte. Sartu haien telefono zenbakia. Inork ez du abisurik jasotzen."
         },
-        "plan": {
+        "friends": {
           "title": "Gehitu interesatzen zaizuna",
           "description": "Aukeratu 5 pertsona arte. Sartu haien telefono zenbakia. Inork ez du abisurik jasotzen."
         },
-        "mude": {
+        "sex": {
           "title": "Gehitu interesatzen zaizuna",
           "description": "Aukeratu 2 pertsona arte. Sartu haien telefono zenbakia. Inork ez du abisurik jasotzen."
         },
-        "sport": {
+        "hobby": {
           "title": "Gehitu interesatzen zaizuna",
           "description": "Aukeratu 5 pertsona arte hobby partekatzeko. Sartu haien telefono zenbakia. Inork ez du abisurik jasotzen."
         }

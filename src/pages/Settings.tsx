@@ -24,9 +24,9 @@ import {
 
 const APP_VARIANTS: { type: AppType; dbMode: string; icon: React.ReactNode; gradient: string }[] = [
   { type: 'love', dbMode: 'love', icon: <Heart className="w-5 h-5" fill="currentColor" />, gradient: 'from-rose-500 to-pink-500' },
-  { type: 'plan', dbMode: 'friends', icon: <Users className="w-5 h-5" />, gradient: 'from-orange-500 to-amber-500' },
-  { type: 'mude', dbMode: 'mude', icon: <Flame className="w-5 h-5" fill="currentColor" />, gradient: 'from-red-600 to-rose-500' },
-  { type: 'sport', dbMode: 'sport', icon: <Trophy className="w-5 h-5" />, gradient: 'from-green-500 to-emerald-500' },
+  { type: 'friends', dbMode: 'friends', icon: <Users className="w-5 h-5" />, gradient: 'from-orange-500 to-amber-500' },
+  { type: 'sex', dbMode: 'sex', icon: <Flame className="w-5 h-5" fill="currentColor" />, gradient: 'from-red-600 to-rose-500' },
+  { type: 'hobby', dbMode: 'hobby', icon: <Trophy className="w-5 h-5" />, gradient: 'from-green-500 to-emerald-500' },
 ];
 
 const Settings = () => {

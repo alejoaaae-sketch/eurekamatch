@@ -32,18 +32,13 @@ export interface UserUsage {
   paid_changes_used: number;
 }
 
-// Map app_type (love/plan/sex) to app_mode (love/friends/sex)
-const toAppMode = (appType: string): string => {
-  return appType === 'plan' ? 'friends' : appType;
-};
-
 export const useAppConfig = () => {
   const [modeConfig, setModeConfig] = useState<AppModeConfig | null>(null);
   const [globalConfig, setGlobalConfig] = useState<GlobalConfig | null>(null);
   const [loading, setLoading] = useState(true);
   const { country, loading: countryLoading } = useUserCountry();
 
-  const appMode = toAppMode(appConfig.appType);
+  const appMode = appConfig.appType;
 
   const fetchConfig = useCallback(async () => {
     try {

@@ -21,14 +21,12 @@ export const useAllAppConfigs = () => {
   }, []);
 
   const isAppEnabled = (appType: string): boolean => {
-    const mode = appType === 'plan' ? 'friends' : appType;
-    const found = configs.find(c => c.app_mode === mode);
+    const found = configs.find(c => c.app_mode === appType);
     return found?.enabled ?? true;
   };
 
   const getPricePerChange = (appType: string): number => {
-    const mode = appType === 'plan' ? 'friends' : appType;
-    const found = configs.find(c => c.app_mode === mode);
+    const found = configs.find(c => c.app_mode === appType);
     return found?.price_per_change ?? 0.99;
   };
 

@@ -1,5 +1,5 @@
 // App configuration - can be overridden by environment variables
-export type AppType = 'love' | 'plan' | 'mude' | 'sport';
+export type AppType = 'love' | 'friends' | 'sex' | 'hobby';
 
 // BETA MODE: Set to false to enable payments
 export const BETA_MODE = true;
@@ -25,24 +25,24 @@ const appConfigs: Record<AppType, AppConfig> = {
     accentColor: 'hsl(346, 77%, 59%)',
     tagline: 'Descubre si el amor es mutuo',
   },
-  plan: {
-    appType: 'plan',
+  friends: {
+    appType: 'friends',
     appName: 'EUREKA FRIENDS',
     maxPicks: 5,
     primaryColor: 'hsl(25, 95%, 53%)', // Orange/amber
     accentColor: 'hsl(25, 95%, 63%)',
     tagline: 'Amigos con los que puedes contar. Porque es mutuo.',
   },
-  mude: {
-    appType: 'mude',
+  sex: {
+    appType: 'sex',
     appName: 'EUREKA SEX',
     maxPicks: 2,
     primaryColor: 'hsl(0, 84%, 50%)', // Red
     accentColor: 'hsl(0, 84%, 60%)',
     tagline: 'Descubre la atracción mutua',
   },
-  sport: {
-    appType: 'sport',
+  hobby: {
+    appType: 'hobby',
     appName: 'EUREKA HOBBY',
     maxPicks: 5,
     primaryColor: 'hsl(142, 71%, 45%)', // Green
@@ -51,28 +51,43 @@ const appConfigs: Record<AppType, AppConfig> = {
   },
 };
 
+const VALID_APP_TYPES: AppType[] = ['love', 'friends', 'sex', 'hobby'];
+
+// Backwards-compatibility map for old URL parameters / sessionStorage values
+const LEGACY_APP_TYPE_MAP: Record<string, AppType> = {
+  plan: 'friends',
+  mude: 'sex',
+  sport: 'hobby',
+};
+
+const normalizeAppType = (value: string | null | undefined): AppType | null => {
+  if (!value) return null;
+  if ((VALID_APP_TYPES as string[]).includes(value)) return value as AppType;
+  if (LEGACY_APP_TYPE_MAP[value]) return LEGACY_APP_TYPE_MAP[value];
+  return null;
+};
+
 // Get app type from URL parameter, environment, or default to 'love'
 const getAppType = (): AppType => {
-  // Check URL parameter first (e.g., ?app=love, ?app=plan, ?app=sex)
+  // Check URL parameter first (e.g., ?app=love, ?app=friends, ?app=sex, ?app=hobby)
   if (typeof window !== 'undefined') {
     const urlParams = new URLSearchParams(window.location.search);
-    const urlAppType = urlParams.get('app');
-    if (urlAppType && ['love', 'plan', 'mude', 'sport'].includes(urlAppType)) {
-      // Store in sessionStorage to persist during navigation
+    const urlAppType = normalizeAppType(urlParams.get('app'));
+    if (urlAppType) {
       sessionStorage.setItem('eureka_app_type', urlAppType);
-      return urlAppType as AppType;
+      return urlAppType;
     }
     // Check sessionStorage for previously set app type
-    const storedAppType = sessionStorage.getItem('eureka_app_type');
-    if (storedAppType && ['love', 'plan', 'mude', 'sport'].includes(storedAppType)) {
-      return storedAppType as AppType;
+    const storedAppType = normalizeAppType(sessionStorage.getItem('eureka_app_type'));
+    if (storedAppType) {
+      // If a legacy value was stored, normalize it
+      sessionStorage.setItem('eureka_app_type', storedAppType);
+      return storedAppType;
     }
   }
   // Fall back to environment variable
-  const envAppType = import.meta.env.VITE_APP_TYPE as string;
-  if (envAppType && ['love', 'plan', 'mude', 'sport'].includes(envAppType)) {
-    return envAppType as AppType;
-  }
+  const envAppType = normalizeAppType(import.meta.env.VITE_APP_TYPE as string);
+  if (envAppType) return envAppType;
   return 'love';
 };
 

@@ -65,12 +65,15 @@ const AddPick = () => {
   useEffect(() => {
     if (!user) return;
     const fetchCount = async () => {
+      // Solo cuenta picks activos SIN match (alineado con el trigger check_pick_limit en BD).
+      // Los picks con match no ocupan slot porque ya están "resueltos".
       const { count } = await supabase
         .from('picks')
         .select('*', { count: 'exact', head: true })
         .eq('picker_id', user.id)
         .eq('app_type', appConfig.appType)
-        .is('deleted_at', null);
+        .is('deleted_at', null)
+        .eq('is_matched', false);
       setActivePicksCount(count ?? 0);
     };
     fetchCount();

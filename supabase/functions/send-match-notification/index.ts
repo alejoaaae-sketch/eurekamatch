@@ -312,7 +312,7 @@ function generateEmailHtml({ recipientName, matchedPersonName, matchUrl, appConf
           </p>
           
           <p style="font-size: 16px; color: #333; margin-bottom: 25px;">
-            ${t.cta === t.cta ? bodyText.includes(appConfig.name) ? "" : ""}
+            ${bodyText.includes(appConfig.name) ? "" : ""}
           </p>
           
           <div style="text-align: center; margin: 25px 0;">

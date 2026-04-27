@@ -119,6 +119,8 @@ const Home = () => {
 
   return (
     <div className="min-h-screen bg-background flex flex-col">
+      {/* Onboarding wizard for first-time users */}
+      <OnboardingWizard />
       {/* Age verification gate for mude app */}
       {showAgeGate && (
         <AgeVerificationGate onVerified={handleAgeVerified} onCancel={handleAgeDeclined} />

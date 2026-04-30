@@ -1,7 +1,8 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
-import { ArrowLeft, Loader2, Settings, Globe, Megaphone, Users, Save, Bell } from "lucide-react";
+import { ArrowLeft, Loader2, Settings, Globe, Megaphone, Users, Save, Bell, BarChart3 } from "lucide-react";
+import AdminDashboard from "@/components/AdminDashboard";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Switch } from "@/components/ui/switch";

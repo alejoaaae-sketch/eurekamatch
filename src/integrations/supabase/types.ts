@@ -627,6 +627,7 @@ export type Database = {
       cleanup_expired_email_verifications: { Args: never; Returns: undefined }
       cleanup_expired_otps: { Args: never; Returns: undefined }
       cleanup_old_otp_attempts: { Args: never; Returns: undefined }
+      get_admin_dashboard_stats: { Args: never; Returns: Json }
       get_effective_max_picks: { Args: { p_app_mode: string }; Returns: number }
       get_matched_user_profile: {
         Args: { p_match_id: string }

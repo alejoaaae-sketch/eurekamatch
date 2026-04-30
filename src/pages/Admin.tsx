@@ -228,8 +228,12 @@ const Admin = () => {
       </header>
 
       <div className="flex-1 px-4 py-6 max-w-2xl mx-auto w-full">
-        <Tabs defaultValue="modes" className="w-full">
-          <TabsList className="grid w-full grid-cols-4 mb-6">
+        <Tabs defaultValue="dashboard" className="w-full">
+          <TabsList className="grid w-full grid-cols-5 mb-6">
+            <TabsTrigger value="dashboard" className="text-xs gap-1">
+              <BarChart3 className="w-3.5 h-3.5" />
+              Stats
+            </TabsTrigger>
             <TabsTrigger value="modes" className="text-xs gap-1">
               <Users className="w-3.5 h-3.5" />
               Modos
@@ -247,6 +251,12 @@ const Admin = () => {
               Promo
             </TabsTrigger>
           </TabsList>
+
+          {/* === DASHBOARD TAB === */}
+          <TabsContent value="dashboard">
+            <AdminDashboard />
+          </TabsContent>
+
 
           {/* === MODES TAB === */}
           <TabsContent value="modes" className="space-y-6">

@@ -66,62 +66,13 @@ export const usePickBalance = () => {
     fetchPacks();
   }, [fetchBalance, fetchPacks]);
 
-  const purchasePack = async (pack: PickPack): Promise<{ success: boolean; error?: string }> => {
+  // Spend 1 credit via secure server-side RPC. Direct client writes to
+  // user_pick_balance are blocked by RLS to prevent self-granting picks.
+  const consumePick = async (): Promise<{ success: boolean; error?: string }> => {
     if (!user) return { success: false, error: 'Not authenticated' };
 
     try {
-      // Record purchase
-      const { error: purchaseError } = await supabase
-        .from('pack_purchases')
-        .insert({
-          user_id: user.id,
-          pack_id: pack.id,
-          pack_name: pack.name,
-          picks_count: pack.picks_count,
-          price: pack.price,
-          payment_method: 'simulation',
-        });
-
-      if (purchaseError) throw purchaseError;
-
-      // Update balance
-      const currentRemaining = balance?.picks_remaining ?? 0;
-      const currentPurchased = balance?.total_purchased ?? 0;
-
-      const { error: balanceError } = await supabase
-        .from('user_pick_balance')
-        .upsert({
-          user_id: user.id,
-          picks_remaining: currentRemaining + pack.picks_count,
-          total_purchased: currentPurchased + pack.picks_count,
-          total_used: balance?.total_used ?? 0,
-        }, { onConflict: 'user_id' });
-
-      if (balanceError) throw balanceError;
-
-      await fetchBalance();
-      return { success: true };
-    } catch (err) {
-      return {
-        success: false,
-        error: err instanceof Error ? err.message : 'Error purchasing pack',
-      };
-    }
-  };
-
-  const consumePick = async (): Promise<{ success: boolean; error?: string }> => {
-    if (!user || !balance) return { success: false, error: 'No balance' };
-    if (balance.picks_remaining <= 0) return { success: false, error: 'No picks remaining' };
-
-    try {
-      const { error } = await supabase
-        .from('user_pick_balance')
-        .update({
-          picks_remaining: balance.picks_remaining - 1,
-          total_used: balance.total_used + 1,
-        })
-        .eq('user_id', user.id);
-
+      const { error } = await supabase.rpc('consume_pick');
       if (error) throw error;
       await fetchBalance();
       return { success: true };
@@ -138,7 +89,6 @@ export const usePickBalance = () => {
     packs,
     loading,
     picksRemaining: balance?.picks_remaining ?? 0,
-    purchasePack,
     consumePick,
     refetch: fetchBalance,
   };

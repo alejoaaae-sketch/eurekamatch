@@ -152,7 +152,44 @@ const handler = async (req: Request): Promise<Response> => {
     const supabaseServiceKey = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!;
     const supabase = createClient(supabaseUrl, supabaseServiceKey);
 
+    // Authenticate caller: either the DB trigger (service role JWT) or a
+    // signed-in user who is one of the two matched users.
+    const authHeader = req.headers.get("authorization") || "";
+    const bearer = authHeader.startsWith("Bearer ") ? authHeader.slice(7) : "";
+    const internalSource = req.headers.get("x-internal-source");
+    let authorizedUserId: string | null = null;
+    let isInternal = false;
+
+    if (bearer && bearer === supabaseServiceKey) {
+      isInternal = true;
+    } else if (internalSource === "db-trigger") {
+      // Local trigger requests (pg_net) — accept; payload is still validated below.
+      isInternal = true;
+    } else if (bearer) {
+      const userClient = createClient(
+        supabaseUrl,
+        Deno.env.get("SUPABASE_ANON_KEY")!,
+        { global: { headers: { Authorization: authHeader } } },
+      );
+      const { data: userData } = await userClient.auth.getUser();
+      if (userData?.user) authorizedUserId = userData.user.id;
+    }
+
+    if (!isInternal && !authorizedUserId) {
+      return new Response(JSON.stringify({ error: "Unauthorized" }),
+        { status: 401, headers: { "Content-Type": "application/json", ...corsHeaders } });
+    }
+
     const { matchId, user1Id, user2Id, appType }: MatchNotificationRequest = await req.json();
+
+    if (!matchId || !user1Id || !user2Id || !appType) {
+      throw new Error("Missing required fields: matchId, user1Id, user2Id, appType");
+    }
+
+    if (!isInternal && authorizedUserId && authorizedUserId !== user1Id && authorizedUserId !== user2Id) {
+      return new Response(JSON.stringify({ error: "Forbidden" }),
+        { status: 403, headers: { "Content-Type": "application/json", ...corsHeaders } });
+    }
 
     if (!matchId || !user1Id || !user2Id || !appType) {
       throw new Error("Missing required fields: matchId, user1Id, user2Id, appType");

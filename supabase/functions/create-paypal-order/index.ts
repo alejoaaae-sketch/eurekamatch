@@ -1,4 +1,5 @@
 import { serve } from "https://deno.land/std@0.190.0/http/server.ts";
+import { createClient } from "npm:@supabase/supabase-js@2.49.1";
 
 const corsHeaders = {
   "Access-Control-Allow-Origin": "*",
@@ -36,18 +37,35 @@ serve(async (req) => {
   }
 
   try {
-    // Auth - manual JWT decode
+    // Verify JWT signature via Supabase Auth (never trust client-decoded claims)
     const authHeader = req.headers.get("Authorization");
-    if (!authHeader) throw new Error("No authorization header");
-    const token = authHeader.replace("Bearer ", "");
-    const payload = JSON.parse(atob(token.split(".")[1]));
-    if (!payload.sub || (payload.exp && payload.exp * 1000 < Date.now())) {
-      throw new Error("Invalid or expired token");
-    }
-    const userId = payload.sub;
+    if (!authHeader?.startsWith("Bearer ")) throw new Error("Unauthorized");
 
-    const { packName, packId, picksCount, price } = await req.json();
-    if (!packName || !price) throw new Error("Missing pack data");
+    const userClient = createClient(
+      Deno.env.get("SUPABASE_URL") ?? "",
+      Deno.env.get("SUPABASE_ANON_KEY") ?? "",
+      { global: { headers: { Authorization: authHeader } } },
+    );
+    const { data: userData, error: userErr } = await userClient.auth.getUser();
+    if (userErr || !userData?.user) throw new Error("Unauthorized");
+    const userId = userData.user.id;
+
+    const { packId } = await req.json();
+    if (!packId) throw new Error("Missing packId");
+
+    // Fetch authoritative pack data server-side (never trust client-supplied price/quantity)
+    const admin = createClient(
+      Deno.env.get("SUPABASE_URL") ?? "",
+      Deno.env.get("SUPABASE_SERVICE_ROLE_KEY") ?? "",
+      { auth: { persistSession: false } },
+    );
+    const { data: pack, error: packErr } = await admin
+      .from("pick_packs")
+      .select("id, name, picks_count, price, enabled")
+      .eq("id", packId)
+      .eq("enabled", true)
+      .single();
+    if (packErr || !pack) throw new Error("Invalid or disabled pack");
 
     const accessToken = await getAccessToken();
     const origin = req.headers.get("origin") || "https://eurekamatch.lovable.app";
@@ -64,16 +82,11 @@ serve(async (req) => {
           {
             amount: {
               currency_code: "EUR",
-              value: Number(price).toFixed(2),
+              value: Number(pack.price).toFixed(2),
             },
-            description: `EUREKA - ${packName} (${picksCount} créditos)`,
-            custom_id: JSON.stringify({
-              user_id: userId,
-              pack_name: packName,
-              pack_id: packId,
-              picks_count: picksCount,
-              price: price,
-            }),
+            description: `EUREKA - ${pack.name} (${pack.picks_count} créditos)`,
+            // custom_id stores only user_id and pack_id; price/picks are re-read from DB on capture
+            custom_id: JSON.stringify({ user_id: userId, pack_id: pack.id }),
           },
         ],
         application_context: {
@@ -100,13 +113,14 @@ serve(async (req) => {
 
     return new Response(
       JSON.stringify({ url: approveLink.href, orderId: order.id }),
-      { headers: { ...corsHeaders, "Content-Type": "application/json" }, status: 200 }
+      { headers: { ...corsHeaders, "Content-Type": "application/json" }, status: 200 },
     );
   } catch (error) {
     const msg = error instanceof Error ? error.message : String(error);
+    const status = msg === "Unauthorized" ? 401 : 500;
     return new Response(JSON.stringify({ error: msg }), {
       headers: { ...corsHeaders, "Content-Type": "application/json" },
-      status: 500,
+      status,
     });
   }
 });

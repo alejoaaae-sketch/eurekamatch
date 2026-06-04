@@ -19,7 +19,17 @@ const IP_RATE_LIMIT = 5; // Max 5 OTP requests per IP per hour
 const IP_RATE_WINDOW = 60 * 60 * 1000; // 1 hour in milliseconds
 
 const generateOTP = (): string => {
-  return Math.floor(100000 + Math.random() * 900000).toString();
+  // CSPRNG-based 6-digit OTP. Reject biased samples to keep uniform distribution.
+  const buf = new Uint32Array(1);
+  // Largest multiple of 900000 that fits in uint32 range
+  const max = Math.floor(0xffffffff / 900000) * 900000;
+  // eslint-disable-next-line no-constant-condition
+  while (true) {
+    crypto.getRandomValues(buf);
+    if (buf[0] < max) {
+      return String(100000 + (buf[0] % 900000)).padStart(6, "0");
+    }
+  }
 };
 
 // Hash OTP using SHA-256 for secure storage

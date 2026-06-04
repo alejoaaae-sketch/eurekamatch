@@ -142,11 +142,8 @@ const AddPick = () => {
   };
 
   const handlePhoneVerified = async () => {
+    // phone_verified is set server-side by verify-otp; just refresh the profile.
     if (user) {
-      await supabase
-        .from('profiles')
-        .update({ phone_verified: true })
-        .eq('user_id', user.id);
       await refetchProfile();
     }
     setShowPhoneVerification(false);

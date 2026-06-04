@@ -22,24 +22,22 @@ serve(async (req: Request) => {
     const supabaseUrl = Deno.env.get("SUPABASE_URL")!;
     const supabaseServiceKey = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!;
 
-    // Validate auth
+    // Validate auth via Supabase Auth (verifies JWT signature)
     const authHeader = req.headers.get("authorization");
     if (!authHeader?.startsWith("Bearer ")) {
       return respond({ error: "Unauthorized" }, 401);
     }
 
-    let userId: string;
-    try {
-      const payloadB64 = authHeader.replace("Bearer ", "").split(".")[1];
-      const payload = JSON.parse(atob(payloadB64));
-      if (!payload.sub || (payload.exp && payload.exp * 1000 < Date.now())) {
-        throw new Error("Invalid or expired token");
-      }
-      userId = payload.sub;
-    } catch (e) {
-      console.error("JWT decode error:", e);
+    const userClient = createClient(
+      supabaseUrl,
+      Deno.env.get("SUPABASE_ANON_KEY")!,
+      { global: { headers: { Authorization: authHeader } } },
+    );
+    const { data: userData, error: userErr } = await userClient.auth.getUser();
+    if (userErr || !userData?.user) {
       return respond({ error: "Unauthorized" }, 401);
     }
+    const userId = userData.user.id;
 
     const { pickId } = await req.json();
     if (!pickId) return respond({ error: "pickId is required" }, 400);

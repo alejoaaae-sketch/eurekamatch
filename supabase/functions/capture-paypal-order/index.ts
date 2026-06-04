@@ -33,44 +33,44 @@ serve(async (req) => {
   }
 
   try {
-    // Auth
+    // Verify JWT signature via Supabase Auth
     const authHeader = req.headers.get("Authorization");
-    if (!authHeader) throw new Error("No authorization header");
-    const token = authHeader.replace("Bearer ", "");
-    const payload = JSON.parse(atob(token.split(".")[1]));
-    if (!payload.sub || (payload.exp && payload.exp * 1000 < Date.now())) {
-      throw new Error("Invalid or expired token");
-    }
-    const userId = payload.sub;
+    if (!authHeader?.startsWith("Bearer ")) throw new Error("Unauthorized");
+
+    const userClient = createClient(
+      Deno.env.get("SUPABASE_URL") ?? "",
+      Deno.env.get("SUPABASE_ANON_KEY") ?? "",
+      { global: { headers: { Authorization: authHeader } } },
+    );
+    const { data: userData, error: userErr } = await userClient.auth.getUser();
+    if (userErr || !userData?.user) throw new Error("Unauthorized");
+    const userId = userData.user.id;
 
     const { orderId } = await req.json();
     if (!orderId) throw new Error("Missing orderId");
 
     const accessToken = await getAccessToken();
 
-    // First get order details to check status
     const orderRes = await fetch(`${PAYPAL_API}/v2/checkout/orders/${orderId}`, {
       headers: { Authorization: `Bearer ${accessToken}` },
     });
     if (!orderRes.ok) throw new Error(`Failed to get order [${orderRes.status}]`);
     const orderDetails = await orderRes.json();
 
-    // If already captured, handle idempotently
     if (orderDetails.status === "COMPLETED") {
       return new Response(
         JSON.stringify({ success: true, already_processed: true }),
-        { headers: { ...corsHeaders, "Content-Type": "application/json" }, status: 200 }
+        { headers: { ...corsHeaders, "Content-Type": "application/json" }, status: 200 },
       );
     }
 
     if (orderDetails.status !== "APPROVED" && orderDetails.status !== "CREATED") {
       return new Response(
         JSON.stringify({ success: false, error: `Order not in capturable state. Status: ${orderDetails.status}` }),
-        { headers: { ...corsHeaders, "Content-Type": "application/json" }, status: 200 }
+        { headers: { ...corsHeaders, "Content-Type": "application/json" }, status: 200 },
       );
     }
 
-    // Capture the payment
     const captureRes = await fetch(`${PAYPAL_API}/v2/checkout/orders/${orderId}/capture`, {
       method: "POST",
       headers: {
@@ -89,35 +89,41 @@ serve(async (req) => {
     if (captureData.status !== "COMPLETED") {
       return new Response(
         JSON.stringify({ success: false, error: "Payment capture not completed" }),
-        { headers: { ...corsHeaders, "Content-Type": "application/json" }, status: 200 }
+        { headers: { ...corsHeaders, "Content-Type": "application/json" }, status: 200 },
       );
     }
 
-    // Parse custom_id metadata
+    // Parse minimal custom_id metadata (only user_id + pack_id, never price/quantity)
     const customId = captureData.purchase_units?.[0]?.payments?.captures?.[0]?.custom_id
       || orderDetails.purchase_units?.[0]?.custom_id;
 
-    let meta: { user_id: string; pack_name: string; pack_id: string; picks_count: number; price: number };
+    let meta: { user_id: string; pack_id: string };
     try {
       meta = JSON.parse(customId);
     } catch {
       throw new Error("Invalid order metadata");
     }
 
-    // Verify user matches
     if (meta.user_id !== userId) {
       throw new Error("Unauthorized: order does not belong to this user");
     }
 
-    const picksCount = Number(meta.picks_count);
-    const price = Number(meta.price);
-
-    // Use service role for DB operations
     const supabaseAdmin = createClient(
       Deno.env.get("SUPABASE_URL") ?? "",
       Deno.env.get("SUPABASE_SERVICE_ROLE_KEY") ?? "",
-      { auth: { persistSession: false } }
+      { auth: { persistSession: false } },
     );
+
+    // Re-read authoritative pack data from DB (defence-in-depth against tampering)
+    const { data: pack, error: packErr } = await supabaseAdmin
+      .from("pick_packs")
+      .select("id, name, picks_count, price")
+      .eq("id", meta.pack_id)
+      .single();
+    if (packErr || !pack) throw new Error("Pack not found");
+
+    const picksCount = Number(pack.picks_count);
+    const price = Number(pack.price);
 
     // Idempotency check
     const { data: existingPurchase } = await supabaseAdmin
@@ -129,17 +135,16 @@ serve(async (req) => {
     if (existingPurchase && existingPurchase.length > 0) {
       return new Response(
         JSON.stringify({ success: true, already_processed: true, picks_added: picksCount }),
-        { headers: { ...corsHeaders, "Content-Type": "application/json" }, status: 200 }
+        { headers: { ...corsHeaders, "Content-Type": "application/json" }, status: 200 },
       );
     }
 
-    // Record purchase
     const { error: purchaseError } = await supabaseAdmin
       .from("pack_purchases")
       .insert({
         user_id: userId,
-        pack_id: meta.pack_id,
-        pack_name: meta.pack_name,
+        pack_id: pack.id,
+        pack_name: pack.name,
         picks_count: picksCount,
         price: price,
         payment_method: `paypal:${orderId}`,
@@ -147,7 +152,6 @@ serve(async (req) => {
 
     if (purchaseError) throw new Error(`Purchase insert failed: ${purchaseError.message}`);
 
-    // Update balance
     const { data: currentBalance } = await supabaseAdmin
       .from("user_pick_balance")
       .select("picks_remaining, total_purchased, total_used")
@@ -162,20 +166,21 @@ serve(async (req) => {
       .from("user_pick_balance")
       .upsert(
         { user_id: userId, picks_remaining: remaining, total_purchased: purchased, total_used: used },
-        { onConflict: "user_id" }
+        { onConflict: "user_id" },
       );
 
     if (balanceError) throw new Error(`Balance update failed: ${balanceError.message}`);
 
     return new Response(
       JSON.stringify({ success: true, picks_added: picksCount }),
-      { headers: { ...corsHeaders, "Content-Type": "application/json" }, status: 200 }
+      { headers: { ...corsHeaders, "Content-Type": "application/json" }, status: 200 },
     );
   } catch (error) {
     const msg = error instanceof Error ? error.message : String(error);
+    const status = msg === "Unauthorized" ? 401 : 500;
     return new Response(JSON.stringify({ success: false, error: msg }), {
       headers: { ...corsHeaders, "Content-Type": "application/json" },
-      status: 500,
+      status,
     });
   }
 });

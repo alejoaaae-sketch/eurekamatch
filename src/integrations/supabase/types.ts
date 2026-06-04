@@ -627,6 +627,8 @@ export type Database = {
       cleanup_expired_email_verifications: { Args: never; Returns: undefined }
       cleanup_expired_otps: { Args: never; Returns: undefined }
       cleanup_old_otp_attempts: { Args: never; Returns: undefined }
+      complete_beta_purchase: { Args: { p_pack_id: string }; Returns: Json }
+      consume_pick: { Args: never; Returns: Json }
       get_admin_dashboard_stats: { Args: never; Returns: Json }
       get_effective_max_picks: { Args: { p_app_mode: string }; Returns: number }
       get_matched_user_profile: {
@@ -653,6 +655,10 @@ export type Database = {
         Returns: boolean
       }
       normalize_phone: { Args: { phone_input: string }; Returns: string }
+      set_phone_verified_by_phone: {
+        Args: { p_phone: string }
+        Returns: undefined
+      }
     }
     Enums: {
       app_role: "admin" | "user"

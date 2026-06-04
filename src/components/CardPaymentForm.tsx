@@ -156,12 +156,7 @@ const CardPaymentForm = ({ pack, onSuccess, onError, onCancel }: CardPaymentForm
 
   const createOrder = async () => {
     const { data, error } = await supabase.functions.invoke("create-paypal-order", {
-      body: {
-        packName: pack.name,
-        packId: pack.id,
-        picksCount: pack.picks_count,
-        price: pack.price,
-      },
+      body: { packId: pack.id },
     });
 
     if (error || !data?.orderId) {

@@ -61,35 +61,14 @@ const BuyPacks = () => {
   const handleBetaPaymentComplete = async () => {
     if (!selectedPack || !user) return;
     try {
-      // Record simulated purchase
-      await supabase.from("pack_purchases").insert({
-        user_id: user.id,
-        pack_id: selectedPack.id,
-        pack_name: selectedPack.name,
-        picks_count: selectedPack.picks_count,
-        price: selectedPack.price,
-        payment_method: "beta_simulation",
-      });
-
-      // Update balance
-      const { data: currentBalance } = await supabase
-        .from("user_pick_balance")
-        .select("picks_remaining, total_purchased, total_used")
-        .eq("user_id", user.id)
-        .single();
-
-      const remaining = (currentBalance?.picks_remaining ?? 0) + selectedPack.picks_count;
-      const purchased = (currentBalance?.total_purchased ?? 0) + selectedPack.picks_count;
-      const used = currentBalance?.total_used ?? 0;
-
-      await supabase.from("user_pick_balance").upsert(
-        { user_id: user.id, picks_remaining: remaining, total_purchased: purchased, total_used: used },
-        { onConflict: "user_id" }
-      );
+      // Server-side RPC: enforces beta_mode flag and reads price/picks from DB.
+      const { error } = await supabase.rpc('complete_beta_purchase', { p_pack_id: selectedPack.id });
+      if (error) throw error;
 
       refetchBalance();
       toast.success(t("payment.success"));
-    } catch {
+    } catch (err) {
+      console.error('Beta purchase error:', err);
       toast.error(t("common.error"));
     }
     setShowSimulation(false);

@@ -14,15 +14,18 @@ serve(async (req) => {
   }
 
   try {
-    // Auth
+    // Verify JWT signature via Supabase Auth
     const authHeader = req.headers.get("Authorization");
-    if (!authHeader) throw new Error("No authorization header");
-    const token = authHeader.replace("Bearer ", "");
-    const payload = JSON.parse(atob(token.split(".")[1]));
-    if (!payload.sub || (payload.exp && payload.exp * 1000 < Date.now())) {
-      throw new Error("Invalid or expired token");
-    }
-    const userId = payload.sub;
+    if (!authHeader?.startsWith("Bearer ")) throw new Error("Unauthorized");
+
+    const userClient = createClient(
+      Deno.env.get("SUPABASE_URL") ?? "",
+      Deno.env.get("SUPABASE_ANON_KEY") ?? "",
+      { global: { headers: { Authorization: authHeader } } },
+    );
+    const { data: userData, error: userErr } = await userClient.auth.getUser();
+    if (userErr || !userData?.user) throw new Error("Unauthorized");
+    const userId = userData.user.id;
 
     const { sessionId } = await req.json();
     if (!sessionId) throw new Error("Missing sessionId");
@@ -40,25 +43,28 @@ serve(async (req) => {
       });
     }
 
-    // Verify the session belongs to this user
     const meta = session.metadata;
-    if (!meta || meta.user_id !== userId) {
+    if (!meta || meta.user_id !== userId || !meta.pack_id) {
       throw new Error("Unauthorized: session does not belong to this user");
     }
 
-    const picksCount = parseInt(meta.picks_count, 10);
-    const price = parseFloat(meta.price);
-    const packName = meta.pack_name;
-    const packId = meta.pack_id;
-
-    // Use service role to update balance
     const supabaseAdmin = createClient(
       Deno.env.get("SUPABASE_URL") ?? "",
       Deno.env.get("SUPABASE_SERVICE_ROLE_KEY") ?? "",
-      { auth: { persistSession: false } }
+      { auth: { persistSession: false } },
     );
 
-    // Check if this session was already processed (idempotency)
+    // Re-read authoritative pack data
+    const { data: pack, error: packErr } = await supabaseAdmin
+      .from("pick_packs")
+      .select("id, name, picks_count, price")
+      .eq("id", meta.pack_id)
+      .single();
+    if (packErr || !pack) throw new Error("Pack not found");
+
+    const picksCount = Number(pack.picks_count);
+    const price = Number(pack.price);
+
     const { data: existingPurchase } = await supabaseAdmin
       .from("pack_purchases")
       .select("id")
@@ -72,13 +78,12 @@ serve(async (req) => {
       });
     }
 
-    // Record purchase
     const { error: purchaseError } = await supabaseAdmin
       .from("pack_purchases")
       .insert({
         user_id: userId,
-        pack_id: packId,
-        pack_name: packName,
+        pack_id: pack.id,
+        pack_name: pack.name,
         picks_count: picksCount,
         price: price,
         payment_method: `stripe:${sessionId}`,
@@ -86,7 +91,6 @@ serve(async (req) => {
 
     if (purchaseError) throw new Error(`Purchase insert failed: ${purchaseError.message}`);
 
-    // Get current balance
     const { data: currentBalance } = await supabaseAdmin
       .from("user_pick_balance")
       .select("picks_remaining, total_purchased, total_used")
@@ -100,29 +104,22 @@ serve(async (req) => {
     const { error: balanceError } = await supabaseAdmin
       .from("user_pick_balance")
       .upsert(
-        {
-          user_id: userId,
-          picks_remaining: remaining,
-          total_purchased: purchased,
-          total_used: used,
-        },
-        { onConflict: "user_id" }
+        { user_id: userId, picks_remaining: remaining, total_purchased: purchased, total_used: used },
+        { onConflict: "user_id" },
       );
 
     if (balanceError) throw new Error(`Balance update failed: ${balanceError.message}`);
 
     return new Response(
       JSON.stringify({ success: true, picks_added: picksCount }),
-      {
-        headers: { ...corsHeaders, "Content-Type": "application/json" },
-        status: 200,
-      }
+      { headers: { ...corsHeaders, "Content-Type": "application/json" }, status: 200 },
     );
   } catch (error) {
     const msg = error instanceof Error ? error.message : String(error);
+    const status = msg === "Unauthorized" ? 401 : 500;
     return new Response(JSON.stringify({ success: false, error: msg }), {
       headers: { ...corsHeaders, "Content-Type": "application/json" },
-      status: 500,
+      status,
     });
   }
 });

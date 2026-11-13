@@ -29,6 +29,27 @@
       "when": 1794565306971,
       "tag": "0003_secure_beta_and_signup_referrals",
       "breakpoints": true
+    },
+    {
+      "idx": 4,
+      "version": "7",
+      "when": 1794566884376,
+      "tag": "0004_allow_repeated_mutual_matches",
+      "breakpoints": true
+    },
+    {
+      "idx": 5,
+      "version": "7",
+      "when": 1794567024681,
+      "tag": "0005_read_own_pick_for_each_match",
+      "breakpoints": true
+    },
+    {
+      "idx": 6,
+      "version": "7",
+      "when": 1794567133255,
+      "tag": "0006_restore_private_match_policy_reads",
+      "breakpoints": true
     }
   ]
 }

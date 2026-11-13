@@ -8,3 +8,5 @@
 - Apply referral codes only during Auth-triggered profile creation and make referral attribution immutable afterwards to prevent post-signup credit claims.
 - Share an exact project-origin allowlist for checkout returns; never trust Origin or a hosting-domain wildcard as a payment destination.
 - Define the authentication context in its own non-component module so hot updates to the provider and consumers retain the same context identity.
+- Enforce match uniqueness by the unordered pick-ID pair, not the user-ID pair, so new mutual choices preserve historical matches without duplicating the same event.
+- Resolve each match's own pick through an authenticated match-scoped RPC so repeated matches keep their original names and modes without exposing the other participant's pick.

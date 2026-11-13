@@ -46,23 +46,13 @@ export const useMatches = () => {
       // AND filter by current app_type
       const enrichedMatches = await Promise.all(
         (matchData || []).map(async (match) => {
-          // Get the other user's ID
-          const otherUserId = match.user1_id === user.id ? match.user2_id : match.user1_id;
-          
-          // Get the pick that the current user made for this other user
-          // This only returns picks the current user created (RLS enforced)
-          // Also verify this pick is for the current app_type
+          // Resolve the exact own pick for this event, not all picks for the same person.
           const { data: pickData } = await supabase
-            .from('picks')
-            .select('picked_name, app_type')
-            .eq('picker_id', user.id)
-            .eq('picked_user_id', otherUserId)
-            .eq('is_matched', true)
-            .eq('app_type', appConfig.appType)
+            .rpc('get_own_match_pick', { p_match_id: match.id })
             .maybeSingle();
 
           // If no pick found for this app_type, this match doesn't belong here
-          if (!pickData) {
+          if (!pickData || pickData.app_type !== appConfig.appType) {
             return null;
           }
 

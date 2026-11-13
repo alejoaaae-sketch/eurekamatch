@@ -4,26 +4,25 @@ import { Heart, Users, Flame, Trophy, Sparkles } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useAuth } from "@/hooks/useAuth";
 import { useAllAppConfigs } from "@/hooks/useAllAppConfigs";
-import LanguageSelector from "@/components/LanguageSelector";
-import LegalFooter from "@/components/LegalFooter";
+import { Link } from "react-router-dom";
 import type { AppType } from "@/config/app.config";
 import { LANDING_EXPERIMENT_ENABLED, landingExperimentCopy } from "@/config/landing-experiment";
 import LegacyLanding from "./LegacyLanding";
 import mutualGlance from "@/assets/mutual-glance.jpg";
 
 const modes = [
-  { type: 'love', label: 'Love', Icon: Heart },
-  { type: 'friends', label: 'Friends', Icon: Users },
-  { type: 'sex', label: 'Sex', Icon: Flame },
-  { type: 'hobby', label: 'Hobby', Icon: Trophy },
+  { type: 'love', label: 'Corazón', Icon: Heart },
+  { type: 'friends', label: 'Personas', Icon: Users },
+  { type: 'sex', label: 'Llama (solo mayores de 18 años)', Icon: Flame },
+  { type: 'hobby', label: 'Trofeo', Icon: Trophy },
 ] as const;
 
 function ExperimentLanding() {
   const navigate = useNavigate();
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
   const { user, loading: authLoading } = useAuth();
   const { isAppEnabled, loading: configLoading } = useAllAppConfigs();
-  const copy = landingExperimentCopy[i18n.language.split('-')[0]] ?? landingExperimentCopy.es;
+  const copy = landingExperimentCopy;
 
   const selectMode = (type: AppType) => {
     sessionStorage.setItem('eureka_app_type', type);
@@ -35,7 +34,6 @@ function ExperimentLanding() {
       <header className="border-b border-border">
         <div className="mx-auto flex max-w-6xl items-center justify-between gap-4 px-5 py-4 md:px-8">
           <span className="flex items-center gap-2 text-lg font-semibold"><Sparkles className="h-5 w-5 text-primary" /> EurekaMatch</span>
-          <LanguageSelector />
         </div>
       </header>
       <section className="landing-scene relative isolate overflow-hidden">
@@ -53,10 +51,8 @@ function ExperimentLanding() {
               {modes.map(({ type, label, Icon }) => {
                 const enabled = isAppEnabled(type);
                 return (
-                  <Button key={type} variant="ghost" disabled={authLoading || configLoading || !enabled} aria-label={label} onClick={() => selectMode(type)} className={`landing-mode landing-mode-${type} group h-auto min-h-28 flex-col gap-3 rounded-lg px-1 py-3 whitespace-normal`}>
+                  <Button key={type} variant="ghost" disabled={authLoading || configLoading || !enabled} aria-label={label} title={label} onClick={() => selectMode(type)} className={`landing-mode landing-mode-${type} group h-20 flex-col gap-3 rounded-lg px-1 py-3 whitespace-normal`}>
                     <span className="landing-mode-icon flex h-14 w-14 items-center justify-center rounded-full transition-transform group-hover:scale-105"><Icon aria-hidden="true" className="h-7 w-7" /></span>
-                    <span className="text-sm font-semibold sm:text-base">{label}{type === 'sex' && <span className="ml-1 text-xs text-muted-foreground">18+</span>}</span>
-                    {!enabled && !configLoading && <span className="text-xs text-muted-foreground">{t('common.comingSoon', 'Próximamente')}</span>}
                   </Button>
                 );
               })}
@@ -66,12 +62,17 @@ function ExperimentLanding() {
       </section>
       <section className="border-t border-border px-5 py-10 md:px-8 md:py-12">
         <div className="mx-auto max-w-6xl">
-          <h2 className="text-2xl font-semibold">{t('landing.concept.title')}</h2>
-          <p className="mt-4 max-w-2xl text-base leading-relaxed text-muted-foreground">{t('landing.concept.description')}</p>
+          <h2 className="text-2xl font-semibold">{t('landing.concept.title', { lng: 'es' })}</h2>
+          <p className="mt-4 max-w-2xl text-base leading-relaxed text-muted-foreground">{t('landing.concept.description', { lng: 'es' })}</p>
         </div>
       </section>
       <footer className="border-t border-border px-5 py-7">
-        <div className="mx-auto max-w-6xl space-y-4"><LegalFooter /><p className="text-xs text-muted-foreground">© {new Date().getFullYear()} EurekaMatch. {t('landing.footer.rights')}</p></div>
+        <div className="mx-auto max-w-6xl space-y-4">
+          <div className="flex flex-wrap justify-center gap-4 text-xs text-muted-foreground">
+            <Link to="/terms">Términos y Condiciones</Link><span>·</span><Link to="/privacy">Política de Privacidad</Link>
+          </div>
+          <p className="text-xs text-muted-foreground">© {new Date().getFullYear()} EurekaMatch. Todos los derechos reservados.</p>
+        </div>
       </footer>
     </div>
   );

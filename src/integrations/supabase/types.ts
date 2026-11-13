@@ -650,6 +650,10 @@ export type Database = {
       [_ in never]: never
     }
     Functions: {
+      can_read_own_match: {
+        Args: { user_a: string; user_b: string }
+        Returns: boolean
+      }
       cleanup_expired_email_verifications: { Args: never; Returns: undefined }
       cleanup_expired_otps: { Args: never; Returns: undefined }
       cleanup_old_otp_attempts: { Args: never; Returns: undefined }
@@ -663,6 +667,13 @@ export type Database = {
           display_name: string
           email: string
           phone: string
+        }[]
+      }
+      get_own_match_pick: {
+        Args: { p_match_id: string }
+        Returns: {
+          app_type: string
+          picked_name: string
         }[]
       }
       has_block_between: {

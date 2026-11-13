@@ -1,17 +1,7 @@
-import { useState, useEffect, createContext, useContext, ReactNode } from 'react';
+import { useState, useEffect, useContext, ReactNode } from 'react';
 import { User, Session } from '@supabase/supabase-js';
 import { supabase } from '@/integrations/supabase/client';
-
-interface AuthContextType {
-  user: User | null;
-  session: Session | null;
-  loading: boolean;
-  signUp: (phone: string, password: string, displayName: string, email: string, verifyEmail?: boolean, referralCode?: string, birthYear?: number) => Promise<{ error: Error | null }>;
-  signIn: (phone: string, password: string) => Promise<{ error: Error | null }>;
-  signOut: () => Promise<void>;
-}
-
-const AuthContext = createContext<AuthContextType | undefined>(undefined);
+import { AuthContext } from './auth-context';
 
 // Convert phone to email format for Supabase auth (phone+password workaround)
 // Security: Add a hash suffix to make the email pattern less predictable

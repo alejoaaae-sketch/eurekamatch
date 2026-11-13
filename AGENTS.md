@@ -7,3 +7,4 @@
 - Restrict simulated credit fulfillment to server-verified administrators; normal users must not receive paid credits from test purchases.
 - Apply referral codes only during Auth-triggered profile creation and make referral attribution immutable afterwards to prevent post-signup credit claims.
 - Share an exact project-origin allowlist for checkout returns; never trust Origin or a hosting-domain wildcard as a payment destination.
+- Define the authentication context in its own non-component module so hot updates to the provider and consumers retain the same context identity.

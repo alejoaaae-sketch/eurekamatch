@@ -10,3 +10,5 @@
 - Define the authentication context in its own non-component module so hot updates to the provider and consumers retain the same context identity.
 - Enforce match uniqueness by the unordered pick-ID pair, not the user-ID pair, so new mutual choices preserve historical matches without duplicating the same event.
 - Resolve each match's own pick through an authenticated match-scoped RPC so repeated matches keep their original names and modes without exposing the other participant's pick.
+- Store selection retention and expiration on picks and perform replacements in the insert trigger under the existing user lock; protect these fields against direct updates so fees and capacity cannot be bypassed.
+- Derive expired selection visibility and matching eligibility from timestamps without recurring jobs; retain expired rows solely for existing match history.

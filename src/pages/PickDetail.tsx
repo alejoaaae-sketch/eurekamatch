@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { useTranslation } from "react-i18next";
-import { ArrowLeft, Phone, Mail, Calendar, Clock, Trash2, Loader2, Send, CheckCircle } from "lucide-react";
+import { ArrowLeft, Phone, Mail, Calendar, Clock, Trash2, Loader2, Send, CheckCircle, ArrowRightLeft } from "lucide-react";
+import { daysRemaining } from '@/lib/selection-rules';
 import { Button } from "@/components/ui/button";
 import { useAuth } from "@/hooks/useAuth";
 import { usePicks } from "@/hooks/usePicks";
@@ -110,6 +111,7 @@ const PickDetail = () => {
         </div>
 
         {/* Details */}
+        {pick.app_type === 'love' && <div className="mb-5 flex flex-wrap justify-between gap-2 border-b border-border pb-4 text-sm text-muted-foreground"><span>{pick.selection_kind === 'conserved' ? 'Conservada' : 'Principal'}</span><span>{daysRemaining(pick.expires_at ?? '')} días restantes</span></div>}
         <div className="space-y-4">
           {/* Contact info */}
           <div className="bg-card rounded-xl p-4 border border-border/50">
@@ -228,6 +230,7 @@ const PickDetail = () => {
         )}
 
         {/* Delete button */}
+        {pick.app_type === 'love' && pick.selection_kind === 'principal' && !pick.is_matched && <Button className="mt-6 w-full gap-2" onClick={() => navigate(`/add?replace=${pick.id}`)}><ArrowRightLeft className="h-4 w-4" />Cambiar elección</Button>}
         <div className="mt-4">
           <Button
             variant="outline"

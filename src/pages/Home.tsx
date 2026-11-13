@@ -3,6 +3,7 @@ import { useTranslation } from "react-i18next";
 import { Button } from "@/components/ui/button";
 import { Heart, Plus, User, Sparkles, Loader2, Coins, ArrowLeft, Gift, Copy, Check } from "lucide-react";
 import PickCard from "@/components/PickCard";
+import SelectionList from "@/components/SelectionList";
 import MatchCard from "@/components/MatchCard";
 import LanguageSelector from "@/components/LanguageSelector";
 import WelcomeCreditsBanner from "@/components/WelcomeCreditsBanner";
@@ -176,7 +177,7 @@ const Home = () => {
       </header>
 
       {/* Welcome banner */}
-      <WelcomeCreditsBanner />
+      {appConfig.appType !== 'love' && <WelcomeCreditsBanner />}
 
       {/* Tabs */}
       <div className="px-6 pt-6">
@@ -243,7 +244,7 @@ const Home = () => {
                 </button>
               </div>
             )}
-            {pendingPicks.length === 0 ? (
+            {appConfig.appType === 'love' ? <SelectionList picks={pendingPicks} onDelete={handleDeletePick} /> : pendingPicks.length === 0 ? (
               <div className="text-center py-12 px-4">
                 <div className="w-20 h-20 rounded-2xl bg-gradient-to-br from-primary/20 to-primary/5 mx-auto mb-5 flex items-center justify-center border border-primary/20">
                   <Heart className="w-10 h-10 text-primary" fill="currentColor" />
@@ -333,7 +334,12 @@ const Home = () => {
       <div className="fixed bottom-6 right-6">
         <Button
           onClick={() => {
-            if (pendingPicks.length >= effectiveMaxPicks) {
+            if (appConfig.appType === 'love' && pendingPicks.filter(p => p.selection_kind === 'principal').length >= 2) {
+              toast.info('Selecciona la elección principal que quieres cambiar.');
+              setActiveTab('picks');
+              return;
+            }
+            if (appConfig.appType !== 'love' && pendingPicks.length >= effectiveMaxPicks) {
               toast.error(t("pick.limitReached", { count: effectiveMaxPicks }));
               return;
             }

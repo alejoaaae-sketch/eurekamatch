@@ -1,4 +1,8 @@
 # Prueba de presentación
+- [x] Aplicar dos elecciones principales, cinco conservadas y sustituciones de 1/3 créditos sin reiniciar la caducidad.
+- [x] Excluir elecciones caducadas a los 90 días y conservar el historial de coincidencias.
+- [x] Mostrar cupos, días restantes y confirmación de conservación en castellano.
+- [x] Verificar reglas y sustitución autenticada; eliminar elecciones temporales y devolver sus cuatro créditos. No implementar envíos ni renovación.
 - [x] Permitir nuevas coincidencias entre las mismas personas conservando el historial y verificar la elección real.
 - [x] Sustituir la marca visible por ysilegustas en pantallas, textos legales, comunicaciones y app instalada, sin cambiar dominios ni claves internas.
 - [x] Verificar el cambio de marca y guardar los cambios.

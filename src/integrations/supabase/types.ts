@@ -425,37 +425,49 @@ export type Database = {
           app_type: string
           created_at: string
           deleted_at: string | null
+          expires_at: string | null
           id: string
           identifier_type: string
           is_matched: boolean
+          keep_previous: boolean
           picked_identifier: string
           picked_name: string
           picked_user_id: string | null
           picker_id: string
+          replaced_pick_id: string | null
+          selection_kind: string
         }
         Insert: {
           app_type?: string
           created_at?: string
           deleted_at?: string | null
+          expires_at?: string | null
           id?: string
           identifier_type: string
           is_matched?: boolean
+          keep_previous?: boolean
           picked_identifier: string
           picked_name: string
           picked_user_id?: string | null
           picker_id: string
+          replaced_pick_id?: string | null
+          selection_kind?: string
         }
         Update: {
           app_type?: string
           created_at?: string
           deleted_at?: string | null
+          expires_at?: string | null
           id?: string
           identifier_type?: string
           is_matched?: boolean
+          keep_previous?: boolean
           picked_identifier?: string
           picked_name?: string
           picked_user_id?: string | null
           picker_id?: string
+          replaced_pick_id?: string | null
+          selection_kind?: string
         }
         Relationships: []
       }

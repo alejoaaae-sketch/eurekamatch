@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { supabase } from '@/integrations/supabase/client';
 import { useAuth } from './useAuth';
 import { appConfig, AppType } from '@/config/app.config';
+import { isSelectionActive } from '@/lib/selection-rules';
 
 const formatSupabaseError = (err: unknown, fallback: string) => {
   if (err && typeof err === 'object') {
@@ -27,6 +28,8 @@ export interface Pick {
   is_matched: boolean;
   created_at: string;
   app_type: AppType;
+  selection_kind: 'principal' | 'conserved';
+  expires_at: string | null;
 }
 
 export const usePicks = () => {
@@ -63,7 +66,8 @@ export const usePicks = () => {
   const addPick = async (
     name: string,
     identifier: string,
-    type: 'phone' | 'email'
+    type: 'phone' | 'email',
+    options?: { replacedPickId?: string; keepPrevious?: boolean }
   ): Promise<{ success: boolean; error?: string }> => {
     if (!user) return { success: false, error: 'No autenticado' };
 
@@ -74,6 +78,8 @@ export const usePicks = () => {
         picked_identifier: identifier,
         identifier_type: type,
         app_type: appConfig.appType,
+        replaced_pick_id: options?.replacedPickId ?? null,
+        keep_previous: options?.keepPrevious ?? false,
       });
 
       if (error) throw error;
@@ -82,7 +88,7 @@ export const usePicks = () => {
     } catch (err) {
       return {
         success: false,
-        error: err instanceof Error ? err.message : 'Error al añadir elección',
+        error: formatSupabaseError(err, 'Error al añadir elección'),
       };
     }
   };
@@ -115,11 +121,16 @@ export const usePicks = () => {
     fetchPicks();
   }, [user]);
 
-  const pendingPicks = picks.filter(p => !p.is_matched);
+  const [now, setNow] = useState(Date.now());
+  useEffect(() => {
+    const timer = window.setInterval(() => setNow(Date.now()), 30000);
+    return () => window.clearInterval(timer);
+  }, []);
+  const pendingPicks = picks.filter(p => !p.is_matched && isSelectionActive(p, now));
   const matchedPicks = picks.filter(p => p.is_matched);
 
   return {
-    picks,
+    picks: picks.filter(p => isSelectionActive(p, now) || p.is_matched),
     pendingPicks,
     matchedPicks,
     loading,

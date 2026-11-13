@@ -1,13 +1,9 @@
 import { serve } from "https://deno.land/std@0.190.0/http/server.ts";
 import Stripe from "https://esm.sh/stripe@18.5.0";
-import { createClient } from "npm:@supabase/supabase-js@2.49.1";
+import { createClient } from "npm:@supabase/supabase-js@2.99.1";
 import { getCheckoutOrigin } from "../_shared/checkout-origin.ts";
-
-const corsHeaders = {
-  "Access-Control-Allow-Origin": "*",
-  "Access-Control-Allow-Headers":
-    "authorization, x-client-info, apikey, content-type, x-supabase-client-platform, x-supabase-client-platform-version, x-supabase-client-runtime, x-supabase-client-runtime-version",
-};
+import { corsHeaders } from 'npm:@supabase/supabase-js@2/cors';
+import { isPaymentTrialAccount } from '../_shared/payment-trial.ts';
 
 // Map pack names (from pick_packs.name) to Stripe price IDs
 const PACK_PRICES: Record<string, string> = {
@@ -36,10 +32,9 @@ serve(async (req) => {
     const { data: userData, error: userErr } = await userClient.auth.getUser();
     if (userErr || !userData?.user) throw new Error("Unauthorized");
     const userId = userData.user.id;
-    const userEmail = userData.user.email ?? undefined;
-
-    const { packId } = await req.json();
-    if (!packId) throw new Error("Missing packId");
+    const { packId, returnOrigin } = await req.json();
+    if (typeof packId !== 'string' || !/^[0-9a-f-]{36}$/i.test(packId)) throw new Error("Invalid packId");
+    const destination = returnOrigin === undefined ? origin : getCheckoutOrigin(returnOrigin);
 
     // Fetch authoritative pack data from DB
     const admin = createClient(
@@ -49,8 +44,10 @@ serve(async (req) => {
     );
     const { data: config, error: configError } = await admin.from('global_config').select('beta_mode').limit(1).single();
     if (configError || !config) throw new Error('Payment configuration unavailable');
-    if (config.beta_mode) {
-      return new Response(JSON.stringify({ error: 'Stripe purchases are disabled during the trial' }), {
+    const { data: isAdmin, error: roleError } = await admin.rpc('has_role', { _user_id: userId, _role: 'admin' });
+    if (roleError) throw new Error('Payment authorization unavailable');
+    if (config.beta_mode && !isPaymentTrialAccount(userId, isAdmin === true)) {
+      return new Response(JSON.stringify({ error: 'Stripe real trial is restricted to the owner' }), {
         status: 403, headers: { ...corsHeaders, 'Content-Type': 'application/json' },
       });
     }
@@ -69,20 +66,20 @@ serve(async (req) => {
       apiVersion: "2025-08-27.basil",
     });
 
-    let customerId: string | undefined;
-    if (userEmail) {
-      const customers = await stripe.customers.list({ email: userEmail, limit: 1 });
-      if (customers.data.length > 0) customerId = customers.data[0].id;
+    const account = await stripe.accounts.retrieve();
+    if (account.id !== 'acct_1SxTl1EiIlwiZF4c') throw new Error('La clave de Stripe pertenece a otra cuenta; no se abrirá el pago');
+    if (!account.charges_enabled) throw new Error('Stripe todavía no permite cobrar con esta cuenta; completa su verificación antes de probar tu Visa');
+    const price = await stripe.prices.retrieve(priceId);
+    if (!price.livemode || !price.active || price.currency !== 'eur' || price.unit_amount !== Math.round(Number(pack.price) * 100)) {
+      throw new Error('El precio de Stripe no corresponde al pack en pagos reales');
     }
 
-
     const session = await stripe.checkout.sessions.create({
-      customer: customerId,
-      customer_email: customerId ? undefined : userEmail,
+      payment_method_types: ['card'],
       line_items: [{ price: priceId, quantity: 1 }],
       mode: "payment",
-      success_url: `${origin}/payment-success?session_id={CHECKOUT_SESSION_ID}`,
-      cancel_url: `${origin}/buy-packs`,
+      success_url: `${destination}/payment-success?session_id={CHECKOUT_SESSION_ID}`,
+      cancel_url: `${destination}/buy-packs`,
       // metadata only carries the pack reference; verify-payment re-reads price/picks from DB
       metadata: {
         user_id: userId,

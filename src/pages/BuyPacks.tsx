@@ -39,15 +39,15 @@ const BuyPacks = () => {
       if (processing) return;
       setProcessing(true);
       try {
-        const { data, error } = await supabase.functions.invoke('create-paypal-order', {
+        const { data, error } = await supabase.functions.invoke('create-checkout', {
           body: { packId: pack.id, returnOrigin: window.location.origin },
         });
         if (error) throw new Error(error instanceof FunctionsHttpError ? await error.context.text() : error.message);
         const destination = new URL(data.url);
-        if (destination.origin !== 'https://www.paypal.com') throw new Error('Destino de pago no válido');
+        if (destination.origin !== 'https://checkout.stripe.com') throw new Error('Destino de pago no válido');
         window.location.assign(destination.href);
       } catch (error) {
-        toast.error(error instanceof Error ? error.message : 'No se pudo abrir PayPal');
+        toast.error(error instanceof Error ? error.message : 'No se pudo abrir Stripe');
         setProcessing(false);
       }
       return;
@@ -154,7 +154,7 @@ const BuyPacks = () => {
             <div className="space-y-3">
               {canUseRealPaymentTrial(user.id, isAdmin) && (
                 <p role="status" className="text-sm text-muted-foreground mb-3">
-                  Pago real solo para tu cuenta. El importe se cobrará al confirmar en PayPal; puede haber comisiones.
+                  Visa con Stripe · Pago real solo para tu cuenta. El importe se cobrará al confirmar en Stripe; puede haber comisiones.
                 </p>
               )}
               {packs.map((pack) => {

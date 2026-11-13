@@ -680,6 +680,15 @@ export type Database = {
         }
         Returns: number
       }
+      fulfill_stripe_purchase: {
+        Args: {
+          p_amount: number
+          p_pack_id: string
+          p_session_id: string
+          p_user_id: string
+        }
+        Returns: number
+      }
       get_admin_dashboard_stats: { Args: never; Returns: Json }
       get_effective_max_picks: { Args: { p_app_mode: string }; Returns: number }
       get_matched_user_profile: {

@@ -1,12 +1,8 @@
 import { serve } from "https://deno.land/std@0.190.0/http/server.ts";
 import Stripe from "https://esm.sh/stripe@18.5.0";
-import { createClient } from "npm:@supabase/supabase-js@2.49.1";
-
-const corsHeaders = {
-  "Access-Control-Allow-Origin": "*",
-  "Access-Control-Allow-Headers":
-    "authorization, x-client-info, apikey, content-type, x-supabase-client-platform, x-supabase-client-platform-version, x-supabase-client-runtime, x-supabase-client-runtime-version",
-};
+import { createClient } from "npm:@supabase/supabase-js@2.99.1";
+import { corsHeaders } from 'npm:@supabase/supabase-js@2/cors';
+import { paidStripeAmount } from '../_shared/stripe-payment.ts';
 
 serve(async (req) => {
   if (req.method === "OPTIONS") {
@@ -28,13 +24,17 @@ serve(async (req) => {
     const userId = userData.user.id;
 
     const { sessionId } = await req.json();
-    if (!sessionId) throw new Error("Missing sessionId");
+    if (typeof sessionId !== 'string' || !/^cs_live_[A-Za-z0-9]{1,255}$/.test(sessionId)) throw new Error("Invalid live sessionId");
 
     const stripe = new Stripe(Deno.env.get("STRIPE_SECRET_KEY") || "", {
       apiVersion: "2025-08-27.basil",
     });
 
     const session = await stripe.checkout.sessions.retrieve(sessionId);
+    const meta = session.metadata;
+    if (!meta || meta.user_id !== userId || !meta.pack_id) {
+      throw new Error("Unauthorized: session does not belong to this user");
+    }
 
     if (session.payment_status !== "paid") {
       return new Response(JSON.stringify({ success: false, error: "Payment not completed" }), {
@@ -43,10 +43,7 @@ serve(async (req) => {
       });
     }
 
-    const meta = session.metadata;
-    if (!meta || meta.user_id !== userId || !meta.pack_id) {
-      throw new Error("Unauthorized: session does not belong to this user");
-    }
+    const paidAmount = paidStripeAmount(session);
 
     const supabaseAdmin = createClient(
       Deno.env.get("SUPABASE_URL") ?? "",
@@ -54,61 +51,10 @@ serve(async (req) => {
       { auth: { persistSession: false } },
     );
 
-    // Re-read authoritative pack data
-    const { data: pack, error: packErr } = await supabaseAdmin
-      .from("pick_packs")
-      .select("id, name, picks_count, price")
-      .eq("id", meta.pack_id)
-      .single();
-    if (packErr || !pack) throw new Error("Pack not found");
-
-    const picksCount = Number(pack.picks_count);
-    const price = Number(pack.price);
-
-    const { data: existingPurchase } = await supabaseAdmin
-      .from("pack_purchases")
-      .select("id")
-      .eq("payment_method", `stripe:${sessionId}`)
-      .limit(1);
-
-    if (existingPurchase && existingPurchase.length > 0) {
-      return new Response(JSON.stringify({ success: true, already_processed: true }), {
-        headers: { ...corsHeaders, "Content-Type": "application/json" },
-        status: 200,
-      });
-    }
-
-    const { error: purchaseError } = await supabaseAdmin
-      .from("pack_purchases")
-      .insert({
-        user_id: userId,
-        pack_id: pack.id,
-        pack_name: pack.name,
-        picks_count: picksCount,
-        price: price,
-        payment_method: `stripe:${sessionId}`,
-      });
-
-    if (purchaseError) throw new Error(`Purchase insert failed: ${purchaseError.message}`);
-
-    const { data: currentBalance } = await supabaseAdmin
-      .from("user_pick_balance")
-      .select("picks_remaining, total_purchased, total_used")
-      .eq("user_id", userId)
-      .single();
-
-    const remaining = (currentBalance?.picks_remaining ?? 0) + picksCount;
-    const purchased = (currentBalance?.total_purchased ?? 0) + picksCount;
-    const used = currentBalance?.total_used ?? 0;
-
-    const { error: balanceError } = await supabaseAdmin
-      .from("user_pick_balance")
-      .upsert(
-        { user_id: userId, picks_remaining: remaining, total_purchased: purchased, total_used: used },
-        { onConflict: "user_id" },
-      );
-
-    if (balanceError) throw new Error(`Balance update failed: ${balanceError.message}`);
+    const { data: picksCount, error: fulfillmentError } = await supabaseAdmin.rpc('fulfill_stripe_purchase', {
+      p_user_id: userId, p_pack_id: meta.pack_id, p_session_id: sessionId, p_amount: paidAmount,
+    });
+    if (fulfillmentError) throw new Error('Pago confirmado; créditos pendientes. No vuelvas a pagar: ' + fulfillmentError.message);
 
     return new Response(
       JSON.stringify({ success: true, picks_added: picksCount }),

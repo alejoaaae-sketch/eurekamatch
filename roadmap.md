@@ -1,4 +1,6 @@
 # Prueba de presentación
+- [ ] Cambiar la prueba del propietario a Visa en Stripe y comprobar la cuenta, los precios reales y la apertura del pago.
+- [ ] Abonar pagos Stripe de forma única y recuperable, sin cobrar desde las comprobaciones.
 - [x] Preparar pago PayPal real solo para el propietario, manteniendo la prueba para los demás.
 - [x] Garantizar entrega única y recuperable de créditos tras el cobro.
 - [x] Verificar acceso autenticado y creación del pedido sin realizar cargos.

@@ -1,10 +1,11 @@
 # Prueba de presentación
-- [ ] Cambiar la prueba del propietario a Visa en Stripe y comprobar la cuenta, los precios reales y la apertura del pago.
-- [ ] Abonar pagos Stripe de forma única y recuperable, sin cobrar desde las comprobaciones.
+- [x] Cambiar la prueba del propietario a Visa en Stripe; verificar la cuenta desde la compra autenticada sin cobrar.
+- [x] Abonar pagos Stripe de forma única y recuperable, sin cobrar desde las comprobaciones.
+- [ ] Abrir Stripe y confirmar precios/cobro real: pendiente de que el propietario complete la verificación de Stripe (charges_enabled=false).
 - [x] Preparar pago PayPal real solo para el propietario, manteniendo la prueba para los demás.
 - [x] Garantizar entrega única y recuperable de créditos tras el cobro.
 - [x] Verificar acceso autenticado y creación del pedido sin realizar cargos.
-- [ ] Confirmación del cobro y entrega real pendiente de la compra del propietario; PayPal bloquea el navegador automatizado.
+- [x] Sustituir la prueba PayPal por Stripe a petición del propietario; no se efectuaron cargos PayPal.
 - [x] Aplicar dos elecciones principales, cinco conservadas y sustituciones de 1/3 créditos sin reiniciar la caducidad.
 - [x] Excluir elecciones caducadas a los 90 días y conservar el historial de coincidencias.
 - [x] Mostrar cupos, días restantes y confirmación de conservación en castellano.

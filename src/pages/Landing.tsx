@@ -1,11 +1,9 @@
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
-import { Heart, Users, Flame, Trophy, Sparkles } from "lucide-react";
+import { Heart, Users, Flame, Trophy, Sparkles, ArrowRight, LogIn } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useAuth } from "@/hooks/useAuth";
-import { useAllAppConfigs } from "@/hooks/useAllAppConfigs";
 import { Link } from "react-router-dom";
-import type { AppType } from "@/config/app.config";
 import { LANDING_EXPERIMENT_ENABLED, landingExperimentCopy } from "@/config/landing-experiment";
 import LegacyLanding from "./LegacyLanding";
 import mutualGlance from "@/assets/mutual-glance.jpg";
@@ -21,12 +19,11 @@ function ExperimentLanding() {
   const navigate = useNavigate();
   const { t } = useTranslation();
   const { user, loading: authLoading } = useAuth();
-  const { isAppEnabled, loading: configLoading } = useAllAppConfigs();
   const copy = landingExperimentCopy;
 
-  const selectMode = (type: AppType) => {
-    sessionStorage.setItem('eureka_app_type', type);
-    navigate(user ? '/home' : `/app?app=${type}`);
+  const openAccess = (mode: 'signup' | 'login') => {
+    sessionStorage.setItem('eureka_app_type', 'love');
+    navigate(user ? '/home' : `/login?app=love&mode=${mode}`);
   };
 
   return (
@@ -46,16 +43,18 @@ function ExperimentLanding() {
             <p className="mt-6 max-w-md text-base leading-relaxed text-secondary-foreground md:text-lg">{copy.subtitle}</p>
           </div>
           <div className="mt-12 max-w-xl md:mt-16">
-            <h2 className="mb-5 text-base font-medium">{copy.choose}</h2>
-            <div className="grid grid-cols-4 gap-2 sm:gap-4">
+            <div className="grid grid-cols-4 gap-2 sm:gap-4" aria-hidden="true">
               {modes.map(({ type, label, Icon }) => {
-                const enabled = isAppEnabled(type);
                 return (
-                  <Button key={type} variant="ghost" disabled={authLoading || configLoading || !enabled} aria-label={label} title={label} onClick={() => selectMode(type)} className={`landing-mode landing-mode-${type} group h-20 flex-col gap-3 rounded-lg px-1 py-3 whitespace-normal`}>
+                  <div key={type} className={`landing-mode-${type} flex h-20 items-center justify-center`}>
                     <span className="landing-mode-icon flex h-14 w-14 items-center justify-center rounded-full transition-transform group-hover:scale-105"><Icon aria-hidden="true" className="h-7 w-7" /></span>
-                  </Button>
+                  </div>
                 );
               })}
+            </div>
+            <div className="mt-7 flex flex-wrap gap-3">
+              <Button size="lg" disabled={authLoading} onClick={() => openAccess('signup')} className="flex-1 rounded-lg sm:flex-none">Regístrate <ArrowRight /></Button>
+              <Button size="lg" variant="outline" disabled={authLoading} onClick={() => openAccess('login')} className="flex-1 rounded-lg bg-background/60 sm:flex-none"><LogIn /> Entra</Button>
             </div>
           </div>
         </div>

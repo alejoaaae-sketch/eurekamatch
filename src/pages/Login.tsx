@@ -13,20 +13,21 @@ import PasswordStrengthIndicator from "@/components/PasswordStrengthIndicator";
 import { toast } from "sonner";
 import { useAppConfig } from "@/hooks/useAppConfig";
 import { getAppConfig, AppType } from "@/config/app.config";
+import { LANDING_EXPERIMENT_ENABLED } from "@/config/landing-experiment";
 
 type LoginStep = "form";
 
 const Login = () => {
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const appType = (searchParams.get('app') as AppType) || 'love';
   const referralCode = searchParams.get('ref') || '';
   const config = getAppConfig(appType);
   const { user, loading: authLoading, signIn, signUp } = useAuth();
   const { verifyEmail } = useAppConfig();
   const [step] = useState<LoginStep>("form");
-  const [isLogin, setIsLogin] = useState(!referralCode);
+  const [isLogin, setIsLogin] = useState(searchParams.get('mode') === 'signup' ? false : !referralCode);
   const [showPassword, setShowPassword] = useState(false);
   const [phone, setPhone] = useState("");
   const [displayName, setDisplayName] = useState("");
@@ -39,10 +40,14 @@ const Login = () => {
   const supabaseUrl = import.meta.env.VITE_SUPABASE_URL;
 
   useEffect(() => {
+    if (LANDING_EXPERIMENT_ENABLED && appType === 'love') {
+      sessionStorage.setItem('eureka_app_type', 'love');
+      void i18n.changeLanguage('es');
+    }
     if (user && !authLoading) {
       navigate("/home");
     }
-  }, [user, authLoading, navigate]);
+  }, [user, authLoading, navigate, appType, i18n]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -157,9 +162,9 @@ const Login = () => {
           <ArrowLeft className="w-5 h-5" />
         </button>
       </div>
-      <div className="absolute top-6 right-6">
+      {!(LANDING_EXPERIMENT_ENABLED && appType === 'love') && <div className="absolute top-6 right-6">
         <LanguageSelector />
-      </div>
+      </div>}
 
       {/* Logo */}
       <div className="mb-12 animate-fade-in-up">

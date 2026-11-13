@@ -1,4 +1,5 @@
 // App configuration - can be overridden by environment variables
+import { LANDING_EXPERIMENT_ENABLED } from './landing-experiment';
 export type AppType = 'love' | 'friends' | 'sex' | 'hobby';
 
 // BETA MODE: Set to false to enable payments
@@ -97,10 +98,13 @@ export const currentAppType = getAppType();
 // change via sessionStorage during SPA navigation between app modes).
 export const appConfig: AppConfig = new Proxy({} as AppConfig, {
   get(_, prop: string) {
-    return appConfigs[getAppType()][prop as keyof AppConfig];
+    return getAppConfig(getAppType())[prop as keyof AppConfig];
   },
 });
 
 export const getAppConfig = (type?: AppType): AppConfig => {
-  return appConfigs[type || currentAppType];
+  const config = appConfigs[type || currentAppType];
+  return LANDING_EXPERIMENT_ENABLED && config.appType === 'love'
+    ? { ...config, appName: 'ysilegustas', tagline: 'Descubre si le gustas a alguien que te gusta' }
+    : config;
 };

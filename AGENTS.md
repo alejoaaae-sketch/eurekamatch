@@ -1,2 +1,3 @@
 # Architecture rules
 - Keep the landing presentation experiment behind `LANDING_EXPERIMENT_ENABLED`, preserving the legacy landing independently, so reverting presentation does not alter account data or business rules.
+- Use the same experiment switch for the Love display-name override and direct landing authentication links; keep the stored mode identifier unchanged so existing picks and matches remain available.

@@ -19,6 +19,7 @@ import { appConfig } from "@/config/app.config";
 import { useAppConfig } from "@/hooks/useAppConfig";
 import { supabase } from "@/integrations/supabase/client";
 import { Ban } from "lucide-react";
+import { LANDING_EXPERIMENT_ENABLED } from "@/config/landing-experiment";
 
 const Home = () => {
   const navigate = useNavigate();
@@ -50,6 +51,7 @@ const Home = () => {
   
   // Force re-render when language changes
   useEffect(() => {
+    if (LANDING_EXPERIMENT_ENABLED && appConfig.appType === 'love') void i18n.changeLanguage('es');
     const handleLanguageChange = () => forceUpdate(n => n + 1);
     i18n.on('languageChanged', handleLanguageChange);
     return () => {
@@ -143,7 +145,7 @@ const Home = () => {
             </div>
             <div className="flex flex-col">
               <h1 className="text-lg font-semibold text-foreground leading-tight">{appConfig.appName}</h1>
-              <span 
+              {!(LANDING_EXPERIMENT_ENABLED && appConfig.appType === 'love') && <span 
                 className="text-[10px] font-medium uppercase tracking-wider opacity-80"
                 style={{ color: appConfig.primaryColor }}
               >
@@ -151,7 +153,7 @@ const Home = () => {
                 {appConfig.appType === 'friends' && '🤝 FRIENDS'}
                 {appConfig.appType === 'sex' && '🔥 SEX'}
                 {appConfig.appType === 'hobby' && '⚽ HOBBY'}
-              </span>
+              </span>}
             </div>
           </div>
           <div className="flex items-center gap-2">
@@ -162,7 +164,7 @@ const Home = () => {
               <Coins className="w-4 h-4 text-amber-500" />
               <span>{picksRemaining}</span>
             </button>
-            <LanguageSelector />
+            {!(LANDING_EXPERIMENT_ENABLED && appConfig.appType === 'love') && <LanguageSelector />}
             <button 
               onClick={() => navigate("/profile")}
               className="w-9 h-9 rounded-full bg-secondary flex items-center justify-center text-muted-foreground hover:text-foreground transition-colors"

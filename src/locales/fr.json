@@ -171,7 +171,7 @@
       "devNotice": "Ceci est un outil en développement. Nous construisons quelque chose de spécial."
     },
     "variants": {
-      "title": "Choisissez votre Eureka",
+      "title": "Choisissez votre ysilegustas",
       "explore": "Explorer",
       "love": {
         "tagline": "Découvrez si l'amour est mutuel. Sans risque, sans rejet."
@@ -204,20 +204,20 @@
   "appLanding": {
     "cta": "Commencer",
     "howItWorks": "Comment ça marche ?",
-    "whyUs": "Pourquoi EUREKA ?",
+    "whyUs": "Pourquoi ysilegustas ?",
     "readyToStart": "Prêt à découvrir ?",
     "readyDescription": "Créez votre compte gratuit et commencez à découvrir des connexions mutuelles.",
     "love": {
       "description": "Et s'il/elle pense aussi à toi ? Découvre si l'amour est mutuel. Sans risques. Sans rejets."
     },
     "friends": {
-      "description": "Amis Eureka. Des amis dont tu sais que c'est mutuel. Il y a des gens avec qui tu passes de super moments… mais tu ne sais jamais si l'autre en a aussi envie. Eureka Friends transforme ce doute en clarté. Amitié adulte : parfois oui, parfois non… et ce n'est pas grave."
+      "description": "Amis ysilegustas. Des amis dont tu sais que c'est mutuel. Il y a des gens avec qui tu passes de super moments… mais tu ne sais jamais si l'autre en a aussi envie. ysilegustas transforme ce doute en clarté. Amitié adulte : parfois oui, parfois non… et ce n'est pas grave."
     },
     "sex": {
-      "description": "EUREKA SEX est une app pour savoir si le désir est mutuel entre deux personnes qui se connaissent déjà, sans pression et sans exposition. Ce n'est pas pour chercher. C'est pour confirmer."
+      "description": "ysilegustas est une app pour savoir si le désir est mutuel entre deux personnes qui se connaissent déjà, sans pression et sans exposition. Ce n'est pas pour chercher. C'est pour confirmer."
     },
     "hobby": {
-      "description": "EUREKA HOBBY est fait pour découvrir si quelqu'un veut partager un hobby avec vous. Sport, voyages, plans, cuisine, musique... Si l'intérêt est mutuel, nous vous mettons en contact. Sans exposition, sans rejet."
+      "description": "ysilegustas est fait pour découvrir si quelqu'un veut partager un hobby avec vous. Sport, voyages, plans, cuisine, musique... Si l'intérêt est mutuel, nous vous mettons en contact. Sans exposition, sans rejet."
     },
     "steps": {
       "step1": {
@@ -291,9 +291,9 @@
     "lastUpdated": "Dernière mise à jour",
     "terms": {
       "acceptance": "Acceptation des conditions",
-      "acceptanceText": "En accédant et en utilisant EUREKA, vous acceptez ces conditions générales. Si vous n'êtes pas d'accord, n'utilisez pas le service.",
+      "acceptanceText": "En accédant et en utilisant ysilegustas, vous acceptez ces conditions générales. Si vous n'êtes pas d'accord, n'utilisez pas le service.",
       "service": "Description du service",
-      "serviceText": "EUREKA est une plateforme qui permet de découvrir les intérêts mutuels entre les personnes. Le service connecte les utilisateurs qui se choisissent mutuellement, en maintenant la confidentialité jusqu'à ce qu'une correspondance se produise.",
+      "serviceText": "ysilegustas est une plateforme qui permet de découvrir les intérêts mutuels entre les personnes. Le service connecte les utilisateurs qui se choisissent mutuellement, en maintenant la confidentialité jusqu'à ce qu'une correspondance se produise.",
       "userConduct": "Conduite de l'utilisateur",
       "userConductText": "Vous vous engagez à utiliser le service de manière responsable, à ne pas harceler d'autres utilisateurs, à ne pas créer de faux comptes et à respecter la vie privée des autres utilisateurs.",
       "privacy": "Confidentialité",
@@ -301,7 +301,7 @@
       "termination": "Résiliation",
       "terminationText": "Nous nous réservons le droit de suspendre ou de supprimer votre compte si vous violez ces conditions. Vous pouvez supprimer votre compte à tout moment depuis les paramètres.",
       "liability": "Limitation de responsabilité",
-      "liabilityText": "EUREKA n'est pas responsable des interactions entre utilisateurs en dehors de la plateforme. Le service est fourni 'en l'état' sans garantie d'aucune sorte."
+      "liabilityText": "ysilegustas n'est pas responsable des interactions entre utilisateurs en dehors de la plateforme. Le service est fourni 'en l'état' sans garantie d'aucune sorte."
     },
     "privacy": {
       "dataCollection": "Données que nous collectons",

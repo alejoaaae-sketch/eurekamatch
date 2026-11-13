@@ -18,10 +18,10 @@ export default defineConfig(({ mode }) => ({
     mode === "development" && componentTagger(),
     VitePWA({
       registerType: "autoUpdate",
-      includeAssets: ["favicon.ico", "apple-touch-icon.png", "mask-icon.svg"],
+      includeAssets: ["favicon.png", "apple-touch-icon.png", "mask-icon.svg"],
       manifest: {
-        name: "EUREKA - Descubre si es mutuo",
-        short_name: "EUREKA",
+        name: "ysilegustas - Descubre si es mutuo",
+        short_name: "ysilegustas",
         description: "Descubre si el amor, la amistad o la atracción es mutua",
         theme_color: "#e11d48",
         background_color: "#0f0f0f",

@@ -171,7 +171,7 @@
       "devNotice": "Hau garatzen ari den tresna bat da. Zerbait berezia eraikitzen ari gara."
     },
     "variants": {
-      "title": "Aukeratu zure Eureka",
+      "title": "Aukeratu zure ysilegustas",
       "explore": "Esploratu",
       "love": {
         "tagline": "Ezagutu maitasuna elkarrekikoa den. Arriskurik gabe, bazterketarik gabe."
@@ -204,7 +204,7 @@
   "appLanding": {
     "cta": "Hasi orain",
     "howItWorks": "Nola funtzionatzen du?",
-    "whyUs": "Zergatik EUREKA?",
+    "whyUs": "Zergatik ysilegustas?",
     "readyToStart": "Ezagutzeko prest?",
     "readyDescription": "Sortu zure doako kontua eta hasi elkarrekiko konexioak aurkitzen.",
     "love": {
@@ -214,10 +214,10 @@
       "description": "Beraiekin ondo pasatzen duzun laguna, gustatzen zaizuna berarkin egotea.. eta badakizula batzutan baietz esango dizula eta beste batzutan ezetz.. baina badakizula berarekin kontatu dezakezula."
     },
     "sex": {
-      "description": "EUREKA SEX aplikazio bat da elkar ezagutzen duten bi pertsonen artean desira elkarrekikoa den jakiteko, presiorik eta esposiziorik gabe. Ez da bilatzeko. Baieztatzeko da."
+      "description": "ysilegustas aplikazio bat da elkar ezagutzen duten bi pertsonen artean desira elkarrekikoa den jakiteko, presiorik eta esposiziorik gabe. Ez da bilatzeko. Baieztatzeko da."
     },
     "hobby": {
-      "description": "EUREKA HOBBY zurekin hobby bat partekatu nahi duen norbait dagoen jakiteko tresna bat da. Kirola, bidaiak, planak, sukaldea, musika... Interesa elkarrekikoa bada, konektatzen zaituztegu. Esposiziorik gabe, bazterketarik gabe."
+      "description": "ysilegustas zurekin hobby bat partekatu nahi duen norbait dagoen jakiteko tresna bat da. Kirola, bidaiak, planak, sukaldea, musika... Interesa elkarrekikoa bada, konektatzen zaituztegu. Esposiziorik gabe, bazterketarik gabe."
     },
     "steps": {
       "step1": {
@@ -291,9 +291,9 @@
     "lastUpdated": "Azken eguneratzea",
     "terms": {
       "acceptance": "Baldintzen Onarpena",
-      "acceptanceText": "EUREKA atzitu eta erabiltzean, baldintza hauek onartzen dituzu. Ados ez bazaude, ez erabili zerbitzua.",
+      "acceptanceText": "ysilegustas atzitu eta erabiltzean, baldintza hauek onartzen dituzu. Ados ez bazaude, ez erabili zerbitzua.",
       "service": "Zerbitzuaren Deskribapena",
-      "serviceText": "EUREKA pertsonen arteko interes elkarrekikoak aurkitzeko plataforma bat da. Zerbitzuak elkar hautatzen duten erabiltzaileak konektatzen ditu, pribatutasuna mantenduz bat-etortzea gertatzen den arte.",
+      "serviceText": "ysilegustas pertsonen arteko interes elkarrekikoak aurkitzeko plataforma bat da. Zerbitzuak elkar hautatzen duten erabiltzaileak konektatzen ditu, pribatutasuna mantenduz bat-etortzea gertatzen den arte.",
       "userConduct": "Erabiltzailearen Jokabidea",
       "userConductText": "Konpromisoa hartzen duzu zerbitzua modu arduratsuan erabiltzeko, beste erabiltzaileak ez jazartzeko, kontu faltsuak ez sortzeko eta beste erabiltzaileen pribatutasuna errespetatzeko.",
       "privacy": "Pribatutasuna",
@@ -301,7 +301,7 @@
       "termination": "Amaiera",
       "terminationText": "Baldintza hauek urratzen badituzu, zure kontua eteteko edo ezabatzeko eskubidea erreserbatzen dugu. Zure kontua edozein unetan ezabatu dezakezu ezarpenetatik.",
       "liability": "Erantzukizun Mugaketa",
-      "liabilityText": "EUREKA ez da plataformatik kanpoko erabiltzaileen arteko interakzioen arduraduna. Zerbitzua 'dagoen bezala' eskaintzen da, inolako bermerik gabe."
+      "liabilityText": "ysilegustas ez da plataformatik kanpoko erabiltzaileen arteko interakzioen arduraduna. Zerbitzua 'dagoen bezala' eskaintzen da, inolako bermerik gabe."
     },
     "privacy": {
       "dataCollection": "Biltzen ditugun Datuak",

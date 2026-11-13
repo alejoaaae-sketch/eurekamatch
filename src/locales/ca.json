@@ -171,7 +171,7 @@
       "devNotice": "Aquesta és una eina en desenvolupament. Estem construint alguna cosa especial."
     },
     "variants": {
-      "title": "Tria el teu Eureka",
+      "title": "Tria el teu ysilegustas",
       "explore": "Explorar",
       "love": {
         "tagline": "Descobreix si l'amor és mutu. Sense riscos, sense rebutjos."
@@ -204,20 +204,20 @@
   "appLanding": {
     "cta": "Començar ara",
     "howItWorks": "Com funciona?",
-    "whyUs": "Per què EUREKA?",
+    "whyUs": "Per què ysilegustas?",
     "readyToStart": "Preparat per descobrir?",
     "readyDescription": "Crea el teu compte gratuït i comença a descobrir connexions mútues.",
     "love": {
       "description": "I si també pensa en tu? Descobreix si l'amor és mutu. Sense riscos. Sense rebutjos."
     },
     "friends": {
-      "description": "Amics Eureka. Amics amb qui saps que és mutu. Hi ha gent amb qui t'ho passes genial… però mai saps si a l'altre també li ve de gust. Eureka Friends converteix aquest dubte en claredat. Amistat adulta: de vegades sí, de vegades no… i no passa res."
+      "description": "Amics ysilegustas. Amics amb qui saps que és mutu. Hi ha gent amb qui t'ho passes genial… però mai saps si a l'altre també li ve de gust. ysilegustas converteix aquest dubte en claredat. Amistat adulta: de vegades sí, de vegades no… i no passa res."
     },
     "sex": {
-      "description": "EUREKA SEX és una app per saber si el desig és mutu entre dues persones que ja es coneixen, sense pressió i sense exposició. No és per buscar. És per confirmar."
+      "description": "ysilegustas és una app per saber si el desig és mutu entre dues persones que ja es coneixen, sense pressió i sense exposició. No és per buscar. És per confirmar."
     },
     "hobby": {
-      "description": "EUREKA HOBBY és per descobrir si algú vol compartir un hobby amb tu. Esport, viatges, plans, cuina, música... Si l'interès és mutu, us posem en contacte. Sense exposició, sense rebuig."
+      "description": "ysilegustas és per descobrir si algú vol compartir un hobby amb tu. Esport, viatges, plans, cuina, música... Si l'interès és mutu, us posem en contacte. Sense exposició, sense rebuig."
     },
     "steps": {
       "step1": {
@@ -291,9 +291,9 @@
     "lastUpdated": "Última actualització",
     "terms": {
       "acceptance": "Acceptació dels Termes",
-      "acceptanceText": "En accedir i utilitzar EUREKA, acceptes aquests termes i condicions. Si no hi estàs d'acord, no utilitzis el servei.",
+      "acceptanceText": "En accedir i utilitzar ysilegustas, acceptes aquests termes i condicions. Si no hi estàs d'acord, no utilitzis el servei.",
       "service": "Descripció del Servei",
-      "serviceText": "EUREKA és una plataforma que permet descobrir interessos mutus entre persones. El servei connecta usuaris que s'escullen mútuament, mantenint la privacitat fins que es produeix una coincidència.",
+      "serviceText": "ysilegustas és una plataforma que permet descobrir interessos mutus entre persones. El servei connecta usuaris que s'escullen mútuament, mantenint la privacitat fins que es produeix una coincidència.",
       "userConduct": "Conducta de l'Usuari",
       "userConductText": "Et compromets a usar el servei de forma responsable, no assetjar altres usuaris, no crear comptes falsos i respectar la privacitat dels altres usuaris.",
       "privacy": "Privacitat",
@@ -301,7 +301,7 @@
       "termination": "Terminació",
       "terminationText": "Ens reservem el dret de suspendre o eliminar el teu compte si violes aquests termes. Pots eliminar el teu compte en qualsevol moment des dels ajustos.",
       "liability": "Limitació de Responsabilitat",
-      "liabilityText": "EUREKA no es fa responsable de les interaccions entre usuaris fora de la plataforma. El servei es proporciona 'tal qual' sense garanties de cap tipus."
+      "liabilityText": "ysilegustas no es fa responsable de les interaccions entre usuaris fora de la plataforma. El servei es proporciona 'tal qual' sense garanties de cap tipus."
     },
     "privacy": {
       "dataCollection": "Dades que Recopilem",

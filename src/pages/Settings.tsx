@@ -214,7 +214,7 @@ const Settings = () => {
               onClick={() => {
                 const url = `${window.location.origin}/login?ref=${referralCode}`;
                 if (navigator.share) {
-                  navigator.share({ title: 'EurekaMatch', text: t("referral.shareText"), url });
+                  navigator.share({ title: 'ysilegustas', text: t("referral.shareText"), url });
                 } else {
                   navigator.clipboard.writeText(url);
                   toast.success(t("common.copied"));

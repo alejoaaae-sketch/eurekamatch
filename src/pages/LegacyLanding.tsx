@@ -83,7 +83,7 @@ const Landing = () => {
             <div className="w-10 h-10 rounded-full flex items-center justify-center bg-gradient-to-br from-violet-500 to-purple-600 text-white">
               <Sparkles className="w-5 h-5" />
             </div>
-            <span className="text-lg font-semibold text-foreground">EUREKA</span>
+            <span className="text-lg font-semibold text-foreground">ysilegustas</span>
           </div>
           <LanguageSelector />
         </div>
@@ -231,7 +231,7 @@ const Landing = () => {
         <div className="max-w-4xl mx-auto text-center space-y-3">
           <LegalFooter />
           <p className="text-muted-foreground text-sm">
-            © {new Date().getFullYear()} EUREKA. {t("landing.footer.rights")}
+            © {new Date().getFullYear()} ysilegustas. {t("landing.footer.rights")}
           </p>
         </div>
       </footer>

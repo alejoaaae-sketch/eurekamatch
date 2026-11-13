@@ -85,13 +85,13 @@ serve(async (req) => {
               currency_code: "EUR",
               value: Number(pack.price).toFixed(2),
             },
-            description: `EUREKA - ${pack.name} (${pack.picks_count} créditos)`,
+            description: `ysilegustas - ${pack.name} (${pack.picks_count} créditos)`,
             // custom_id stores only user_id and pack_id; price/picks are re-read from DB on capture
             custom_id: JSON.stringify({ user_id: userId, pack_id: pack.id }),
           },
         ],
         application_context: {
-          brand_name: "EUREKA",
+          brand_name: "ysilegustas",
           landing_page: "BILLING",
           shipping_preference: "NO_SHIPPING",
           user_action: "PAY_NOW",

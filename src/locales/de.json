@@ -197,7 +197,7 @@
       "devNotice": "Dies ist ein Tool in Entwicklung. Wir bauen etwas Besonderes."
     },
     "variants": {
-      "title": "Wähle dein Eureka",
+      "title": "Wähle dein ysilegustas",
       "explore": "Entdecken",
       "love": {
         "tagline": "Finde heraus, ob die Liebe gegenseitig ist. Ohne Risiko, ohne Ablehnung."
@@ -230,20 +230,20 @@
   "appLanding": {
     "cta": "Jetzt starten",
     "howItWorks": "Wie funktioniert es?",
-    "whyUs": "Warum EUREKA?",
+    "whyUs": "Warum ysilegustas?",
     "readyToStart": "Bereit zu entdecken?",
     "readyDescription": "Erstelle dein kostenloses Konto und beginne, gegenseitige Verbindungen zu entdecken.",
     "love": {
       "description": "Was, wenn er/sie auch an dich denkt? Finde heraus, ob die Liebe gegenseitig ist. Ohne Risiko. Ohne Ablehnung."
     },
     "friends": {
-      "description": "Eureka Friends. Freunde, bei denen du weißt, dass es gegenseitig ist. Es gibt Menschen, mit denen du dich super verstehst… aber du weißt nie, ob der andere auch Lust hat. Eureka Friends verwandelt diesen Zweifel in Klarheit. Erwachsene Freundschaft: manchmal ja, manchmal nein… und das ist in Ordnung."
+      "description": "ysilegustas. Freunde, bei denen du weißt, dass es gegenseitig ist. Es gibt Menschen, mit denen du dich super verstehst… aber du weißt nie, ob der andere auch Lust hat. ysilegustas verwandelt diesen Zweifel in Klarheit. Erwachsene Freundschaft: manchmal ja, manchmal nein… und das ist in Ordnung."
     },
     "sex": {
-      "description": "EUREKA SEX ist eine App, um herauszufinden, ob das Verlangen zwischen zwei Personen, die sich bereits kennen, gegenseitig ist, ohne Druck und ohne Exposition. Es ist nicht zum Suchen. Es ist zum Bestätigen."
+      "description": "ysilegustas ist eine App, um herauszufinden, ob das Verlangen zwischen zwei Personen, die sich bereits kennen, gegenseitig ist, ohne Druck und ohne Exposition. Es ist nicht zum Suchen. Es ist zum Bestätigen."
     },
     "hobby": {
-      "description": "EUREKA HOBBY ist dafür da, herauszufinden, ob jemand ein Hobby mit dir teilen möchte. Sport, Reisen, Pläne, Kochen, Musik... Wenn das Interesse gegenseitig ist, bringen wir euch in Kontakt. Ohne Exposition, ohne Ablehnung."
+      "description": "ysilegustas ist dafür da, herauszufinden, ob jemand ein Hobby mit dir teilen möchte. Sport, Reisen, Pläne, Kochen, Musik... Wenn das Interesse gegenseitig ist, bringen wir euch in Kontakt. Ohne Exposition, ohne Ablehnung."
     },
     "steps": {
       "step1": {
@@ -317,9 +317,9 @@
     "lastUpdated": "Zuletzt aktualisiert",
     "terms": {
       "acceptance": "Annahme der Bedingungen",
-      "acceptanceText": "Durch den Zugriff auf und die Nutzung von EUREKA akzeptierst du diese Allgemeinen Geschäftsbedingungen. Wenn du nicht einverstanden bist, nutze den Dienst nicht.",
+      "acceptanceText": "Durch den Zugriff auf und die Nutzung von ysilegustas akzeptierst du diese Allgemeinen Geschäftsbedingungen. Wenn du nicht einverstanden bist, nutze den Dienst nicht.",
       "service": "Dienstbeschreibung",
-      "serviceText": "EUREKA ist eine Plattform, die es ermöglicht, gegenseitige Interessen zwischen Personen zu entdecken. Der Dienst verbindet Benutzer, die sich gegenseitig wählen, und wahrt die Privatsphäre, bis eine Übereinstimmung auftritt.",
+      "serviceText": "ysilegustas ist eine Plattform, die es ermöglicht, gegenseitige Interessen zwischen Personen zu entdecken. Der Dienst verbindet Benutzer, die sich gegenseitig wählen, und wahrt die Privatsphäre, bis eine Übereinstimmung auftritt.",
       "userConduct": "Benutzerverhalten",
       "userConductText": "Du verpflichtest dich, den Dienst verantwortungsvoll zu nutzen, andere Benutzer nicht zu belästigen, keine falschen Konten zu erstellen und die Privatsphäre anderer Benutzer zu respektieren.",
       "privacy": "Datenschutz",
@@ -327,7 +327,7 @@
       "termination": "Kündigung",
       "terminationText": "Wir behalten uns das Recht vor, dein Konto zu sperren oder zu löschen, wenn du gegen diese Bedingungen verstößt. Du kannst dein Konto jederzeit in den Einstellungen löschen.",
       "liability": "Haftungsbeschränkung",
-      "liabilityText": "EUREKA übernimmt keine Verantwortung für Interaktionen zwischen Benutzern außerhalb der Plattform. Der Dienst wird 'wie besehen' ohne jegliche Garantie bereitgestellt."
+      "liabilityText": "ysilegustas übernimmt keine Verantwortung für Interaktionen zwischen Benutzern außerhalb der Plattform. Der Dienst wird 'wie besehen' ohne jegliche Garantie bereitgestellt."
     },
     "privacy": {
       "dataCollection": "Daten, die wir erheben",

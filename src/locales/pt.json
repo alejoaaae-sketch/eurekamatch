@@ -197,7 +197,7 @@
       "devNotice": "Esta é uma ferramenta em desenvolvimento. Estamos a construir algo especial."
     },
     "variants": {
-      "title": "Escolhe o teu Eureka",
+      "title": "Escolhe o teu ysilegustas",
       "explore": "Explorar",
       "love": {
         "tagline": "Descobre se o amor é mútuo. Sem riscos, sem rejeições."
@@ -230,20 +230,20 @@
   "appLanding": {
     "cta": "Começar agora",
     "howItWorks": "Como funciona?",
-    "whyUs": "Porquê EUREKA?",
+    "whyUs": "Porquê ysilegustas?",
     "readyToStart": "Pronto para descobrir?",
     "readyDescription": "Cria a tua conta grátis e começa a descobrir conexões mútuas.",
     "love": {
       "description": "E se também pensa em ti? Descobre se o amor é mútuo. Sem riscos. Sem rejeições."
     },
     "friends": {
-      "description": "Eureka Friends. Amigos com quem sabes que é mútuo. Há pessoas com quem te divertes imenso… mas nunca sabes se o outro também quer. Eureka Friends transforma essa dúvida em clareza. Amizade adulta: às vezes sim, às vezes não… e não faz mal."
+      "description": "ysilegustas. Amigos com quem sabes que é mútuo. Há pessoas com quem te divertes imenso… mas nunca sabes se o outro também quer. ysilegustas transforma essa dúvida em clareza. Amizade adulta: às vezes sim, às vezes não… e não faz mal."
     },
     "sex": {
-      "description": "EUREKA SEX é uma app para saber se o desejo é mútuo entre duas pessoas que já se conhecem, sem pressão e sem exposição. Não é para procurar. É para confirmar."
+      "description": "ysilegustas é uma app para saber se o desejo é mútuo entre duas pessoas que já se conhecem, sem pressão e sem exposição. Não é para procurar. É para confirmar."
     },
     "hobby": {
-      "description": "EUREKA HOBBY é para descobrir se alguém quer partilhar um hobby contigo. Desporto, viagens, planos, cozinha, música... Se o interesse é mútuo, colocamos-vos em contacto. Sem exposição, sem rejeição."
+      "description": "ysilegustas é para descobrir se alguém quer partilhar um hobby contigo. Desporto, viagens, planos, cozinha, música... Se o interesse é mútuo, colocamos-vos em contacto. Sem exposição, sem rejeição."
     },
     "steps": {
       "step1": {
@@ -317,9 +317,9 @@
     "lastUpdated": "Última atualização",
     "terms": {
       "acceptance": "Aceitação dos Termos",
-      "acceptanceText": "Ao aceder e utilizar EUREKA, aceitas estes termos e condições. Se não concordas, não utilizes o serviço.",
+      "acceptanceText": "Ao aceder e utilizar ysilegustas, aceitas estes termos e condições. Se não concordas, não utilizes o serviço.",
       "service": "Descrição do Serviço",
-      "serviceText": "EUREKA é uma plataforma que permite descobrir interesses mútuos entre pessoas. O serviço conecta utilizadores que se escolhem mutuamente, mantendo a privacidade até que se produz uma coincidência.",
+      "serviceText": "ysilegustas é uma plataforma que permite descobrir interesses mútuos entre pessoas. O serviço conecta utilizadores que se escolhem mutuamente, mantendo a privacidade até que se produz uma coincidência.",
       "userConduct": "Conduta do Utilizador",
       "userConductText": "Comprometes-te a usar o serviço de forma responsável, não assediar outros utilizadores, não criar contas falsas e respeitar a privacidade dos demais utilizadores.",
       "privacy": "Privacidade",
@@ -327,7 +327,7 @@
       "termination": "Terminação",
       "terminationText": "Reservamo-nos o direito de suspender ou eliminar a tua conta se violares estes termos. Podes eliminar a tua conta a qualquer momento a partir das definições.",
       "liability": "Limitação de Responsabilidade",
-      "liabilityText": "EUREKA não se responsabiliza pelas interações entre utilizadores fora da plataforma. O serviço é fornecido 'tal como está' sem garantias de qualquer tipo."
+      "liabilityText": "ysilegustas não se responsabiliza pelas interações entre utilizadores fora da plataforma. O serviço é fornecido 'tal como está' sem garantias de qualquer tipo."
     },
     "privacy": {
       "dataCollection": "Dados que Recolhemos",

@@ -20,7 +20,7 @@ export interface AppConfig {
 const appConfigs: Record<AppType, AppConfig> = {
   love: {
     appType: 'love',
-    appName: 'EUREKA LOVE',
+    appName: 'ysilegustas',
     maxPicks: 2,
     primaryColor: 'hsl(346, 77%, 49%)', // Rose/pink
     accentColor: 'hsl(346, 77%, 59%)',
@@ -28,7 +28,7 @@ const appConfigs: Record<AppType, AppConfig> = {
   },
   friends: {
     appType: 'friends',
-    appName: 'EUREKA FRIENDS',
+    appName: 'ysilegustas',
     maxPicks: 5,
     primaryColor: 'hsl(25, 95%, 53%)', // Orange/amber
     accentColor: 'hsl(25, 95%, 63%)',
@@ -36,7 +36,7 @@ const appConfigs: Record<AppType, AppConfig> = {
   },
   sex: {
     appType: 'sex',
-    appName: 'EUREKA SEX',
+    appName: 'ysilegustas',
     maxPicks: 2,
     primaryColor: 'hsl(0, 84%, 50%)', // Red
     accentColor: 'hsl(0, 84%, 60%)',
@@ -44,7 +44,7 @@ const appConfigs: Record<AppType, AppConfig> = {
   },
   hobby: {
     appType: 'hobby',
-    appName: 'EUREKA HOBBY',
+    appName: 'ysilegustas',
     maxPicks: 5,
     primaryColor: 'hsl(142, 71%, 45%)', // Green
     accentColor: 'hsl(142, 71%, 55%)',

@@ -156,12 +156,12 @@ serve(async (req: Request) => {
     }
 
     const appNames: Record<string, string> = {
-      love: "Eureka Love 💕",
-      friends: "Eureka Friends 🎉",
-      sex: "Eureka Sex 🔥",
-      hobby: "Eureka Hobby 🏆",
+      love: "ysilegustas 💕",
+      friends: "ysilegustas 🎉",
+      sex: "ysilegustas 🔥",
+      hobby: "ysilegustas 🏆",
     };
-    const appLabel = appNames[pick.app_type] || "EurekaMatch";
+    const appLabel = appNames[pick.app_type] || "ysilegustas";
 
     const optOutText = "\n\nPara dejar de recibir estos mensajes, entra en eurekamatch.lovable.app y desactívalo en Ajustes.";
     const template = globalConfig.notification_sms_template ||

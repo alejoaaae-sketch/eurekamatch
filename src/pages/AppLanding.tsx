@@ -347,7 +347,7 @@ const AppLanding = () => {
         <div className="max-w-4xl mx-auto text-center space-y-3">
           <LegalFooter />
           <p className="text-muted-foreground text-sm">
-            © {new Date().getFullYear()} EUREKA. {t("landing.footer.rights")}
+            © {new Date().getFullYear()} ysilegustas. {t("landing.footer.rights")}
           </p>
         </div>
       </footer>

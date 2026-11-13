@@ -89,7 +89,7 @@
     "emptyPicksFreeBadge": "Tienes créditos gratis"
   },
   "onboarding": {
-    "step1Title": "Bienvenido a EurekaMatch",
+    "step1Title": "Bienvenido a ysilegustas",
     "step1Desc": "Descubre si esa persona en la que piensas también piensa en ti. De forma 100% anónima y privada.",
     "step2Title": "Cómo funciona un Pick",
     "step2Desc": "Añade a alguien con su teléfono. Si esa persona también te elige a ti, ¡bingo! Hay match y solo entonces sabréis que es mutuo.",
@@ -212,7 +212,7 @@
       "devNotice": "Esta es una herramienta en desarrollo. Estamos construyendo algo especial."
     },
     "variants": {
-      "title": "Elige tu Eureka",
+      "title": "Elige tu ysilegustas",
       "explore": "Explorar",
       "love": {
         "tagline": "Descubre si el amor es mutuo. Sin riesgos, sin rechazos."
@@ -245,20 +245,20 @@
   "appLanding": {
     "cta": "Empezar ahora",
     "howItWorks": "¿Cómo funciona?",
-    "whyUs": "¿Por qué EUREKA?",
+    "whyUs": "¿Por qué ysilegustas?",
     "readyToStart": "¿Listo para descubrir?",
     "readyDescription": "Crea tu cuenta gratis y empieza a descubrir conexiones mutuas.",
     "love": {
       "description": "¿Y si también piensa en ti? Descubre si el amor es mutuo. Sin riesgos. Sin rechazos."
     },
     "friends": {
-      "description": "Amigos Eureka. Amigos con los que sabes que es mutuo. Hay gente con la que te lo pasas genial… pero nunca sabes si al otro también le apetece. Eureka Friends convierte esa duda en claridad. Amistad adulta: a veces sí, a veces no… y no pasa nada."
+      "description": "Amigos ysilegustas. Amigos con los que sabes que es mutuo. Hay gente con la que te lo pasas genial… pero nunca sabes si al otro también le apetece. ysilegustas convierte esa duda en claridad. Amistad adulta: a veces sí, a veces no… y no pasa nada."
     },
     "sex": {
-      "description": "EUREKA SEX es una app para saber si el deseo es mutuo entre dos personas que ya se conocen, sin presión y sin exposición. No es para buscar. Es para confirmar."
+      "description": "ysilegustas es una app para saber si el deseo es mutuo entre dos personas que ya se conocen, sin presión y sin exposición. No es para buscar. Es para confirmar."
     },
     "hobby": {
-      "description": "EUREKA HOBBY es para descubrir si alguien quiere compartir un hobby contigo. Deporte, viajes, planes, cocina, música... Si el interés es mutuo, os ponemos en contacto. Sin exposición, sin rechazo."
+      "description": "ysilegustas es para descubrir si alguien quiere compartir un hobby contigo. Deporte, viajes, planes, cocina, música... Si el interés es mutuo, os ponemos en contacto. Sin exposición, sin rechazo."
     },
     "steps": {
       "step1": {
@@ -332,9 +332,9 @@
     "lastUpdated": "Última actualización",
     "terms": {
       "acceptance": "Aceptación de los Términos",
-      "acceptanceText": "Al acceder y utilizar EUREKA, aceptas estos términos y condiciones. Si no estás de acuerdo, no utilices el servicio.",
+      "acceptanceText": "Al acceder y utilizar ysilegustas, aceptas estos términos y condiciones. Si no estás de acuerdo, no utilices el servicio.",
       "service": "Descripción del Servicio",
-      "serviceText": "EUREKA es una plataforma que permite descubrir intereses mutuos entre personas. El servicio conecta usuarios que se eligen mutuamente, manteniendo la privacidad hasta que se produce una coincidencia.",
+      "serviceText": "ysilegustas es una plataforma que permite descubrir intereses mutuos entre personas. El servicio conecta usuarios que se eligen mutuamente, manteniendo la privacidad hasta que se produce una coincidencia.",
       "userConduct": "Conducta del Usuario",
       "userConductText": "Te comprometes a usar el servicio de forma responsable, no acosar a otros usuarios, no crear cuentas falsas y respetar la privacidad de los demás usuarios.",
       "privacy": "Privacidad",
@@ -342,7 +342,7 @@
       "termination": "Terminación",
       "terminationText": "Nos reservamos el derecho de suspender o eliminar tu cuenta si violas estos términos. Puedes eliminar tu cuenta en cualquier momento desde los ajustes.",
       "liability": "Limitación de Responsabilidad",
-      "liabilityText": "EUREKA no se hace responsable de las interacciones entre usuarios fuera de la plataforma. El servicio se proporciona 'tal cual' sin garantías de ningún tipo."
+      "liabilityText": "ysilegustas no se hace responsable de las interacciones entre usuarios fuera de la plataforma. El servicio se proporciona 'tal cual' sin garantías de ningún tipo."
     },
     "privacy": {
       "dataCollection": "Datos que Recopilamos",
@@ -414,7 +414,7 @@
     "description": "Comparte tu código con amigos. Cada vez que alguien se registre con tu código, ¡recibes 1 crédito gratis!",
     "yourCode": "Tu código de invitación",
     "share": "Compartir enlace",
-    "shareText": "¡Únete a EurekaMatch! Descubre si el interés es mutuo. Usa mi código para registrarte:",
+    "shareText": "¡Únete a ysilegustas! Descubre si el interés es mutuo. Usa mi código para registrarte:",
     "invited": "{{count}} personas invitadas",
     "shareHint": "Comparte y gana créditos gratis"
   },

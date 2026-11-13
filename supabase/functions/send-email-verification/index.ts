@@ -112,9 +112,9 @@ const handler = async (req: Request): Promise<Response> => {
 
     // Send verification email
     await resend.emails.send({
-      from: "EurekaMatch <info@eurekamatch.com>",
+      from: "ysilegustas <info@eurekamatch.com>",
       to: [email],
-      subject: "✉️ Verifica tu email en EurekaMatch",
+      subject: "✉️ Verifica tu email en ysilegustas",
       html: generateVerificationEmail(verifyUrl),
     });
 
@@ -146,7 +146,7 @@ function generateVerificationEmail(verifyUrl: string): string {
         
         <div style="text-align: center; padding: 30px 0 20px;">
           <div style="font-size: 42px; margin-bottom: 8px;">💌</div>
-          <h1 style="color: #ffffff; margin: 0; font-size: 26px; font-weight: 700; letter-spacing: -0.5px;">EurekaMatch</h1>
+          <h1 style="color: #ffffff; margin: 0; font-size: 26px; font-weight: 700; letter-spacing: -0.5px;">ysilegustas</h1>
         </div>
         
         <div style="background: #16213e; border-radius: 16px; padding: 32px; border: 1px solid rgba(255,255,255,0.08);">
@@ -172,7 +172,7 @@ function generateVerificationEmail(verifyUrl: string): string {
         </div>
         
         <p style="text-align: center; font-size: 12px; color: #4a4a5e; margin-top: 24px; line-height: 1.5;">
-          Este email fue enviado desde EurekaMatch<br>
+          Este email fue enviado desde ysilegustas<br>
           Si no creaste una cuenta, puedes ignorar este email.
         </p>
       </div>

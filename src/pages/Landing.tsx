@@ -30,7 +30,7 @@ function ExperimentLanding() {
     <div className="landing-experiment min-h-screen bg-background text-foreground">
       <header className="border-b border-border">
         <div className="mx-auto flex max-w-6xl items-center justify-between gap-4 px-5 py-4 md:px-8">
-          <span className="flex items-center gap-2 text-lg font-semibold"><Sparkles className="h-5 w-5 text-primary" /> EurekaMatch</span>
+          <span className="flex items-center gap-2 text-lg font-semibold"><Sparkles className="h-5 w-5 text-primary" /> ysilegustas</span>
         </div>
       </header>
       <section className="landing-scene relative isolate overflow-hidden">
@@ -38,7 +38,7 @@ function ExperimentLanding() {
         <div className="landing-scene-shade absolute inset-0 -z-10" />
         <div className="mx-auto max-w-6xl px-5 pb-10 pt-12 md:px-8 md:pb-14 md:pt-20">
           <div className="max-w-xl">
-            <p className="mb-6 text-sm font-medium text-primary">EurekaMatch</p>
+            <p className="mb-6 text-sm font-medium text-primary">ysilegustas</p>
             <h1 className="text-4xl font-bold leading-tight md:text-5xl">{copy.title}</h1>
             <p className="mt-6 max-w-md text-base leading-relaxed text-secondary-foreground md:text-lg">{copy.subtitle}</p>
           </div>
@@ -70,7 +70,7 @@ function ExperimentLanding() {
           <div className="flex flex-wrap justify-center gap-4 text-xs text-muted-foreground">
             <Link to="/terms">Términos y Condiciones</Link><span>·</span><Link to="/privacy">Política de Privacidad</Link>
           </div>
-          <p className="text-xs text-muted-foreground">© {new Date().getFullYear()} EurekaMatch. Todos los derechos reservados.</p>
+          <p className="text-xs text-muted-foreground">© {new Date().getFullYear()} ysilegustas. Todos los derechos reservados.</p>
         </div>
       </footer>
     </div>

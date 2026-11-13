@@ -197,7 +197,7 @@
       "devNotice": "Questo è uno strumento in sviluppo. Stiamo costruendo qualcosa di speciale."
     },
     "variants": {
-      "title": "Scegli il tuo Eureka",
+      "title": "Scegli il tuo ysilegustas",
       "explore": "Esplora",
       "love": {
         "tagline": "Scopri se l'amore è reciproco. Senza rischi, senza rifiuti."
@@ -230,20 +230,20 @@
   "appLanding": {
     "cta": "Inizia ora",
     "howItWorks": "Come funziona?",
-    "whyUs": "Perché EUREKA?",
+    "whyUs": "Perché ysilegustas?",
     "readyToStart": "Pronto a scoprire?",
     "readyDescription": "Crea il tuo account gratuito e inizia a scoprire connessioni reciproche.",
     "love": {
       "description": "E se anche lei/lui pensa a te? Scopri se l'amore è reciproco. Senza rischi. Senza rifiuti."
     },
     "friends": {
-      "description": "Eureka Friends. Amici con cui sai che è reciproco. Ci sono persone con cui ti diverti tantissimo… ma non sai mai se anche l'altro ne ha voglia. Eureka Friends trasforma quel dubbio in chiarezza. Amicizia adulta: a volte sì, a volte no… e va bene così."
+      "description": "ysilegustas. Amici con cui sai che è reciproco. Ci sono persone con cui ti diverti tantissimo… ma non sai mai se anche l'altro ne ha voglia. ysilegustas trasforma quel dubbio in chiarezza. Amicizia adulta: a volte sì, a volte no… e va bene così."
     },
     "sex": {
-      "description": "EUREKA SEX è un'app per sapere se il desiderio è reciproco tra due persone che già si conoscono, senza pressione e senza esposizione. Non è per cercare. È per confermare."
+      "description": "ysilegustas è un'app per sapere se il desiderio è reciproco tra due persone che già si conoscono, senza pressione e senza esposizione. Non è per cercare. È per confermare."
     },
     "hobby": {
-      "description": "EUREKA HOBBY è per scoprire se qualcuno vuole condividere un hobby con te. Sport, viaggi, piani, cucina, musica... Se l'interesse è reciproco, vi mettiamo in contatto. Senza esposizione, senza rifiuto."
+      "description": "ysilegustas è per scoprire se qualcuno vuole condividere un hobby con te. Sport, viaggi, piani, cucina, musica... Se l'interesse è reciproco, vi mettiamo in contatto. Senza esposizione, senza rifiuto."
     },
     "steps": {
       "step1": {
@@ -317,9 +317,9 @@
     "lastUpdated": "Ultimo aggiornamento",
     "terms": {
       "acceptance": "Accettazione dei Termini",
-      "acceptanceText": "Accedendo e utilizzando EUREKA, accetti questi termini e condizioni. Se non sei d'accordo, non utilizzare il servizio.",
+      "acceptanceText": "Accedendo e utilizzando ysilegustas, accetti questi termini e condizioni. Se non sei d'accordo, non utilizzare il servizio.",
       "service": "Descrizione del Servizio",
-      "serviceText": "EUREKA è una piattaforma che permette di scoprire interessi reciproci tra persone. Il servizio connette utenti che si scelgono reciprocamente, mantenendo la privacy fino a quando non si verifica una coincidenza.",
+      "serviceText": "ysilegustas è una piattaforma che permette di scoprire interessi reciproci tra persone. Il servizio connette utenti che si scelgono reciprocamente, mantenendo la privacy fino a quando non si verifica una coincidenza.",
       "userConduct": "Condotta dell'Utente",
       "userConductText": "Ti impegni a utilizzare il servizio in modo responsabile, a non molestare altri utenti, a non creare account falsi e a rispettare la privacy degli altri utenti.",
       "privacy": "Privacy",
@@ -327,7 +327,7 @@
       "termination": "Risoluzione",
       "terminationText": "Ci riserviamo il diritto di sospendere o eliminare il tuo account se violi questi termini. Puoi eliminare il tuo account in qualsiasi momento dalle impostazioni.",
       "liability": "Limitazione di Responsabilità",
-      "liabilityText": "EUREKA non è responsabile delle interazioni tra utenti al di fuori della piattaforma. Il servizio è fornito 'così com'è' senza garanzie di alcun tipo."
+      "liabilityText": "ysilegustas non è responsabile delle interazioni tra utenti al di fuori della piattaforma. Il servizio è fornito 'così com'è' senza garanzie di alcun tipo."
     },
     "privacy": {
       "dataCollection": "Dati che Raccogliamo",

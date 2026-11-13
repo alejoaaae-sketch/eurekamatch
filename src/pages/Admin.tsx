@@ -444,7 +444,7 @@ const Admin = () => {
                     <Textarea
                       value={globalForm.notification_sms_template}
                       onChange={(e) => setGlobalForm((p) => ({ ...p, notification_sms_template: e.target.value }))}
-                      placeholder="Alguien ha pensado en ti en EurekaMatch 💫"
+                      placeholder="Alguien ha pensado en ti en ysilegustas 💫"
                       rows={3}
                     />
                     <p className="text-xs text-muted-foreground mt-1">El mensaje es anónimo. No se revela quién lo envía.</p>

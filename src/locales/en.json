@@ -89,7 +89,7 @@
     "emptyPicksFreeBadge": "You have free credits"
   },
   "onboarding": {
-    "step1Title": "Welcome to EurekaMatch",
+    "step1Title": "Welcome to ysilegustas",
     "step1Desc": "Find out if the person you're thinking about is also thinking about you. 100% anonymous and private.",
     "step2Title": "How a Pick works",
     "step2Desc": "Add someone with their phone number. If they pick you back, it's a match — and only then will both of you know it's mutual.",
@@ -212,7 +212,7 @@
       "devNotice": "This is a tool in development. We're building something special."
     },
     "variants": {
-      "title": "Choose your Eureka",
+      "title": "Choose your ysilegustas",
       "explore": "Explore",
       "love": {
         "tagline": "Discover if love is mutual. No risks, no rejection."
@@ -245,20 +245,20 @@
   "appLanding": {
     "cta": "Get started",
     "howItWorks": "How does it work?",
-    "whyUs": "Why EUREKA?",
+    "whyUs": "Why ysilegustas?",
     "readyToStart": "Ready to discover?",
     "readyDescription": "Create your free account and start discovering mutual connections.",
     "love": {
       "description": "What if they're thinking of you too? Discover if love is mutual. No risks. No rejection."
     },
     "friends": {
-      "description": "Eureka Friends. Friends you know are mutual. There are people you have a great time with… but you never know if they feel the same. Eureka Friends turns that doubt into clarity. Adult friendship: sometimes yes, sometimes no… and that's okay."
+      "description": "ysilegustas. Friends you know are mutual. There are people you have a great time with… but you never know if they feel the same. ysilegustas turns that doubt into clarity. Adult friendship: sometimes yes, sometimes no… and that's okay."
     },
     "sex": {
-      "description": "EUREKA SEX is an app to find out if desire is mutual between two people who already know each other, without pressure or exposure. It's not for searching. It's for confirming."
+      "description": "ysilegustas is an app to find out if desire is mutual between two people who already know each other, without pressure or exposure. It's not for searching. It's for confirming."
     },
     "hobby": {
-      "description": "EUREKA HOBBY is for discovering if someone wants to share a hobby with you. Sports, trips, plans, cooking, music... If the interest is mutual, we connect you. No exposure, no rejection."
+      "description": "ysilegustas is for discovering if someone wants to share a hobby with you. Sports, trips, plans, cooking, music... If the interest is mutual, we connect you. No exposure, no rejection."
     },
     "steps": {
       "step1": {
@@ -332,9 +332,9 @@
     "lastUpdated": "Last updated",
     "terms": {
       "acceptance": "Acceptance of Terms",
-      "acceptanceText": "By accessing and using EUREKA, you agree to these terms and conditions. If you do not agree, do not use the service.",
+      "acceptanceText": "By accessing and using ysilegustas, you agree to these terms and conditions. If you do not agree, do not use the service.",
       "service": "Service Description",
-      "serviceText": "EUREKA is a platform that allows you to discover mutual interests between people. The service connects users who mutually choose each other, maintaining privacy until a match occurs.",
+      "serviceText": "ysilegustas is a platform that allows you to discover mutual interests between people. The service connects users who mutually choose each other, maintaining privacy until a match occurs.",
       "userConduct": "User Conduct",
       "userConductText": "You agree to use the service responsibly, not harass other users, not create fake accounts, and respect the privacy of other users.",
       "privacy": "Privacy",
@@ -342,7 +342,7 @@
       "termination": "Termination",
       "terminationText": "We reserve the right to suspend or delete your account if you violate these terms. You can delete your account at any time from the settings.",
       "liability": "Limitation of Liability",
-      "liabilityText": "EUREKA is not responsible for interactions between users outside the platform. The service is provided 'as is' without warranties of any kind."
+      "liabilityText": "ysilegustas is not responsible for interactions between users outside the platform. The service is provided 'as is' without warranties of any kind."
     },
     "privacy": {
       "dataCollection": "Data We Collect",
@@ -414,7 +414,7 @@
     "description": "Share your code with friends. Every time someone signs up with your code, you get 1 free credit!",
     "yourCode": "Your invite code",
     "share": "Share link",
-    "shareText": "Join EurekaMatch! Discover if the interest is mutual. Use my code to sign up:",
+    "shareText": "Join ysilegustas! Discover if the interest is mutual. Use my code to sign up:",
     "invited": "{{count}} people invited"
   },
   "welcome": {

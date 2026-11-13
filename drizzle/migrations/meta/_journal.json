@@ -22,6 +22,13 @@
       "when": 1794564453719,
       "tag": "0002_guard_profile_update_email_matches",
       "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "7",
+      "when": 1794565306971,
+      "tag": "0003_secure_beta_and_signup_referrals",
+      "breakpoints": true
     }
   ]
 }

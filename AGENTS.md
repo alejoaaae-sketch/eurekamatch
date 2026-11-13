@@ -4,3 +4,6 @@
 - Authenticate database match callbacks with a private, per-match, single-use token; check live bilateral blocks in both match reads and notification delivery to prevent forged callbacks and stale contact access.
 - Require verified profile emails for email-based matching and reset verification on email changes so mailbox identity cannot be claimed through editable profile fields.
 - Charge replacement-pick credits inside the insert transaction with a per-user lock; never separately debit in the client so direct inserts cannot bypass payment or charge twice.
+- Restrict simulated credit fulfillment to server-verified administrators; normal users must not receive paid credits from test purchases.
+- Apply referral codes only during Auth-triggered profile creation and make referral attribution immutable afterwards to prevent post-signup credit claims.
+- Share an exact project-origin allowlist for checkout returns; never trust Origin or a hosting-domain wildcard as a payment destination.

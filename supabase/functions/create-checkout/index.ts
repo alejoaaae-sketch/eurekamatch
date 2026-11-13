@@ -1,6 +1,7 @@
 import { serve } from "https://deno.land/std@0.190.0/http/server.ts";
 import Stripe from "https://esm.sh/stripe@18.5.0";
 import { createClient } from "npm:@supabase/supabase-js@2.49.1";
+import { getCheckoutOrigin } from "../_shared/checkout-origin.ts";
 
 const corsHeaders = {
   "Access-Control-Allow-Origin": "*",
@@ -22,6 +23,7 @@ serve(async (req) => {
   }
 
   try {
+    const origin = getCheckoutOrigin(req.headers.get("origin"));
     // Verify JWT signature via Supabase Auth
     const authHeader = req.headers.get("Authorization");
     if (!authHeader?.startsWith("Bearer ")) throw new Error("Unauthorized");
@@ -66,7 +68,6 @@ serve(async (req) => {
       if (customers.data.length > 0) customerId = customers.data[0].id;
     }
 
-    const origin = req.headers.get("origin") || "https://eurekamatch.lovable.app";
 
     const session = await stripe.checkout.sessions.create({
       customer: customerId,
@@ -88,7 +89,7 @@ serve(async (req) => {
     });
   } catch (error) {
     const msg = error instanceof Error ? error.message : String(error);
-    const status = msg === "Unauthorized" ? 401 : 500;
+    const status = msg === "Unauthorized" ? 401 : msg === "Invalid checkout origin" ? 400 : 500;
     return new Response(JSON.stringify({ error: msg }), {
       headers: { ...corsHeaders, "Content-Type": "application/json" },
       status,

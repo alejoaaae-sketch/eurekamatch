@@ -1,5 +1,6 @@
 import { serve } from "https://deno.land/std@0.190.0/http/server.ts";
 import { createClient } from "npm:@supabase/supabase-js@2.49.1";
+import { getCheckoutOrigin } from "../_shared/checkout-origin.ts";
 
 const corsHeaders = {
   "Access-Control-Allow-Origin": "*",
@@ -37,6 +38,7 @@ serve(async (req) => {
   }
 
   try {
+    const origin = getCheckoutOrigin(req.headers.get("origin"));
     // Verify JWT signature via Supabase Auth (never trust client-decoded claims)
     const authHeader = req.headers.get("Authorization");
     if (!authHeader?.startsWith("Bearer ")) throw new Error("Unauthorized");
@@ -68,7 +70,6 @@ serve(async (req) => {
     if (packErr || !pack) throw new Error("Invalid or disabled pack");
 
     const accessToken = await getAccessToken();
-    const origin = req.headers.get("origin") || "https://eurekamatch.lovable.app";
 
     const orderRes = await fetch(`${PAYPAL_API}/v2/checkout/orders`, {
       method: "POST",
@@ -117,7 +118,7 @@ serve(async (req) => {
     );
   } catch (error) {
     const msg = error instanceof Error ? error.message : String(error);
-    const status = msg === "Unauthorized" ? 401 : 500;
+    const status = msg === "Unauthorized" ? 401 : msg === "Invalid checkout origin" ? 400 : 500;
     return new Response(JSON.stringify({ error: msg }), {
       headers: { ...corsHeaders, "Content-Type": "application/json" },
       status,

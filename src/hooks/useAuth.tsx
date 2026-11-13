@@ -65,6 +65,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
           phone: phone,
           display_name: displayName,
           user_email: userEmail,
+          ...(referralCode ? { referral_code: referralCode.toUpperCase() } : {}),
         },
       },
     });
@@ -73,17 +74,14 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
       // Update the profile with phone, display name, and user's real email
       await supabase
         .from('profiles')
-        .upsert({
-          user_id: data.user.id,
+        .update({
           phone: phone,
           display_name: displayName,
           email: userEmail,
           consent_accepted_at: new Date().toISOString(),
           ...(birthYear ? { birth_year: birthYear } : {}),
-          ...(referralCode ? { referred_by: referralCode.toUpperCase() } : {}),
-        }, {
-          onConflict: 'user_id',
-        });
+        })
+        .eq('user_id', data.user.id);
 
       // Send email verification link only if verify_email is enabled
       if (verifyEmail) {

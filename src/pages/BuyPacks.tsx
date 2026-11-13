@@ -9,11 +9,13 @@ import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
 import PaymentSimulationModal from "@/components/PaymentSimulationModal";
 import CardPaymentForm from "@/components/CardPaymentForm";
+import { useAdmin } from "@/hooks/useAdmin";
 
 const BuyPacks = () => {
   const navigate = useNavigate();
   const { t } = useTranslation();
   const { user, loading: authLoading } = useAuth();
+  const { isAdmin, loading: adminLoading } = useAdmin();
   const { packs, picksRemaining, loading: balanceLoading, refetch: refetchBalance } = usePickBalance();
   
   const { betaMode, loading: configLoading } = useAppConfig();
@@ -22,7 +24,7 @@ const BuyPacks = () => {
   const [showSimulation, setShowSimulation] = useState(false);
   const [showCardForm, setShowCardForm] = useState(false);
 
-  if (authLoading || balanceLoading || configLoading || !user) {
+  if (authLoading || balanceLoading || configLoading || adminLoading || !user) {
     return (
       <div className="min-h-screen bg-background flex items-center justify-center">
         <Loader2 className="w-8 h-8 animate-spin text-primary" />
@@ -32,6 +34,7 @@ const BuyPacks = () => {
 
   const handleSelectPack = (pack: PickPack) => {
     if (betaMode) {
+      if (!isAdmin) return;
       setSelectedPack(pack);
       setShowSimulation(true);
       return;
@@ -59,9 +62,9 @@ const BuyPacks = () => {
   };
 
   const handleBetaPaymentComplete = async () => {
-    if (!selectedPack || !user) return;
+    if (!selectedPack || !user || !isAdmin) return;
     try {
-      // Server-side RPC: enforces beta_mode flag and reads price/picks from DB.
+      // Server-side RPC enforces the administrator role and beta flag.
       const { error } = await supabase.rpc('complete_beta_purchase', { p_pack_id: selectedPack.id });
       if (error) throw error;
 
@@ -138,7 +141,7 @@ const BuyPacks = () => {
                   <button
                     key={pack.id}
                     onClick={() => handleSelectPack(pack)}
-                    disabled={processing}
+                    disabled={processing || (betaMode && !isAdmin)}
                     className={`w-full relative rounded-2xl border-2 p-5 text-left transition-all hover:scale-[1.02] active:scale-[0.98] ${
                       isPopular
                         ? "border-primary bg-primary/5"
@@ -178,6 +181,11 @@ const BuyPacks = () => {
 
             {/* Info */}
             <div className="mt-8 text-center">
+              {betaMode && !isAdmin && (
+                <p role="status" className="text-sm text-muted-foreground mb-3">
+                  La compra de créditos no está disponible durante la prueba. No se realizará ningún cobro.
+                </p>
+              )}
               <p className="text-xs text-muted-foreground">
                 🔒 {t("packs.info")}
               </p>

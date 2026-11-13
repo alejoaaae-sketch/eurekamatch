@@ -152,7 +152,7 @@ const handler = async (req: Request): Promise<Response> => {
     // Server-side: mark profile phone as verified (clients can no longer write this flag)
     await supabase.rpc("set_phone_verified_by_phone", { p_phone: normalizedPhone });
 
-    console.log(`OTP verified successfully for ${normalizedPhone}`);
+
 
     return new Response(
       JSON.stringify({ valid: true }),

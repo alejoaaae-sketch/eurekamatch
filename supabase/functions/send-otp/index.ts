@@ -200,8 +200,8 @@ const handler = async (req: Request): Promise<Response> => {
 
     if (!twilioResponse.ok) {
       const errorData = await twilioResponse.json();
-      console.error("Twilio error:", errorData);
-      throw new Error(errorData.message || "Failed to send SMS");
+      console.error("OTP delivery failed");
+      throw new Error("Failed to send SMS");
     }
 
     // Store HASHED OTP in database (never store plain text)
@@ -221,7 +221,7 @@ const handler = async (req: Request): Promise<Response> => {
       throw new Error("Failed to store OTP");
     }
 
-    console.log(`OTP sent successfully to ${normalizedPhone} (IP: ${clientIP})`);
+
 
     return new Response(
       JSON.stringify({ 

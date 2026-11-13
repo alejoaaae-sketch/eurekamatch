@@ -156,14 +156,11 @@ const handler = async (req: Request): Promise<Response> => {
     // signed-in user who is one of the two matched users.
     const authHeader = req.headers.get("authorization") || "";
     const bearer = authHeader.startsWith("Bearer ") ? authHeader.slice(7) : "";
-    const internalSource = req.headers.get("x-internal-source");
+    const internalToken = req.headers.get("x-match-notification-token");
     let authorizedUserId: string | null = null;
     let isInternal = false;
 
     if (bearer && bearer === supabaseServiceKey) {
-      isInternal = true;
-    } else if (internalSource === "db-trigger") {
-      // Local trigger requests (pg_net) — accept; payload is still validated below.
       isInternal = true;
     } else if (bearer) {
       const userClient = createClient(
@@ -175,7 +172,7 @@ const handler = async (req: Request): Promise<Response> => {
       if (userData?.user) authorizedUserId = userData.user.id;
     }
 
-    if (!isInternal && !authorizedUserId) {
+    if (!isInternal && !authorizedUserId && !internalToken) {
       return new Response(JSON.stringify({ error: "Unauthorized" }),
         { status: 401, headers: { "Content-Type": "application/json", ...corsHeaders } });
     }
@@ -184,6 +181,21 @@ const handler = async (req: Request): Promise<Response> => {
 
     if (!matchId || !user1Id || !user2Id || !appType) {
       throw new Error("Missing required fields: matchId, user1Id, user2Id, appType");
+    }
+
+    if (!isInternal && internalToken) {
+      const { data: authorization } = await supabase
+        .from("match_notification_authorizations")
+        .select("match_id")
+        .eq("match_id", matchId)
+        .eq("token", internalToken)
+        .is("used_at", null)
+        .maybeSingle();
+      isInternal = Boolean(authorization);
+    }
+    if (!isInternal && !authorizedUserId) {
+      return new Response(JSON.stringify({ error: "Unauthorized" }),
+        { status: 401, headers: { ...corsHeaders, "Content-Type": "application/json" } });
     }
 
     if (!isInternal && authorizedUserId && authorizedUserId !== user1Id && authorizedUserId !== user2Id) {
@@ -216,6 +228,23 @@ const handler = async (req: Request): Promise<Response> => {
     if (secondsSinceCreation > 60) {
       return new Response(JSON.stringify({ error: "Request expired" }),
         { status: 403, headers: { "Content-Type": "application/json", ...corsHeaders } });
+    }
+
+    const { data: blocked, error: blockError } = await supabase.rpc("has_block_between", { user_a: user1Id, user_b: user2Id });
+    if (blockError || blocked) {
+      return new Response(JSON.stringify({ error: "Forbidden" }),
+        { status: 403, headers: { ...corsHeaders, "Content-Type": "application/json" } });
+    }
+    if (isInternal && internalToken) {
+      const { data: consumed, error: consumeError } = await supabase
+        .from("match_notification_authorizations")
+        .update({ used_at: new Date().toISOString() })
+        .eq("match_id", matchId).eq("token", internalToken).is("used_at", null)
+        .select("match_id").maybeSingle();
+      if (consumeError || !consumed) {
+        return new Response(JSON.stringify({ error: "Unauthorized" }),
+          { status: 401, headers: { ...corsHeaders, "Content-Type": "application/json" } });
+      }
     }
 
     const appConfig = appConfigs[appType] || appConfigs.love;

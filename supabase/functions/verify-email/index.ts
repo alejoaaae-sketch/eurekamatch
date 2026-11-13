@@ -66,9 +66,10 @@ const handler = async (req: Request): Promise<Response> => {
       await supabase
         .from("profiles")
         .update({ email_verified: true })
-        .eq("user_id", verification.user_id);
+        .eq("user_id", verification.user_id)
+        .eq("email", verification.email);
 
-      console.log(`Email verified for user ${verification.user_id}: ${verification.email}`);
+
 
       return new Response(
         JSON.stringify({ status: "success", message: "¡Tu email ha sido verificado correctamente!" }),

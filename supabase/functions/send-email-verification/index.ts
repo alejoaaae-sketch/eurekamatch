@@ -118,7 +118,7 @@ const handler = async (req: Request): Promise<Response> => {
       html: generateVerificationEmail(verifyUrl),
     });
 
-    console.log(`Verification email sent to ${email} for user ${authenticatedUserId}`);
+
 
     return new Response(
       JSON.stringify({ success: true }),

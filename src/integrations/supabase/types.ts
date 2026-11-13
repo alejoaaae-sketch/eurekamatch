@@ -176,6 +176,32 @@ export type Database = {
         }
         Relationships: []
       }
+      match_notification_authorizations: {
+        Row: {
+          match_id: string
+          token: string
+          used_at: string | null
+        }
+        Insert: {
+          match_id: string
+          token?: string
+          used_at?: string | null
+        }
+        Update: {
+          match_id?: string
+          token?: string
+          used_at?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "match_notification_authorizations_match_id_fkey"
+            columns: ["match_id"]
+            isOneToOne: true
+            referencedRelation: "matches"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       matches: {
         Row: {
           created_at: string

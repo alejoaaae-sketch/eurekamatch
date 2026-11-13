@@ -1,0 +1,27 @@
+{
+  "version": "7",
+  "dialect": "postgresql",
+  "entries": [
+    {
+      "idx": 0,
+      "version": "7",
+      "when": 1794564370081,
+      "tag": "0000_selected_match_security",
+      "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1794564421068,
+      "tag": "0001_enforce_pick_replacement_credits",
+      "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1794564453719,
+      "tag": "0002_guard_profile_update_email_matches",
+      "breakpoints": true
+    }
+  ]
+}

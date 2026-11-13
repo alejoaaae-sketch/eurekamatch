@@ -47,7 +47,7 @@ serve(async (req) => {
     const userId = userData.user.id;
 
     const { orderId } = await req.json();
-    if (!orderId) throw new Error("Missing orderId");
+    if (typeof orderId !== "string" || !/^[A-Z0-9]{8,64}$/.test(orderId)) throw new Error("Invalid orderId");
 
     const accessToken = await getAccessToken();
 
@@ -56,6 +56,20 @@ serve(async (req) => {
     });
     if (!orderRes.ok) throw new Error(`Failed to get order [${orderRes.status}]`);
     const orderDetails = await orderRes.json();
+
+    // Parse minimal custom_id metadata (only user_id + pack_id, never price/quantity)
+    const customId = orderDetails.purchase_units?.[0]?.custom_id;
+
+    let meta: { user_id: string; pack_id: string };
+    try {
+      meta = JSON.parse(customId);
+    } catch {
+      throw new Error("Invalid order metadata");
+    }
+
+    if (meta.user_id !== userId) {
+      throw new Error("Unauthorized: order does not belong to this user");
+    }
 
     if (orderDetails.status === "COMPLETED") {
       return new Response(
@@ -91,21 +105,6 @@ serve(async (req) => {
         JSON.stringify({ success: false, error: "Payment capture not completed" }),
         { headers: { ...corsHeaders, "Content-Type": "application/json" }, status: 200 },
       );
-    }
-
-    // Parse minimal custom_id metadata (only user_id + pack_id, never price/quantity)
-    const customId = captureData.purchase_units?.[0]?.payments?.captures?.[0]?.custom_id
-      || orderDetails.purchase_units?.[0]?.custom_id;
-
-    let meta: { user_id: string; pack_id: string };
-    try {
-      meta = JSON.parse(customId);
-    } catch {
-      throw new Error("Invalid order metadata");
-    }
-
-    if (meta.user_id !== userId) {
-      throw new Error("Unauthorized: order does not belong to this user");
     }
 
     const supabaseAdmin = createClient(

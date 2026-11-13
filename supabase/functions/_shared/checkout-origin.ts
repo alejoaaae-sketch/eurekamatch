@@ -1,5 +1,7 @@
 // Exact project-owned origins only; never authorize an entire hosting suffix.
 const CHECKOUT_ORIGINS = new Set([
+  "https://ysilegustas.com",
+  "https://www.ysilegustas.com",
   "https://eurekamatch.com",
   "https://www.eurekamatch.com",
   "https://eurekamatch.eus",

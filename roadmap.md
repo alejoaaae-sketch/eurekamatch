@@ -1,4 +1,8 @@
 # Prueba de presentación
+- [x] Preparar pago PayPal real solo para el propietario, manteniendo la prueba para los demás.
+- [x] Garantizar entrega única y recuperable de créditos tras el cobro.
+- [x] Verificar acceso autenticado y creación del pedido sin realizar cargos.
+- [ ] Confirmación del cobro y entrega real pendiente de la compra del propietario; PayPal bloquea el navegador automatizado.
 - [x] Aplicar dos elecciones principales, cinco conservadas y sustituciones de 1/3 créditos sin reiniciar la caducidad.
 - [x] Excluir elecciones caducadas a los 90 días y conservar el historial de coincidencias.
 - [x] Mostrar cupos, días restantes y confirmación de conservación en castellano.

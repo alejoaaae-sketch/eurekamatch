@@ -1,4 +1,6 @@
 # Architecture rules
+- Keep the owner-only live PayPal trial behind server-verified role and account checks while beta remains enabled; use PayPal-hosted checkout so the app never collects trial card data.
+- Fulfill verified PayPal captures in one service-only database transaction under the shared user lock, recovering completed orders idempotently to avoid lost or duplicate credits.
 - Keep the landing presentation experiment behind `LANDING_EXPERIMENT_ENABLED`, preserving the legacy landing independently, so reverting presentation does not alter account data or business rules.
 - Use the same experiment switch for the Love display-name override and direct landing authentication links; keep the stored mode identifier unchanged so existing picks and matches remain available.
 - Authenticate database match callbacks with a private, per-match, single-use token; check live bilateral blocks in both match reads and notification delivery to prevent forged callbacks and stale contact access.

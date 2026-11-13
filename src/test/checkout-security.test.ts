@@ -4,6 +4,7 @@ import { getCheckoutOrigin } from '../../supabase/functions/_shared/checkout-ori
 
 describe('checkout return destinations', () => {
   it.each([
+    'https://ysilegustas.com', 'https://www.ysilegustas.com',
     'https://eurekamatch.com', 'https://www.eurekamatch.com',
     'https://eurekamatch.eus', 'https://www.eurekamatch.eus',
     'https://eurekamatch.lovable.app',

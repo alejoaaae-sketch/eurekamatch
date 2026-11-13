@@ -10,6 +10,8 @@ import { toast } from "sonner";
 import PaymentSimulationModal from "@/components/PaymentSimulationModal";
 import CardPaymentForm from "@/components/CardPaymentForm";
 import { useAdmin } from "@/hooks/useAdmin";
+import { canUseRealPaymentTrial } from '@/lib/payment-trial';
+import { FunctionsHttpError } from '@supabase/supabase-js';
 
 const BuyPacks = () => {
   const navigate = useNavigate();
@@ -32,7 +34,24 @@ const BuyPacks = () => {
     );
   }
 
-  const handleSelectPack = (pack: PickPack) => {
+  const handleSelectPack = async (pack: PickPack) => {
+    if (canUseRealPaymentTrial(user.id, isAdmin)) {
+      if (processing) return;
+      setProcessing(true);
+      try {
+        const { data, error } = await supabase.functions.invoke('create-paypal-order', {
+          body: { packId: pack.id, returnOrigin: window.location.origin },
+        });
+        if (error) throw new Error(error instanceof FunctionsHttpError ? await error.context.text() : error.message);
+        const destination = new URL(data.url);
+        if (destination.origin !== 'https://www.paypal.com') throw new Error('Destino de pago no válido');
+        window.location.assign(destination.href);
+      } catch (error) {
+        toast.error(error instanceof Error ? error.message : 'No se pudo abrir PayPal');
+        setProcessing(false);
+      }
+      return;
+    }
     if (betaMode) {
       if (!isAdmin) return;
       setSelectedPack(pack);
@@ -133,6 +152,11 @@ const BuyPacks = () => {
 
             {/* Packs grid */}
             <div className="space-y-3">
+              {canUseRealPaymentTrial(user.id, isAdmin) && (
+                <p role="status" className="text-sm text-muted-foreground mb-3">
+                  Pago real solo para tu cuenta. El importe se cobrará al confirmar en PayPal; puede haber comisiones.
+                </p>
+              )}
               {packs.map((pack) => {
                 const meta = packLabels[pack.name] || { label: pack.name, icon: "📦" };
                 const isPopular = pack.name === "medium";

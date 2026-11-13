@@ -7,6 +7,8 @@ const corsHeaders = {
     "authorization, x-client-info, apikey, content-type, x-supabase-client-platform, x-supabase-client-platform-version, x-supabase-client-runtime, x-supabase-client-runtime-version",
 };
 
+import { completedCaptureAmount } from "../_shared/paypal-capture.ts";
+
 const PAYPAL_API = "https://api-m.paypal.com";
 
 async function getAccessToken(): Promise<string> {
@@ -71,41 +73,25 @@ serve(async (req) => {
       throw new Error("Unauthorized: order does not belong to this user");
     }
 
-    if (orderDetails.status === "COMPLETED") {
-      return new Response(
-        JSON.stringify({ success: true, already_processed: true }),
-        { headers: { ...corsHeaders, "Content-Type": "application/json" }, status: 200 },
-      );
+    let captureData = orderDetails;
+    if (orderDetails.status !== "COMPLETED") {
+      if (orderDetails.status !== "APPROVED") {
+        return new Response(JSON.stringify({ success: false, error: "Order not approved by buyer" }), {
+          status: 200, headers: { ...corsHeaders, "Content-Type": "application/json" },
+        });
+      }
+      const captureRes = await fetch(`${PAYPAL_API}/v2/checkout/orders/${orderId}/capture`, {
+        method: "POST",
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+          "Content-Type": "application/json",
+          "PayPal-Request-Id": `capture-${orderId}`,
+        },
+      });
+      if (!captureRes.ok) throw new Error(`PayPal capture failed [${captureRes.status}]: ${await captureRes.text()}`);
+      captureData = await captureRes.json();
     }
-
-    if (orderDetails.status !== "APPROVED" && orderDetails.status !== "CREATED") {
-      return new Response(
-        JSON.stringify({ success: false, error: `Order not in capturable state. Status: ${orderDetails.status}` }),
-        { headers: { ...corsHeaders, "Content-Type": "application/json" }, status: 200 },
-      );
-    }
-
-    const captureRes = await fetch(`${PAYPAL_API}/v2/checkout/orders/${orderId}/capture`, {
-      method: "POST",
-      headers: {
-        Authorization: `Bearer ${accessToken}`,
-        "Content-Type": "application/json",
-      },
-    });
-
-    if (!captureRes.ok) {
-      const text = await captureRes.text();
-      throw new Error(`PayPal capture failed [${captureRes.status}]: ${text}`);
-    }
-
-    const captureData = await captureRes.json();
-
-    if (captureData.status !== "COMPLETED") {
-      return new Response(
-        JSON.stringify({ success: false, error: "Payment capture not completed" }),
-        { headers: { ...corsHeaders, "Content-Type": "application/json" }, status: 200 },
-      );
-    }
+    const paidAmount = completedCaptureAmount(captureData);
 
     const supabaseAdmin = createClient(
       Deno.env.get("SUPABASE_URL") ?? "",
@@ -113,62 +99,10 @@ serve(async (req) => {
       { auth: { persistSession: false } },
     );
 
-    // Re-read authoritative pack data from DB (defence-in-depth against tampering)
-    const { data: pack, error: packErr } = await supabaseAdmin
-      .from("pick_packs")
-      .select("id, name, picks_count, price")
-      .eq("id", meta.pack_id)
-      .single();
-    if (packErr || !pack) throw new Error("Pack not found");
-
-    const picksCount = Number(pack.picks_count);
-    const price = Number(pack.price);
-
-    // Idempotency check
-    const { data: existingPurchase } = await supabaseAdmin
-      .from("pack_purchases")
-      .select("id")
-      .eq("payment_method", `paypal:${orderId}`)
-      .limit(1);
-
-    if (existingPurchase && existingPurchase.length > 0) {
-      return new Response(
-        JSON.stringify({ success: true, already_processed: true, picks_added: picksCount }),
-        { headers: { ...corsHeaders, "Content-Type": "application/json" }, status: 200 },
-      );
-    }
-
-    const { error: purchaseError } = await supabaseAdmin
-      .from("pack_purchases")
-      .insert({
-        user_id: userId,
-        pack_id: pack.id,
-        pack_name: pack.name,
-        picks_count: picksCount,
-        price: price,
-        payment_method: `paypal:${orderId}`,
-      });
-
-    if (purchaseError) throw new Error(`Purchase insert failed: ${purchaseError.message}`);
-
-    const { data: currentBalance } = await supabaseAdmin
-      .from("user_pick_balance")
-      .select("picks_remaining, total_purchased, total_used")
-      .eq("user_id", userId)
-      .single();
-
-    const remaining = (currentBalance?.picks_remaining ?? 0) + picksCount;
-    const purchased = (currentBalance?.total_purchased ?? 0) + picksCount;
-    const used = currentBalance?.total_used ?? 0;
-
-    const { error: balanceError } = await supabaseAdmin
-      .from("user_pick_balance")
-      .upsert(
-        { user_id: userId, picks_remaining: remaining, total_purchased: purchased, total_used: used },
-        { onConflict: "user_id" },
-      );
-
-    if (balanceError) throw new Error(`Balance update failed: ${balanceError.message}`);
+    const { data: picksCount, error: fulfillmentError } = await supabaseAdmin.rpc('fulfill_paypal_purchase', {
+      p_user_id: userId, p_pack_id: meta.pack_id, p_order_id: orderId, p_amount: paidAmount,
+    });
+    if (fulfillmentError) throw new Error(`Payment completed; credit registration pending. Do not pay again: ${fulfillmentError.message}`);
 
     return new Response(
       JSON.stringify({ success: true, picks_added: picksCount }),

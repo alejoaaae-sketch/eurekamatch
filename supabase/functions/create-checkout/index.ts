@@ -47,6 +47,13 @@ serve(async (req) => {
       Deno.env.get("SUPABASE_SERVICE_ROLE_KEY") ?? "",
       { auth: { persistSession: false } },
     );
+    const { data: config, error: configError } = await admin.from('global_config').select('beta_mode').limit(1).single();
+    if (configError || !config) throw new Error('Payment configuration unavailable');
+    if (config.beta_mode) {
+      return new Response(JSON.stringify({ error: 'Stripe purchases are disabled during the trial' }), {
+        status: 403, headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+      });
+    }
     const { data: pack, error: packErr } = await admin
       .from("pick_packs")
       .select("id, name, picks_count, price, enabled")

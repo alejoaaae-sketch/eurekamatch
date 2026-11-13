@@ -9,7 +9,7 @@ describe('selected security fixes', () => {
     const s = source('capture-paypal-order');
     const check = s.indexOf('meta.user_id !== userId');
     expect(check).toBeGreaterThan(0);
-    expect(check).toBeLessThan(s.indexOf('orderDetails.status === "COMPLETED"'));
+    expect(check).toBeLessThan(s.indexOf('orderDetails.status !== "COMPLETED"'));
     expect(check).toBeLessThan(s.indexOf('const captureRes'));
   });
   it('does not trust the public db-trigger header', () => {

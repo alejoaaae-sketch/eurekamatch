@@ -1,6 +1,7 @@
 import { serve } from "https://deno.land/std@0.190.0/http/server.ts";
 import { createClient } from "npm:@supabase/supabase-js@2.49.1";
 import { getCheckoutOrigin } from "../_shared/checkout-origin.ts";
+import { isPaymentTrialAccount } from '../_shared/payment-trial.ts';
 
 const corsHeaders = {
   "Access-Control-Allow-Origin": "*",
@@ -52,7 +53,8 @@ serve(async (req) => {
     if (userErr || !userData?.user) throw new Error("Unauthorized");
     const userId = userData.user.id;
 
-    const { packId } = await req.json();
+    const { packId, returnOrigin } = await req.json();
+    const destination = returnOrigin === undefined ? origin : getCheckoutOrigin(returnOrigin);
     if (!packId) throw new Error("Missing packId");
 
     // Fetch authoritative pack data server-side (never trust client-supplied price/quantity)
@@ -61,6 +63,14 @@ serve(async (req) => {
       Deno.env.get("SUPABASE_SERVICE_ROLE_KEY") ?? "",
       { auth: { persistSession: false } },
     );
+    const { data: isAdmin, error: roleError } = await admin.rpc('has_role', { _user_id: userId, _role: 'admin' });
+    const { data: config, error: configError } = await admin.from('global_config').select('beta_mode').limit(1).single();
+    if (roleError || configError || !config) throw new Error('Payment configuration unavailable');
+    if (config.beta_mode && !isPaymentTrialAccount(userId, isAdmin === true)) {
+      return new Response(JSON.stringify({ error: 'Real payment trial is restricted to the owner' }), {
+        status: 403, headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+      });
+    }
     const { data: pack, error: packErr } = await admin
       .from("pick_packs")
       .select("id, name, picks_count, price, enabled")
@@ -76,6 +86,7 @@ serve(async (req) => {
       headers: {
         Authorization: `Bearer ${accessToken}`,
         "Content-Type": "application/json",
+        "PayPal-Request-Id": crypto.randomUUID(),
       },
       body: JSON.stringify({
         intent: "CAPTURE",
@@ -96,8 +107,8 @@ serve(async (req) => {
           shipping_preference: "NO_SHIPPING",
           user_action: "PAY_NOW",
           payment_method_preference: "UNRESTRICTED",
-          return_url: `${origin}/payment-success?provider=paypal`,
-          cancel_url: `${origin}/buy-packs`,
+          return_url: `${destination}/payment-success?provider=paypal`,
+          cancel_url: `${destination}/buy-packs`,
         },
       }),
     });

@@ -119,6 +119,7 @@ const PaymentSuccess = () => {
             </div>
             <p className="text-xl font-bold text-foreground mb-2">{t("common.error")}</p>
             <p className="text-sm text-muted-foreground mb-6">{errorMsg}</p>
+            <p className="text-sm text-muted-foreground mb-6">Si ya has confirmado el pago, no vuelvas a comprar sin comprobar el cargo en PayPal.</p>
             <Button variant="outline" className="w-full" onClick={() => navigate("/buy-packs")}>
               {t("common.back")}
             </Button>

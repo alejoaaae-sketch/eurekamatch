@@ -1,0 +1,2 @@
+# Architecture rules
+- Keep the landing presentation experiment behind `LANDING_EXPERIMENT_ENABLED`, preserving the legacy landing independently, so reverting presentation does not alter account data or business rules.

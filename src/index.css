@@ -218,3 +218,28 @@
     animation-delay: 0.3s;
   }
 }
+
+/* Scoped landing experiment: existing screens retain their original theme. */
+.landing-experiment {
+  --landing-love: 350 78% 66%;
+  --landing-friends: 28 90% 62%;
+  --landing-sex: 0 78% 62%;
+  --landing-hobby: 148 58% 54%;
+  --landing-overlay: linear-gradient(90deg, hsl(var(--background) / .98) 0%, hsl(var(--background) / .91) 34%, hsl(var(--background) / .42) 70%, hsl(var(--background) / .14) 100%);
+  letter-spacing: 0;
+}
+.landing-scene { min-height: 640px; }
+.landing-scene-shade { background: var(--landing-overlay); }
+.landing-mode-love { --mode-color: var(--landing-love); }
+.landing-mode-friends { --mode-color: var(--landing-friends); }
+.landing-mode-sex { --mode-color: var(--landing-sex); }
+.landing-mode-hobby { --mode-color: var(--landing-hobby); }
+.landing-mode-icon { color: hsl(var(--mode-color)); background: hsl(var(--mode-color) / .14); border: 1px solid hsl(var(--mode-color) / .35); }
+.landing-mode:hover { background: hsl(var(--mode-color) / .08); }
+@media (max-width: 767px) {
+  .landing-experiment { --landing-overlay: linear-gradient(180deg, hsl(var(--background) / .85), hsl(var(--background) / .82) 45%, hsl(var(--background) / .98)); }
+  .landing-scene { min-height: 0; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .landing-mode, .landing-mode-icon { transition: none; transform: none; }
+}
